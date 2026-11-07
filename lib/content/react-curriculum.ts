@@ -589,9 +589,9 @@ export const curriculumStats = reactCurriculum.reduce(
 );
 
 export function findTopic(topicId: string) {
-  for (const module of reactCurriculum) {
-    const topic = module.topics.find((item) => item.id === topicId);
-    if (topic) return { module, topic };
+  for (const entry of reactCurriculum) {
+    const topic = entry.topics.find((item) => item.id === topicId);
+    if (topic) return { module: entry, topic };
   }
   return null;
 }

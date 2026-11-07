@@ -25,6 +25,14 @@ export const visualKindValues = [
   "component-tree",
   "controlled-input",
   "module-map",
+  "dependency-grid",
+  "ref-box",
+  "context-tree",
+  "async-lifecycle",
+  "route-tree",
+  "type-contract",
+  "layer-stack",
+  "test-pyramid",
 ] as const;
 export const visualKindSchema = z.enum(visualKindValues);
 export type VisualKind = z.infer<typeof visualKindSchema>;

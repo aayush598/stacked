@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
@@ -16,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Stacked — Learn React by playing",
   description:
-    "Short, visual, gamified React lessons. Master every syntax pattern in minutes with notes attached to every question.",
+    "Short, visual, gamified React lessons. Master every pattern from syntax to architecture with notes and diagrams attached to every question.",
 };
 
 export const viewport: Viewport = {
@@ -24,7 +25,7 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"

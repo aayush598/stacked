@@ -4,7 +4,7 @@ const questions = [
   {
     id: "easy-jsx-expression",
     topicId: "jsx.expressions",
-    topicTitle: "JSX expressions",
+    topicTitle: "JavaScript expressions",
     tier: "easy",
     type: "mcq",
     title: "JavaScript lives inside braces",
@@ -217,7 +217,7 @@ const questions = [
   {
     id: "easy-jsx-output",
     topicId: "jsx.expressions",
-    topicTitle: "JSX expressions",
+    topicTitle: "JavaScript expressions",
     tier: "easy",
     type: "code-output",
     title: "Predict the output",
@@ -567,7 +567,7 @@ const questions = [
   {
     id: "easy-render-and",
     topicId: "render.and",
-    topicTitle: "Logical AND",
+    topicTitle: "Logical AND rendering",
     tier: "easy",
     type: "mcq",
     title: "Render only when true",

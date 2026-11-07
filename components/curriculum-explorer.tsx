@@ -38,8 +38,14 @@ import {
 } from "lucide-react";
 import { useDeferredValue, useMemo, useState } from "react";
 import { curriculumStats, reactCurriculum } from "@/lib/content/react-curriculum";
+import {
+  allQuestions,
+  getPlayableTier,
+  questionCountsByTier,
+  questionsByTopic,
+  questionsByTierAndTopic,
+} from "@/lib/content/questions";
 import type { Tier } from "@/lib/content/schema";
-import { questionsByTopic, reactEasyQuestions } from "@/lib/content/react-easy-questions";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
 import { useProgressStore } from "@/lib/store/progress-store";
 import { cn, pluralize } from "@/lib/utils";
@@ -130,8 +136,13 @@ export function CurriculumExplorer() {
           module.summary.toLowerCase().includes(needle) ||
           module.kicker.toLowerCase().includes(needle);
         const topics = module.topics.filter((topic) => {
-          const live = (questionsByTopic[topic.id] ?? []).length > 0;
+          const topicQuestions =
+            tier === "all"
+              ? questionsByTopic[topic.id] ?? []
+              : questionsByTierAndTopic[tier][topic.id] ?? [];
+          const live = topicQuestions.length > 0;
           if (onlyLive && !live) return false;
+          if (tier !== "all" && !live) return false;
           if (moduleMatches) return true;
           return (
             topic.title.toLowerCase().includes(needle) ||
@@ -145,9 +156,9 @@ export function CurriculumExplorer() {
   }, [deferredQuery, onlyLive, tier]);
 
   const searching = Boolean(deferredQuery.trim());
-  const liveTotal = reactEasyQuestions.length;
+  const liveTotal = allQuestions.length;
   const clearedTotal = hydrated
-    ? reactEasyQuestions.filter((question) => answers[question.id]?.correct).length
+    ? allQuestions.filter((question) => answers[question.id]?.correct).length
     : 0;
   const plannedTotal = curriculumStats.topics * 12;
 
@@ -186,8 +197,8 @@ export function CurriculumExplorer() {
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-muted sm:text-[15px]">
               Every module, every small syntax rule, every pattern — organised from first
-              render to complex architecture. Easy tier is live now; the rest is staged and
-              ready to be generated.
+              render to complex architecture. All four tiers are live, with notes and a
+              diagram attached to every question.
             </p>
           </div>
           <div className="flex shrink-0 flex-col gap-2.5 sm:flex-row lg:flex-col">
@@ -196,11 +207,11 @@ export function CurriculumExplorer() {
               className="group inline-flex h-11 items-center justify-center gap-2 rounded-full bg-lime px-5 text-sm font-semibold text-[#111609] transition hover:bg-lime-soft"
             >
               <Play className="size-4 fill-current" aria-hidden />
-              Start easy run
+              Start a run
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
             </Link>
             <div className="rounded-full border border-line bg-white/[0.03] px-4 py-2 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
-              {liveTotal} live · {plannedTotal.toLocaleString()} planned
+              {liveTotal} live · {plannedTotal.toLocaleString()} target
             </div>
           </div>
         </div>
@@ -210,7 +221,7 @@ export function CurriculumExplorer() {
             { label: "Modules", value: curriculumStats.modules, accent: "lime" as const },
             { label: "Topics", value: curriculumStats.topics, accent: "sky" as const },
             {
-              label: "Easy questions live",
+              label: "Questions live",
               value: liveTotal,
               accent: "coral" as const,
             },
@@ -239,28 +250,28 @@ export function CurriculumExplorer() {
             {
               tier: "Easy",
               copy: "Recognise every syntax pattern. Drops of learning, minutes long.",
-              status: "Live now",
+              status: `${questionCountsByTier.easy} live`,
               accent: "lime" as const,
               icon: Sparkles,
             },
             {
               tier: "Medium",
               copy: "Read short snippets and predict what happens.",
-              status: "Next",
+              status: `${questionCountsByTier.medium} live`,
               accent: "sky" as const,
               icon: FileCode2,
             },
             {
               tier: "Hard",
               copy: "Build code under realistic constraints.",
-              status: "Staged",
+              status: `${questionCountsByTier.hard} live`,
               accent: "coral" as const,
               icon: Brain,
             },
             {
               tier: "Complex",
               copy: "Write entire features and architecture from scratch.",
-              status: "Staged",
+              status: `${questionCountsByTier.complex} live`,
               accent: "violet" as const,
               icon: Trophy,
             },
@@ -368,16 +379,22 @@ export function CurriculumExplorer() {
               const Icon = ICONS[module.icon] ?? Sparkles;
               const colors = ACCENTS[module.accent];
               const liveQuestions = topics.reduce(
-                (total, topic) => total + (questionsByTopic[topic.id]?.length ?? 0),
+                (total, topic) =>
+                  total +
+                  (tier === "all"
+                    ? questionsByTopic[topic.id] ?? []
+                    : questionsByTierAndTopic[tier][topic.id] ?? []
+                  ).length,
                 0,
               );
               const cleared = hydrated
                 ? topics.reduce(
                     (total, topic) =>
                       total +
-                      (questionsByTopic[topic.id] ?? []).filter(
-                        (question) => answers[question.id]?.correct,
-                      ).length,
+                      (tier === "all"
+                        ? questionsByTopic[topic.id] ?? []
+                        : questionsByTierAndTopic[tier][topic.id] ?? []
+                      ).filter((question) => answers[question.id]?.correct).length,
                     0,
                   )
                 : 0;
@@ -442,7 +459,17 @@ export function CurriculumExplorer() {
                     <div className="px-4 pb-4 sm:px-5">
                       <div className="overflow-hidden rounded-xl border border-line bg-black/10">
                         {topics.map((topic) => {
-                          const topicQuestions = questionsByTopic[topic.id] ?? [];
+                          const topicQuestions =
+                            tier === "all"
+                              ? questionsByTopic[topic.id] ?? []
+                              : questionsByTierAndTopic[tier][topic.id] ?? [];
+                          const playTier = getPlayableTier(
+                            topic.id,
+                            tier === "all" ? undefined : tier,
+                          );
+                          const playQuestions = playTier
+                            ? questionsByTierAndTopic[playTier][topic.id] ?? []
+                            : [];
                           const topicCleared = topicQuestions.filter(
                             (question) => answers[question.id]?.correct,
                           ).length;
@@ -498,13 +525,13 @@ export function CurriculumExplorer() {
                               </div>
 
                               <div className="flex shrink-0 items-center gap-2 sm:w-36 sm:justify-end">
-                                {topicQuestions.length > 0 ? (
+                                {playTier && playQuestions.length > 0 ? (
                                   <Link
-                                    href={`/play/react/easy?topic=${encodeURIComponent(topic.id)}`}
+                                    href={`/play/react/${playTier}?topic=${encodeURIComponent(topic.id)}`}
                                     className="inline-flex items-center gap-1.5 rounded-full border border-lime/20 bg-lime/[0.06] px-2.5 py-1.5 text-[10px] font-medium text-lime transition hover:bg-lime/[0.12]"
                                   >
                                     <Play className="size-2.5 fill-current" aria-hidden />
-                                    {complete ? "Replay" : "Play"} {topicQuestions.length}
+                                    {complete ? "Replay" : "Play"} {playQuestions.length}
                                   </Link>
                                 ) : (
                                   <span className="rounded-full border border-line bg-white/[0.02] px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.1em] text-faint">
@@ -545,10 +572,11 @@ export function CurriculumExplorer() {
         <div className="mt-6 flex flex-col items-center justify-between gap-4 rounded-2xl border border-lime/15 bg-lime/[0.04] px-5 py-5 sm:flex-row">
           <div>
             <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-lime">
-              Easy tier is playable
+              All four tiers are playable
             </div>
             <p className="mt-1 text-sm text-mist">
-              24 standalone syntax questions, each with a visual and complete notes.
+              {allQuestions.length} standalone questions across {curriculumStats.topics} topics,
+              each with a visual and complete notes.
             </p>
           </div>
           <Link

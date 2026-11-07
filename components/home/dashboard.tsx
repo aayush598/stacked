@@ -17,10 +17,14 @@ import {
   Trophy,
   Zap,
 } from "lucide-react";
-import { CodeBlock } from "@/components/ui/code-block";
 import { LevelRing } from "@/components/ui/level-ring";
 import { curriculumStats, reactCurriculum } from "@/lib/content/react-curriculum";
-import { reactEasyQuestions, reactEasyQuestionById } from "@/lib/content/react-easy-questions";
+import {
+  allQuestions,
+  questionById,
+  questionCountsByTier,
+  questionsByTopic,
+} from "@/lib/content/questions";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
 import { currentStreak, useProgressStore } from "@/lib/store/progress-store";
 import { cn, levelProgress, pluralize } from "@/lib/utils";
@@ -33,7 +37,7 @@ const tierCards = [
     icon: Sparkles,
     accent: "lime",
     ready: true,
-    count: reactEasyQuestions.length,
+    count: questionCountsByTier.easy,
   },
   {
     name: "Medium",
@@ -41,8 +45,8 @@ const tierCards = [
     description: "Reason about small snippets and predict behavior.",
     icon: BookOpen,
     accent: "sky",
-    ready: false,
-    count: 0,
+    ready: true,
+    count: questionCountsByTier.medium,
   },
   {
     name: "Hard",
@@ -50,8 +54,8 @@ const tierCards = [
     description: "Production-style challenges with real constraints.",
     icon: Brain,
     accent: "coral",
-    ready: false,
-    count: 0,
+    ready: true,
+    count: questionCountsByTier.hard,
   },
   {
     name: "Complex",
@@ -59,8 +63,8 @@ const tierCards = [
     description: "Manual builds, architecture and interview-grade work.",
     icon: Trophy,
     accent: "violet",
-    ready: false,
-    count: 0,
+    ready: true,
+    count: questionCountsByTier.complex,
   },
 ] as const;
 
@@ -138,9 +142,10 @@ export function Dashboard() {
       : 0;
   const level = levelProgress(profile.xp);
   const streak = hydrated ? currentStreak(profile) : 0;
-  const nextQuestion = reactEasyQuestions.find((question) => !answers[question.id]?.correct);
-  const sample = reactEasyQuestionById.get("easy-jsx-expression");
+  const nextQuestion = allQuestions.find((question) => !answers[question.id]?.correct);
+  const sample = questionById.get("easy-jsx-expression");
   const resumable = activeSession?.status === "active";
+  const playHref = `/play/react/${activeSession?.tier ?? "easy"}`;
 
   return (
     <main className="flex-1">
@@ -153,25 +158,26 @@ export function Dashboard() {
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-lime/70" />
                   <span className="relative inline-flex size-1.5 rounded-full bg-lime" />
                 </span>
-                React · Easy tier live
+                React · four tiers live
               </span>
               <span className="rounded-full border border-line bg-white/[0.03] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
-                {reactEasyQuestions.length} syntax questions
+                {allQuestions.length} questions
               </span>
             </div>
 
             <h1 className="max-w-xl text-[2.65rem] font-semibold leading-[1.02] tracking-[-0.045em] text-mist sm:text-6xl">
-              Learn React syntax before your coffee gets{" "}
+              Learn React from syntax to architecture before your coffee gets{" "}
               <span className="text-gradient">cold.</span>
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-muted sm:text-base">
-              Tiny visual missions. A note behind every question. A combo meter that makes
-              syntax stick. Built for the two minutes you were going to scroll anyway.
+              Tiny visual missions across four difficulty tiers. A note and a diagram behind
+              every question. A combo meter that makes React stick. Built for the two minutes
+              you were going to scroll anyway.
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/play/react/easy"
+                href={playHref}
                 className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-lime px-6 text-sm font-semibold text-[#111609] transition hover:bg-lime-soft lime-glow"
               >
                 <Play className="size-4 fill-current" aria-hidden />
@@ -306,8 +312,8 @@ export function Dashboard() {
           <StatCard
             icon={CheckCircle2}
             label="Cleared"
-            value={`${cleared}/${reactEasyQuestions.length}`}
-            suffix="easy"
+            value={`${cleared}/${allQuestions.length}`}
+            suffix="all tiers"
             accent="violet"
             hydrated={hydrated}
           />
@@ -332,7 +338,7 @@ export function Dashboard() {
                       ? `Resume at question ${activeSession.index + 1}`
                       : nextQuestion
                         ? nextQuestion.topicTitle
-                        : "Easy tier cleared"}
+                        : "Curriculum cleared"}
                   </h2>
                   <p className="mt-1 max-w-md text-sm leading-6 text-muted">
                     {resumable
@@ -346,18 +352,18 @@ export function Dashboard() {
                       <div
                         className="h-full rounded-full bg-lime transition-all duration-700"
                         style={{
-                          width: `${Math.round((cleared / reactEasyQuestions.length) * 100)}%`,
+                          width: `${Math.round((cleared / allQuestions.length) * 100)}%`,
                         }}
                       />
                     </div>
                     <span className="font-mono text-[10px] text-faint">
-                      {cleared} / {reactEasyQuestions.length} cleared
+                      {cleared} / {allQuestions.length} cleared
                     </span>
                   </div>
                 </div>
               </div>
               <Link
-                href="/play/react/easy"
+                href={playHref}
                 className="group inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-lime/25 bg-lime/[0.08] px-5 text-sm font-medium text-lime transition hover:bg-lime/[0.14]"
               >
                 {resumable ? "Resume" : "Start"}
@@ -401,7 +407,7 @@ export function Dashboard() {
               Four tiers. One complete React brain.
             </h2>
           </div>
-          <span className="hidden text-xs text-faint sm:block">Easy is live now</span>
+          <span className="hidden text-xs text-faint sm:block">All four tiers live now</span>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -445,7 +451,7 @@ export function Dashboard() {
                   </span>
                   {tier.ready ? (
                     <Link
-                      href="/play/react/easy"
+                      href={`/play/react/${tier.name.toLowerCase()}`}
                       className="flex items-center gap-1 text-[11px] font-medium text-lime transition group-hover:gap-1.5"
                     >
                       Play <ArrowRight className="size-3" aria-hidden />
@@ -483,7 +489,7 @@ export function Dashboard() {
           <div className="grid gap-px bg-line/60 sm:grid-cols-2 lg:grid-cols-4">
             {reactCurriculum.slice(0, 8).map((module) => {
               const liveTopics = module.topics.filter((topic) =>
-                reactEasyQuestions.some((question) => question.topicId === topic.id),
+                (questionsByTopic[topic.id] ?? []).length > 0,
               ).length;
               return (
                 <Link
@@ -544,7 +550,7 @@ export function Dashboard() {
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-4 py-8 text-xs text-faint sm:flex-row sm:px-6 lg:px-8">
           <p>Stacked — learn the stack by playing it.</p>
           <p className="font-mono text-[10px] uppercase tracking-[0.16em]">
-            React easy · pure frontend · localStorage
+            React · four tiers · pure frontend · localStorage
           </p>
         </div>
       </footer>

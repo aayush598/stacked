@@ -11,15 +11,17 @@ import { cn, levelProgress } from "@/lib/utils";
 const NAV = [
   { href: "/", label: "Home" },
   { href: "/learn/react", label: "React path" },
-  { href: "/play/react/easy", label: "Play easy" },
+  { href: "/play/react/easy", label: "Play" },
 ];
 
 export function SiteHeader() {
   const pathname = usePathname();
   const hydrated = useHydrated();
   const profile = useProgressStore((state) => state.profile);
+  const activeSession = useProgressStore((state) => state.activeSession);
   const streak = hydrated ? currentStreak(profile) : null;
   const level = levelProgress(profile.xp);
+  const playHref = `/play/react/${activeSession?.tier ?? "easy"}`;
 
   return (
     <header className="glass sticky top-0 z-50 border-b border-line/70">
@@ -31,7 +33,9 @@ export function SiteHeader() {
               const active =
                 item.href === "/"
                   ? pathname === "/"
-                  : pathname.startsWith(item.href);
+                  : item.href.startsWith("/play")
+                    ? pathname.startsWith("/play/react")
+                    : pathname.startsWith(item.href);
               return (
                 <Link
                   key={item.href}
@@ -64,7 +68,7 @@ export function SiteHeader() {
             <span className="hidden lg:inline">XP</span>
           </div>
           <Link
-            href="/play/react/easy"
+            href={playHref}
             className="group flex items-center gap-2 rounded-full bg-lime px-3.5 py-2 text-xs font-semibold text-[#111609] transition hover:bg-lime-soft sm:px-4"
           >
             <span className="relative flex size-2">

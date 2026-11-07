@@ -170,8 +170,8 @@ export const useProgressStore = create<Store>()(
         const now = Date.now();
         const streak = nextStreak(state.profile);
 
-        let nextCorrect = state.profile.totalCorrect + (correct ? 1 : 0);
-        let totalAnswered = state.profile.totalAnswered + 1;
+        const nextCorrect = state.profile.totalCorrect + (correct ? 1 : 0);
+        const totalAnswered = state.profile.totalAnswered + 1;
         let sessionCombo = state.activeSession?.combo ?? 0;
         const session = state.activeSession;
 

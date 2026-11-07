@@ -4,7 +4,7 @@ import {
   Check,
   Flame,
   Home,
-  Map,
+  Map as MapIcon,
   RotateCcw,
   Sparkles,
   Target,
@@ -13,6 +13,7 @@ import {
   Zap,
 } from "lucide-react";
 import { BadgeShelf } from "@/components/badges";
+import { tierMeta } from "@/lib/content/questions";
 import type { PlaySession } from "@/lib/store/progress-store";
 import type { Question } from "@/lib/content/schema";
 import { cn, levelProgress } from "@/lib/utils";
@@ -80,7 +81,7 @@ export function QuizResults({
             <Icon className="size-7" aria-hidden />
           </div>
           <div className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-faint">
-            Run complete · React easy
+            Run complete · React {tierMeta[session.tier].label.toLowerCase()}
           </div>
           <h1 className={cn("mt-2 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl", copy.tone)}>
             {copy.title}
@@ -145,7 +146,7 @@ export function QuizResults({
               href="/learn/react"
               className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-line bg-white/[0.03] px-6 text-sm font-medium text-mist transition hover:border-line-strong hover:bg-white/[0.06]"
             >
-              <Map className="size-4 text-muted" aria-hidden />
+              <MapIcon className="size-4 text-muted" aria-hidden />
               Back to React map
             </Link>
             <Link

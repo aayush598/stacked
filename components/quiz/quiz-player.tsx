@@ -20,19 +20,18 @@ import { NotesPanel } from "@/components/quiz/notes-panel";
 import { QuestionVisual } from "@/components/quiz/question-visual";
 import { QuizResults } from "@/components/quiz/quiz-results";
 import {
-  getEasyQuestionsForTopic,
-  questionsByTopic,
-  reactEasyQuestionById,
-} from "@/lib/content/react-easy-questions";
-import type { Question } from "@/lib/content/schema";
+  getQuestionsForTopic,
+  questionById,
+  tierMeta,
+} from "@/lib/content/questions";
+import type { Question, Tier } from "@/lib/content/schema";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
 import { useProgressStore } from "@/lib/store/progress-store";
 import { cn, isAnswerCorrect } from "@/lib/utils";
 
-export function QuizPlayer() {
+export function QuizPlayer({ tier }: { tier: Tier }) {
   const searchParams = useSearchParams();
-  const rawTopic = searchParams.get("topic");
-  const topic = rawTopic && questionsByTopic[rawTopic]?.length ? rawTopic : null;
+  const topic = searchParams.get("topic") || null;
 
   const hydrated = useHydrated();
   const session = useProgressStore((state) => state.activeSession);
@@ -42,10 +41,19 @@ export function QuizPlayer() {
   const advanceSession = useProgressStore((state) => state.advanceSession);
 
   const startedRef = useRef(false);
-  const [selected, setSelected] = useState<string | null>(null);
-  const [xpBurst, setXpBurst] = useState<number | null>(null);
+  const [selection, setSelection] = useState<{ questionId: string; optionId: string | null }>({
+    questionId: "",
+    optionId: null,
+  });
+  const [xpBurst, setXpBurst] = useState<{ questionId: string; amount: number } | null>(
+    null,
+  );
+  const [completedHere, setCompletedHere] = useState(false);
 
-  const filteredQuestions = useMemo(() => getEasyQuestionsForTopic(topic), [topic]);
+  const filteredQuestions = useMemo(
+    () => getQuestionsForTopic(topic, tier),
+    [topic, tier],
+  );
   const filteredIds = useMemo(
     () => filteredQuestions.map((question) => question.id),
     [filteredQuestions],
@@ -58,21 +66,22 @@ export function QuizPlayer() {
     const matches =
       existing &&
       existing.courseId === "react" &&
-      existing.tier === "easy" &&
+      existing.tier === tier &&
+      existing.status === "active" &&
       (existing.topicId ?? null) === topic;
-    const hasQuestions = existing?.questionIds.some((id) =>
-      reactEasyQuestionById.has(id),
+    const hasQuestions = Boolean(
+      existing?.questionIds.some((id) => questionById.has(id)),
     );
 
     if (!matches || !hasQuestions) {
-      startSession({ tier: "easy", topicId: topic, questionIds: filteredIds });
+      startSession({ tier, topicId: topic, questionIds: filteredIds });
     }
-  }, [hydrated, topic, filteredIds, startSession]);
+  }, [hydrated, tier, topic, filteredIds, startSession]);
 
   const sessionQuestions = useMemo(() => {
     if (!session) return [];
     return session.questionIds
-      .map((id) => reactEasyQuestionById.get(id))
+      .map((id) => questionById.get(id))
       .filter((question): question is Question => Boolean(question));
   }, [session]);
 
@@ -81,11 +90,10 @@ export function QuizPlayer() {
     ? session?.answers.find((item) => item.questionId === question.id)
     : undefined;
   const answered = Boolean(answer);
-
-  useEffect(() => {
-    setSelected(null);
-    setXpBurst(null);
-  }, [question?.id]);
+  const selected =
+    question && selection.questionId === question.id ? selection.optionId : null;
+  const visibleXpBurst =
+    question && xpBurst?.questionId === question.id ? xpBurst.amount : null;
 
   useEffect(() => {
     if (xpBurst === null) return;
@@ -100,7 +108,7 @@ export function QuizPlayer() {
       answer: selected,
       correct: selected === question.correctOptionId,
     });
-    if (gained > 0) setXpBurst(gained);
+    if (gained > 0) setXpBurst({ questionId: question.id, amount: gained });
   }
 
   function submitFill(value: string) {
@@ -110,14 +118,23 @@ export function QuizPlayer() {
       answer: value,
       correct: isAnswerCorrect(value, question.acceptedAnswers ?? []),
     });
-    if (gained > 0) setXpBurst(gained);
+    if (gained > 0) setXpBurst({ questionId: question.id, amount: gained });
+  }
+
+  function handleNext() {
+    if (!session) return;
+    if (session.index >= sessionQuestions.length - 1) {
+      setCompletedHere(true);
+    }
+    advanceSession();
   }
 
   function replay() {
-    setSelected(null);
+    setSelection({ questionId: "", optionId: null });
     setXpBurst(null);
+    setCompletedHere(false);
     startSession({
-      tier: "easy",
+      tier,
       topicId: session?.topicId ?? null,
       questionIds: sessionQuestions.map((item) => item.id),
     });
@@ -128,6 +145,10 @@ export function QuizPlayer() {
   }
 
   if (!session) {
+    return <QuizSkeleton />;
+  }
+
+  if (session.status === "complete" && !completedHere) {
     return <QuizSkeleton />;
   }
 
@@ -217,9 +238,9 @@ export function QuizPlayer() {
         <div className="grid items-start gap-4 lg:grid-cols-[1.45fr_0.85fr]">
           <div className="min-w-0 space-y-4">
             <div className="panel relative min-w-0 overflow-hidden p-5 sm:p-6">
-              {xpBurst !== null && (
+              {visibleXpBurst !== null && (
                 <div className="pop absolute right-5 top-4 z-10 rounded-full border border-lime/30 bg-lime px-3 py-1 font-mono text-[10px] font-semibold text-[#111609] shadow-lg">
-                  +{xpBurst} XP
+                  +{visibleXpBurst} XP
                 </div>
               )}
 
@@ -228,7 +249,7 @@ export function QuizPlayer() {
                   {question.topicTitle}
                 </span>
                 <span className="rounded-full border border-lime/20 bg-lime/[0.06] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-lime">
-                  Easy · syntax
+                  {tierMeta[tier].label} · {tierMeta[tier].tag.toLowerCase()}
                 </span>
                 <span className="rounded-full border border-line bg-white/[0.03] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-faint">
                   +{question.xp} XP
@@ -285,7 +306,7 @@ export function QuizPlayer() {
                           key={option.id}
                           type="button"
                           disabled={answered}
-                          onClick={() => setSelected(option.id)}
+                          onClick={() => setSelection({ questionId: question.id, optionId: option.id })}
                           className={cn(
                             "group flex w-full items-center gap-3 rounded-xl border px-3.5 py-3 text-left transition",
                             !answered &&
@@ -415,7 +436,7 @@ export function QuizPlayer() {
                       </p>
                       <button
                         type="button"
-                        onClick={advanceSession}
+                        onClick={handleNext}
                         className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-lime px-5 text-xs font-semibold text-[#111609] transition hover:bg-lime-soft"
                       >
                         {isLast ? "See results" : "Next question"}

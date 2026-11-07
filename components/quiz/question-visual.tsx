@@ -576,6 +576,277 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
         </div>
       );
 
+    case "dependency-grid":
+      return (
+        <div className="space-y-2.5">
+          <div className="rounded-lg border border-line bg-black/30 p-2.5 font-mono text-[10px]">
+            <span className="text-violet">useEffect</span>
+            <span className="text-faint">(callback, </span>
+            <span className="rounded bg-lime/15 px-1 text-lime">[userId, theme]</span>
+            <span className="text-faint">)</span>
+          </div>
+          <div className="grid grid-cols-3 gap-1.5">
+            {[
+              { label: "userId", value: "42", tone: "sky" as const },
+              { label: "theme", value: '"dark"', tone: "violet" as const },
+              { label: "compare", value: "changed?", tone: "lime" as const },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="rounded-lg border border-line bg-white/[0.02] px-2 py-1.5 text-center"
+              >
+                <Tone tone={item.tone} className="border-0 bg-transparent px-0 py-0 text-[9px]">
+                  {item.value}
+                </Tone>
+                <div className="mt-1 font-mono text-[8px] text-faint">{item.label}</div>
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center justify-center gap-1.5 text-[9px] text-faint">
+            <RotateCw className="size-3 text-lime" aria-hidden />
+            any changed value schedules the effect again
+          </div>
+        </div>
+      );
+
+    case "ref-box":
+      return (
+        <div className="space-y-2.5">
+          <div className="flex items-center gap-2">
+            <div className="flex-1 rounded-lg border border-sky/20 bg-sky/[0.05] px-2 py-2 text-center">
+              <div className="font-mono text-[8px] uppercase tracking-[0.12em] text-sky/70">
+                render 1
+              </div>
+              <div className="mt-1 font-mono text-[10px] text-mist">useRef(null)</div>
+            </div>
+            <FlowArrow />
+            <div className="flex-1 rounded-lg border border-lime/25 bg-lime/[0.06] px-2 py-2 text-center">
+              <Box className="mx-auto size-3.5 text-lime" aria-hidden />
+              <div className="mt-1 font-mono text-[9px] text-lime">{"{ current }"}</div>
+            </div>
+            <FlowArrow />
+            <div className="flex-1 rounded-lg border border-line bg-black/20 px-2 py-2 text-center">
+              <div className="font-mono text-[8px] uppercase tracking-[0.12em] text-faint">
+                render 2
+              </div>
+              <div className="mt-1 font-mono text-[10px] text-mist">same box</div>
+            </div>
+          </div>
+          <div className="rounded-lg border border-line bg-white/[0.02] px-2.5 py-2 text-center font-mono text-[9px] text-faint">
+            ref.current changes → <span className="text-lime">no re-render</span>
+          </div>
+        </div>
+      );
+
+    case "context-tree":
+      return (
+        <div className="space-y-2">
+          <div className="mx-auto w-fit rounded-lg border border-violet/25 bg-violet/[0.07] px-3 py-1.5 font-mono text-[10px] text-violet">
+            &lt;ThemeProvider value&gt;
+          </div>
+          <div className="mx-auto h-2 w-px bg-line" />
+          <div className="grid grid-cols-2 gap-2">
+            {[
+              { name: "Header", value: "theme" },
+              { name: "Button", value: "theme" },
+            ].map((item) => (
+              <div
+                key={item.name}
+                className="rounded-lg border border-lime/20 bg-lime/[0.04] px-2 py-2 text-center"
+              >
+                <div className="font-mono text-[10px] text-mist">&lt;{item.name} /&gt;</div>
+                <div className="mt-1 font-mono text-[8px] text-lime">useContext → {item.value}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-[9px] text-faint">
+            descendants read the nearest provider above them
+          </p>
+        </div>
+      );
+
+    case "async-lifecycle":
+      return (
+        <div className="space-y-2.5">
+          <div className="grid grid-cols-3 gap-1.5">
+            {[
+              {
+                label: "pending",
+                detail: "loading = true",
+                icon: RotateCw,
+                tone: "sky" as const,
+              },
+              {
+                label: "success",
+                detail: "data = response",
+                icon: Check,
+                tone: "lime" as const,
+              },
+              {
+                label: "failure",
+                detail: "error = reason",
+                icon: X,
+                tone: "coral" as const,
+              },
+            ].map((step) => {
+              const Icon = step.icon;
+              return (
+                <div
+                  key={step.label}
+                  className={cn(
+                    "rounded-lg border px-2 py-2 text-center",
+                    step.tone === "lime"
+                      ? "border-lime/25 bg-lime/[0.05]"
+                      : step.tone === "coral"
+                        ? "border-coral/25 bg-coral/[0.05]"
+                        : "border-sky/20 bg-sky/[0.04]",
+                  )}
+                >
+                  <Icon
+                    className={cn(
+                      "mx-auto size-3.5",
+                      step.tone === "lime" && "text-lime",
+                      step.tone === "coral" && "text-coral",
+                      step.tone === "sky" && "text-sky",
+                    )}
+                    aria-hidden
+                  />
+                  <div className="mt-1 text-[9px] font-medium text-mist">{step.label}</div>
+                  <div className="mt-0.5 font-mono text-[8px] text-faint">{step.detail}</div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="flex items-center justify-center gap-1.5 text-[9px] text-faint">
+            <CircleDot className="size-3 text-sky" aria-hidden />
+            every request settles into exactly one outcome
+          </div>
+        </div>
+      );
+
+    case "route-tree":
+      return (
+        <div className="space-y-2">
+          <div className="rounded-lg border border-sky/25 bg-sky/[0.05] px-2.5 py-1.5 text-center font-mono text-[10px] text-sky">
+            &lt;BrowserRouter&gt;
+          </div>
+          <div className="grid grid-cols-3 gap-1.5">
+            {[
+              { path: "/", label: "Home" },
+              { path: "/courses", label: "Courses" },
+              { path: "/courses/:id", label: "Detail" },
+            ].map((route) => (
+              <div
+                key={route.path}
+                className="rounded-lg border border-line bg-black/20 px-1.5 py-2 text-center"
+              >
+                <Link2 className="mx-auto size-3 text-lime" aria-hidden />
+                <div className="mt-1 font-mono text-[8px] text-lime">{route.path}</div>
+                <div className="mt-0.5 text-[8px] text-faint">{route.label}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-[9px] text-faint">
+            the URL selects which route element renders
+          </p>
+        </div>
+      );
+
+    case "type-contract":
+      return (
+        <div className="space-y-2.5">
+          <div className="flex items-center gap-2">
+            <div className="flex-1 rounded-lg border border-violet/25 bg-violet/[0.05] px-2 py-2">
+              <div className="font-mono text-[8px] uppercase tracking-[0.12em] text-violet/80">
+                parent
+              </div>
+              <div className="mt-1 font-mono text-[9px] text-mist">
+                {'title: string'}
+              </div>
+            </div>
+            <div className="flex flex-col items-center gap-0.5">
+              <span className="font-mono text-[8px] text-faint">type</span>
+              <FlowArrow />
+            </div>
+            <div className="flex-1 rounded-lg border border-lime/25 bg-lime/[0.05] px-2 py-2">
+              <div className="font-mono text-[8px] uppercase tracking-[0.12em] text-lime/80">
+                child
+              </div>
+              <div className="mt-1 font-mono text-[9px] text-mist">
+                {": { title: string }"}
+              </div>
+            </div>
+          </div>
+          <div className="rounded-lg border border-line bg-white/[0.02] px-2.5 py-2 text-center font-mono text-[9px] text-faint">
+            wrong shape → <span className="text-coral">type error</span>
+          </div>
+          <div className="flex items-center justify-center gap-1.5 text-[9px] text-faint">
+            <Braces className="size-3 text-violet" aria-hidden />
+            types document what may cross the boundary
+          </div>
+        </div>
+      );
+
+    case "layer-stack":
+      return (
+        <div className="space-y-1.5">
+          {[
+            { label: "UI components", detail: "render JSX", tone: "lime" as const },
+            { label: "hooks", detail: "state + effects", tone: "sky" as const },
+            { label: "domain logic", detail: "rules + transforms", tone: "violet" as const },
+            { label: "API layer", detail: "fetch + DTOs", tone: "coral" as const },
+          ].map((layer, index) => (
+            <div
+              key={layer.label}
+              className={cn(
+                "flex items-center justify-between rounded-lg border px-2.5 py-1.5",
+                layer.tone === "lime" && "border-lime/20 bg-lime/[0.04]",
+                layer.tone === "sky" && "border-sky/20 bg-sky/[0.04]",
+                layer.tone === "violet" && "border-violet/20 bg-violet/[0.04]",
+                layer.tone === "coral" && "border-coral/20 bg-coral/[0.04]",
+              )}
+            >
+              <span className="font-mono text-[9px] text-mist">{layer.label}</span>
+              <span className="font-mono text-[8px] text-faint">{layer.detail}</span>
+              <span className="font-mono text-[8px] text-faint">{index + 1}</span>
+            </div>
+          ))}
+          <div className="flex items-center justify-center gap-1.5 pt-0.5 text-[9px] text-faint">
+            <Layers className="size-3 text-lime" aria-hidden />
+            boundaries keep each layer replaceable
+          </div>
+        </div>
+      );
+
+    case "test-pyramid":
+      return (
+        <div className="space-y-1.5">
+          {[
+            { label: "E2E", detail: "few, slow, real flows", width: "55%", tone: "coral" as const },
+            { label: "Integration", detail: "some, realistic", width: "75%", tone: "sky" as const },
+            { label: "Unit", detail: "many, fast, focused", width: "100%", tone: "lime" as const },
+          ].map((level) => (
+            <div key={level.label} className="mx-auto" style={{ width: level.width }}>
+              <div
+                className={cn(
+                  "flex items-center justify-between rounded-lg border px-2.5 py-1.5",
+                  level.tone === "lime" && "border-lime/20 bg-lime/[0.05]",
+                  level.tone === "sky" && "border-sky/20 bg-sky/[0.05]",
+                  level.tone === "coral" && "border-coral/20 bg-coral/[0.05]",
+                )}
+              >
+                <span className="font-mono text-[9px] text-mist">{level.label}</span>
+                <span className="font-mono text-[8px] text-faint">{level.detail}</span>
+              </div>
+            </div>
+          ))}
+          <div className="flex items-center justify-center gap-1.5 pt-0.5 text-[9px] text-faint">
+            <Check className="size-3 text-lime" aria-hidden />
+            fast feedback at the base, confidence at the top
+          </div>
+        </div>
+      );
+
     default:
       return null;
   }
