@@ -13,6 +13,8 @@ import {
   Check,
   ChevronDown,
   ClipboardCheck,
+  Code2,
+  Cpu,
   Database,
   Download,
   FileCode2,
@@ -32,6 +34,7 @@ import {
   Route,
   Search,
   Share2,
+  ShieldCheck,
   Sparkles,
   TestTube2,
   Trophy,
@@ -79,6 +82,9 @@ const ICONS: Record<string, LucideIcon> = {
   Network,
   Trophy,
   FileType,
+  Cpu,
+  ShieldCheck,
+  Code2,
 };
 
 const ACCENTS = {

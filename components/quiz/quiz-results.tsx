@@ -17,7 +17,7 @@ import { getCourse } from "@/lib/content/courses";
 import { tierMeta } from "@/lib/content/questions";
 import type { PlaySession } from "@/lib/store/progress-store";
 import type { Question } from "@/lib/content/schema";
-import { cn, levelProgress } from "@/lib/utils";
+import { cn, formatQuestionAnswer, levelProgress } from "@/lib/utils";
 
 function scoreCopy(percent: number) {
   if (percent >= 90) {
@@ -213,7 +213,7 @@ export function QuizResults({
                         Correct:{" "}
                         <span className="font-mono text-lime/90">{question.answerDisplay}</span>
                         {" · "}Your answer:{" "}
-                        <span className="font-mono text-coral/90">{answer.answer}</span>
+                        <span className="font-mono text-coral/90">{formatQuestionAnswer(question, answer.answer)}</span>
                       </p>
                     )}
                   </div>

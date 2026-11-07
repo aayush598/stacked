@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import type { Question } from "@/lib/content/schema";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -52,6 +53,72 @@ export function normalizeAnswer(value: string) {
 export function isAnswerCorrect(input: string, accepted: string[]) {
   const normalized = normalizeAnswer(input);
   return accepted.some((answer) => normalizeAnswer(answer) === normalized);
+}
+
+function parseIdList(value: string) {
+  try {
+    const parsed: unknown = JSON.parse(value);
+    return Array.isArray(parsed) && parsed.every((item) => typeof item === "string")
+      ? parsed
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+export function isQuestionAnswerCorrect(question: Question, answer: string) {
+  if (question.type === "fill-blank") {
+    return isAnswerCorrect(answer, question.acceptedAnswers ?? []);
+  }
+
+  if (question.type === "multi-select") {
+    const selected = parseIdList(answer);
+    if (!selected) return false;
+    const expected = [...(question.correctOptionIds ?? [])].sort();
+    return (
+      selected.length === expected.length &&
+      [...selected].sort().every((id, index) => id === expected[index])
+    );
+  }
+
+  if (question.type === "ordering") {
+    const order = parseIdList(answer);
+    if (!order) return false;
+    const expected = question.correctOrderIds ?? [];
+    return (
+      order.length === expected.length &&
+      order.every((id, index) => id === expected[index])
+    );
+  }
+
+  return answer === question.correctOptionId;
+}
+
+export function formatQuestionAnswer(question: Question, answer: string) {
+  if (question.type === "multi-select") {
+    const selected = parseIdList(answer) ?? [];
+    return selected
+      .map((id) => question.options?.find((option) => option.id === id)?.label ?? id)
+      .join(" · ");
+  }
+
+  if (question.type === "ordering") {
+    const order = parseIdList(answer) ?? [];
+    return order
+      .map(
+        (id, index) =>
+          `${index + 1}. ${
+            question.options?.find((option) => option.id === id)?.label ?? id
+          }`,
+      )
+      .join("  ");
+  }
+
+  if (question.type === "fill-blank") return answer;
+
+  return (
+    question.options?.find((option) => option.id === answer)?.label ?? answer
+  );
 }
 
 export function formatCompact(value: number) {

@@ -15,7 +15,13 @@ export const tierValues = ["easy", "medium", "hard", "complex"] as const;
 export const tierSchema = z.enum(tierValues);
 export type Tier = z.infer<typeof tierSchema>;
 
-export const questionTypeValues = ["mcq", "code-output", "fill-blank"] as const;
+export const questionTypeValues = [
+  "mcq",
+  "code-output",
+  "fill-blank",
+  "multi-select",
+  "ordering",
+] as const;
 export const questionTypeSchema = z.enum(questionTypeValues);
 export type QuestionType = z.infer<typeof questionTypeSchema>;
 
@@ -89,6 +95,8 @@ export const questionSchema = z
     codeLanguage: z.string().default("jsx"),
     options: z.array(optionSchema).optional(),
     correctOptionId: z.string().optional(),
+    correctOptionIds: z.array(z.string().min(1)).optional(),
+    correctOrderIds: z.array(z.string().min(1)).optional(),
     acceptedAnswers: z.array(z.string().min(1)).optional(),
     answerDisplay: z.string().min(1),
     explanation: z.string().min(1),
@@ -117,6 +125,51 @@ export const questionSchema = z
       return;
     }
 
+    const optionIds = new Set(question.options.map((option) => option.id));
+
+    if (question.type === "multi-select") {
+      if (!question.correctOptionIds?.length) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["correctOptionIds"],
+          message: "Multi-select questions need at least one correct option.",
+        });
+        return;
+      }
+      if (question.correctOptionIds.some((id) => !optionIds.has(id))) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["correctOptionIds"],
+          message: "Every correct option id must match an option.",
+        });
+      }
+      return;
+    }
+
+    if (question.type === "ordering") {
+      if (!question.correctOrderIds?.length) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["correctOrderIds"],
+          message: "Ordering questions need a correct sequence.",
+        });
+        return;
+      }
+      const unique = new Set(question.correctOrderIds);
+      if (
+        unique.size !== question.correctOrderIds.length ||
+        question.correctOrderIds.length !== question.options.length ||
+        question.correctOrderIds.some((id) => !optionIds.has(id))
+      ) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["correctOrderIds"],
+          message: "Ordering questions must order every option exactly once.",
+        });
+      }
+      return;
+    }
+
     if (!question.correctOptionId) {
       ctx.addIssue({
         code: "custom",
@@ -126,7 +179,7 @@ export const questionSchema = z
       return;
     }
 
-    if (!question.options.some((option) => option.id === question.correctOptionId)) {
+    if (!optionIds.has(question.correctOptionId)) {
       ctx.addIssue({
         code: "custom",
         path: ["correctOptionId"],

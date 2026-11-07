@@ -24,6 +24,7 @@ import {
   allQuestions,
   getTopicHref,
   questionById,
+  questionCountsByCourse,
   questionCountsByTier,
 } from "@/lib/content/questions";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
@@ -147,6 +148,7 @@ export function Dashboard() {
   const nextCourse = nextQuestion ? getCourse(nextQuestion.courseId) : null;
   const activeCourse = activeSession ? getCourse(activeSession.courseId) : null;
   const sample = questionById.get("html.document.skeleton");
+  const reactCount = questionCountsByCourse.react;
   const resumable = activeSession?.status === "active";
   const playHref = activeSession
     ? `/play/${activeSession.courseId}/${activeSession.tier}${
@@ -174,6 +176,9 @@ export function Dashboard() {
               <span className="rounded-full border border-line bg-white/[0.03] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
                 {allQuestions.length} questions · {totals.topics} topics
               </span>
+              <span className="rounded-full border border-sky/20 bg-sky/[0.06] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-sky">
+                React deep dive · {reactCount} questions
+              </span>
             </div>
 
             <h1 className="max-w-xl text-[2.65rem] font-semibold leading-[1.02] tracking-[-0.045em] text-mist sm:text-6xl">
@@ -181,9 +186,9 @@ export function Dashboard() {
               <span className="text-gradient">cold.</span>
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-muted sm:text-base">
-              HTML, CSS, JavaScript, Bootstrap, React and TypeScript. Tiny visual missions
-              across four difficulty tiers, with a note and a diagram behind every question.
-              Built for the two minutes you were going to scroll anyway.
+              Six full courses with a React deep dive at the center: {reactCount} React
+              questions across four tiers, with notes, diagrams and code review on every
+              answer. Built for the two minutes you were going to scroll anyway.
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">

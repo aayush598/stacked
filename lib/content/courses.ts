@@ -86,9 +86,10 @@ export const courses: Course[] = [
     title: "React",
     kicker: "UI",
     tagline: "Compose interfaces from state",
-    summary: "JSX, components, hooks, routing, data, performance and architecture.",
+    summary:
+      "JSX, hooks, routing, performance, internals, security and interview system design.",
     description:
-      "The complete React path: from the first component to state architecture, effects, routing, data fetching, testing and production performance.",
+      "The complete React path: from the first component to state architecture, effects, routing, data fetching, testing, production performance, internals, security, coding interviews and system design.",
     icon: "Atom",
     accent: "lime",
     modules: reactCurriculum,

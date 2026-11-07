@@ -22,6 +22,11 @@ import { bootstrapQuestions } from "./bootstrap-questions";
 import { cssQuestions } from "./css-questions";
 import { htmlQuestions } from "./html-questions";
 import { javascriptQuestions } from "./javascript-questions";
+import { generateReactMasteryQuestions } from "./react-mastery";
+import { reactCodingSourceQuestions } from "./react-coding-source";
+import { reactInternalsSourceQuestions } from "./react-internals-source";
+import { reactSecuritySourceQuestions } from "./react-security-source";
+import { reactSystemSourceQuestions } from "./react-system-source";
 import { typescriptQuestions } from "./typescript-questions";
 
 export type CourseQuestion = Question & { courseId: CourseId };
@@ -40,13 +45,28 @@ const reactAuthoredQuestions: Question[] = [
   ...topicCoverageQuestions,
 ];
 
+const reactAdvancedQuestions: Question[] = [
+  ...reactInternalsSourceQuestions,
+  ...reactSecuritySourceQuestions,
+  ...reactCodingSourceQuestions,
+  ...reactSystemSourceQuestions,
+];
+
+const reactSourceQuestions = [
+  ...reactEasyQuestions,
+  ...reactAuthoredQuestions,
+  ...reactAdvancedQuestions,
+];
+
+const reactMasteryQuestions = generateReactMasteryQuestions(reactSourceQuestions);
+
 const baseQuestions: Question[] = [
   ...htmlQuestions,
   ...cssQuestions,
   ...javascriptQuestions,
   ...bootstrapQuestions,
-  ...reactEasyQuestions,
-  ...reactAuthoredQuestions,
+  ...reactSourceQuestions,
+  ...reactMasteryQuestions,
   ...typescriptQuestions,
 ];
 
@@ -225,6 +245,28 @@ export const questionCountsByCourseTier = courseIdValues.reduce<
     typescript: { easy: 0, medium: 0, hard: 0, complex: 0 },
   },
 );
+
+const reactCourse = courses.find((course) => course.id === "react");
+if (!reactCourse) throw new Error("React course is missing.");
+if (questionCountsByCourse.react < 1500) {
+  throw new Error(
+    `React needs at least 1500 questions, found ${questionCountsByCourse.react}.`,
+  );
+}
+const reactTopicsMissingTiers = reactCourse.modules.flatMap((module) =>
+  module.topics.filter((topic) =>
+    tierValues.some(
+      (tier) => !questionsByCourseTierTopic.react[tier][topic.id]?.length,
+    ),
+  ),
+);
+if (reactTopicsMissingTiers.length > 0) {
+  throw new Error(
+    `React topics missing a tier: ${reactTopicsMissingTiers
+      .map((topic) => topic.id)
+      .join(", ")}`,
+  );
+}
 
 export const tierMeta: Record<
   Tier,

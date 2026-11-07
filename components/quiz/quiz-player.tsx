@@ -16,6 +16,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CodeBlock } from "@/components/ui/code-block";
 import { FillBlankAnswer } from "@/components/quiz/fill-blank-answer";
+import { MultiSelectAnswer, OrderingAnswer } from "@/components/quiz/multi-answer";
 import { NotesPanel } from "@/components/quiz/notes-panel";
 import { QuestionVisual } from "@/components/quiz/question-visual";
 import { QuizResults } from "@/components/quiz/quiz-results";
@@ -29,7 +30,7 @@ import {
 import type { CourseId, Tier } from "@/lib/content/schema";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
 import { useProgressStore } from "@/lib/store/progress-store";
-import { cn, isAnswerCorrect } from "@/lib/utils";
+import { cn, formatQuestionAnswer, isQuestionAnswerCorrect } from "@/lib/utils";
 
 export function QuizPlayer({
   courseId,
@@ -115,24 +116,19 @@ export function QuizPlayer({
     return () => window.clearTimeout(timer);
   }, [xpBurst]);
 
-  function submitChoice() {
-    if (!question || answered || !selected) return;
-    const gained = recordAnswer({
-      question,
-      answer: selected,
-      correct: selected === question.correctOptionId,
-    });
-    if (gained > 0) setXpBurst({ questionId: question.id, amount: gained });
-  }
-
-  function submitFill(value: string) {
+  function submitAnswer(value: string) {
     if (!question || answered) return;
     const gained = recordAnswer({
       question,
       answer: value,
-      correct: isAnswerCorrect(value, question.acceptedAnswers ?? []),
+      correct: isQuestionAnswerCorrect(question, value),
     });
     if (gained > 0) setXpBurst({ questionId: question.id, amount: gained });
+  }
+
+  function submitChoice() {
+    if (!selected) return;
+    submitAnswer(selected);
   }
 
   function handleNext() {
@@ -305,9 +301,21 @@ export function QuizPlayer({
                   ) : (
                     <FillBlankAnswer
                       key={question.id}
-                      onSubmit={submitFill}
+                      onSubmit={submitAnswer}
                       disabled={answered}
                     />
+                  )
+                ) : question.type === "multi-select" ? (
+                  answered ? (
+                    <SubmittedAnswer question={question} answer={answer?.answer} />
+                  ) : (
+                    <MultiSelectAnswer question={question} onSubmit={submitAnswer} />
+                  )
+                ) : question.type === "ordering" ? (
+                  answered ? (
+                    <SubmittedAnswer question={question} answer={answer?.answer} />
+                  ) : (
+                    <OrderingAnswer question={question} onSubmit={submitAnswer} />
                   )
                 ) : (
                   <div className="space-y-2">
@@ -463,6 +471,16 @@ export function QuizPlayer({
                       <Lightbulb className="size-3 text-lime" aria-hidden />
                       Type the missing code, then check your answer.
                     </p>
+                  ) : question.type === "multi-select" ? (
+                    <p className="flex items-center gap-1.5 text-[10px] text-faint">
+                      <Lightbulb className="size-3 text-lime" aria-hidden />
+                      Select every correct statement, then check your answer.
+                    </p>
+                  ) : question.type === "ordering" ? (
+                    <p className="flex items-center gap-1.5 text-[10px] text-faint">
+                      <Lightbulb className="size-3 text-lime" aria-hidden />
+                      Reorder the steps, then check your sequence.
+                    </p>
                   ) : (
                     <>
                       <p className="flex items-center gap-1.5 text-[10px] text-faint">
@@ -491,6 +509,25 @@ export function QuizPlayer({
         </div>
       </div>
     </main>
+  );
+}
+
+function SubmittedAnswer({
+  question,
+  answer,
+}: {
+  question: CourseQuestion;
+  answer?: string;
+}) {
+  return (
+    <div>
+      <div className="mb-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-faint">
+        Your answer
+      </div>
+      <div className="rounded-xl border border-line bg-black/30 px-4 py-3 font-mono text-sm leading-6 text-mist">
+        {formatQuestionAnswer(question, answer ?? "")}
+      </div>
+    </div>
   );
 }
 
