@@ -35,18 +35,18 @@ export function MultiSelectAnswer({
               onClick={() => toggle(option.id)}
               aria-pressed={isSelected}
               className={cn(
-                "group flex w-full items-center gap-3 rounded-xl border px-3.5 py-3 text-left transition",
+                "group flex w-full items-center gap-3 rounded-lg border px-3.5 py-3 text-left transition",
                 isSelected
-                  ? "border-sky/45 bg-sky/[0.07] text-mist"
-                  : "border-line bg-white/[0.02] text-muted hover:border-line-strong hover:bg-white/[0.04]",
+                  ? "border-lime/50 bg-lime/[0.045] text-mist"
+                  : "border-line bg-surface text-muted hover:border-line-strong hover:bg-canvas",
               )}
             >
               <span
                 className={cn(
-                  "grid size-6 shrink-0 place-items-center rounded-lg border",
+                  "grid size-6 shrink-0 place-items-center rounded border",
                   isSelected
-                    ? "border-sky/40 bg-sky/10 text-sky"
-                    : "border-line bg-white/[0.03] text-faint",
+                    ? "border-lime/40 bg-lime/10 text-lime"
+                    : "border-line bg-canvas text-faint",
                 )}
               >
                 {isSelected ? (
@@ -67,15 +67,15 @@ export function MultiSelectAnswer({
           );
         })}
       </div>
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-[10px] text-faint">
-          {selected.length} selected · choose every correct statement
+          {selected.length} selected / choose every correct statement
         </p>
         <button
           type="button"
           onClick={() => onSubmit(JSON.stringify(selected))}
           disabled={selected.length === 0}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-lime px-5 text-xs font-semibold text-[#111609] transition hover:bg-lime-soft disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-lime px-5 text-xs font-semibold text-white transition hover:bg-lime/90 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Check answer
           <Check className="size-3.5" aria-hidden />
@@ -117,10 +117,10 @@ export function OrderingAnswer({
           return (
             <li
               key={id}
-              className="flex items-center gap-2 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5"
+              className="flex items-center gap-2 rounded-lg border border-line bg-surface px-3 py-2.5"
             >
               <GripVertical className="size-4 shrink-0 text-faint" aria-hidden />
-              <span className="grid size-6 shrink-0 place-items-center rounded-lg border border-line bg-white/[0.03] font-mono text-[10px] text-sky">
+              <span className="grid size-6 shrink-0 place-items-center rounded border border-line bg-canvas font-mono text-[10px] text-sky">
                 {index + 1}
               </span>
               <span className="min-w-0 flex-1 text-[12px] leading-5 text-muted">
@@ -132,7 +132,7 @@ export function OrderingAnswer({
                   onClick={() => move(index, -1)}
                   disabled={index === 0}
                   aria-label={`Move ${option.label} up`}
-                  className="grid size-7 place-items-center rounded-lg border border-line text-faint transition hover:border-line-strong hover:text-mist disabled:opacity-25"
+                  className="grid size-7 place-items-center rounded-md border border-line text-faint transition hover:border-line-strong hover:text-mist disabled:opacity-25"
                 >
                   <ArrowUp className="size-3" aria-hidden />
                 </button>
@@ -141,7 +141,7 @@ export function OrderingAnswer({
                   onClick={() => move(index, 1)}
                   disabled={index === order.length - 1}
                   aria-label={`Move ${option.label} down`}
-                  className="grid size-7 place-items-center rounded-lg border border-line text-faint transition hover:border-line-strong hover:text-mist disabled:opacity-25"
+                  className="grid size-7 place-items-center rounded-md border border-line text-faint transition hover:border-line-strong hover:text-mist disabled:opacity-25"
                 >
                   <ArrowDown className="size-3" aria-hidden />
                 </button>
@@ -150,15 +150,15 @@ export function OrderingAnswer({
           );
         })}
       </ol>
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <p className="flex items-center gap-1.5 text-[10px] text-faint">
           <Lightbulb className="size-3 text-lime" aria-hidden />
-          Order matters — top step happens first
+          Order matters. The top step happens first.
         </p>
         <button
           type="button"
           onClick={() => onSubmit(JSON.stringify(order))}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-lime px-5 text-xs font-semibold text-[#111609] transition hover:bg-lime-soft"
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-lime px-5 text-xs font-semibold text-white transition hover:bg-lime/90"
         >
           Check order
           <Check className="size-3.5" aria-hidden />

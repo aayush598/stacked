@@ -21,18 +21,18 @@ export function BadgeShelf({
             key={badge.id}
             title={badge.description}
             className={cn(
-              "relative flex flex-col items-center rounded-xl border px-2 py-3 text-center transition",
+              "flex flex-col items-center rounded-lg border px-2 py-3 text-center",
               unlocked
-                ? "border-lime/20 bg-lime/[0.05] text-lime"
-                : "border-line bg-white/[0.02] text-faint opacity-60",
+                ? "border-line-strong bg-lime/[0.035] text-lime"
+                : "border-line bg-canvas/60 text-faint opacity-65",
             )}
           >
             <Icon className="size-4" aria-hidden />
-            <span className={cn("mt-1.5 text-[9px] font-medium", unlocked ? "text-mist" : "text-faint")}>
+            <span className={cn("mt-1.5 text-[10px] font-medium", unlocked ? "text-mist" : "text-faint")}>
               {badge.name}
             </span>
             {!compact && (
-              <span className="mt-0.5 hidden text-[8px] leading-3 text-faint sm:block">
+              <span className="mt-0.5 hidden text-[9px] leading-3 text-faint sm:block">
                 {badge.description}
               </span>
             )}

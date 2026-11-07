@@ -13,20 +13,18 @@ export function NotesPanel({
   const { notes } = question;
 
   return (
-    <aside className={cn("panel overflow-hidden", className)}>
-      <div className="flex items-center justify-between border-b border-line px-4 py-3">
+    <aside className={cn("overflow-hidden rounded-xl border border-line bg-surface", className)}>
+      <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="grid size-7 place-items-center rounded-lg bg-sky/10 text-sky">
+          <span className="grid size-7 place-items-center rounded-md bg-sky/[0.07] text-sky">
             <BookOpen className="size-3.5" aria-hidden />
           </span>
           <div>
             <div className="text-xs font-medium text-mist">Question notes</div>
-            <div className="font-mono text-[8px] uppercase tracking-[0.14em] text-faint">
-              read if you want the full picture
-            </div>
+            <div className="text-[10px] text-faint">The full picture</div>
           </div>
         </div>
-        <span className="rounded-full border border-line bg-white/[0.03] px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.1em] text-faint">
+        <span className="max-w-[9rem] truncate rounded border border-line bg-canvas px-2 py-0.5 text-[10px] text-faint">
           {question.topicTitle}
         </span>
       </div>
@@ -35,14 +33,14 @@ export function NotesPanel({
         <p className="text-[13px] leading-6 text-mist/90">{notes.summary}</p>
 
         <div>
-          <div className="mb-2 flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.14em] text-faint">
+          <div className="mb-2 flex items-center gap-1.5 text-[10px] font-medium text-muted">
             <Sparkles className="size-3 text-lime" aria-hidden />
             Key points
           </div>
           <ul className="space-y-2">
             {notes.bullets.map((bullet) => (
               <li key={bullet} className="flex gap-2 text-[11px] leading-5 text-muted">
-                <span className="mt-1.5 size-1 shrink-0 rounded-full bg-lime/80" />
+                <span className="mt-1.5 size-1 shrink-0 rounded-full bg-lime" />
                 <span>{bullet}</span>
               </li>
             ))}
@@ -51,29 +49,27 @@ export function NotesPanel({
 
         {notes.syntax && (
           <div>
-            <div className="mb-2 font-mono text-[9px] uppercase tracking-[0.14em] text-faint">
-              Syntax
-            </div>
+            <div className="mb-2 text-[10px] font-medium text-muted">Syntax</div>
             <CodeBlock
               code={notes.syntax}
               compact
               showLineNumbers={false}
               tone="soft"
-              className="rounded-xl"
+              className="rounded-lg"
             />
           </div>
         )}
 
         {notes.pitfalls && notes.pitfalls.length > 0 && (
-          <div className="rounded-xl border border-coral/15 bg-coral/[0.03] p-3">
-            <div className="mb-2 flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.14em] text-coral/80">
+          <div className="rounded-lg border border-coral/15 bg-coral/[0.025] p-3">
+            <div className="mb-2 flex items-center gap-1.5 text-[10px] font-medium text-coral">
               <AlertTriangle className="size-3" aria-hidden />
               Watch out
             </div>
             <ul className="space-y-1.5">
               {notes.pitfalls.map((pitfall) => (
                 <li key={pitfall} className="flex gap-2 text-[10px] leading-5 text-muted">
-                  <span className="mt-1.5 size-1 shrink-0 rounded-full bg-coral/70" />
+                  <span className="mt-1.5 size-1 shrink-0 rounded-full bg-coral" />
                   <span>{pitfall}</span>
                 </li>
               ))}
@@ -82,12 +78,10 @@ export function NotesPanel({
         )}
 
         {notes.memory && (
-          <div className="flex items-start gap-2 rounded-xl border border-lime/15 bg-lime/[0.04] px-3 py-2.5">
+          <div className="flex items-start gap-2 rounded-lg border border-lime/15 bg-lime/[0.03] px-3 py-2.5">
             <Lightbulb className="mt-0.5 size-3.5 shrink-0 text-lime" aria-hidden />
             <div>
-              <div className="font-mono text-[8px] uppercase tracking-[0.14em] text-lime/70">
-                Memory hook
-              </div>
+              <div className="text-[10px] font-medium text-lime">Memory hook</div>
               <div className="mt-0.5 text-[11px] leading-5 text-mist">{notes.memory}</div>
             </div>
           </div>

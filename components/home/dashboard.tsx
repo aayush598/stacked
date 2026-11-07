@@ -9,7 +9,6 @@ import {
   CheckCircle2,
   Flame,
   Layers,
-  Lock,
   Play,
   Sparkles,
   Target,
@@ -34,28 +33,25 @@ const tierCards = [
   {
     name: "Easy",
     tag: "Syntax",
-    description: "Pattern recognition, tiny snippets, finish in minutes.",
+    description: "Recognise patterns and finish a run in a few minutes.",
     icon: Sparkles,
     accent: "lime",
-    ready: true,
     count: questionCountsByTier.easy,
   },
   {
     name: "Medium",
     tag: "Read code",
-    description: "Reason about small snippets and predict behavior.",
+    description: "Reason through short snippets and predict behavior.",
     icon: BookOpen,
     accent: "sky",
-    ready: true,
     count: questionCountsByTier.medium,
   },
   {
     name: "Hard",
-    tag: "Build code",
-    description: "Production-style challenges with real constraints.",
+    tag: "Build",
+    description: "Work through production-style constraints and edge cases.",
     icon: Brain,
     accent: "coral",
-    ready: true,
     count: questionCountsByTier.hard,
   },
   {
@@ -64,7 +60,6 @@ const tierCards = [
     description: "Manual builds, architecture and interview-grade work.",
     icon: Trophy,
     accent: "violet",
-    ready: true,
     count: questionCountsByTier.complex,
   },
 ] as const;
@@ -72,27 +67,23 @@ const tierCards = [
 const accentMap = {
   lime: {
     text: "text-lime",
-    bg: "bg-lime/10",
+    bg: "bg-lime/[0.07]",
     border: "border-lime/20",
-    dot: "bg-lime",
   },
   sky: {
     text: "text-sky",
-    bg: "bg-sky/10",
+    bg: "bg-sky/[0.08]",
     border: "border-sky/20",
-    dot: "bg-sky",
   },
   coral: {
     text: "text-coral",
-    bg: "bg-coral/10",
+    bg: "bg-coral/[0.07]",
     border: "border-coral/20",
-    dot: "bg-coral",
   },
   violet: {
     text: "text-violet",
-    bg: "bg-violet/10",
+    bg: "bg-violet/[0.07]",
     border: "border-violet/20",
-    dot: "bg-violet",
   },
 } as const;
 
@@ -113,18 +104,16 @@ function StatCard({
 }) {
   const colors = accentMap[accent];
   return (
-    <div className="panel-tight flex items-center gap-3 px-4 py-3.5">
-      <span className={cn("grid size-9 shrink-0 place-items-center rounded-xl", colors.bg, colors.text)}>
-        <Icon className="size-4" aria-hidden />
-      </span>
-      <div className="min-w-0">
-        <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
-          {label}
-        </div>
-        <div className="truncate text-lg font-semibold leading-tight text-mist">
-          {hydrated ? value : "—"}
-          {hydrated && suffix ? <span className="ml-1 text-xs text-muted">{suffix}</span> : null}
-        </div>
+    <div className="px-4 py-4 sm:px-5">
+      <div className="flex items-center gap-1.5 text-xs text-faint">
+        <Icon className={cn("size-3.5", colors.text)} aria-hidden />
+        {label}
+      </div>
+      <div className="mt-1.5 text-xl font-semibold tracking-[-0.02em] text-mist">
+        {hydrated ? value : "—"}
+        {hydrated && suffix ? (
+          <span className="ml-1.5 text-xs font-normal text-faint">{suffix}</span>
+        ) : null}
       </div>
     </div>
   );
@@ -160,152 +149,124 @@ export function Dashboard() {
 
   return (
     <main className="flex-1">
-      <section className="relative mx-auto w-full max-w-7xl px-4 pb-12 pt-12 sm:px-6 sm:pt-16 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8">
-          <div className="rise max-w-2xl">
-            <div className="mb-5 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-2 rounded-full border border-lime/25 bg-lime/[0.08] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-lime">
-                <span className="relative flex size-1.5">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-lime/70" />
-                  <span className="relative inline-flex size-1.5 rounded-full bg-lime" />
-                </span>
-                Six courses · four tiers each
-              </span>
-              <span className="rounded-full border border-line bg-white/[0.03] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
-                {allQuestions.length} questions · {totals.topics} topics
-              </span>
-              <span className="rounded-full border border-sky/20 bg-sky/[0.06] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-sky">
-                Every layer · full-depth banks
-              </span>
-            </div>
-
-            <h1 className="max-w-xl text-[2.65rem] font-semibold leading-[1.02] tracking-[-0.045em] text-mist sm:text-6xl">
-              Learn the whole frontend stack before your coffee gets{" "}
-              <span className="text-gradient">cold.</span>
+      <section className="mx-auto w-full max-w-7xl px-4 pb-10 pt-14 sm:px-6 sm:pt-20 lg:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.06fr_0.94fr] lg:gap-14">
+          <div className="max-w-2xl">
+            <p className="text-sm font-medium text-lime">
+              Six courses. Four tiers. One complete stack.
+            </p>
+            <h1 className="mt-4 max-w-2xl text-[2.8rem] font-semibold leading-[1.02] tracking-[-0.05em] text-mist sm:text-6xl">
+              Learn the frontend stack, one layer at a time.
             </h1>
-            <p className="mt-5 max-w-xl text-[15px] leading-7 text-muted sm:text-base">
-              Six full courses with deep coverage in every layer: {allQuestions.length}{" "}
-              questions across four tiers, with notes, diagrams and code review on every
-              answer. Built for the two minutes you were going to scroll anyway.
+            <p className="mt-5 max-w-xl text-base leading-7 text-muted">
+              Build real confidence across HTML, CSS, JavaScript, Bootstrap, React and
+              TypeScript. {allQuestions.length.toLocaleString()} visual questions, concise
+              notes and code review on every answer.
             </p>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-2.5 sm:flex-row">
               <Link
                 href={playHref}
-                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-lime px-6 text-sm font-semibold text-[#111609] transition hover:bg-lime-soft lime-glow"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-lime px-5 text-sm font-semibold text-white transition hover:bg-lime/90"
               >
                 <Play className="size-4 fill-current" aria-hidden />
-                {resumable ? "Resume quick run" : "Start a quick run"}
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                {resumable ? "Resume your run" : "Start a quick run"}
               </Link>
               <Link
                 href="/learn"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-line bg-white/[0.03] px-6 text-sm font-medium text-mist transition hover:border-line-strong hover:bg-white/[0.06]"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-line bg-surface px-5 text-sm font-medium text-mist transition hover:border-line-strong hover:bg-raised"
               >
                 <Layers className="size-4 text-muted" aria-hidden />
-                Browse all six courses
+                Browse the curriculum
               </Link>
             </div>
 
-            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs text-faint">
+            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-xs text-faint">
               {[
-                ["6", "courses"],
+                ["6", "full courses"],
                 ["Notes", "on every question"],
-                ["XP +", "streaks & badges"],
+                ["XP +", "streaks and badges"],
               ].map(([strong, rest]) => (
                 <span key={strong} className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-lime/80" aria-hidden />
-                  <span className="text-mist/80">{strong}</span> {rest}
+                  <CheckCircle2 className="size-3.5 text-lime" aria-hidden />
+                  <span className="font-medium text-muted">{strong}</span> {rest}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="rise relative mx-auto w-full max-w-md lg:max-w-none" style={{ animationDelay: "120ms" }}>
-            <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-lime/[0.06] blur-3xl" aria-hidden />
-            <div className="panel float-slow overflow-hidden p-4 sm:p-5">
-              <div className="mb-3 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="grid size-7 place-items-center rounded-lg bg-lime/10 text-lime">
-                    <Sparkles className="size-3.5" aria-hidden />
-                  </span>
-                  <div>
-                    <div className="text-xs font-medium text-mist">
-                      {sample?.topicTitle ?? "HTML foundations"}
-                    </div>
-                    <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-faint">
-                      {sample?.tier ?? "easy"} · question 01
-                    </div>
-                  </div>
+          <div className="mx-auto w-full max-w-lg lg:max-w-none">
+            <div className="overflow-hidden rounded-xl border border-line bg-surface">
+              <div className="flex items-center justify-between border-b border-line px-4 py-3 sm:px-5">
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="font-medium text-mist">Daily run</span>
+                  <span className="text-faint">HTML / Easy</span>
                 </div>
-                <span className="rounded-full border border-lime/20 bg-lime/[0.07] px-2.5 py-1 font-mono text-[10px] text-lime">
-                  +{sample?.xp ?? 10} XP
-                </span>
+                <span className="text-xs text-faint">{sample?.xp ?? 10} XP</span>
               </div>
 
-              <p className="mb-3 text-sm leading-6 text-muted">
-                {sample?.prompt ?? "Which three elements form the skeleton of an HTML document?"}
-              </p>
+              <div className="p-4 sm:p-5">
+                <p className="text-xs font-medium text-lime">
+                  {sample?.topicTitle ?? "HTML foundations"} / question 01
+                </p>
+                <p className="mt-2 text-[15px] font-medium leading-6 text-mist">
+                  {sample?.prompt ?? "Which three elements form the skeleton of an HTML document?"}
+                </p>
 
-              <div className="space-y-2">
-                {sample?.options?.map((option, index) => {
-                  const correct = option.id === sample.correctOptionId;
-                  return (
-                    <div
-                      key={option.id}
-                      className={cn(
-                        "flex items-center gap-2.5 rounded-xl border px-3 py-2.5 font-mono text-[12px] transition",
-                        correct
-                          ? "border-lime/35 bg-lime/[0.08] text-lime-soft"
-                          : "border-line bg-white/[0.02] text-muted",
-                      )}
-                    >
-                      <span
+                <div className="mt-4 space-y-2">
+                  {sample?.options?.map((option, index) => {
+                    const correct = option.id === sample.correctOptionId;
+                    return (
+                      <div
+                        key={option.id}
                         className={cn(
-                          "grid size-5 shrink-0 place-items-center rounded-md border text-[10px]",
+                          "flex items-center gap-2.5 rounded-lg border px-3 py-2.5 font-mono text-[12px]",
                           correct
-                            ? "border-lime/40 bg-lime/15 text-lime"
-                            : "border-line text-faint",
+                            ? "border-success/30 bg-success/[0.055] text-mist"
+                            : "border-line bg-canvas/60 text-muted",
                         )}
                       >
-                        {correct ? <Check className="size-3" /> : String.fromCharCode(65 + index)}
-                      </span>
-                      {option.label}
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="mt-3 flex items-center justify-between gap-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5">
-                <div className="flex items-center gap-2 text-[11px] text-muted">
-                  <BookOpen className="size-3.5 text-sky" aria-hidden />
-                  Notes attached
+                        <span
+                          className={cn(
+                            "grid size-5 shrink-0 place-items-center rounded border text-[10px]",
+                            correct
+                              ? "border-success/30 bg-success/10 text-success"
+                              : "border-line text-faint",
+                          )}
+                        >
+                          {correct ? <Check className="size-3" /> : String.fromCharCode(65 + index)}
+                        </span>
+                        {option.label}
+                      </div>
+                    );
+                  })}
                 </div>
-                <div className="flex items-center gap-1.5 font-mono text-[10px] text-coral">
-                  <Flame className="size-3" aria-hidden />
-                  combo x4
+
+                <div className="mt-4 flex items-center justify-between gap-3 border-t border-line pt-3 text-[11px]">
+                  <span className="flex items-center gap-1.5 text-muted">
+                    <BookOpen className="size-3.5 text-sky" aria-hidden />
+                    Notes and diagram included
+                  </span>
+                  <span className="flex items-center gap-1.5 text-coral">
+                    <Flame className="size-3.5" aria-hidden />
+                    combo x4
+                  </span>
                 </div>
               </div>
             </div>
-
-            <div className="panel-tight float-slow absolute -bottom-5 -left-3 hidden items-center gap-2.5 px-3.5 py-2.5 backdrop-blur sm:flex" style={{ animationDelay: "800ms" }}>
-              <span className="grid size-8 place-items-center rounded-xl bg-coral/10 text-coral">
-                <Flame className="size-4" aria-hidden />
-              </span>
-              <div>
-                <div className="text-[11px] font-medium text-mist">{streak || 1}-day streak</div>
-                <div className="font-mono text-[9px] uppercase tracking-[0.14em] text-faint">keep it alive</div>
-              </div>
-            </div>
+            <p className="mt-3 px-1 text-xs leading-5 text-faint">
+              A real question from the HTML bank. Every answer opens a short note, a visual and a
+              memory hook.
+            </p>
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 divide-x divide-y divide-line border-y border-line sm:grid-cols-4 sm:divide-y-0">
           <StatCard
             icon={Zap}
             label="Total XP"
             value={profile.xp}
-            suffix={`· Lv ${level.level}`}
+            suffix={`Level ${level.level}`}
             accent="lime"
             hydrated={hydrated}
           />
@@ -337,23 +298,22 @@ export function Dashboard() {
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-        <div className="grid gap-3 lg:grid-cols-[1.25fr_0.75fr]">
-          <div className="panel relative overflow-hidden p-5 sm:p-6">
-            <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-lime/[0.07] blur-3xl" aria-hidden />
-            <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="grid gap-4 lg:grid-cols-[1fr_22rem]">
+          <div className="rounded-xl border border-line bg-surface p-5 sm:p-6">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-4">
                 <div className="hidden sm:block">
-                  <LevelRing xp={profile.xp} size={84} />
+                  <LevelRing xp={profile.xp} size={82} />
                 </div>
                 <div>
-                  <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.2em] text-lime">
+                  <p className="text-xs font-medium text-lime">
                     {resumable ? "Run in progress" : "Continue your quest"}
-                  </div>
-                  <h2 className="text-xl font-semibold tracking-tight text-mist">
+                  </p>
+                  <h2 className="mt-1 text-lg font-semibold tracking-[-0.02em] text-mist">
                     {resumable
                       ? `Resume ${activeCourse?.title} at question ${activeSession.index + 1}`
                       : nextQuestion
-                        ? `${nextCourse?.title} · ${nextQuestion.topicTitle}`
+                        ? `${nextCourse?.title} / ${nextQuestion.topicTitle}`
                         : "Everything cleared"}
                   </h2>
                   <p className="mt-1 max-w-md text-sm leading-6 text-muted">
@@ -361,10 +321,10 @@ export function Dashboard() {
                       ? "Your session is saved in this browser. Pick up exactly where you stopped."
                       : nextQuestion
                         ? nextQuestion.title
-                        : "Replay any topic to keep your combo sharp."}
+                        : "Replay any topic to keep your patterns sharp."}
                   </p>
                   <div className="mt-4 flex items-center gap-3">
-                    <div className="h-1.5 w-40 overflow-hidden rounded-full bg-white/[0.07]">
+                    <div className="h-1.5 w-40 overflow-hidden rounded-full bg-raised">
                       <div
                         className="h-full rounded-full bg-lime transition-all duration-700"
                         style={{
@@ -372,7 +332,7 @@ export function Dashboard() {
                         }}
                       />
                     </div>
-                    <span className="font-mono text-[10px] text-faint">
+                    <span className="text-xs text-faint">
                       {cleared} / {allQuestions.length} cleared
                     </span>
                   </div>
@@ -380,35 +340,37 @@ export function Dashboard() {
               </div>
               <Link
                 href={playHref}
-                className="group inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-lime/25 bg-lime/[0.08] px-5 text-sm font-medium text-lime transition hover:bg-lime/[0.14]"
+                className="inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-lg border border-line-strong px-4 text-sm font-medium text-mist transition hover:bg-raised"
               >
                 {resumable ? "Resume" : "Start"}
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                <ArrowRight className="size-4" aria-hidden />
               </Link>
             </div>
           </div>
 
-          <div className="panel flex items-center gap-4 p-5">
-            <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-violet/10 text-violet">
-              <Trophy className="size-5" aria-hidden />
-            </span>
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-sm font-medium text-mist">{level.rank}</span>
-                <span className="font-mono text-[10px] text-faint">
-                  {level.into}/{level.needed} XP
-                </span>
+          <div className="rounded-xl border border-line bg-surface p-5">
+            <div className="flex items-center gap-3">
+              <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-violet/[0.07] text-violet">
+                <Trophy className="size-4.5" aria-hidden />
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-sm font-medium text-mist">{level.rank}</span>
+                  <span className="text-xs text-faint">
+                    {level.into}/{level.needed} XP
+                  </span>
+                </div>
+                <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-raised">
+                  <div
+                    className="h-full rounded-full bg-violet transition-all duration-700"
+                    style={{ width: `${level.percent}%` }}
+                  />
+                </div>
               </div>
-              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
-                <div
-                  className="h-full rounded-full bg-gradient-to-r from-lime to-sky transition-all duration-700"
-                  style={{ width: `${level.percent}%` }}
-                />
-              </div>
-              <p className="mt-2 text-[11px] text-faint">
-                {profile.badges.length} badges collected · best combo {profile.bestCombo}
-              </p>
             </div>
+            <p className="mt-4 border-t border-line pt-3 text-xs leading-5 text-faint">
+              {profile.badges.length} badges collected. Best combo {profile.bestCombo}.
+            </p>
           </div>
         </div>
       </section>
@@ -416,137 +378,84 @@ export function Dashboard() {
       <section className="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
         <div className="mb-5 flex items-end justify-between gap-4">
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-lime">
-              Course tracks
-            </div>
-            <h2 className="mt-1 text-2xl font-semibold tracking-tight text-mist">
+            <p className="text-xs font-medium text-lime">Course tracks</p>
+            <h2 className="mt-1 text-2xl font-semibold tracking-[-0.03em] text-mist sm:text-3xl">
               Six layers. One complete frontend stack.
             </h2>
           </div>
           <Link
             href="/learn"
-            className="hidden items-center gap-2 rounded-full border border-line bg-white/[0.03] px-4 py-2 text-xs font-medium text-mist transition hover:border-line-strong hover:bg-white/[0.06] sm:inline-flex"
+            className="hidden items-center gap-1.5 text-sm font-medium text-muted transition hover:text-mist sm:inline-flex"
           >
-            Open all courses
+            View all courses
             <ArrowRight className="size-3.5" aria-hidden />
           </Link>
         </div>
         <CourseGrid />
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-        <div className="mb-5 flex items-end justify-between gap-4">
+      <section className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
-              Difficulty ladder
-            </div>
-            <h2 className="mt-1 text-2xl font-semibold tracking-tight text-mist">
-              Four tiers. Six complete courses.
+            <p className="text-xs font-medium text-lime">Difficulty ladder</p>
+            <h2 className="mt-1 text-2xl font-semibold tracking-[-0.03em] text-mist sm:text-3xl">
+              Start where you are. Go as deep as you need.
             </h2>
-          </div>
-          <span className="hidden text-xs text-faint sm:block">All four tiers live now</span>
-        </div>
-
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {tierCards.map((tier) => {
-            const colors = accentMap[tier.accent];
-            const Icon = tier.icon;
-            return (
-              <div
-                key={tier.name}
-                className={cn(
-                  "panel group relative overflow-hidden p-5 transition duration-300",
-                  tier.ready ? "hover:-translate-y-0.5 hover:border-line-strong" : "opacity-70",
-                )}
-              >
-                <div className="flex items-start justify-between">
-                  <span className={cn("grid size-10 place-items-center rounded-xl", colors.bg, colors.text)}>
-                    <Icon className="size-4.5" aria-hidden />
-                  </span>
-                  {tier.ready ? (
-                    <span className="flex items-center gap-1 rounded-full border border-lime/20 bg-lime/[0.07] px-2 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-lime">
-                      <span className={cn("size-1.5 rounded-full", colors.dot)} />
-                      live
-                    </span>
-                  ) : (
-                    <span className="flex items-center gap-1 rounded-full border border-line bg-white/[0.03] px-2 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-faint">
-                      <Lock className="size-2.5" aria-hidden />
-                      in the lab
-                    </span>
-                  )}
-                </div>
-                <h3 className="mt-4 flex items-baseline gap-2 text-lg font-semibold text-mist">
-                  {tier.name}
-                  <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-faint">
-                    {tier.tag}
-                  </span>
-                </h3>
-                <p className="mt-1.5 text-xs leading-5 text-muted">{tier.description}</p>
-                <div className="mt-4 flex items-center justify-between border-t border-line pt-3">
-                  <span className="font-mono text-[10px] text-faint">
-                    {tier.ready ? pluralize(tier.count, "question") : "coming next"}
-                  </span>
-                  {tier.ready ? (
-                    <Link
-                      href="/learn"
-                      className="flex items-center gap-1 text-[11px] font-medium text-lime transition group-hover:gap-1.5"
-                    >
-                      Choose <ArrowRight className="size-3" aria-hidden />
-                    </Link>
-                  ) : (
-                    <span className="text-[11px] text-faint">Queued</span>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-        <div className="panel overflow-hidden">
-          <div className="flex flex-col gap-4 border-b border-line px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-            <div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-lime">
-                Built for the whole stack
-              </div>
-              <h2 className="mt-1 text-xl font-semibold tracking-tight text-mist">
-                {courses.length} courses · {totals.modules} modules · {totals.topics} topics
-              </h2>
-            </div>
+            <p className="mt-3 max-w-sm text-sm leading-6 text-muted">
+              Each course has four playable tiers, from syntax recognition to full manual builds.
+              The tier changes the thinking, not the curriculum.
+            </p>
             <Link
               href="/learn"
-              className="inline-flex items-center gap-2 self-start rounded-full border border-line bg-white/[0.03] px-4 py-2 text-xs font-medium text-mist transition hover:border-line-strong hover:bg-white/[0.06]"
+              className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-mist transition hover:text-lime"
             >
-              Explore the catalog
+              Choose a course
               <ArrowRight className="size-3.5" aria-hidden />
             </Link>
           </div>
 
-          <div className="grid gap-px bg-line/60 sm:grid-cols-3">
-            {[
-              {
-                icon: Timer,
-                title: "Designed for 2 minutes",
-                copy: "One question, one note, one win. Stop whenever — your session is saved.",
-              },
-              {
-                icon: BookOpen,
-                title: "Notes behind every answer",
-                copy: "Syntax, pitfalls and a memory hook, so a wrong answer still teaches.",
-              },
-              {
-                icon: Zap,
-                title: "Progress that follows you",
-                copy: "XP, streak, combos and badges stored locally in your browser.",
-              },
-            ].map((item) => {
-              const Icon = item.icon;
+          <div className="border-t border-line">
+            {tierCards.map((tier, index) => {
+              const colors = accentMap[tier.accent];
+              const Icon = tier.icon;
               return (
-                <div key={item.title} className="bg-surface px-5 py-5">
-                  <Icon className="size-4 text-lime" aria-hidden />
-                  <div className="mt-3 text-sm font-medium text-mist">{item.title}</div>
-                  <p className="mt-1 text-[11px] leading-5 text-faint">{item.copy}</p>
+                <div
+                  key={tier.name}
+                  className="grid grid-cols-[2rem_1fr_auto] items-start gap-3 border-b border-line py-4 sm:grid-cols-[2rem_1fr_9rem_auto] sm:items-center sm:gap-4"
+                >
+                  <span className="pt-0.5 text-xs tabular-nums text-faint">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="flex items-start gap-3">
+                    <span
+                      className={cn(
+                        "mt-0.5 grid size-8 shrink-0 place-items-center rounded-lg border",
+                        colors.bg,
+                        colors.border,
+                        colors.text,
+                      )}
+                    >
+                      <Icon className="size-3.5" aria-hidden />
+                    </span>
+                    <div>
+                      <div className="flex flex-wrap items-baseline gap-x-2">
+                        <h3 className="text-sm font-semibold text-mist">{tier.name}</h3>
+                        <span className="text-[11px] text-faint">{tier.tag}</span>
+                      </div>
+                      <p className="mt-1 max-w-md text-xs leading-5 text-muted">
+                        {tier.description}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="hidden text-xs text-faint sm:block">
+                    {pluralize(tier.count, "question")}
+                  </span>
+                  <Link
+                    href="/learn"
+                    className="mt-1 text-xs font-medium text-muted transition hover:text-lime sm:mt-0"
+                  >
+                    Open
+                  </Link>
                 </div>
               );
             })}
@@ -554,12 +463,59 @@ export function Dashboard() {
         </div>
       </section>
 
-      <footer className="border-t border-line/70">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-4 py-8 text-xs text-faint sm:flex-row sm:px-6 lg:px-8">
-          <p>Stacked — learn the stack by playing it.</p>
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em]">
-            HTML · CSS · JavaScript · Bootstrap · React · TypeScript
-          </p>
+      <section className="border-y border-line">
+        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-10 sm:grid-cols-3 sm:px-6 lg:px-8">
+          {[
+            {
+              icon: Timer,
+              title: "Designed for two minutes",
+              copy: "One question, one note, one win. Stop whenever. Your session is saved.",
+            },
+            {
+              icon: BookOpen,
+              title: "Notes behind every answer",
+              copy: "Syntax, pitfalls and a memory hook, so a wrong answer still teaches.",
+            },
+            {
+              icon: Zap,
+              title: "Progress that follows you",
+              copy: "XP, streak, combos and badges stored locally in your browser.",
+            },
+          ].map((item) => {
+            const Icon = item.icon;
+            return (
+              <div key={item.title}>
+                <Icon className="size-4 text-lime" aria-hidden />
+                <div className="mt-3 text-sm font-medium text-mist">{item.title}</div>
+                <p className="mt-1 max-w-xs text-xs leading-5 text-muted">{item.copy}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-medium text-lime">The whole stack</p>
+            <h2 className="mt-1 text-2xl font-semibold tracking-[-0.03em] text-mist">
+              {courses.length} courses, {totals.modules} modules, {totals.topics} topics.
+            </h2>
+          </div>
+          <Link
+            href="/learn"
+            className="inline-flex items-center gap-1.5 self-start text-sm font-medium text-muted transition hover:text-mist sm:self-auto"
+          >
+            Explore the catalog
+            <ArrowRight className="size-3.5" aria-hidden />
+          </Link>
+        </div>
+      </section>
+
+      <footer className="border-t border-line">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-3 px-4 py-8 text-xs text-faint sm:flex-row sm:items-center sm:px-6 lg:px-8">
+          <p>Stacked. Learn the stack by playing it.</p>
+          <p>HTML, CSS, JavaScript, Bootstrap, React, TypeScript</p>
         </div>
       </footer>
     </main>

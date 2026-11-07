@@ -37,24 +37,24 @@ const TOKEN_PATTERN =
 
 function tokenClass(token: string) {
   if (token.startsWith("//") || token.startsWith("/*")) {
-    return "text-faint italic";
+    return "text-[#7f8c84] italic";
   }
   if (token.startsWith('"') || token.startsWith("'") || token.startsWith("`")) {
-    return "text-lime-soft";
+    return "text-[#a8bcff]";
   }
   if (token.startsWith("<")) {
-    return "text-sky";
+    return "text-[#8fd8c0]";
   }
   if (token === "/>" || token === ">") {
-    return "text-sky/70";
+    return "text-[#6fae9c]";
   }
   if (/^\d/.test(token)) {
-    return "text-coral";
+    return "text-[#f0a58f]";
   }
   if (KEYWORDS.has(token)) {
-    return "text-violet";
+    return "text-[#c9b8ff]";
   }
-  return "text-mist";
+  return "text-[#e8ede8]";
 }
 
 function highlightLine(line: string, lineIndex: number): ReactNode[] {
@@ -67,7 +67,7 @@ function highlightLine(line: string, lineIndex: number): ReactNode[] {
     return (
       <span
         key={`${lineIndex}-${index}`}
-        className={isToken ? tokenClass(piece) : "text-mist/90"}
+        className={isToken ? tokenClass(piece) : "text-[#e8ede8]/90"}
       >
         {piece}
       </span>
@@ -106,27 +106,27 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-line",
-        tone === "dark" ? "bg-[#080b11]" : "bg-white/[0.03]",
+        "group relative overflow-hidden rounded-lg border border-[#263029]",
+        tone === "dark" ? "bg-[#101512]" : "bg-[#151b17]",
         className,
       )}
     >
       {(filename || !compact) && (
-        <div className="flex items-center justify-between border-b border-line/70 px-3.5 py-2">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between border-b border-white/10 px-3.5 py-2">
+          <div className="flex items-center gap-2.5">
             <span className="flex gap-1.5" aria-hidden>
-              <span className="size-2 rounded-full bg-coral/70" />
-              <span className="size-2 rounded-full bg-lime/70" />
-              <span className="size-2 rounded-full bg-sky/70" />
+              <span className="size-2 rounded-full bg-[#d9685e]" />
+              <span className="size-2 rounded-full bg-[#d6b45e]" />
+              <span className="size-2 rounded-full bg-[#6ea88a]" />
             </span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
+            <span className="font-mono text-[10px] text-[#9aa59f]">
               {filename ?? "tsx"}
             </span>
           </div>
           <button
             type="button"
             onClick={copy}
-            className="flex items-center gap-1.5 rounded-md px-2 py-1 text-[10px] font-medium text-faint transition hover:bg-white/5 hover:text-mist"
+            className="flex items-center gap-1.5 rounded-md px-2 py-1 text-[10px] font-medium text-[#9aa59f] transition hover:bg-white/10 hover:text-white"
             aria-label="Copy code"
           >
             {copied ? <Check className="size-3" /> : <Copy className="size-3" />}
@@ -144,7 +144,7 @@ export function CodeBlock({
           {lines.map((line, index) => (
             <span key={index} className="flex min-h-[1.4em]">
               {showLineNumbers && (
-                <span className="mr-4 w-4 shrink-0 select-none text-right text-faint/60">
+                <span className="mr-4 w-4 shrink-0 select-none text-right text-[#5f6a63]">
                   {index + 1}
                 </span>
               )}
@@ -159,7 +159,7 @@ export function CodeBlock({
 
 export function InlineCode({ children }: { children: ReactNode }) {
   return (
-    <code className="rounded-md border border-line bg-white/[0.04] px-1.5 py-0.5 font-mono text-[0.86em] text-lime-soft">
+    <code className="rounded border border-line bg-raised px-1.5 py-0.5 font-mono text-[0.86em] text-mist">
       {children}
     </code>
   );

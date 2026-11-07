@@ -178,18 +178,18 @@ export function QuizPlayer({
   if (!question) {
     return (
       <div className="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6">
-        <div className="panel mx-auto max-w-xl p-8 text-center">
-          <div className="mx-auto grid size-12 place-items-center rounded-2xl bg-lime/10 text-lime">
+        <div className="mx-auto max-w-xl rounded-xl border border-line bg-surface p-8 text-center">
+          <div className="mx-auto grid size-12 place-items-center rounded-lg bg-lime/[0.06] text-lime">
             <Sparkles className="size-5" aria-hidden />
           </div>
           <h1 className="mt-4 text-xl font-semibold text-mist">This run is warming up.</h1>
           <p className="mt-2 text-sm leading-6 text-muted">
-            There are no playable questions for this topic yet. The full curriculum map shows
-            what is live and what is queued next.
+            There are no playable questions for this topic yet. The curriculum map shows what is
+            live and what is queued next.
           </p>
           <Link
             href={`/learn/${courseId}`}
-            className="mt-5 inline-flex h-10 items-center gap-2 rounded-full bg-lime px-5 text-xs font-semibold text-[#111609] transition hover:bg-lime-soft"
+            className="mt-5 inline-flex h-10 items-center gap-2 rounded-lg bg-lime px-5 text-xs font-semibold text-white transition hover:bg-lime/90"
           >
             Back to the {course.title} map
             <ArrowRight className="size-3.5" aria-hidden />
@@ -207,67 +207,63 @@ export function QuizPlayer({
   return (
     <main className="flex-1">
       <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
           <Link
             href={`/learn/${courseId}`}
-            className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs text-faint transition hover:bg-white/[0.04] hover:text-mist"
+            className="inline-flex items-center gap-1.5 rounded-md px-1 py-1 text-xs font-medium text-muted transition hover:text-mist"
           >
             <ArrowLeft className="size-3.5" aria-hidden />
             Exit run
           </Link>
-          <div className="flex items-center gap-2">
-            <span className="flex items-center gap-1.5 rounded-full border border-line bg-white/[0.03] px-3 py-1.5 text-[11px] text-muted">
-              <Target className="size-3 text-sky" aria-hidden />
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted">
+            <span className="hidden sm:inline">
+              {course.title} / {tierMeta[tier].label}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Target className="size-3.5 text-sky" aria-hidden />
               <span className="font-mono text-mist">
                 {currentNumber}/{total}
               </span>
-              <span className="hidden sm:inline">questions</span>
+              questions
             </span>
-            <span className="flex items-center gap-1.5 rounded-full border border-coral/20 bg-coral/[0.06] px-3 py-1.5 font-mono text-[11px] text-coral">
-              <Flame className="size-3" aria-hidden />
-              x{session.combo}
+            <span className="flex items-center gap-1.5">
+              <Flame className="size-3.5 text-coral" aria-hidden />
+              <span className="font-mono text-mist">x{session.combo}</span>
             </span>
-            <span className="flex items-center gap-1.5 rounded-full border border-lime/20 bg-lime/[0.06] px-3 py-1.5 font-mono text-[11px] text-lime">
-              <Zap className="size-3" aria-hidden />
-              {session.xpEarned} XP
+            <span className="flex items-center gap-1.5">
+              <Zap className="size-3.5 text-lime" aria-hidden />
+              <span className="font-mono text-mist">{session.xpEarned} XP</span>
             </span>
           </div>
         </div>
 
         <div className="mb-6 flex items-center gap-3">
-          <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/[0.07]">
+          <div className="h-1 flex-1 overflow-hidden rounded-full bg-raised">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-lime to-sky transition-all duration-500"
+              className="h-full rounded-full bg-lime transition-all duration-500"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-faint">
-            {progress}%
-          </span>
+          <span className="text-[10px] tabular-nums text-faint">{progress}%</span>
         </div>
 
         <div className="grid items-start gap-4 lg:grid-cols-[1.45fr_0.85fr]">
           <div className="min-w-0 space-y-4">
-            <div className="panel relative min-w-0 overflow-hidden p-5 sm:p-6">
+            <div className="relative min-w-0 overflow-hidden rounded-xl border border-line bg-surface p-5 sm:p-6">
               {visibleXpBurst !== null && (
-                <div className="pop absolute right-5 top-4 z-10 rounded-full border border-lime/30 bg-lime px-3 py-1 font-mono text-[10px] font-semibold text-[#111609] shadow-lg">
+                <div className="pop absolute right-5 top-4 z-10 rounded-md bg-lime px-2.5 py-1 font-mono text-[10px] font-semibold text-white">
                   +{visibleXpBurst} XP
                 </div>
               )}
 
-              <div className="flex flex-wrap items-center gap-2 pr-16">
-                <span className="rounded-full border border-sky/20 bg-sky/[0.06] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-sky">
-                  {question.topicTitle}
-                </span>
-                <span className="rounded-full border border-lime/20 bg-lime/[0.06] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-lime">
-                  {tierMeta[tier].label} · {tierMeta[tier].tag.toLowerCase()}
-                </span>
-                <span className="rounded-full border border-line bg-white/[0.03] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-faint">
-                  +{question.xp} XP
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 pr-16 text-xs">
+                <span className="font-medium text-lime">{question.topicTitle}</span>
+                <span className="text-faint">
+                  {tierMeta[tier].label} / +{question.xp} XP
                 </span>
               </div>
 
-              <h1 className="mt-4 text-xl font-semibold tracking-[-0.02em] text-mist sm:text-2xl">
+              <h1 className="mt-3 text-xl font-semibold tracking-[-0.025em] text-mist sm:text-2xl">
                 {question.title}
               </h1>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">{question.prompt}</p>
@@ -290,10 +286,10 @@ export function QuizPlayer({
                   answered ? (
                     <div className="space-y-3">
                       <div>
-                        <div className="mb-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-faint">
+                        <div className="mb-1.5 text-xs font-medium text-muted">
                           Your answer
                         </div>
-                        <div className="rounded-xl border border-line bg-black/30 px-4 py-3 font-mono text-sm text-mist">
+                        <div className="rounded-lg border border-line bg-canvas px-4 py-3 font-mono text-sm text-mist">
                           {answer?.answer}
                         </div>
                       </div>
@@ -331,42 +327,42 @@ export function QuizPlayer({
                           disabled={answered}
                           onClick={() => setSelection({ questionId: question.id, optionId: option.id })}
                           className={cn(
-                            "group flex w-full items-center gap-3 rounded-xl border px-3.5 py-3 text-left transition",
+                            "group flex w-full items-center gap-3 rounded-lg border px-3.5 py-3 text-left transition",
                             !answered &&
                               isSelected &&
-                              "border-sky/45 bg-sky/[0.07] text-mist",
+                              "border-lime/50 bg-lime/[0.045] text-mist",
                             !answered &&
                               !isSelected &&
-                              "border-line bg-white/[0.02] text-muted hover:border-line-strong hover:bg-white/[0.04]",
+                              "border-line bg-surface text-muted hover:border-line-strong hover:bg-canvas",
                             answered &&
                               isCorrectOption &&
-                              "border-lime/35 bg-lime/[0.07] text-lime-soft",
+                              "border-success/35 bg-success/[0.055] text-mist",
                             answered &&
                               !isCorrectOption &&
                               isSubmitted &&
-                              "border-coral/35 bg-coral/[0.06] text-coral",
+                              "border-coral/35 bg-coral/[0.05] text-mist",
                             answered &&
                               !isCorrectOption &&
                               !isSubmitted &&
-                              "border-line bg-white/[0.01] text-faint opacity-55",
+                              "border-line bg-canvas/50 text-faint opacity-60",
                           )}
                         >
                           <span
                             className={cn(
-                              "grid size-6 shrink-0 place-items-center rounded-lg border text-[10px] font-medium",
+                              "grid size-6 shrink-0 place-items-center rounded border text-[10px] font-medium",
                               !answered &&
                                 isSelected &&
-                                "border-sky/40 bg-sky/10 text-sky",
+                                "border-lime/40 bg-lime/10 text-lime",
                               !answered &&
                                 !isSelected &&
-                                "border-line bg-white/[0.03] text-faint",
+                                "border-line bg-canvas text-faint",
                               answered &&
                                 isCorrectOption &&
-                                "border-lime/40 bg-lime/15 text-lime",
+                                "border-success/35 bg-success/10 text-success",
                               answered &&
                                 !isCorrectOption &&
                                 isSubmitted &&
-                                "border-coral/40 bg-coral/15 text-coral",
+                                "border-coral/35 bg-coral/10 text-coral",
                               answered &&
                                 !isCorrectOption &&
                                 !isSubmitted &&
@@ -398,17 +394,17 @@ export function QuizPlayer({
                 {answer && (
                   <div
                     className={cn(
-                      "mt-4 rounded-xl border p-3.5",
+                      "mt-4 rounded-lg border p-3.5",
                       answer.correct
-                        ? "border-lime/20 bg-lime/[0.04]"
-                        : "border-coral/20 bg-coral/[0.04]",
+                        ? "border-success/20 bg-success/[0.035]"
+                        : "border-coral/20 bg-coral/[0.035]",
                     )}
                   >
                     <div className="flex items-start gap-2.5">
                       <span
                         className={cn(
                           "mt-0.5 grid size-5 shrink-0 place-items-center rounded-full",
-                          answer.correct ? "bg-lime/15 text-lime" : "bg-coral/15 text-coral",
+                          answer.correct ? "bg-success/10 text-success" : "bg-coral/10 text-coral",
                         )}
                       >
                         {answer.correct ? (
@@ -422,25 +418,25 @@ export function QuizPlayer({
                           <span
                             className={cn(
                               "text-sm font-medium",
-                              answer.correct ? "text-lime" : "text-coral",
+                              answer.correct ? "text-success" : "text-coral",
                             )}
                           >
                             {answer.correct ? "Correct" : "Not quite"}
                           </span>
                           {answer.correct && (
-                            <span className="rounded-full border border-lime/20 bg-lime/[0.08] px-2 py-0.5 font-mono text-[9px] text-lime">
+                            <span className="rounded border border-success/20 bg-success/[0.06] px-1.5 py-0.5 font-mono text-[9px] text-success">
                               +{answer.xpEarned} XP
                             </span>
                           )}
                         </div>
-                        <p className="mt-1 text-[11px] leading-5 text-muted">
+                        <p className="mt-1 text-xs leading-5 text-muted">
                           {question.explanation}
                         </p>
                         {!answer.correct && (
                           <div className="mt-2 flex flex-wrap items-center gap-1.5 text-[10px] text-faint">
-                            <Lightbulb className="size-3 text-lime" aria-hidden />
+                            <Lightbulb className="size-3 text-success" aria-hidden />
                             Correct answer:
-                            <span className="rounded-md border border-lime/20 bg-lime/[0.05] px-1.5 py-0.5 font-mono text-lime">
+                            <span className="rounded border border-success/20 bg-success/[0.05] px-1.5 py-0.5 font-mono text-success">
                               {question.answerDisplay}
                             </span>
                           </div>
@@ -460,7 +456,7 @@ export function QuizPlayer({
                       <button
                         type="button"
                         onClick={handleNext}
-                        className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-lime px-5 text-xs font-semibold text-[#111609] transition hover:bg-lime-soft"
+                        className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-lime px-5 text-xs font-semibold text-white transition hover:bg-lime/90"
                       >
                         {isLast ? "See results" : "Next question"}
                         <ArrowRight className="size-3.5" aria-hidden />
@@ -491,7 +487,7 @@ export function QuizPlayer({
                         type="button"
                         onClick={submitChoice}
                         disabled={!selected}
-                        className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-lime px-5 text-xs font-semibold text-[#111609] transition hover:bg-lime-soft disabled:cursor-not-allowed disabled:opacity-40"
+                        className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-lime px-5 text-xs font-semibold text-white transition hover:bg-lime/90 disabled:cursor-not-allowed disabled:opacity-40"
                       >
                         Check answer
                         <ArrowRight className="size-3.5" aria-hidden />
@@ -521,10 +517,8 @@ function SubmittedAnswer({
 }) {
   return (
     <div>
-      <div className="mb-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-faint">
-        Your answer
-      </div>
-      <div className="rounded-xl border border-line bg-black/30 px-4 py-3 font-mono text-sm leading-6 text-mist">
+      <div className="mb-1.5 text-xs font-medium text-muted">Your answer</div>
+      <div className="rounded-lg border border-line bg-canvas px-4 py-3 font-mono text-sm leading-6 text-mist">
         {formatQuestionAnswer(question, answer ?? "")}
       </div>
     </div>
@@ -556,21 +550,21 @@ function QuizSkeleton() {
   return (
     <main className="flex-1">
       <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-4 flex items-center justify-between">
-          <div className="shimmer h-6 w-20 rounded-full" />
-          <div className="shimmer h-6 w-40 rounded-full" />
+        <div className="mb-4 flex items-center justify-between border-b border-line pb-4">
+          <div className="shimmer h-5 w-20 rounded" />
+          <div className="shimmer h-5 w-40 rounded" />
         </div>
-        <div className="shimmer mb-6 h-1.5 w-full rounded-full" />
+        <div className="shimmer mb-6 h-1 w-full rounded-full" />
         <div className="grid gap-4 lg:grid-cols-[1.45fr_0.85fr]">
-          <div className="panel space-y-4 p-6">
-            <div className="shimmer h-5 w-36 rounded-full" />
-            <div className="shimmer h-8 w-2/3 rounded-lg" />
-            <div className="shimmer h-4 w-full rounded" />
-            <div className="shimmer h-24 w-full rounded-xl" />
-            <div className="shimmer h-44 w-full rounded-xl" />
+          <div className="rounded-xl border border-line bg-surface p-6">
+            <div className="shimmer h-4 w-36 rounded" />
+            <div className="shimmer mt-4 h-8 w-2/3 rounded" />
+            <div className="shimmer mt-3 h-4 w-full rounded" />
+            <div className="shimmer mt-5 h-24 w-full rounded-lg" />
+            <div className="shimmer mt-4 h-44 w-full rounded-lg" />
           </div>
-          <div className="panel hidden h-96 p-5 lg:block">
-            <div className="shimmer h-full w-full rounded-xl" />
+          <div className="hidden h-96 rounded-xl border border-line bg-surface p-5 lg:block">
+            <div className="shimmer h-full w-full rounded-lg" />
           </div>
         </div>
       </div>

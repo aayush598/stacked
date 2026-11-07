@@ -30,7 +30,7 @@ function Tone({
     <span
       className={cn(
         "inline-flex items-center rounded-md border px-2 py-1 font-mono text-[11px]",
-        tone === "default" && "border-line bg-white/[0.03] text-mist",
+        tone === "default" && "border-line bg-canvas text-mist",
         tone === "lime" && "border-lime/25 bg-lime/[0.08] text-lime",
         tone === "coral" && "border-coral/25 bg-coral/[0.08] text-coral",
         tone === "sky" && "border-sky/25 bg-sky/[0.08] text-sky",
@@ -60,15 +60,13 @@ function VisualFrame({
   caption: string;
 }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-line bg-[#080b11]">
-      <div className="flex items-center justify-between border-b border-line/70 px-3.5 py-2">
-        <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-faint">
-          Visual
-        </span>
+    <div className="overflow-hidden rounded-xl border border-line bg-surface">
+      <div className="flex items-center justify-between border-b border-line bg-canvas/50 px-3.5 py-2">
+        <span className="text-[10px] font-medium text-faint">Visual</span>
         <span className="text-[10px] font-medium text-muted">{title}</span>
       </div>
       <div className="p-4">
-        <div className="grid-lines rounded-xl border border-line/70 bg-white/[0.015] p-3.5">
+        <div className="grid-lines rounded-lg border border-line bg-surface p-3.5">
           {children}
         </div>
         <p className="mt-2.5 text-[10px] leading-4 text-faint">{caption}</p>
@@ -92,7 +90,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
     case "jsx-expression":
       return (
         <div className="space-y-2.5">
-          <div className="rounded-lg border border-line bg-black/30 p-2.5 font-mono text-[11px] leading-6">
+          <div className="rounded-lg border border-line bg-canvas p-2.5 font-mono text-[11px] leading-6">
             <span className="text-sky">&lt;h1&gt;</span>
             <span className="text-mist/80">Hello, </span>
             <span className="rounded bg-lime/15 px-1 text-lime">{"{ learner.name }"}</span>
@@ -168,15 +166,15 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
               <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-lime/80">
                 &lt;Fragment&gt;
               </span>
-              <span className="rounded-full bg-white/[0.05] px-2 py-0.5 text-[8px] text-faint">
+              <span className="rounded-full bg-raised px-2 py-0.5 text-[8px] text-faint">
                 no DOM node
               </span>
             </div>
             <div className="flex gap-2">
-              <div className="flex-1 rounded-lg border border-line bg-white/[0.04] px-2 py-2 text-center font-mono text-[10px] text-mist">
+              <div className="flex-1 rounded-lg border border-line bg-raised px-2 py-2 text-center font-mono text-[10px] text-mist">
                 &lt;Header /&gt;
               </div>
-              <div className="flex-1 rounded-lg border border-line bg-white/[0.04] px-2 py-2 text-center font-mono text-[10px] text-mist">
+              <div className="flex-1 rounded-lg border border-line bg-raised px-2 py-2 text-center font-mono text-[10px] text-mist">
                 &lt;Main /&gt;
               </div>
             </div>
@@ -194,22 +192,22 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
           <div className="flex flex-wrap items-center justify-center gap-1.5">
             <Tone tone="violet">{"{"}</Tone>
             <Tone tone="lime">{"/*"}</Tone>
-            <span className="rounded-md border border-line bg-white/[0.04] px-2 py-1 font-mono text-[10px] text-muted">
+            <span className="rounded-md border border-line bg-raised px-2 py-1 font-mono text-[10px] text-muted">
               hidden text
             </span>
             <Tone tone="lime">{"*/"}</Tone>
             <Tone tone="violet">{"}"}</Tone>
           </div>
           <div className="grid grid-cols-3 gap-1.5 text-center">
-            <div className="rounded-lg border border-line bg-black/20 px-1.5 py-1.5">
+            <div className="rounded-lg border border-line bg-canvas px-1.5 py-1.5">
               <div className="font-mono text-[9px] text-violet">braces</div>
               <div className="mt-0.5 text-[8px] text-faint">enter JS</div>
             </div>
-            <div className="rounded-lg border border-line bg-black/20 px-1.5 py-1.5">
+            <div className="rounded-lg border border-line bg-canvas px-1.5 py-1.5">
               <div className="font-mono text-[9px] text-lime">block</div>
               <div className="mt-0.5 text-[8px] text-faint">ignored</div>
             </div>
-            <div className="rounded-lg border border-line bg-black/20 px-1.5 py-1.5">
+            <div className="rounded-lg border border-line bg-canvas px-1.5 py-1.5">
               <div className="font-mono text-[9px] text-mist">result</div>
               <div className="mt-0.5 text-[8px] text-faint">nothing</div>
             </div>
@@ -229,7 +227,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
               const Icon = step.icon;
               return (
                 <div key={step.label} className="flex flex-1 items-center gap-1.5">
-                  <div className="flex min-w-0 flex-1 flex-col items-center gap-1 rounded-lg border border-line bg-black/20 px-1.5 py-2">
+                  <div className="flex min-w-0 flex-1 flex-col items-center gap-1 rounded-lg border border-line bg-canvas px-1.5 py-2">
                     <Icon
                       className={cn(
                         "size-3.5",
@@ -246,7 +244,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
               );
             })}
           </div>
-          <div className="rounded-lg border border-line bg-white/[0.02] px-2.5 py-2 text-center font-mono text-[10px] text-faint">
+          <div className="rounded-lg border border-line bg-canvas px-2.5 py-2 text-center font-mono text-[10px] text-faint">
             onClick={"{"}
             <span className="text-lime">handleSave</span>
             {"}"} <span className="text-faint/60">← function reference</span>
@@ -257,7 +255,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
     case "hook-anatomy":
       return (
         <div className="space-y-3">
-          <div className="rounded-lg border border-line bg-black/30 p-2.5 text-center font-mono text-[11px] leading-6">
+          <div className="rounded-lg border border-line bg-canvas p-2.5 text-center font-mono text-[11px] leading-6">
             <span className="text-violet">const</span>{" "}
             <span className="rounded bg-sky/15 px-1 text-sky">[count, setCount]</span>{" "}
             <span className="text-faint">=</span>{" "}
@@ -272,7 +270,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
             ].map((part) => (
               <div
                 key={part.label}
-                className="rounded-lg border border-line bg-white/[0.02] px-1.5 py-1.5 text-center"
+                className="rounded-lg border border-line bg-canvas px-1.5 py-1.5 text-center"
               >
                 <Tone tone={part.tone} className="border-0 bg-transparent px-0 py-0 text-[10px]">
                   {part.value}
@@ -299,7 +297,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
               <div
                 key={step.label}
                 className={cn(
-                  "relative rounded-lg border bg-black/20 px-2.5 py-2",
+                  "relative rounded-lg border bg-canvas px-2.5 py-2",
                   step.tone === "lime" ? "border-lime/25" : "border-line",
                 )}
               >
@@ -346,7 +344,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
               </div>
               <div className="mt-1 font-mono text-[10px] text-lime">Welcome back</div>
             </div>
-            <div className="rounded-lg border border-line bg-black/20 px-2.5 py-2 text-center opacity-60">
+            <div className="rounded-lg border border-line bg-canvas px-2.5 py-2 text-center opacity-60">
               <div className="font-mono text-[8px] uppercase tracking-[0.14em] text-faint">
                 false
               </div>
@@ -365,7 +363,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
               {["{ id: 1 }", "{ id: 2 }"].map((item) => (
                 <div
                   key={item}
-                  className="rounded-md border border-line bg-black/20 px-2 py-1 font-mono text-[9px] text-muted"
+                  className="rounded-md border border-line bg-canvas px-2 py-1 font-mono text-[9px] text-muted"
                 >
                   {item}
                 </div>
@@ -404,7 +402,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
               {["Ada", "Linus", "Grace"].map((name, index) => (
                 <div
                   key={name}
-                  className="flex items-center justify-between rounded-md border border-line bg-black/20 px-2 py-1.5"
+                  className="flex items-center justify-between rounded-md border border-line bg-canvas px-2 py-1.5"
                 >
                   <span className="text-[10px] text-mist">{name}</span>
                   <span className="rounded bg-sky/10 px-1 font-mono text-[8px] text-sky">
@@ -437,7 +435,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
     case "style-object":
       return (
         <div className="space-y-2">
-          <div className="rounded-lg border border-line bg-black/30 p-2.5 text-center font-mono text-[10px] leading-5">
+          <div className="rounded-lg border border-line bg-canvas p-2.5 text-center font-mono text-[10px] leading-5">
             style=<span className="rounded bg-violet/15 px-1 text-violet">{"{"}</span>
             <span className="rounded bg-lime/15 px-1 text-lime">
               {'{ color: "coral" }'}
@@ -501,7 +499,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
           <div className="rounded-lg border border-sky/20 bg-sky/[0.04] px-2.5 py-2">
             <div className="flex items-center justify-between">
               <span className="font-mono text-[10px] text-sky">&lt;Panel&gt;</span>
-              <span className="rounded bg-white/[0.05] px-1.5 py-0.5 text-[8px] text-faint">
+              <span className="rounded bg-raised px-1.5 py-0.5 text-[8px] text-faint">
                 wrapper
               </span>
             </div>
@@ -533,7 +531,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
               <span className="font-mono text-[8px] text-lime">value</span>
               <FlowArrow />
             </div>
-            <div className="flex-1 rounded-lg border border-line bg-black/20 px-2 py-2 text-center">
+            <div className="flex-1 rounded-lg border border-line bg-canvas px-2 py-2 text-center">
               <div className="font-mono text-[8px] uppercase tracking-[0.12em] text-faint">
                 input
               </div>
@@ -579,7 +577,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
     case "dependency-grid":
       return (
         <div className="space-y-2.5">
-          <div className="rounded-lg border border-line bg-black/30 p-2.5 font-mono text-[10px]">
+          <div className="rounded-lg border border-line bg-canvas p-2.5 font-mono text-[10px]">
             <span className="text-violet">useEffect</span>
             <span className="text-faint">(callback, </span>
             <span className="rounded bg-lime/15 px-1 text-lime">[userId, theme]</span>
@@ -593,7 +591,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
             ].map((item) => (
               <div
                 key={item.label}
-                className="rounded-lg border border-line bg-white/[0.02] px-2 py-1.5 text-center"
+                className="rounded-lg border border-line bg-canvas px-2 py-1.5 text-center"
               >
                 <Tone tone={item.tone} className="border-0 bg-transparent px-0 py-0 text-[9px]">
                   {item.value}
@@ -625,14 +623,14 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
               <div className="mt-1 font-mono text-[9px] text-lime">{"{ current }"}</div>
             </div>
             <FlowArrow />
-            <div className="flex-1 rounded-lg border border-line bg-black/20 px-2 py-2 text-center">
+            <div className="flex-1 rounded-lg border border-line bg-canvas px-2 py-2 text-center">
               <div className="font-mono text-[8px] uppercase tracking-[0.12em] text-faint">
                 render 2
               </div>
               <div className="mt-1 font-mono text-[10px] text-mist">same box</div>
             </div>
           </div>
-          <div className="rounded-lg border border-line bg-white/[0.02] px-2.5 py-2 text-center font-mono text-[9px] text-faint">
+          <div className="rounded-lg border border-line bg-canvas px-2.5 py-2 text-center font-mono text-[9px] text-faint">
             ref.current changes → <span className="text-lime">no re-render</span>
           </div>
         </div>
@@ -738,7 +736,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
             ].map((route) => (
               <div
                 key={route.path}
-                className="rounded-lg border border-line bg-black/20 px-1.5 py-2 text-center"
+                className="rounded-lg border border-line bg-canvas px-1.5 py-2 text-center"
               >
                 <Link2 className="mx-auto size-3 text-lime" aria-hidden />
                 <div className="mt-1 font-mono text-[8px] text-lime">{route.path}</div>
@@ -777,7 +775,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
               </div>
             </div>
           </div>
-          <div className="rounded-lg border border-line bg-white/[0.02] px-2.5 py-2 text-center font-mono text-[9px] text-faint">
+          <div className="rounded-lg border border-line bg-canvas px-2.5 py-2 text-center font-mono text-[9px] text-faint">
             wrong shape → <span className="text-coral">type error</span>
           </div>
           <div className="flex items-center justify-center gap-1.5 text-[9px] text-faint">
@@ -854,7 +852,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
             &lt;html&gt;
           </div>
           <div className="grid grid-cols-2 gap-2">
-            <div className="rounded-lg border border-line bg-white/[0.03] px-2 py-2 text-center font-mono text-[9px] text-mist">
+            <div className="rounded-lg border border-line bg-canvas px-2 py-2 text-center font-mono text-[9px] text-mist">
               &lt;head&gt;
               <div className="mt-1 text-[8px] text-faint">metadata</div>
             </div>
@@ -865,7 +863,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
           </div>
           <div className="grid grid-cols-3 gap-1.5">
             {["header", "main", "footer"].map((node) => (
-              <div key={node} className="rounded-md border border-line bg-black/20 py-1.5 text-center font-mono text-[8px] text-muted">
+              <div key={node} className="rounded-md border border-line bg-canvas py-1.5 text-center font-mono text-[8px] text-muted">
                 &lt;{node}&gt;
               </div>
             ))}
@@ -905,7 +903,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
             .card h2
           </div>
           <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2">
-            <span className="rounded-lg border border-line bg-white/[0.03] px-2 py-1.5 text-center font-mono text-[9px] text-mist">
+            <span className="rounded-lg border border-line bg-canvas px-2 py-1.5 text-center font-mono text-[9px] text-mist">
               .card
             </span>
             <FlowArrow />
@@ -919,7 +917,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
               ["h2 outside card", false],
               ["h2 nested deeper", true],
             ].map(([label, match]) => (
-              <div key={String(label)} className="flex items-center gap-2 rounded-md border border-line/70 bg-black/20 px-2 py-1.5">
+              <div key={String(label)} className="flex items-center gap-2 rounded-md border border-line/70 bg-canvas px-2 py-1.5">
                 <span className={cn("grid size-4 place-items-center rounded-full", match ? "bg-lime/15 text-lime" : "bg-coral/15 text-coral")}>
                   {match ? <Check className="size-2.5" aria-hidden /> : <X className="size-2.5" aria-hidden />}
                 </span>
@@ -982,7 +980,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
             <span className="text-lime">col-8</span>
             <span className="text-sky">col-4</span>
           </div>
-          <div className="rounded-lg border border-line bg-white/[0.02] px-2.5 py-2 text-center font-mono text-[9px] text-muted">
+          <div className="rounded-lg border border-line bg-canvas px-2.5 py-2 text-center font-mono text-[9px] text-muted">
             row = 12 columns
           </div>
           <div className="flex items-center justify-center gap-1.5 text-[9px] text-faint">
@@ -1034,7 +1032,7 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
               </Tone>
             ))}
           </div>
-          <div className="flex items-center gap-2 rounded-lg border border-line bg-white/[0.03] px-3 py-2.5">
+          <div className="flex items-center gap-2 rounded-lg border border-line bg-canvas px-3 py-2.5">
             <span className="grid size-7 place-items-center rounded-lg bg-violet/10 text-violet">
               <Box className="size-3.5" aria-hidden />
             </span>
