@@ -16,6 +16,7 @@ import {
   Database,
   Download,
   FileCode2,
+  FileType,
   FlaskConical,
   Focus,
   Gauge,
@@ -37,15 +38,15 @@ import {
   Wrench,
 } from "lucide-react";
 import { useDeferredValue, useMemo, useState } from "react";
-import { curriculumStats, reactCurriculum } from "@/lib/content/react-curriculum";
+import { getCourse, getCourseStats } from "@/lib/content/courses";
 import {
-  allQuestions,
   getPlayableTier,
-  questionCountsByTier,
-  questionsByTopic,
-  questionsByTierAndTopic,
+  questionCountsByCourseTier,
+  questionsByCourse,
+  questionsByCourseTopic,
+  questionsByCourseTierTopic,
 } from "@/lib/content/questions";
-import type { Tier } from "@/lib/content/schema";
+import type { CourseId, Tier } from "@/lib/content/schema";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
 import { useProgressStore } from "@/lib/store/progress-store";
 import { cn, pluralize } from "@/lib/utils";
@@ -77,6 +78,7 @@ const ICONS: Record<string, LucideIcon> = {
   Wrench,
   Network,
   Trophy,
+  FileType,
 };
 
 const ACCENTS = {
@@ -114,7 +116,14 @@ const TIERS: { id: Tier | "all"; label: string; hint: string }[] = [
   { id: "complex", label: "Complex", hint: "Manual coding" },
 ];
 
-export function CurriculumExplorer() {
+export function CurriculumExplorer({ courseId }: { courseId: CourseId }) {
+  const course = getCourse(courseId);
+  const courseStats = getCourseStats(courseId);
+  const courseQuestions = questionsByCourse[courseId];
+  const courseTierCounts = questionCountsByCourseTier[courseId];
+  const modules = course.modules;
+  const byTopic = questionsByCourseTopic[courseId];
+  const byTierTopic = questionsByCourseTierTopic[courseId];
   const hydrated = useHydrated();
   const answers = useProgressStore((state) => state.answers);
   const [query, setQuery] = useState("");
@@ -122,12 +131,12 @@ export function CurriculumExplorer() {
   const [tier, setTier] = useState<Tier | "all">("all");
   const deferredQuery = useDeferredValue(query);
   const [openModules, setOpenModules] = useState<Set<string>>(
-    () => new Set(["foundations", "jsx", "components"]),
+    () => new Set(modules.slice(0, 2).map((module) => module.id)),
   );
 
   const filteredModules = useMemo(() => {
     const needle = deferredQuery.trim().toLowerCase();
-    return reactCurriculum
+    return modules
       .filter((module) => tier === "all" || module.focus.includes(tier))
       .map((module) => {
         const moduleMatches =
@@ -138,8 +147,8 @@ export function CurriculumExplorer() {
         const topics = module.topics.filter((topic) => {
           const topicQuestions =
             tier === "all"
-              ? questionsByTopic[topic.id] ?? []
-              : questionsByTierAndTopic[tier][topic.id] ?? [];
+              ? byTopic[topic.id] ?? []
+              : byTierTopic[tier][topic.id] ?? [];
           const live = topicQuestions.length > 0;
           if (onlyLive && !live) return false;
           if (tier !== "all" && !live) return false;
@@ -153,14 +162,14 @@ export function CurriculumExplorer() {
         return { module, topics };
       })
       .filter((entry) => entry.topics.length > 0);
-  }, [deferredQuery, onlyLive, tier]);
+  }, [byTierTopic, byTopic, deferredQuery, modules, onlyLive, tier]);
 
   const searching = Boolean(deferredQuery.trim());
-  const liveTotal = allQuestions.length;
+  const liveTotal = courseQuestions.length;
   const clearedTotal = hydrated
-    ? allQuestions.filter((question) => answers[question.id]?.correct).length
+    ? courseQuestions.filter((question) => answers[question.id]?.correct).length
     : 0;
-  const plannedTotal = curriculumStats.topics * 12;
+  const plannedTotal = courseStats.topics * 12;
 
   function toggleModule(id: string) {
     setOpenModules((current) => {
@@ -189,21 +198,24 @@ export function CurriculumExplorer() {
                 Home
               </Link>
               <span>/</span>
-              <span className="text-lime">React</span>
+              <Link href="/learn" className="transition hover:text-mist">
+                Courses
+              </Link>
+              <span>/</span>
+              <span className="text-lime">{course.title}</span>
             </div>
             <h1 className="text-4xl font-semibold tracking-[-0.04em] text-mist sm:text-5xl">
-              The entire React map.
+              The entire {course.title} map.
               <span className="block text-muted">Nothing skipped.</span>
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-muted sm:text-[15px]">
-              Every module, every small syntax rule, every pattern — organised from first
-              render to complex architecture. All four tiers are live, with notes and a
-              diagram attached to every question.
+              {course.description} Every topic has notes, a diagram and four live
+              difficulty tiers.
             </p>
           </div>
           <div className="flex shrink-0 flex-col gap-2.5 sm:flex-row lg:flex-col">
             <Link
-              href="/play/react/easy"
+              href={`/play/${courseId}/easy`}
               className="group inline-flex h-11 items-center justify-center gap-2 rounded-full bg-lime px-5 text-sm font-semibold text-[#111609] transition hover:bg-lime-soft"
             >
               <Play className="size-4 fill-current" aria-hidden />
@@ -211,15 +223,15 @@ export function CurriculumExplorer() {
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
             </Link>
             <div className="rounded-full border border-line bg-white/[0.03] px-4 py-2 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
-              {liveTotal} live · {plannedTotal.toLocaleString()} target
+              {liveTotal} live · {plannedTotal.toLocaleString()} planned
             </div>
           </div>
         </div>
 
         <div className="mt-8 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
           {[
-            { label: "Modules", value: curriculumStats.modules, accent: "lime" as const },
-            { label: "Topics", value: curriculumStats.topics, accent: "sky" as const },
+            { label: "Modules", value: courseStats.modules, accent: "lime" as const },
+            { label: "Topics", value: courseStats.topics, accent: "sky" as const },
             {
               label: "Questions live",
               value: liveTotal,
@@ -250,28 +262,28 @@ export function CurriculumExplorer() {
             {
               tier: "Easy",
               copy: "Recognise every syntax pattern. Drops of learning, minutes long.",
-              status: `${questionCountsByTier.easy} live`,
+              status: `${courseTierCounts.easy} live`,
               accent: "lime" as const,
               icon: Sparkles,
             },
             {
               tier: "Medium",
               copy: "Read short snippets and predict what happens.",
-              status: `${questionCountsByTier.medium} live`,
+              status: `${courseTierCounts.medium} live`,
               accent: "sky" as const,
               icon: FileCode2,
             },
             {
               tier: "Hard",
               copy: "Build code under realistic constraints.",
-              status: `${questionCountsByTier.hard} live`,
+              status: `${courseTierCounts.hard} live`,
               accent: "coral" as const,
               icon: Brain,
             },
             {
               tier: "Complex",
               copy: "Write entire features and architecture from scratch.",
-              status: `${questionCountsByTier.complex} live`,
+              status: `${courseTierCounts.complex} live`,
               accent: "violet" as const,
               icon: Trophy,
             },
@@ -307,7 +319,7 @@ export function CurriculumExplorer() {
                 <input
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Search topics, syntax, patterns…"
+                  placeholder={`Search ${course.title} topics, syntax, patterns…`}
                   className="h-10 w-full rounded-xl border border-line bg-white/[0.03] pl-9 pr-3 text-sm text-mist outline-none transition placeholder:text-faint focus:border-lime/40 focus:bg-white/[0.05]"
                 />
               </div>
@@ -382,8 +394,8 @@ export function CurriculumExplorer() {
                 (total, topic) =>
                   total +
                   (tier === "all"
-                    ? questionsByTopic[topic.id] ?? []
-                    : questionsByTierAndTopic[tier][topic.id] ?? []
+                    ? byTopic[topic.id] ?? []
+                    : byTierTopic[tier][topic.id] ?? []
                   ).length,
                 0,
               );
@@ -392,8 +404,8 @@ export function CurriculumExplorer() {
                     (total, topic) =>
                       total +
                       (tier === "all"
-                        ? questionsByTopic[topic.id] ?? []
-                        : questionsByTierAndTopic[tier][topic.id] ?? []
+                        ? byTopic[topic.id] ?? []
+                        : byTierTopic[tier][topic.id] ?? []
                       ).filter((question) => answers[question.id]?.correct).length,
                     0,
                   )
@@ -461,14 +473,15 @@ export function CurriculumExplorer() {
                         {topics.map((topic) => {
                           const topicQuestions =
                             tier === "all"
-                              ? questionsByTopic[topic.id] ?? []
-                              : questionsByTierAndTopic[tier][topic.id] ?? [];
+                              ? byTopic[topic.id] ?? []
+                              : byTierTopic[tier][topic.id] ?? [];
                           const playTier = getPlayableTier(
                             topic.id,
                             tier === "all" ? undefined : tier,
+                            courseId,
                           );
                           const playQuestions = playTier
-                            ? questionsByTierAndTopic[playTier][topic.id] ?? []
+                            ? byTierTopic[playTier][topic.id] ?? []
                             : [];
                           const topicCleared = topicQuestions.filter(
                             (question) => answers[question.id]?.correct,
@@ -527,7 +540,7 @@ export function CurriculumExplorer() {
                               <div className="flex shrink-0 items-center gap-2 sm:w-36 sm:justify-end">
                                 {playTier && playQuestions.length > 0 ? (
                                   <Link
-                                    href={`/play/react/${playTier}?topic=${encodeURIComponent(topic.id)}`}
+                                    href={`/play/${courseId}/${playTier}?topic=${encodeURIComponent(topic.id)}`}
                                     className="inline-flex items-center gap-1.5 rounded-full border border-lime/20 bg-lime/[0.06] px-2.5 py-1.5 text-[10px] font-medium text-lime transition hover:bg-lime/[0.12]"
                                   >
                                     <Play className="size-2.5 fill-current" aria-hidden />
@@ -575,12 +588,12 @@ export function CurriculumExplorer() {
               All four tiers are playable
             </div>
             <p className="mt-1 text-sm text-mist">
-              {allQuestions.length} standalone questions across {curriculumStats.topics} topics,
-              each with a visual and complete notes.
+              {liveTotal} standalone questions across {courseStats.topics} topics, each
+              with a visual and complete notes.
             </p>
           </div>
           <Link
-            href="/play/react/easy"
+            href={`/play/${courseId}/easy`}
             className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full bg-lime px-5 text-xs font-semibold text-[#111609] transition hover:bg-lime-soft"
           >
             Start playing

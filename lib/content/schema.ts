@@ -1,5 +1,16 @@
 import { z } from "zod";
 
+export const courseIdValues = [
+  "html",
+  "css",
+  "javascript",
+  "bootstrap",
+  "react",
+  "typescript",
+] as const;
+export const courseIdSchema = z.enum(courseIdValues);
+export type CourseId = z.infer<typeof courseIdSchema>;
+
 export const tierValues = ["easy", "medium", "hard", "complex"] as const;
 export const tierSchema = z.enum(tierValues);
 export type Tier = z.infer<typeof tierSchema>;
@@ -33,6 +44,13 @@ export const visualKindValues = [
   "type-contract",
   "layer-stack",
   "test-pyramid",
+  "markup-tree",
+  "box-model",
+  "selector-map",
+  "event-loop",
+  "bootstrap-grid",
+  "scope-chain",
+  "utility-stack",
 ] as const;
 export const visualKindSchema = z.enum(visualKindValues);
 export type VisualKind = z.infer<typeof visualKindSchema>;

@@ -542,7 +542,7 @@ export const topicCoverageQuestions = [
   }),
   buildQuestion({
     id: "cover-ts-discriminated",
-    topicId: "ts.discriminated",
+    topicId: "react-ts.discriminated",
     tier: "hard",
     title: "Exhaustive rendering",
     prompt: "Which switch handles every status in a discriminated union?",

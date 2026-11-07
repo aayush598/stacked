@@ -19,17 +19,26 @@ import { FillBlankAnswer } from "@/components/quiz/fill-blank-answer";
 import { NotesPanel } from "@/components/quiz/notes-panel";
 import { QuestionVisual } from "@/components/quiz/question-visual";
 import { QuizResults } from "@/components/quiz/quiz-results";
+import { getCourse } from "@/lib/content/courses";
 import {
-  getQuestionsForTopic,
+  getQuestionsForCourse,
   questionById,
   tierMeta,
+  type CourseQuestion,
 } from "@/lib/content/questions";
-import type { Question, Tier } from "@/lib/content/schema";
+import type { CourseId, Tier } from "@/lib/content/schema";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
 import { useProgressStore } from "@/lib/store/progress-store";
 import { cn, isAnswerCorrect } from "@/lib/utils";
 
-export function QuizPlayer({ tier }: { tier: Tier }) {
+export function QuizPlayer({
+  courseId,
+  tier,
+}: {
+  courseId: CourseId;
+  tier: Tier;
+}) {
+  const course = getCourse(courseId);
   const searchParams = useSearchParams();
   const topic = searchParams.get("topic") || null;
 
@@ -51,8 +60,8 @@ export function QuizPlayer({ tier }: { tier: Tier }) {
   const [completedHere, setCompletedHere] = useState(false);
 
   const filteredQuestions = useMemo(
-    () => getQuestionsForTopic(topic, tier),
-    [topic, tier],
+    () => getQuestionsForCourse(courseId, topic, tier),
+    [courseId, topic, tier],
   );
   const filteredIds = useMemo(
     () => filteredQuestions.map((question) => question.id),
@@ -65,7 +74,7 @@ export function QuizPlayer({ tier }: { tier: Tier }) {
     const existing = useProgressStore.getState().activeSession;
     const matches =
       existing &&
-      existing.courseId === "react" &&
+      existing.courseId === courseId &&
       existing.tier === tier &&
       existing.status === "active" &&
       (existing.topicId ?? null) === topic;
@@ -74,15 +83,20 @@ export function QuizPlayer({ tier }: { tier: Tier }) {
     );
 
     if (!matches || !hasQuestions) {
-      startSession({ tier, topicId: topic, questionIds: filteredIds });
+      startSession({
+        courseId,
+        tier,
+        topicId: topic,
+        questionIds: filteredIds,
+      });
     }
-  }, [hydrated, tier, topic, filteredIds, startSession]);
+  }, [courseId, hydrated, tier, topic, filteredIds, startSession]);
 
   const sessionQuestions = useMemo(() => {
     if (!session) return [];
     return session.questionIds
       .map((id) => questionById.get(id))
-      .filter((question): question is Question => Boolean(question));
+      .filter((question): question is CourseQuestion => Boolean(question));
   }, [session]);
 
   const question = sessionQuestions[session?.index ?? 0];
@@ -134,6 +148,7 @@ export function QuizPlayer({ tier }: { tier: Tier }) {
     setXpBurst(null);
     setCompletedHere(false);
     startSession({
+      courseId,
       tier,
       topicId: session?.topicId ?? null,
       questionIds: sessionQuestions.map((item) => item.id),
@@ -177,10 +192,10 @@ export function QuizPlayer({ tier }: { tier: Tier }) {
             what is live and what is queued next.
           </p>
           <Link
-            href="/learn/react"
+            href={`/learn/${courseId}`}
             className="mt-5 inline-flex h-10 items-center gap-2 rounded-full bg-lime px-5 text-xs font-semibold text-[#111609] transition hover:bg-lime-soft"
           >
-            Back to the React map
+            Back to the {course.title} map
             <ArrowRight className="size-3.5" aria-hidden />
           </Link>
         </div>
@@ -198,7 +213,7 @@ export function QuizPlayer({ tier }: { tier: Tier }) {
       <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <Link
-            href="/learn/react"
+            href={`/learn/${courseId}`}
             className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs text-faint transition hover:bg-white/[0.04] hover:text-mist"
           >
             <ArrowLeft className="size-3.5" aria-hidden />
@@ -265,7 +280,7 @@ export function QuizPlayer({ tier }: { tier: Tier }) {
                 <div className="mt-4">
                   <CodeBlock
                     code={question.code}
-                    filename={question.codeLanguage === "jsx" ? "App.tsx" : undefined}
+                    filename={codeFileName(question.codeLanguage)}
                   />
                 </div>
               )}
@@ -477,6 +492,27 @@ export function QuizPlayer({ tier }: { tier: Tier }) {
       </div>
     </main>
   );
+}
+
+function codeFileName(language: string | undefined) {
+  switch (language) {
+    case "jsx":
+      return "App.tsx";
+    case "tsx":
+      return "App.tsx";
+    case "html":
+      return "index.html";
+    case "css":
+      return "styles.css";
+    case "javascript":
+      return "app.js";
+    case "typescript":
+      return "app.ts";
+    case "bash":
+      return "terminal";
+    default:
+      return undefined;
+  }
 }
 
 function QuizSkeleton() {

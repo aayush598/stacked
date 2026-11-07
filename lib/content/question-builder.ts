@@ -1,4 +1,4 @@
-import { findTopic } from "./react-curriculum";
+import { findTopic } from "./courses";
 import {
   questionSchema,
   type Question,

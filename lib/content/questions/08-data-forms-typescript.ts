@@ -343,7 +343,7 @@ export const dataFormsTypescriptQuestions = [
   }),
   buildQuestion({
     id: "deep-ts-props",
-    topicId: "ts.props",
+    topicId: "react-ts.props",
     tier: "medium",
     title: "Type the props",
     prompt: "Which component has a valid typed props contract?",
@@ -368,7 +368,7 @@ export const dataFormsTypescriptQuestions = [
   }),
   buildQuestion({
     id: "deep-ts-children",
-    topicId: "ts.children",
+    topicId: "react-ts.children",
     tier: "medium",
     title: "Type the children prop",
     prompt: "Which type is most flexible for a component that accepts arbitrary nested content?",
@@ -388,7 +388,7 @@ export const dataFormsTypescriptQuestions = [
   }),
   buildQuestion({
     id: "deep-ts-usestate",
-    topicId: "ts.usestate",
+    topicId: "react-ts.usestate",
     tier: "medium",
     title: "Type a nullable state",
     prompt: "Which useState models a user that starts null and later becomes a User?",
@@ -413,7 +413,7 @@ export const dataFormsTypescriptQuestions = [
   }),
   buildQuestion({
     id: "deep-ts-events",
-    topicId: "ts.events",
+    topicId: "react-ts.events",
     tier: "medium",
     title: "Type an input event",
     prompt: "Which handler type reads a text input change?",
@@ -438,7 +438,7 @@ export const dataFormsTypescriptQuestions = [
   }),
   buildQuestion({
     id: "deep-ts-refs",
-    topicId: "ts.useref",
+    topicId: "react-ts.useref",
     tier: "medium",
     title: "Type a DOM ref",
     prompt: "Which ref type is correct for an input element that starts empty?",
@@ -463,7 +463,7 @@ export const dataFormsTypescriptQuestions = [
   }),
   buildQuestion({
     id: "deep-ts-generics",
-    topicId: "ts.generics",
+    topicId: "react-ts.generics",
     tier: "hard",
     title: "Generic list component",
     prompt: "Which component preserves the item type in its render prop?",
@@ -488,7 +488,7 @@ export const dataFormsTypescriptQuestions = [
   }),
   buildQuestion({
     id: "deep-ts-unions",
-    topicId: "ts.unions",
+    topicId: "react-ts.unions",
     tier: "hard",
     title: "Discriminated union props",
     prompt: "Which type models a button that is either primary or secondary with different requirements?",
@@ -513,7 +513,7 @@ export const dataFormsTypescriptQuestions = [
   }),
   buildQuestion({
     id: "deep-ts-utility",
-    topicId: "ts.utility",
+    topicId: "react-ts.utility",
     tier: "hard",
     title: "Derive from an existing type",
     prompt: "Which type makes every User field optional for a patch payload?",
@@ -533,7 +533,7 @@ export const dataFormsTypescriptQuestions = [
   }),
   buildQuestion({
     id: "deep-ts-zod",
-    topicId: "ts.zod",
+    topicId: "react-ts.zod",
     tier: "hard",
     title: "Infer from Zod",
     prompt: "How do you derive a TypeScript type from a Zod schema?",
@@ -553,7 +553,7 @@ export const dataFormsTypescriptQuestions = [
   }),
   buildQuestion({
     id: "deep-ts-context",
-    topicId: "ts.context",
+    topicId: "react-ts.context",
     tier: "hard",
     title: "Context without guessing",
     prompt: "Which pattern safely handles a context that starts undefined?",

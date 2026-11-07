@@ -17,13 +17,14 @@ import {
   Trophy,
   Zap,
 } from "lucide-react";
+import { CourseGrid } from "@/components/course-grid";
 import { LevelRing } from "@/components/ui/level-ring";
-import { curriculumStats, reactCurriculum } from "@/lib/content/react-curriculum";
+import { courses, getCourse, totals } from "@/lib/content/courses";
 import {
   allQuestions,
+  getTopicHref,
   questionById,
   questionCountsByTier,
-  questionsByTopic,
 } from "@/lib/content/questions";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
 import { currentStreak, useProgressStore } from "@/lib/store/progress-store";
@@ -143,9 +144,19 @@ export function Dashboard() {
   const level = levelProgress(profile.xp);
   const streak = hydrated ? currentStreak(profile) : 0;
   const nextQuestion = allQuestions.find((question) => !answers[question.id]?.correct);
-  const sample = questionById.get("easy-jsx-expression");
+  const nextCourse = nextQuestion ? getCourse(nextQuestion.courseId) : null;
+  const activeCourse = activeSession ? getCourse(activeSession.courseId) : null;
+  const sample = questionById.get("html.document.skeleton");
   const resumable = activeSession?.status === "active";
-  const playHref = `/play/react/${activeSession?.tier ?? "easy"}`;
+  const playHref = activeSession
+    ? `/play/${activeSession.courseId}/${activeSession.tier}${
+        activeSession.topicId
+          ? `?topic=${encodeURIComponent(activeSession.topicId)}`
+          : ""
+      }`
+    : nextQuestion
+      ? getTopicHref(nextQuestion.topicId)
+      : "/play/html/easy";
 
   return (
     <main className="flex-1">
@@ -158,21 +169,21 @@ export function Dashboard() {
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-lime/70" />
                   <span className="relative inline-flex size-1.5 rounded-full bg-lime" />
                 </span>
-                React · four tiers live
+                Six courses · four tiers each
               </span>
               <span className="rounded-full border border-line bg-white/[0.03] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
-                {allQuestions.length} questions
+                {allQuestions.length} questions · {totals.topics} topics
               </span>
             </div>
 
             <h1 className="max-w-xl text-[2.65rem] font-semibold leading-[1.02] tracking-[-0.045em] text-mist sm:text-6xl">
-              Learn React from syntax to architecture before your coffee gets{" "}
+              Learn the whole frontend stack before your coffee gets{" "}
               <span className="text-gradient">cold.</span>
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-muted sm:text-base">
-              Tiny visual missions across four difficulty tiers. A note and a diagram behind
-              every question. A combo meter that makes React stick. Built for the two minutes
-              you were going to scroll anyway.
+              HTML, CSS, JavaScript, Bootstrap, React and TypeScript. Tiny visual missions
+              across four difficulty tiers, with a note and a diagram behind every question.
+              Built for the two minutes you were going to scroll anyway.
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -185,17 +196,17 @@ export function Dashboard() {
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
               </Link>
               <Link
-                href="/learn/react"
+                href="/learn"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-line bg-white/[0.03] px-6 text-sm font-medium text-mist transition hover:border-line-strong hover:bg-white/[0.06]"
               >
                 <Layers className="size-4 text-muted" aria-hidden />
-                See the full React map
+                Browse all six courses
               </Link>
             </div>
 
             <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs text-faint">
               {[
-                ["2-min", "runs"],
+                ["6", "courses"],
                 ["Notes", "on every question"],
                 ["XP +", "streaks & badges"],
               ].map(([strong, rest]) => (
@@ -216,19 +227,21 @@ export function Dashboard() {
                     <Sparkles className="size-3.5" aria-hidden />
                   </span>
                   <div>
-                    <div className="text-xs font-medium text-mist">JSX expressions</div>
+                    <div className="text-xs font-medium text-mist">
+                      {sample?.topicTitle ?? "HTML foundations"}
+                    </div>
                     <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-faint">
-                      Easy · question 01
+                      {sample?.tier ?? "easy"} · question 01
                     </div>
                   </div>
                 </div>
                 <span className="rounded-full border border-lime/20 bg-lime/[0.07] px-2.5 py-1 font-mono text-[10px] text-lime">
-                  +10 XP
+                  +{sample?.xp ?? 10} XP
                 </span>
               </div>
 
               <p className="mb-3 text-sm leading-6 text-muted">
-                Which line renders the number <span className="text-mist">5</span> in the browser?
+                {sample?.prompt ?? "Which three elements form the skeleton of an HTML document?"}
               </p>
 
               <div className="space-y-2">
@@ -335,10 +348,10 @@ export function Dashboard() {
                   </div>
                   <h2 className="text-xl font-semibold tracking-tight text-mist">
                     {resumable
-                      ? `Resume at question ${activeSession.index + 1}`
+                      ? `Resume ${activeCourse?.title} at question ${activeSession.index + 1}`
                       : nextQuestion
-                        ? nextQuestion.topicTitle
-                        : "Curriculum cleared"}
+                        ? `${nextCourse?.title} · ${nextQuestion.topicTitle}`
+                        : "Everything cleared"}
                   </h2>
                   <p className="mt-1 max-w-md text-sm leading-6 text-muted">
                     {resumable
@@ -400,11 +413,32 @@ export function Dashboard() {
       <section className="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
         <div className="mb-5 flex items-end justify-between gap-4">
           <div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-lime">
+              Course tracks
+            </div>
+            <h2 className="mt-1 text-2xl font-semibold tracking-tight text-mist">
+              Six layers. One complete frontend stack.
+            </h2>
+          </div>
+          <Link
+            href="/learn"
+            className="hidden items-center gap-2 rounded-full border border-line bg-white/[0.03] px-4 py-2 text-xs font-medium text-mist transition hover:border-line-strong hover:bg-white/[0.06] sm:inline-flex"
+          >
+            Open all courses
+            <ArrowRight className="size-3.5" aria-hidden />
+          </Link>
+        </div>
+        <CourseGrid />
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="mb-5 flex items-end justify-between gap-4">
+          <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
               Difficulty ladder
             </div>
             <h2 className="mt-1 text-2xl font-semibold tracking-tight text-mist">
-              Four tiers. One complete React brain.
+              Four tiers. Six complete courses.
             </h2>
           </div>
           <span className="hidden text-xs text-faint sm:block">All four tiers live now</span>
@@ -451,10 +485,10 @@ export function Dashboard() {
                   </span>
                   {tier.ready ? (
                     <Link
-                      href={`/play/react/${tier.name.toLowerCase()}`}
+                      href="/learn"
                       className="flex items-center gap-1 text-[11px] font-medium text-lime transition group-hover:gap-1.5"
                     >
-                      Play <ArrowRight className="size-3" aria-hidden />
+                      Choose <ArrowRight className="size-3" aria-hidden />
                     </Link>
                   ) : (
                     <span className="text-[11px] text-faint">Queued</span>
@@ -471,51 +505,22 @@ export function Dashboard() {
           <div className="flex flex-col gap-4 border-b border-line px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
             <div>
               <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-lime">
-                Full curriculum blueprint
+                Built for the whole stack
               </div>
               <h2 className="mt-1 text-xl font-semibold tracking-tight text-mist">
-                {curriculumStats.modules} modules · {curriculumStats.topics} topics · every React corner
+                {courses.length} courses · {totals.modules} modules · {totals.topics} topics
               </h2>
             </div>
             <Link
-              href="/learn/react"
+              href="/learn"
               className="inline-flex items-center gap-2 self-start rounded-full border border-line bg-white/[0.03] px-4 py-2 text-xs font-medium text-mist transition hover:border-line-strong hover:bg-white/[0.06]"
             >
-              Open the map
+              Explore the catalog
               <ArrowRight className="size-3.5" aria-hidden />
             </Link>
           </div>
 
-          <div className="grid gap-px bg-line/60 sm:grid-cols-2 lg:grid-cols-4">
-            {reactCurriculum.slice(0, 8).map((module) => {
-              const liveTopics = module.topics.filter((topic) =>
-                (questionsByTopic[topic.id] ?? []).length > 0,
-              ).length;
-              return (
-                <Link
-                  key={module.id}
-                  href="/learn/react"
-                  className="group bg-surface px-5 py-4 transition hover:bg-raised"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-faint">
-                      {String(module.order).padStart(2, "0")}
-                    </span>
-                    {liveTopics > 0 && (
-                      <span className="rounded-full bg-lime/10 px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-[0.1em] text-lime">
-                        {liveTopics} live
-                      </span>
-                    )}
-                  </div>
-                  <div className="mt-2 text-sm font-medium text-mist">{module.title}</div>
-                  <div className="mt-1 text-[11px] text-faint">
-                    {pluralize(module.topics.length, "topic")}
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-          <div className="grid gap-px border-t border-line/60 bg-line/60 sm:grid-cols-3">
+          <div className="grid gap-px bg-line/60 sm:grid-cols-3">
             {[
               {
                 icon: Timer,
@@ -550,7 +555,7 @@ export function Dashboard() {
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-4 py-8 text-xs text-faint sm:flex-row sm:px-6 lg:px-8">
           <p>Stacked — learn the stack by playing it.</p>
           <p className="font-mono text-[10px] uppercase tracking-[0.16em]">
-            React · four tiers · pure frontend · localStorage
+            HTML · CSS · JavaScript · Bootstrap · React · TypeScript
           </p>
         </div>
       </footer>

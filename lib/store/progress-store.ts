@@ -1,7 +1,13 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { z } from "zod";
-import type { Question, Tier } from "@/lib/content/schema";
+import {
+  courseIdSchema,
+  tierSchema,
+  type CourseId,
+  type Question,
+  type Tier,
+} from "@/lib/content/schema";
 import { todayKey, yesterdayKey } from "@/lib/utils";
 
 const answerRecordSchema = z.object({
@@ -22,8 +28,8 @@ const sessionAnswerSchema = z.object({
 
 const playSessionSchema = z.object({
   id: z.string(),
-  courseId: z.literal("react"),
-  tier: z.enum(["easy", "medium", "hard", "complex"]),
+  courseId: courseIdSchema,
+  tier: tierSchema,
   topicId: z.string().nullable(),
   questionIds: z.array(z.string()),
   index: z.number().int().nonnegative(),
@@ -66,6 +72,7 @@ export type Settings = z.infer<typeof settingsSchema>;
 type PersistedState = z.infer<typeof persistedStateSchema>;
 
 type StartSessionInput = {
+  courseId: CourseId;
   tier: Tier;
   topicId?: string | null;
   questionIds: string[];
@@ -142,12 +149,12 @@ export const useProgressStore = create<Store>()(
     (set, get) => ({
       ...initialState,
 
-      startSession: ({ tier, topicId = null, questionIds }) => {
+      startSession: ({ courseId, tier, topicId = null, questionIds }) => {
         const now = Date.now();
         set({
           activeSession: {
             id: createId(),
-            courseId: "react",
+            courseId,
             tier,
             topicId,
             questionIds,

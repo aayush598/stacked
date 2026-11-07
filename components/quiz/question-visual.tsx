@@ -847,6 +847,206 @@ function VisualBody({ kind }: { kind: Question["visual"]["kind"] }) {
         </div>
       );
 
+    case "markup-tree":
+      return (
+        <div className="space-y-2">
+          <div className="rounded-lg border border-coral/20 bg-coral/[0.05] px-3 py-2 text-center font-mono text-[10px] text-coral">
+            &lt;html&gt;
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <div className="rounded-lg border border-line bg-white/[0.03] px-2 py-2 text-center font-mono text-[9px] text-mist">
+              &lt;head&gt;
+              <div className="mt-1 text-[8px] text-faint">metadata</div>
+            </div>
+            <div className="rounded-lg border border-lime/20 bg-lime/[0.04] px-2 py-2 text-center font-mono text-[9px] text-lime">
+              &lt;body&gt;
+              <div className="mt-1 text-[8px] text-faint">visible tree</div>
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-1.5">
+            {["header", "main", "footer"].map((node) => (
+              <div key={node} className="rounded-md border border-line bg-black/20 py-1.5 text-center font-mono text-[8px] text-muted">
+                &lt;{node}&gt;
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center justify-center gap-1.5 text-[9px] text-faint">
+            <Layers className="size-3 text-coral" aria-hidden />
+            the document is a tree, not a flat file
+          </div>
+        </div>
+      );
+
+    case "box-model":
+      return (
+        <div className="space-y-1">
+          <div className="rounded-xl border border-coral/20 bg-coral/[0.04] p-2">
+            <div className="mb-1 text-[8px] uppercase tracking-[0.14em] text-coral">margin</div>
+            <div className="rounded-lg border border-violet/25 bg-violet/[0.05] p-2">
+              <div className="mb-1 text-[8px] uppercase tracking-[0.14em] text-violet">border</div>
+              <div className="rounded-md border border-sky/25 bg-sky/[0.06] p-2">
+                <div className="mb-1 text-[8px] uppercase tracking-[0.14em] text-sky">padding</div>
+                <div className="rounded border border-lime/25 bg-lime/[0.08] px-3 py-2 text-center font-mono text-[9px] text-lime">
+                  content
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="pt-1 text-center font-mono text-[8px] text-faint">
+            width + padding + border + margin
+          </div>
+        </div>
+      );
+
+    case "selector-map":
+      return (
+        <div className="space-y-2">
+          <div className="rounded-lg border border-sky/25 bg-sky/[0.06] px-3 py-2 text-center font-mono text-[11px] text-sky">
+            .card h2
+          </div>
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2">
+            <span className="rounded-lg border border-line bg-white/[0.03] px-2 py-1.5 text-center font-mono text-[9px] text-mist">
+              .card
+            </span>
+            <FlowArrow />
+            <span className="rounded-lg border border-lime/20 bg-lime/[0.06] px-2 py-1.5 text-center font-mono text-[9px] text-lime">
+              h2
+            </span>
+          </div>
+          <div className="space-y-1.5">
+            {[
+              ["h2 inside card", true],
+              ["h2 outside card", false],
+              ["h2 nested deeper", true],
+            ].map(([label, match]) => (
+              <div key={String(label)} className="flex items-center gap-2 rounded-md border border-line/70 bg-black/20 px-2 py-1.5">
+                <span className={cn("grid size-4 place-items-center rounded-full", match ? "bg-lime/15 text-lime" : "bg-coral/15 text-coral")}>
+                  {match ? <Check className="size-2.5" aria-hidden /> : <X className="size-2.5" aria-hidden />}
+                </span>
+                <span className="font-mono text-[9px] text-muted">{label}</span>
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center justify-center gap-1.5 text-[9px] text-faint">
+            <Code2 className="size-3 text-sky" aria-hidden />
+            descendant selectors match at any depth
+          </div>
+        </div>
+      );
+
+    case "event-loop":
+      return (
+        <div className="space-y-2">
+          <div className="grid grid-cols-2 gap-2">
+            <div className="rounded-lg border border-lime/20 bg-lime/[0.05] p-2">
+              <div className="text-[8px] uppercase tracking-[0.12em] text-lime">call stack</div>
+              <div className="mt-1 font-mono text-[9px] text-mist">sync code</div>
+            </div>
+            <div className="rounded-lg border border-sky/20 bg-sky/[0.05] p-2">
+              <div className="text-[8px] uppercase tracking-[0.12em] text-sky">web APIs</div>
+              <div className="mt-1 font-mono text-[9px] text-mist">timers · fetch</div>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <div className="rounded-lg border border-violet/20 bg-violet/[0.05] p-2">
+              <div className="text-[8px] uppercase tracking-[0.12em] text-violet">microtasks</div>
+              <div className="mt-1 font-mono text-[9px] text-mist">promises</div>
+            </div>
+            <div className="rounded-lg border border-coral/20 bg-coral/[0.05] p-2">
+              <div className="text-[8px] uppercase tracking-[0.12em] text-coral">tasks</div>
+              <div className="mt-1 font-mono text-[9px] text-mist">setTimeout</div>
+            </div>
+          </div>
+          <div className="flex items-center justify-center gap-1.5 text-[9px] text-faint">
+            <RotateCw className="size-3 text-lime" aria-hidden />
+            stack → microtasks → tasks → render
+          </div>
+        </div>
+      );
+
+    case "bootstrap-grid":
+      return (
+        <div className="space-y-2">
+          <div className="flex overflow-hidden rounded-lg border border-line">
+            {Array.from({ length: 12 }).map((_, index) => (
+              <div
+                key={index}
+                className={cn(
+                  "h-7 flex-1 border-r border-line/60 last:border-r-0",
+                  index < 8 ? "bg-lime/[0.12]" : "bg-sky/[0.08]",
+                )}
+              />
+            ))}
+          </div>
+          <div className="flex justify-between font-mono text-[8px] text-faint">
+            <span className="text-lime">col-8</span>
+            <span className="text-sky">col-4</span>
+          </div>
+          <div className="rounded-lg border border-line bg-white/[0.02] px-2.5 py-2 text-center font-mono text-[9px] text-muted">
+            row = 12 columns
+          </div>
+          <div className="flex items-center justify-center gap-1.5 text-[9px] text-faint">
+            <Layers className="size-3 text-violet" aria-hidden />
+            breakpoint classes opt in at their width
+          </div>
+        </div>
+      );
+
+    case "scope-chain":
+      return (
+        <div className="space-y-2">
+          {[
+            { label: "outer scope", value: "let count = 0", tone: "violet" as const },
+            { label: "closure", value: "() => ++count", tone: "lime" as const },
+            { label: "call", value: "count → 1, 2, 3", tone: "sky" as const },
+          ].map((step, index) => (
+            <div key={step.label}>
+              <div
+                className={cn(
+                  "flex items-center justify-between rounded-lg border px-2.5 py-2",
+                  step.tone === "violet" && "border-violet/20 bg-violet/[0.05]",
+                  step.tone === "lime" && "border-lime/20 bg-lime/[0.05]",
+                  step.tone === "sky" && "border-sky/20 bg-sky/[0.05]",
+                )}
+              >
+                <span className="font-mono text-[8px] uppercase tracking-[0.12em] text-faint">
+                  {step.label}
+                </span>
+                <span className="font-mono text-[9px] text-mist">{step.value}</span>
+              </div>
+              {index < 2 && <div className="py-0.5"><FlowArrow vertical /></div>}
+            </div>
+          ))}
+          <div className="flex items-center justify-center gap-1.5 text-[9px] text-faint">
+            <Link2 className="size-3 text-lime" aria-hidden />
+            the inner function keeps the binding alive
+          </div>
+        </div>
+      );
+
+    case "utility-stack":
+      return (
+        <div className="space-y-2">
+          <div className="flex flex-wrap gap-1.5">
+            {["d-flex", "align-items-center", "gap-2", "p-3"].map((token) => (
+              <Tone key={token} tone="violet">
+                {token}
+              </Tone>
+            ))}
+          </div>
+          <div className="flex items-center gap-2 rounded-lg border border-line bg-white/[0.03] px-3 py-2.5">
+            <span className="grid size-7 place-items-center rounded-lg bg-violet/10 text-violet">
+              <Box className="size-3.5" aria-hidden />
+            </span>
+            <span className="text-xs text-mist">one element, composed behavior</span>
+          </div>
+          <div className="flex items-center justify-center gap-1.5 text-[9px] text-faint">
+            <Package className="size-3 text-violet" aria-hidden />
+            utilities stack without custom CSS
+          </div>
+        </div>
+      );
+
     default:
       return null;
   }

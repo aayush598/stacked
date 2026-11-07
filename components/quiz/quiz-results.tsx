@@ -13,6 +13,7 @@ import {
   Zap,
 } from "lucide-react";
 import { BadgeShelf } from "@/components/badges";
+import { getCourse } from "@/lib/content/courses";
 import { tierMeta } from "@/lib/content/questions";
 import type { PlaySession } from "@/lib/store/progress-store";
 import type { Question } from "@/lib/content/schema";
@@ -22,7 +23,7 @@ function scoreCopy(percent: number) {
   if (percent >= 90) {
     return {
       title: "S-tier syntax run.",
-      copy: "Your React pattern recognition is sharp. Keep the combo alive with a replay.",
+      copy: "Your pattern recognition is sharp. Keep the combo alive with a replay.",
       tone: "text-lime",
       icon: Trophy,
     };
@@ -64,6 +65,7 @@ export function QuizResults({
   totalXp: number;
   onReplay: () => void;
 }) {
+  const course = getCourse(session.courseId);
   const answered = session.answers.length;
   const correct = session.answers.filter((answer) => answer.correct).length;
   const percent = answered > 0 ? Math.round((correct / answered) * 100) : 0;
@@ -81,7 +83,7 @@ export function QuizResults({
             <Icon className="size-7" aria-hidden />
           </div>
           <div className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-faint">
-            Run complete · React {tierMeta[session.tier].label.toLowerCase()}
+            Run complete · {course.title} {tierMeta[session.tier].label.toLowerCase()}
           </div>
           <h1 className={cn("mt-2 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl", copy.tone)}>
             {copy.title}
@@ -143,11 +145,11 @@ export function QuizResults({
               Play again
             </button>
             <Link
-              href="/learn/react"
+              href={`/learn/${course.id}`}
               className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-line bg-white/[0.03] px-6 text-sm font-medium text-mist transition hover:border-line-strong hover:bg-white/[0.06]"
             >
               <MapIcon className="size-4 text-muted" aria-hidden />
-              Back to React map
+              Back to {course.title} map
             </Link>
             <Link
               href="/"

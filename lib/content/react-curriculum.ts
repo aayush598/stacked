@@ -1,28 +1,7 @@
-import type { Tier } from "./schema";
-
-export type CurriculumTopic = {
-  id: string;
-  title: string;
-  blurb: string;
-};
-
-export type CurriculumModule = {
-  id: string;
-  order: number;
-  title: string;
-  kicker: string;
-  summary: string;
-  icon: string;
-  accent: "lime" | "coral" | "sky" | "violet";
-  focus: Tier[];
-  topics: CurriculumTopic[];
-};
-
-const t = (id: string, title: string, blurb: string): CurriculumTopic => ({
-  id,
-  title,
-  blurb,
-});
+import {
+  topic as t,
+  type CurriculumModule,
+} from "./curriculum-types";
 
 export const reactCurriculum: CurriculumModule[] = [
   {
@@ -398,17 +377,17 @@ export const reactCurriculum: CurriculumModule[] = [
     accent: "violet",
     focus: ["medium", "hard", "complex"],
     topics: [
-      t("ts.props", "Typing props", "Define component prop contracts."),
-      t("ts.children", "Typing children", "ReactNode, JSX.Element and when to use each."),
-      t("ts.usestate", "Typing useState", "Annotations, inference and unions."),
-      t("ts.events", "Typing events", "ChangeEvent, MouseEvent and FormEvent."),
-      t("ts.useref", "Typing refs", "HTMLElement refs and mutable values."),
-      t("ts.generics", "Generic components", "Build reusable components that preserve types."),
-      t("ts.unions", "Union props", "Model mutually exclusive variants."),
-      t("ts.discriminated", "Discriminated unions", "Exhaustive rendering with a discriminant field."),
-      t("ts.utility", "Utility types", "Pick, Omit, Partial, Record and ComponentProps."),
-      t("ts.zod", "Zod inference", "Keep runtime validation and static types in sync."),
-      t("ts.context", "Typing context", "Handle nullable context values without guessing."),
+      t("react-ts.props", "Typing props", "Define component prop contracts."),
+      t("react-ts.children", "Typing children", "ReactNode, JSX.Element and when to use each."),
+      t("react-ts.usestate", "Typing useState", "Annotations, inference and unions."),
+      t("react-ts.events", "Typing events", "ChangeEvent, MouseEvent and FormEvent."),
+      t("react-ts.useref", "Typing refs", "HTMLElement refs and mutable values."),
+      t("react-ts.generics", "Generic components", "Build reusable components that preserve types."),
+      t("react-ts.unions", "Union props", "Model mutually exclusive variants."),
+      t("react-ts.discriminated", "Discriminated unions", "Exhaustive rendering with a discriminant field."),
+      t("react-ts.utility", "Utility types", "Pick, Omit, Partial, Record and ComponentProps."),
+      t("react-ts.zod", "Zod inference", "Keep runtime validation and static types in sync."),
+      t("react-ts.context", "Typing context", "Handle nullable context values without guessing."),
     ],
   },
   {
@@ -579,19 +558,3 @@ export const reactCurriculum: CurriculumModule[] = [
     ],
   },
 ];
-
-export const curriculumStats = reactCurriculum.reduce(
-  (acc, module) => ({
-    modules: acc.modules + 1,
-    topics: acc.topics + module.topics.length,
-  }),
-  { modules: 0, topics: 0 },
-);
-
-export function findTopic(topicId: string) {
-  for (const entry of reactCurriculum) {
-    const topic = entry.topics.find((item) => item.id === topicId);
-    if (topic) return { module: entry, topic };
-  }
-  return null;
-}

@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Stacked — Learn React by playing",
+  title: "Stacked — Learn the frontend stack by playing",
   description:
-    "Short, visual, gamified React lessons. Master every pattern from syntax to architecture with notes and diagrams attached to every question.",
+    "Short, visual, gamified lessons across HTML, CSS, JavaScript, Bootstrap, React and TypeScript. Notes and diagrams attached to every question.",
 };
 
 export const viewport: Viewport = {
@@ -29,9 +29,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full overflow-x-clip antialiased`}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col overflow-x-clip">
         <div className="page-aura" aria-hidden />
         <SiteHeader />
         <div className="relative z-10 flex flex-1 flex-col">{children}</div>

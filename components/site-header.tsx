@@ -10,8 +10,8 @@ import { cn, levelProgress } from "@/lib/utils";
 
 const NAV = [
   { href: "/", label: "Home" },
-  { href: "/learn/react", label: "React path" },
-  { href: "/play/react/easy", label: "Play" },
+  { href: "/learn", label: "Courses" },
+  { href: "/play/html/easy", label: "Play" },
 ];
 
 export function SiteHeader() {
@@ -21,7 +21,7 @@ export function SiteHeader() {
   const activeSession = useProgressStore((state) => state.activeSession);
   const streak = hydrated ? currentStreak(profile) : null;
   const level = levelProgress(profile.xp);
-  const playHref = `/play/react/${activeSession?.tier ?? "easy"}`;
+  const playHref = `/play/${activeSession?.courseId ?? "html"}/${activeSession?.tier ?? "easy"}`;
 
   return (
     <header className="glass sticky top-0 z-50 border-b border-line/70">
@@ -34,7 +34,7 @@ export function SiteHeader() {
                 item.href === "/"
                   ? pathname === "/"
                   : item.href.startsWith("/play")
-                    ? pathname.startsWith("/play/react")
+                    ? pathname.startsWith("/play")
                     : pathname.startsWith(item.href);
               return (
                 <Link
