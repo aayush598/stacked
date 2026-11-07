@@ -1,4 +1,5 @@
 import { topic as t, type CurriculumModule } from "../curriculum-types";
+import { bootstrapAdvancedModules } from "./bootstrap-advanced";
 
 export const bootstrapCurriculum: CurriculumModule[] = [
   {
@@ -73,4 +74,5 @@ export const bootstrapCurriculum: CurriculumModule[] = [
       t("bootstrap.icons", "Icons", "Bootstrap Icons setup and accessible icon use."),
     ],
   },
+  ...bootstrapAdvancedModules,
 ];

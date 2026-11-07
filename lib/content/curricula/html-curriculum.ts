@@ -1,4 +1,5 @@
 import { topic as t, type CurriculumModule } from "../curriculum-types";
+import { htmlAdvancedModules } from "./html-advanced";
 
 export const htmlCurriculum: CurriculumModule[] = [
   {
@@ -87,4 +88,5 @@ export const htmlCurriculum: CurriculumModule[] = [
       t("html.auditing", "Validation & auditing", "Validate markup and audit structure before shipping."),
     ],
   },
+  ...htmlAdvancedModules,
 ];

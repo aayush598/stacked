@@ -1,4 +1,5 @@
 import { topic as t, type CurriculumModule } from "../curriculum-types";
+import { typescriptAdvancedModules } from "./typescript-advanced";
 
 export const typescriptCurriculum: CurriculumModule[] = [
   {
@@ -85,4 +86,5 @@ export const typescriptCurriculum: CurriculumModule[] = [
       t("ts.config", "tsconfig", "Strictness, module resolution and project settings."),
     ],
   },
+  ...typescriptAdvancedModules,
 ];

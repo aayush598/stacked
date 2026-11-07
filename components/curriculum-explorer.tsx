@@ -85,6 +85,8 @@ const ICONS: Record<string, LucideIcon> = {
   Cpu,
   ShieldCheck,
   Code2,
+  Play,
+  Search,
 };
 
 const ACCENTS = {

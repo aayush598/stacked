@@ -38,9 +38,10 @@ export const courses: Course[] = [
     title: "HTML",
     kicker: "Structure",
     tagline: "Markup that means something",
-    summary: "Document structure, semantic elements, forms and accessible content.",
+    summary:
+      "Document structure, semantics, forms, media, accessibility and production markup.",
     description:
-      "Learn how the browser reads a document, choose semantic elements with confidence and build forms that work for keyboard and assistive-technology users.",
+      "Go from the browser's document tree to semantic architecture: forms, responsive media, accessible tables and patterns, structured data, security, performance, web components and production audits.",
     icon: "FileCode2",
     accent: "coral",
     modules: htmlCurriculum,
@@ -50,9 +51,10 @@ export const courses: Course[] = [
     title: "CSS",
     kicker: "Style",
     tagline: "Layout with fewer surprises",
-    summary: "Cascade, box model, Flexbox, Grid, motion and modern responsive CSS.",
+    summary:
+      "Cascade, layout systems, typography, color, motion, architecture and testing.",
     description:
-      "Understand why styles win, build robust layouts with Flexbox and Grid and use modern CSS features without collecting specificity hacks.",
+      "Understand why styles win, build robust layouts with Flexbox and Grid, and use modern CSS for color, typography, motion, responsive components, performance and maintainable design systems.",
     icon: "Palette",
     accent: "sky",
     modules: cssCurriculum,
@@ -62,9 +64,10 @@ export const courses: Course[] = [
     title: "JavaScript",
     kicker: "Behavior",
     tagline: "The language behind the interface",
-    summary: "Values, scope, closures, the DOM, events, async flows and modules.",
+    summary:
+      "Runtime semantics, objects, async, browser APIs, security, testing and performance.",
     description:
-      "Build a durable mental model of JavaScript: how values move, how scope works, how the browser dispatches events and how asynchronous code is ordered.",
+      "Build a durable mental model of JavaScript: coercion, prototypes, closures, the event loop, DOM and events, networking, persistence, concurrency, security, testing and production performance.",
     icon: "Braces",
     accent: "lime",
     modules: javascriptCurriculum,
@@ -74,9 +77,10 @@ export const courses: Course[] = [
     title: "Bootstrap",
     kicker: "System",
     tagline: "Ship consistent interfaces faster",
-    summary: "Grid, breakpoints, utilities, components and plugin fundamentals.",
+    summary:
+      "Grid, utilities, components, plugins, theming, accessibility and migration.",
     description:
-      "Use Bootstrap deliberately: compose the grid and utilities, build accessible components and customize the system instead of fighting its defaults.",
+      "Use Bootstrap deliberately: compose the grid and utilities, build accessible components and forms, wire plugins, theme the system, ship less CSS and migrate versions without layout regressions.",
     icon: "Boxes",
     accent: "violet",
     modules: bootstrapCurriculum,
@@ -99,9 +103,10 @@ export const courses: Course[] = [
     title: "TypeScript",
     kicker: "Safety",
     tagline: "Types that pull their weight",
-    summary: "Inference, unions, generics, narrowing and typed React patterns.",
+    summary:
+      "Type system, generics, compiler, runtime validation, React types and architecture.",
     description:
-      "Move beyond annotations: model impossible states out of existence, write reusable generics and understand the type system well enough to trust it.",
+      "Move beyond annotations: model impossible states, write reusable generics, understand the compiler, validate runtime boundaries, type React and data layers, and evolve typed contracts across a codebase.",
     icon: "FileType",
     accent: "violet",
     modules: typescriptCurriculum,

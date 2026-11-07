@@ -1,4 +1,4 @@
-import { courses, findTopic } from "../courses";
+import { courseCurriculum, courses, findTopic } from "../courses";
 import { reactEasyQuestions } from "../react-easy-questions";
 import {
   courseIdValues,
@@ -22,7 +22,7 @@ import { bootstrapQuestions } from "./bootstrap-questions";
 import { cssQuestions } from "./css-questions";
 import { htmlQuestions } from "./html-questions";
 import { javascriptQuestions } from "./javascript-questions";
-import { generateReactMasteryQuestions } from "./react-mastery";
+import { generateMasteryQuestions } from "./mastery";
 import { reactCodingSourceQuestions } from "./react-coding-source";
 import { reactInternalsSourceQuestions } from "./react-internals-source";
 import { reactSecuritySourceQuestions } from "./react-security-source";
@@ -58,7 +58,22 @@ const reactSourceQuestions = [
   ...reactAdvancedQuestions,
 ];
 
-const reactMasteryQuestions = generateReactMasteryQuestions(reactSourceQuestions);
+const courseSourceQuestions: Record<CourseId, Question[]> = {
+  html: htmlQuestions,
+  css: cssQuestions,
+  javascript: javascriptQuestions,
+  bootstrap: bootstrapQuestions,
+  react: reactSourceQuestions,
+  typescript: typescriptQuestions,
+};
+
+const masteryQuestions = courseIdValues.flatMap((courseId) =>
+  generateMasteryQuestions({
+    courseId,
+    modules: courseCurriculum[courseId],
+    existing: courseSourceQuestions[courseId],
+  }),
+);
 
 const baseQuestions: Question[] = [
   ...htmlQuestions,
@@ -66,8 +81,8 @@ const baseQuestions: Question[] = [
   ...javascriptQuestions,
   ...bootstrapQuestions,
   ...reactSourceQuestions,
-  ...reactMasteryQuestions,
   ...typescriptQuestions,
+  ...masteryQuestions,
 ];
 
 export const allQuestions: CourseQuestion[] = baseQuestions.map((question) => {
@@ -246,23 +261,30 @@ export const questionCountsByCourseTier = courseIdValues.reduce<
   },
 );
 
-const reactCourse = courses.find((course) => course.id === "react");
-if (!reactCourse) throw new Error("React course is missing.");
-if (questionCountsByCourse.react < 1500) {
+const MIN_COURSE_QUESTIONS = 1900;
+const undersizedCourses = courseIdValues.filter(
+  (courseId) => questionCountsByCourse[courseId] < MIN_COURSE_QUESTIONS,
+);
+if (undersizedCourses.length > 0) {
   throw new Error(
-    `React needs at least 1500 questions, found ${questionCountsByCourse.react}.`,
+    `Courses need at least ${MIN_COURSE_QUESTIONS} questions: ${undersizedCourses
+      .map((courseId) => `${courseId} (${questionCountsByCourse[courseId]})`)
+      .join(", ")}`,
   );
 }
-const reactTopicsMissingTiers = reactCourse.modules.flatMap((module) =>
-  module.topics.filter((topic) =>
-    tierValues.some(
-      (tier) => !questionsByCourseTierTopic.react[tier][topic.id]?.length,
+
+const topicsMissingTiers = courses.flatMap((course) =>
+  course.modules.flatMap((module) =>
+    module.topics.filter((topic) =>
+      tierValues.some(
+        (tier) => !questionsByCourseTierTopic[course.id][tier][topic.id]?.length,
+      ),
     ),
   ),
 );
-if (reactTopicsMissingTiers.length > 0) {
+if (topicsMissingTiers.length > 0) {
   throw new Error(
-    `React topics missing a tier: ${reactTopicsMissingTiers
+    `Topics missing a tier: ${topicsMissingTiers
       .map((topic) => topic.id)
       .join(", ")}`,
   );

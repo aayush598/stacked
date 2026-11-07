@@ -24,7 +24,6 @@ import {
   allQuestions,
   getTopicHref,
   questionById,
-  questionCountsByCourse,
   questionCountsByTier,
 } from "@/lib/content/questions";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
@@ -148,7 +147,6 @@ export function Dashboard() {
   const nextCourse = nextQuestion ? getCourse(nextQuestion.courseId) : null;
   const activeCourse = activeSession ? getCourse(activeSession.courseId) : null;
   const sample = questionById.get("html.document.skeleton");
-  const reactCount = questionCountsByCourse.react;
   const resumable = activeSession?.status === "active";
   const playHref = activeSession
     ? `/play/${activeSession.courseId}/${activeSession.tier}${
@@ -177,7 +175,7 @@ export function Dashboard() {
                 {allQuestions.length} questions · {totals.topics} topics
               </span>
               <span className="rounded-full border border-sky/20 bg-sky/[0.06] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-sky">
-                React deep dive · {reactCount} questions
+                Every layer · full-depth banks
               </span>
             </div>
 
@@ -186,7 +184,7 @@ export function Dashboard() {
               <span className="text-gradient">cold.</span>
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-muted sm:text-base">
-              Six full courses with a React deep dive at the center: {reactCount} React
+              Six full courses with deep coverage in every layer: {allQuestions.length}{" "}
               questions across four tiers, with notes, diagrams and code review on every
               answer. Built for the two minutes you were going to scroll anyway.
             </p>

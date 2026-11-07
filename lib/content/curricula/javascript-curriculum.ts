@@ -1,4 +1,5 @@
 import { topic as t, type CurriculumModule } from "../curriculum-types";
+import { javascriptAdvancedModules } from "./javascript-advanced";
 
 export const javascriptCurriculum: CurriculumModule[] = [
   {
@@ -105,4 +106,5 @@ export const javascriptCurriculum: CurriculumModule[] = [
       t("js.debounce", "Debounce & throttle", "Limit expensive work triggered by events."),
     ],
   },
+  ...javascriptAdvancedModules,
 ];

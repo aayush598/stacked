@@ -1,4 +1,5 @@
 import { topic as t, type CurriculumModule } from "../curriculum-types";
+import { cssAdvancedModules } from "./css-advanced";
 
 export const cssCurriculum: CurriculumModule[] = [
   {
@@ -89,4 +90,5 @@ export const cssCurriculum: CurriculumModule[] = [
       t("css.container-queries", "Container queries", "Responsive components based on their container."),
     ],
   },
+  ...cssAdvancedModules,
 ];

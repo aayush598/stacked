@@ -1,6 +1,7 @@
-import { reactCurriculum } from "../react-curriculum";
+import type { CurriculumModule } from "../curriculum-types";
 import {
   questionSchema,
+  type CourseId,
   type Question,
   type Tier,
   type VisualKind,
@@ -23,7 +24,7 @@ const VARIANTS: Variant[] = [
     prompt: (title) => `Which statement best describes ${title}?`,
     correct: (_title, description) => description,
     why: (title, description) =>
-      `${title} is about this rule: ${description} Recognizing the rule is the first step before applying it in real components.`,
+      `${title} is about this rule: ${description} Recognizing the rule is the first step before applying it in real code.`,
   },
   {
     suffix: "practice",
@@ -77,18 +78,67 @@ const VARIANTS: Variant[] = [
     why: (title, description) =>
       `A strong interview answer connects the implementation to the underlying rule — ${description} — and can then discuss trade-offs and verification.`,
   },
+  {
+    suffix: "lesson",
+    tier: "easy",
+    title: "Teach it back",
+    prompt: (title) =>
+      `You are explaining ${title} to a teammate. Which statement should anchor the lesson?`,
+    correct: (_title, description) => description,
+    why: (title, description) =>
+      `A useful explanation starts with the rule behind ${title}, not a memorized snippet: ${description}`,
+  },
+  {
+    suffix: "apply",
+    tier: "medium",
+    title: "Apply it",
+    prompt: (title) =>
+      `Which action best applies ${title} in a real project?`,
+    correct: (_title, description) =>
+      `Follow the rule — ${description} — and verify the result`,
+    why: (title, description) =>
+      `Application means using ${title} as described — ${description} — then checking the behavior instead of assuming it worked.`,
+  },
+  {
+    suffix: "debug",
+    tier: "hard",
+    title: "Debugging step",
+    prompt: (title) =>
+      `A bug is suspected around ${title}. Which diagnostic step is most useful?`,
+    correct: (_title, description) =>
+      `Reproduce the behavior and compare it against the rule: ${description}`,
+    why: (title, description) =>
+      `Debugging should test the actual behavior against the expected rule for ${title}: ${description} That beats guessing or rewriting blindly.`,
+  },
 ];
 
 const DISTRACTORS = [
-  "It only matters for server-rendered pages and can be ignored in client components.",
+  "It only matters for server-rendered pages and can be ignored in client code.",
   "It is purely stylistic and has no effect on correctness or performance.",
-  "The browser handles it automatically, so React code never needs to consider it.",
+  "The browser handles it automatically, so code never needs to consider it.",
   "The safest response is to rewrite the whole feature without measuring the problem.",
   "It is solved permanently by wrapping the app in a global error boundary.",
   "It can be skipped whenever the change looks small.",
-  "Memoizing every component removes the need to understand this behavior.",
+  "Memoizing every value removes the need to understand this behavior.",
   "Adding a timeout or retry loop is always the correct fix.",
+  "Only framework internals need to care; application code can ignore it.",
+  "The newest syntax is always safer than the established approach.",
+  "A single happy-path test is enough evidence.",
+  "Tooling will catch every misuse automatically.",
+  "Performance and correctness are unrelated concerns.",
+  "Documentation can replace understanding the actual behavior.",
+  "It only applies to legacy browsers.",
+  "The first solution that compiles is production-ready.",
 ];
+
+const DEFAULT_VISUAL: Record<CourseId, VisualKind> = {
+  html: "markup-tree",
+  css: "box-model",
+  javascript: "scope-chain",
+  bootstrap: "bootstrap-grid",
+  react: "component-tree",
+  typescript: "type-contract",
+};
 
 function pickDistractors(seed: number, count: number) {
   return Array.from({ length: count }, (_, index) => {
@@ -118,7 +168,7 @@ function baseNotes(
       source?.notes.bullets ??
       [
         description,
-        "Verify the behavior with a focused component test.",
+        "Verify the behavior with a focused test.",
         "Check the relevant edge case before shipping.",
       ],
     syntax: source?.notes.syntax,
@@ -134,23 +184,26 @@ function baseNotes(
 
 function visualFor(
   source: Question | undefined,
+  courseId: CourseId,
   title: string,
 ): { kind: VisualKind; title: string; caption: string } {
   return {
-    kind: source?.visual.kind ?? "component-tree",
+    kind: source?.visual.kind ?? DEFAULT_VISUAL[courseId],
     title: `${title} mastery`,
-    caption: `Connect ${title.toLowerCase()} to the component behavior it protects.`,
+    caption: `Connect ${title.toLowerCase()} to the behavior it protects.`,
   };
 }
 
 function makeChoiceQuestion(
   variant: Variant,
+  courseId: CourseId,
   topicId: string,
   topicTitle: string,
   description: string,
   source: Question | undefined,
   seed: number,
 ): Question {
+  const prefix = courseId === "react" ? "mastery" : `${courseId}-mastery`;
   const correct = variant.correct(topicTitle, description);
   const { options, correctIndex } = withCorrectPosition(correct, seed);
   const optionObjects = options.map((label, index) => ({
@@ -161,7 +214,7 @@ function makeChoiceQuestion(
   const correctOptionId = String.fromCharCode(97 + correctIndex);
 
   return questionSchema.parse({
-    id: `mastery-${topicId}-${variant.suffix}`,
+    id: `${prefix}-${topicId}-${variant.suffix}`,
     topicId,
     topicTitle,
     tier: variant.tier,
@@ -173,18 +226,27 @@ function makeChoiceQuestion(
     answerDisplay: correct,
     explanation: variant.why(topicTitle, description),
     notes: baseNotes(source, topicTitle, description),
-    visual: visualFor(source, topicTitle),
-    xp: variant.tier === "easy" ? 10 : variant.tier === "medium" ? 15 : variant.tier === "hard" ? 20 : 25,
+    visual: visualFor(source, courseId, topicTitle),
+    xp:
+      variant.tier === "easy"
+        ? 10
+        : variant.tier === "medium"
+          ? 15
+          : variant.tier === "hard"
+            ? 20
+            : 25,
   });
 }
 
 function makeMultiSelectQuestion(
+  courseId: CourseId,
   topicId: string,
   topicTitle: string,
   description: string,
   source: Question | undefined,
   seed: number,
 ): Question {
+  const prefix = courseId === "react" ? "mastery" : `${courseId}-mastery`;
   const correctLabels = [
     description,
     "Verify the behavior with a focused test and check the edge case.",
@@ -208,7 +270,7 @@ function makeMultiSelectQuestion(
   );
 
   return questionSchema.parse({
-    id: `mastery-${topicId}-practice`,
+    id: `${prefix}-${topicId}-practice`,
     topicId,
     topicTitle,
     tier: "medium",
@@ -220,18 +282,20 @@ function makeMultiSelectQuestion(
     answerDisplay: correctLabels.join(" · "),
     explanation: `Follow the core rule for ${topicTitle} — ${description} — and pair it with a focused verification step. The other options skip evidence or rely on unsafe shortcuts.`,
     notes: baseNotes(source, topicTitle, description),
-    visual: visualFor(source, topicTitle),
+    visual: visualFor(source, courseId, topicTitle),
     xp: 15,
   });
 }
 
 function makeOrderingQuestion(
+  courseId: CourseId,
   topicId: string,
   topicTitle: string,
   description: string,
   source: Question | undefined,
   seed: number,
 ): Question {
+  const prefix = courseId === "react" ? "mastery" : `${courseId}-mastery`;
   const steps = [
     "Reproduce the current behavior and capture the failing case.",
     `Apply the rule for ${topicTitle}: ${description}`,
@@ -255,7 +319,7 @@ function makeOrderingQuestion(
   const correctOrderIds = steps.map((_, index) => idByStep.get(index) as string);
 
   return questionSchema.parse({
-    id: `mastery-${topicId}-production`,
+    id: `${prefix}-${topicId}-production`,
     topicId,
     topicTitle,
     tier: "complex",
@@ -270,20 +334,29 @@ function makeOrderingQuestion(
     explanation:
       "Reproduce first, apply the topic's rule, verify with evidence, then document and clean up. That order prevents guesswork and keeps the change reviewable.",
     notes: baseNotes(source, topicTitle, description),
-    visual: visualFor(source, topicTitle),
+    visual: visualFor(source, courseId, topicTitle),
     xp: 25,
   });
 }
 
-export function generateReactMasteryQuestions(existing: Question[]): Question[] {
+export function generateMasteryQuestions({
+  courseId,
+  modules,
+  existing,
+}: {
+  courseId: CourseId;
+  modules: CurriculumModule[];
+  existing: Question[];
+}): Question[] {
   const byTopic = new Map<string, Question>();
   for (const question of existing) {
     if (!byTopic.has(question.topicId)) byTopic.set(question.topicId, question);
   }
 
+  const variants = courseId === "react" ? VARIANTS.slice(0, 6) : VARIANTS;
   const generated: Question[] = [];
 
-  reactCurriculum.forEach((module) => {
+  modules.forEach((module) => {
     module.topics.forEach((topic, topicIndex) => {
       const source = byTopic.get(topic.id);
       const description = topic.blurb.endsWith(".")
@@ -291,10 +364,11 @@ export function generateReactMasteryQuestions(existing: Question[]): Question[] 
         : `${topic.blurb}.`;
       const seed = module.order * 11 + topicIndex * 3;
 
-      VARIANTS.forEach((variant, variantIndex) => {
+      variants.forEach((variant, variantIndex) => {
         if (variant.suffix === "practice") {
           generated.push(
             makeMultiSelectQuestion(
+              courseId,
               topic.id,
               topic.title,
               description,
@@ -308,6 +382,7 @@ export function generateReactMasteryQuestions(existing: Question[]): Question[] 
         if (variant.suffix === "production") {
           generated.push(
             makeOrderingQuestion(
+              courseId,
               topic.id,
               topic.title,
               description,
@@ -321,6 +396,7 @@ export function generateReactMasteryQuestions(existing: Question[]): Question[] 
         generated.push(
           makeChoiceQuestion(
             variant,
+            courseId,
             topic.id,
             topic.title,
             description,
