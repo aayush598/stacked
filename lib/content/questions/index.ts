@@ -18,6 +18,7 @@ import { dataFormsTypescriptQuestions } from "./08-data-forms-typescript";
 import { globalAdvancedReact19Questions } from "./09-global-advanced-react19";
 import { a11yTestingToolingArchQuestions } from "./10-a11y-testing-tooling-arch";
 import { topicCoverageQuestions } from "./11-topic-coverage";
+import { bootstrapDocsQuestions } from "./bootstrap-docs";
 import { bootstrapQuestions } from "./bootstrap-questions";
 import { cssQuestions } from "./css-questions";
 import { htmlQuestions } from "./html-questions";
@@ -62,7 +63,7 @@ const courseSourceQuestions: Record<CourseId, Question[]> = {
   html: htmlQuestions,
   css: cssQuestions,
   javascript: javascriptQuestions,
-  bootstrap: bootstrapQuestions,
+  bootstrap: [...bootstrapQuestions, ...bootstrapDocsQuestions],
   react: reactSourceQuestions,
   typescript: typescriptQuestions,
 };
@@ -80,6 +81,7 @@ const baseQuestions: Question[] = [
   ...cssQuestions,
   ...javascriptQuestions,
   ...bootstrapQuestions,
+  ...bootstrapDocsQuestions,
   ...reactSourceQuestions,
   ...typescriptQuestions,
   ...masteryQuestions,
