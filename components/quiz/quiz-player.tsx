@@ -535,11 +535,16 @@ function codeFileName(language: string | undefined) {
       return "index.html";
     case "css":
       return "styles.css";
+    case "js":
     case "javascript":
       return "app.js";
+    case "ts":
     case "typescript":
       return "app.ts";
+    case "scss":
+      return "styles.scss";
     case "bash":
+    case "shell":
       return "terminal";
     default:
       return undefined;
