@@ -1,10 +1,18 @@
 import type { ComponentType } from "react";
 import { module01Content } from "./module-01-introduction";
 import { module03Content } from "./module-03-basic-types";
+import { module04Content } from "./module-04-variables-functions-operators";
+import { module05Content } from "./module-05-interfaces-type-aliases";
+import { module06Content } from "./module-06-objects-arrays-tuples";
+import { module07Content } from "./module-07-enums-special-types";
 
 export const typescriptNoteContent: Record<string, ComponentType> = {
   ...module01Content,
   ...module03Content,
+  ...module04Content,
+  ...module05Content,
+  ...module06Content,
+  ...module07Content,
 };
 
 export const revisionChecklist = [
