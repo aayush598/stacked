@@ -21,6 +21,7 @@ import { topicCoverageQuestions } from "./11-topic-coverage";
 import { bootstrapDocsQuestions } from "./bootstrap-docs";
 import { bootstrapQuestions } from "./bootstrap-questions";
 import { cssQuestions } from "./css-questions";
+import { cssDocs, htmlDocs, javascriptDocs, reactDocs, typescriptDocs } from "./docs";
 import { htmlQuestions } from "./html-questions";
 import { javascriptQuestions } from "./javascript-questions";
 import { generateMasteryQuestions } from "./mastery";
@@ -60,12 +61,12 @@ const reactSourceQuestions = [
 ];
 
 const courseSourceQuestions: Record<CourseId, Question[]> = {
-  html: htmlQuestions,
-  css: cssQuestions,
-  javascript: javascriptQuestions,
+  html: [...htmlQuestions, ...htmlDocs],
+  css: [...cssQuestions, ...cssDocs],
+  javascript: [...javascriptQuestions, ...javascriptDocs],
   bootstrap: [...bootstrapQuestions, ...bootstrapDocsQuestions],
-  react: reactSourceQuestions,
-  typescript: typescriptQuestions,
+  react: [...reactSourceQuestions, ...reactDocs],
+  typescript: [...typescriptQuestions, ...typescriptDocs],
 };
 
 const masteryQuestions = courseIdValues.flatMap((courseId) =>
@@ -78,12 +79,17 @@ const masteryQuestions = courseIdValues.flatMap((courseId) =>
 
 const baseQuestions: Question[] = [
   ...htmlQuestions,
+  ...htmlDocs,
   ...cssQuestions,
+  ...cssDocs,
   ...javascriptQuestions,
+  ...javascriptDocs,
   ...bootstrapQuestions,
   ...bootstrapDocsQuestions,
   ...reactSourceQuestions,
+  ...reactDocs,
   ...typescriptQuestions,
+  ...typescriptDocs,
   ...masteryQuestions,
 ];
 
