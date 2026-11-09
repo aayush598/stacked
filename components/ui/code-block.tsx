@@ -119,14 +119,14 @@ export function CodeBlock({
               <span className="size-2 rounded-full bg-[#d6b45e]" />
               <span className="size-2 rounded-full bg-[#6ea88a]" />
             </span>
-            <span className="font-mono text-[10px] text-[#9aa59f]">
+            <span className="font-mono text-[12px] text-[#9aa59f]">
               {filename ?? "tsx"}
             </span>
           </div>
           <button
             type="button"
             onClick={copy}
-            className="flex items-center gap-1.5 rounded-md px-2 py-1 text-[10px] font-medium text-[#9aa59f] transition hover:bg-white/10 hover:text-white"
+            className="flex items-center gap-1.5 rounded-md px-2 py-1 text-[12px] font-medium text-[#9aa59f] transition hover:bg-white/10 hover:text-white"
             aria-label="Copy code"
           >
             {copied ? <Check className="size-3" /> : <Copy className="size-3" />}
@@ -137,7 +137,7 @@ export function CodeBlock({
       <pre
         className={cn(
           "overflow-x-auto p-4 font-mono leading-relaxed",
-          compact ? "text-[12px]" : "text-[13px] sm:text-sm",
+          compact ? "text-[14px]" : "text-[15px] sm:text-base",
         )}
       >
         <code>

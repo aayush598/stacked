@@ -12,7 +12,7 @@ export { InlineCode };
 
 export function NoteLead({ children }: { children: ReactNode }) {
   return (
-    <p className="text-[1.05rem] leading-8 text-muted sm:text-lg sm:leading-8">
+    <p className="text-[1.15rem] leading-9 text-muted sm:text-xl sm:leading-9">
       {children}
     </p>
   );
@@ -28,7 +28,7 @@ export function NoteHeading({
   return (
     <div className="mt-10 border-t border-line pt-7">
       {eyebrow ? (
-        <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
+        <p className="mb-2 font-mono text-[13px] uppercase tracking-[0.18em] text-faint">
           {eyebrow}
         </p>
       ) : null}
@@ -40,7 +40,7 @@ export function NoteHeading({
 }
 
 export function NoteText({ children }: { children: ReactNode }) {
-  return <p className="mt-3 text-[15px] leading-7 text-muted">{children}</p>;
+  return <p className="mt-3 text-base leading-7 text-muted">{children}</p>;
 }
 
 export function NoteList({
@@ -54,7 +54,7 @@ export function NoteList({
   return (
     <Tag
       className={cn(
-        "mt-4 space-y-2.5 text-[15px] leading-7 text-muted",
+        "mt-4 space-y-2.5 text-base leading-7 text-muted",
         ordered ? "list-decimal pl-5" : "list-none",
       )}
     >
@@ -106,11 +106,11 @@ export function NoteCallout({
     <aside className={cn("mt-6 rounded-xl border px-4 py-4 sm:px-5", config.className)}>
       <div className="flex items-center gap-2">
         <Icon className={cn("size-4", config.iconClass)} aria-hidden />
-        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-mist">
+        <p className="text-[15px] font-semibold uppercase tracking-[0.12em] text-mist">
           {title ?? config.label}
         </p>
       </div>
-      <div className="mt-2 text-[14px] leading-6 text-muted">{children}</div>
+      <div className="mt-2 text-[15px] leading-6 text-muted">{children}</div>
     </aside>
   );
 }
@@ -134,13 +134,13 @@ export function NoteCode({
 export function NoteTakeaways({ items }: { items: ReactNode[] }) {
   return (
     <div className="mt-8 rounded-xl border border-line bg-raised/60 p-4 sm:p-5">
-      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
+      <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-faint">
         Keep this
       </p>
       <ul className="mt-3 space-y-2">
         {items.map((item, index) => (
-          <li key={index} className="flex gap-2.5 text-[14px] leading-6 text-mist">
-            <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-mist font-mono text-[9px] text-canvas">
+          <li key={index} className="flex gap-2.5 text-[15px] leading-6 text-mist">
+            <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-mist font-mono text-[13px] text-canvas">
               {index + 1}
             </span>
             <span>{item}</span>
@@ -171,14 +171,14 @@ export function NoteCardGrid({
           <div key={index} className="rounded-xl border border-line bg-surface p-4">
             <span
               className={cn(
-                "grid size-7 place-items-center rounded-md border font-mono text-[10px]",
+                "grid size-7 place-items-center rounded-md border font-mono text-[13px]",
                 accent,
               )}
             >
               {String(index + 1).padStart(2, "0")}
             </span>
-            <p className="mt-3 text-sm font-semibold text-mist">{item.title}</p>
-            <div className="mt-1.5 text-[13px] leading-6 text-muted">{item.body}</div>
+            <p className="mt-3 text-[15px] font-semibold text-mist">{item.title}</p>
+            <div className="mt-1.5 text-[15px] leading-6 text-muted">{item.body}</div>
           </div>
         );
       })}

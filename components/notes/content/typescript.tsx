@@ -41,8 +41,8 @@ function TypeErasureDemo() {
     <div className="mt-6 overflow-hidden rounded-xl border border-line bg-surface">
       <div className="flex flex-col gap-3 border-b border-line px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-semibold text-mist">See what the browser receives</p>
-          <p className="mt-0.5 text-xs text-faint">
+          <p className="text-[15px] font-semibold text-mist">See what the browser receives</p>
+          <p className="mt-0.5 text-[15px] text-faint">
             Types are checked before runtime, then removed from the emitted JavaScript.
           </p>
         </div>
@@ -51,7 +51,7 @@ function TypeErasureDemo() {
             type="button"
             onClick={() => setView("source")}
             className={cn(
-              "rounded-md px-2.5 py-1.5 font-mono text-[10px] transition",
+              "rounded-md px-2.5 py-1.5 font-mono text-[13px] transition",
               source ? "bg-surface text-mist shadow-sm" : "text-muted hover:text-mist",
             )}
           >
@@ -61,7 +61,7 @@ function TypeErasureDemo() {
             type="button"
             onClick={() => setView("output")}
             className={cn(
-              "rounded-md px-2.5 py-1.5 font-mono text-[10px] transition",
+              "rounded-md px-2.5 py-1.5 font-mono text-[13px] transition",
               !source ? "bg-surface text-mist shadow-sm" : "text-muted hover:text-mist",
             )}
           >
@@ -79,7 +79,7 @@ function TypeErasureDemo() {
           />
         </div>
         <div className="border-t border-line bg-canvas/70 p-4 lg:border-l lg:border-t-0">
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+          <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-faint">
             Compile pipeline
           </p>
           <div className="mt-3 space-y-2">
@@ -92,7 +92,7 @@ function TypeErasureDemo() {
               <div
                 key={step.label}
                 className={cn(
-                  "flex items-center gap-2 rounded-lg border px-2.5 py-2 font-mono text-[10px]",
+                  "flex items-center gap-2 rounded-lg border px-2.5 py-2 font-mono text-[13px]",
                   step.active
                     ? "border-lime/25 bg-lime/[0.06] text-mist"
                     : "border-line bg-surface text-faint",
@@ -121,7 +121,7 @@ function TypeErasureDemo() {
 function TypeAnatomyDiagram() {
   return (
     <div className="mt-6 rounded-xl border border-line bg-canvas/60 p-4 sm:p-5">
-      <div className="flex flex-wrap items-center gap-2 font-mono text-[12px] sm:text-[13px]">
+      <div className="flex flex-wrap items-center gap-2 font-mono text-[15px]">
         <span className="rounded-md border border-line bg-surface px-2 py-1 text-violet">
           const
         </span>
@@ -137,7 +137,7 @@ function TypeAnatomyDiagram() {
           {"{ ... }"}
         </span>
       </div>
-      <div className="mt-4 grid gap-2 text-[11px] sm:grid-cols-4">
+      <div className="mt-4 grid gap-2 text-[13px] sm:grid-cols-4">
         {[
           ["keyword", "value declaration"],
           ["name", "the variable"],
@@ -145,7 +145,7 @@ function TypeAnatomyDiagram() {
           ["value", "the runtime data"],
         ].map(([label, hint]) => (
           <div key={label} className="rounded-lg border border-line bg-surface px-3 py-2">
-            <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-faint">
+            <p className="font-mono text-[13px] uppercase tracking-[0.12em] text-faint">
               {label}
             </p>
             <p className="mt-1 text-muted">{hint}</p>
@@ -297,8 +297,8 @@ function PurposeOfTypeScriptNote() {
           return (
             <div key={item.title} className="rounded-xl border border-line bg-surface p-4">
               <Icon className="size-4 text-lime" aria-hidden />
-              <p className="mt-3 text-sm font-semibold text-mist">{item.title}</p>
-              <p className="mt-1.5 text-[13px] leading-6 text-muted">{item.body}</p>
+              <p className="mt-3 text-[15px] font-semibold text-mist">{item.title}</p>
+              <p className="mt-1.5 text-[15px] leading-6 text-muted">{item.body}</p>
             </div>
           );
         })}
@@ -392,7 +392,7 @@ export const typescriptNoteContent: Record<string, ComponentType> = {
 
 export function TypeScriptNotesLegend() {
   return (
-    <div className="flex flex-wrap items-center gap-3 text-[11px] text-faint">
+    <div className="flex flex-wrap items-center gap-3 text-[13px] text-faint">
       <span className="flex items-center gap-1.5">
         <span className="size-2 rounded-full bg-coral" />
         Needs review

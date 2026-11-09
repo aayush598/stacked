@@ -80,7 +80,7 @@ export default async function ComingSoonNotesPage({
       <section className="mx-auto w-full max-w-5xl px-4 pb-20 pt-10 sm:px-6 sm:pt-14 lg:px-8">
         <Link
           href="/notes"
-          className="inline-flex items-center gap-1.5 text-[11px] font-medium text-faint transition hover:text-mist"
+          className="inline-flex items-center gap-1.5 text-[13px] font-medium text-faint transition hover:text-mist"
         >
           <ArrowLeft className="size-3" aria-hidden />
           Notes library
@@ -99,7 +99,7 @@ export default async function ComingSoonNotesPage({
                   >
                     <Icon className="size-5" aria-hidden />
                   </span>
-                  <span className="rounded-full border border-line bg-surface px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.14em] text-faint">
+                  <span className="rounded-full border border-line bg-surface px-2.5 py-1 font-mono text-[13px] uppercase tracking-[0.14em] text-faint">
                     Coming soon
                   </span>
                 </div>
@@ -109,7 +109,7 @@ export default async function ComingSoonNotesPage({
                 <p className="mt-3 text-lg font-medium tracking-[-0.02em] text-muted">
                   {course.tagline}
                 </p>
-                <p className="mt-3 max-w-xl text-sm leading-7 text-muted">
+                <p className="mt-3 max-w-xl text-[15px] leading-7 text-muted">
                   {course.summary} This notes library is being built with the same nested
                   phase, module and section structure, review states, read tracking and visual
                   explanations as TypeScript.
@@ -117,11 +117,11 @@ export default async function ComingSoonNotesPage({
               </div>
 
               <div className="w-full shrink-0 rounded-xl border border-line bg-surface p-4 sm:w-56">
-                <div className="flex items-center gap-2 text-xs text-faint">
+                <div className="flex items-center gap-2 text-[15px] text-faint">
                   <LockKeyhole className="size-3.5" aria-hidden />
                   Not published yet
                 </div>
-                <div className="mt-3 space-y-2 text-[11px] text-muted">
+                <div className="mt-3 space-y-2 text-[13px] text-muted">
                   <div className="flex items-center justify-between gap-2">
                     <span className="flex items-center gap-1.5">
                       <Layers3 className="size-3 text-faint" aria-hidden />
@@ -149,7 +149,7 @@ export default async function ComingSoonNotesPage({
           </div>
 
           <div className="px-5 py-6 sm:px-8 sm:py-7">
-            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
+            <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">
               Planned scope
             </p>
             <div className="mt-3 grid gap-2 sm:grid-cols-3">
@@ -158,11 +158,11 @@ export default async function ComingSoonNotesPage({
                   key={module.id}
                   className="rounded-lg border border-line bg-canvas/55 px-3.5 py-3"
                 >
-                  <p className="font-mono text-[9px] text-faint">
+                  <p className="font-mono text-[13px] text-faint">
                     {String(module.order).padStart(2, "0")}
                   </p>
-                  <p className="mt-1 text-xs font-semibold text-mist">{module.title}</p>
-                  <p className="mt-0.5 text-[10px] text-faint">
+                  <p className="mt-1 text-[15px] font-semibold text-mist">{module.title}</p>
+                  <p className="mt-0.5 text-[13px] text-faint">
                     {module.topics.length} topics
                   </p>
                 </div>
@@ -171,17 +171,17 @@ export default async function ComingSoonNotesPage({
 
             <div className="mt-6 flex flex-col gap-3 rounded-xl border border-lime/20 bg-lime/[0.045] p-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-sm font-semibold text-mist">
+                <p className="text-[15px] font-semibold text-mist">
                   TypeScript notes are available now
                 </p>
-                <p className="mt-0.5 text-xs leading-5 text-muted">
+                <p className="mt-0.5 text-[15px] leading-5 text-muted">
                   Start with the complete TypeScript roadmap while the rest of the library is
                   being written and reviewed.
                 </p>
               </div>
               <Link
                 href="/notes/typescript"
-                className="inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-lg bg-lime px-3.5 text-xs font-semibold text-white transition hover:bg-lime/90"
+                className="inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-lg bg-lime px-3.5 text-[15px] font-semibold text-white transition hover:bg-lime/90"
               >
                 Open TypeScript
                 <ArrowRight className="size-3.5" aria-hidden />

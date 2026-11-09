@@ -105,19 +105,19 @@ export function NotesSidebar({
       <div className="border-b border-line p-4">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
+            <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">
               Reading progress
             </p>
-            <p className="mt-1 text-sm font-semibold text-mist">
+            <p className="mt-1 text-[15px] font-semibold text-mist">
               {hydrated ? `${totals.read} of ${totals.sections} read` : "Loading progress"}
             </p>
           </div>
-          <span className="font-mono text-xs text-muted">
+          <span className="font-mono text-[15px] text-muted">
             {hydrated ? `${readPercent}%` : "—"}
           </span>
         </div>
         <ProgressBar value={hydrated ? readPercent : 0} className="mt-3" />
-        <div className="mt-2.5 flex items-center justify-between gap-2 text-[10px] text-faint">
+        <div className="mt-2.5 flex items-center justify-between gap-2 text-[13px] text-faint">
           <span>{totals.reviewed} human reviewed</span>
           <span>{pluralize(totals.sections - totals.reviewed, "draft")}</span>
         </div>
@@ -135,7 +135,7 @@ export function NotesSidebar({
               onFiltersChange({ ...filters, query: event.target.value })
             }
             placeholder={`Search ${totals.sections} sections`}
-            className="h-9 w-full rounded-lg border border-line bg-canvas/60 pl-8 pr-8 text-xs text-mist outline-none transition placeholder:text-faint focus:border-line-strong focus:bg-surface"
+            className="h-9 w-full rounded-lg border border-line bg-canvas/60 pl-8 pr-8 text-[15px] text-mist outline-none transition placeholder:text-faint focus:border-line-strong focus:bg-surface"
           />
           {filters.query ? (
             <button
@@ -163,7 +163,7 @@ export function NotesSidebar({
                 type="button"
                 onClick={() => onFiltersChange({ ...filters, status: value })}
                 className={cn(
-                  "rounded-full border px-2.5 py-1 text-[10px] font-medium transition",
+                  "rounded-full border px-2.5 py-1 text-[13px] font-medium transition",
                   filters.status === value
                     ? "border-mist bg-mist text-canvas"
                     : "border-line bg-surface text-muted hover:border-line-strong hover:text-mist",
@@ -186,7 +186,7 @@ export function NotesSidebar({
                 type="button"
                 onClick={() => onFiltersChange({ ...filters, read: value })}
                 className={cn(
-                  "rounded-full border px-2.5 py-1 text-[10px] font-medium transition",
+                  "rounded-full border px-2.5 py-1 text-[13px] font-medium transition",
                   filters.read === value
                     ? "border-lime/30 bg-lime/[0.08] text-lime"
                     : "border-line bg-surface text-muted hover:border-line-strong hover:text-mist",
@@ -199,7 +199,7 @@ export function NotesSidebar({
               <button
                 type="button"
                 onClick={onClearFilters}
-                className="inline-flex items-center gap-1 rounded-full px-1.5 py-1 text-[10px] font-medium text-faint transition hover:text-mist"
+                className="inline-flex items-center gap-1 rounded-full px-1.5 py-1 text-[13px] font-medium text-faint transition hover:text-mist"
               >
                 <FilterX className="size-3" aria-hidden />
                 Reset
@@ -212,14 +212,14 @@ export function NotesSidebar({
       <div className="max-h-[calc(100vh-17rem)] overflow-y-auto p-2">
         {visiblePhases.length === 0 ? (
           <div className="px-3 py-10 text-center">
-            <p className="text-sm font-medium text-mist">No sections match</p>
-            <p className="mt-1 text-xs leading-5 text-faint">
+            <p className="text-[15px] font-medium text-mist">No sections match</p>
+            <p className="mt-1 text-[15px] leading-5 text-faint">
               Try a broader search or reset the filters.
             </p>
             <button
               type="button"
               onClick={onClearFilters}
-              className="mt-3 rounded-lg border border-line px-3 py-1.5 text-[11px] font-medium text-mist transition hover:bg-raised"
+              className="mt-3 rounded-lg border border-line px-3 py-1.5 text-[13px] font-medium text-mist transition hover:bg-raised"
             >
               Clear filters
             </button>
@@ -237,14 +237,14 @@ export function NotesSidebar({
                   onClick={() => togglePhase(phase.id)}
                   className="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left transition hover:bg-raised/70"
                 >
-                  <span className="grid size-6 shrink-0 place-items-center rounded-md border border-line bg-canvas font-mono text-[9px] text-faint">
+                  <span className="grid size-6 shrink-0 place-items-center rounded-md border border-line bg-canvas font-mono text-[13px] text-faint">
                     {String(phase.number).padStart(2, "0")}
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block truncate text-xs font-semibold text-mist">
+                    <span className="block truncate text-[15px] font-semibold text-mist">
                       {phase.title}
                     </span>
-                    <span className="block truncate text-[10px] text-faint">
+                    <span className="block truncate text-[13px] text-faint">
                       {phase.subtitle}
                     </span>
                   </span>
@@ -269,13 +269,13 @@ export function NotesSidebar({
                             onClick={() => toggleModule(module.id)}
                             className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left transition hover:bg-raised/60"
                           >
-                            <span className="font-mono text-[9px] text-faint">
+                            <span className="font-mono text-[13px] text-faint">
                               {module.number}
                             </span>
-                            <span className="min-w-0 flex-1 truncate text-[11px] font-medium text-mist">
+                            <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-mist">
                               {module.title}
                             </span>
-                            <span className="shrink-0 font-mono text-[9px] text-faint">
+                            <span className="shrink-0 font-mono text-[13px] text-faint">
                               {moduleRead}/{module.sections.length}
                             </span>
                             <ChevronDown
@@ -318,14 +318,14 @@ export function NotesSidebar({
                                     <span className="min-w-0 flex-1">
                                       <span
                                         className={cn(
-                                          "block text-[11px] leading-4",
+                                          "block text-[13px] leading-4",
                                           active ? "font-medium" : "font-normal",
                                         )}
                                       >
                                         {section.title}
                                       </span>
                                       {section.topics.length > 0 ? (
-                                        <span className="mt-0.5 block truncate text-[9px] text-faint">
+                                        <span className="mt-0.5 block truncate text-[13px] text-faint">
                                           {section.topics.length} subtopics
                                         </span>
                                       ) : null}
@@ -359,7 +359,7 @@ export function NotesSidebar({
         )}
       </div>
 
-      <div className="flex items-center justify-between gap-2 border-t border-line px-3.5 py-2.5 text-[10px] text-faint">
+      <div className="flex items-center justify-between gap-2 border-t border-line px-3.5 py-2.5 text-[13px] text-faint">
         <span className="flex items-center gap-1.5">
           <span className="size-1.5 rounded-full bg-success" />
           Reviewed

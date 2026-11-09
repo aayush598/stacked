@@ -20,11 +20,11 @@ export function NotesNotifications({ compact = false }: { compact?: boolean }) {
     <section id="notifications" className="scroll-mt-24">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-sm font-medium text-lime">Review updates</p>
+          <p className="text-[15px] font-medium text-lime">Review updates</p>
           <h2 className="mt-1 text-2xl font-semibold tracking-[-0.035em] text-mist">
             Notifications
           </h2>
-          <p className="mt-1.5 max-w-2xl text-sm leading-6 text-muted">
+          <p className="mt-1.5 max-w-2xl text-[15px] leading-6 text-muted">
             New human-reviewed sections are compared with the last status snapshot stored in
             this browser. First visits start quietly with no notifications.
           </p>
@@ -35,7 +35,7 @@ export function NotesNotifications({ compact = false }: { compact?: boolean }) {
               type="button"
               onClick={markAllNotificationsRead}
               disabled={unread === 0}
-              className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-line bg-surface px-2.5 text-[11px] font-medium text-muted transition hover:border-line-strong hover:text-mist disabled:cursor-not-allowed disabled:opacity-40"
+              className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-line bg-surface px-2.5 text-[13px] font-medium text-muted transition hover:border-line-strong hover:text-mist disabled:cursor-not-allowed disabled:opacity-40"
             >
               <CheckCheck className="size-3.5" aria-hidden />
               Mark all read
@@ -43,7 +43,7 @@ export function NotesNotifications({ compact = false }: { compact?: boolean }) {
             <button
               type="button"
               onClick={clearNotifications}
-              className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-line bg-surface px-2.5 text-[11px] font-medium text-muted transition hover:border-coral/30 hover:text-coral"
+              className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-line bg-surface px-2.5 text-[13px] font-medium text-muted transition hover:border-coral/30 hover:text-coral"
             >
               <Trash2 className="size-3.5" aria-hidden />
               Clear
@@ -64,8 +64,8 @@ export function NotesNotifications({ compact = false }: { compact?: boolean }) {
             <span className="grid size-10 place-items-center rounded-full bg-raised text-faint">
               <Bell className="size-4" aria-hidden />
             </span>
-            <p className="mt-3 text-sm font-semibold text-mist">You are all caught up</p>
-            <p className="mt-1 max-w-sm text-xs leading-5 text-faint">
+            <p className="mt-3 text-[15px] font-semibold text-mist">You are all caught up</p>
+            <p className="mt-1 max-w-sm text-[15px] leading-5 text-faint">
               When a section moves from draft to human reviewed, it will appear here on your
               next visit.
             </p>
@@ -93,20 +93,20 @@ export function NotesNotifications({ compact = false }: { compact?: boolean }) {
                     />
                     <span className="min-w-0 flex-1">
                       <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                        <span className="text-sm font-medium text-mist">
+                        <span className="text-[15px] font-medium text-mist">
                           {notification.sectionTitle}
                         </span>
                         {unreadItem ? (
-                          <span className="rounded-full bg-lime/10 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.1em] text-lime">
+                          <span className="rounded-full bg-lime/10 px-1.5 py-0.5 font-mono text-[13px] uppercase tracking-[0.1em] text-lime">
                             New
                           </span>
                         ) : null}
                       </span>
-                      <span className="mt-0.5 block text-[11px] text-faint">
+                      <span className="mt-0.5 block text-[13px] text-faint">
                         {notification.phaseTitle} · {notification.moduleTitle}
                       </span>
                     </span>
-                    <span className="flex shrink-0 items-center gap-2 pt-0.5 text-[10px] text-faint">
+                    <span className="flex shrink-0 items-center gap-2 pt-0.5 text-[13px] text-faint">
                       {dayLabel(notification.createdAt)}
                       <ArrowUpRight
                         className="size-3.5 text-faint transition group-hover:text-mist"
@@ -123,7 +123,7 @@ export function NotesNotifications({ compact = false }: { compact?: boolean }) {
       {compact && notifications.length > visible.length ? (
         <Link
           href="/notes#notifications"
-          className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-lime hover:underline"
+          className="mt-3 inline-flex items-center gap-1.5 text-[15px] font-medium text-lime hover:underline"
         >
           View all {notifications.length} updates
           <ArrowUpRight className="size-3.5" aria-hidden />

@@ -58,10 +58,10 @@ export function NotesHome() {
         <div className="grid gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:items-center">
           <div className="max-w-3xl">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-full border border-lime/20 bg-lime/[0.06] px-2.5 py-1 text-[11px] font-medium text-lime">
+              <span className="rounded-full border border-lime/20 bg-lime/[0.06] px-2.5 py-1 text-[13px] font-medium text-lime">
                 Notes library
               </span>
-              <span className="text-[11px] text-faint">TypeScript first</span>
+              <span className="text-[13px] text-faint">TypeScript first</span>
             </div>
             <h1 className="mt-4 text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.055em] text-mist sm:text-6xl">
               Read the stack.
@@ -76,20 +76,20 @@ export function NotesHome() {
             <div className="mt-8 flex flex-col gap-2.5 sm:flex-row">
               <Link
                 href="/notes/typescript"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-lime px-5 text-sm font-semibold text-white transition hover:bg-lime/90"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-lime px-5 text-[15px] font-semibold text-white transition hover:bg-lime/90"
               >
                 Open TypeScript notes
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
               <Link
                 href="#notifications"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-line bg-surface px-5 text-sm font-medium text-mist transition hover:border-line-strong hover:bg-raised"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-line bg-surface px-5 text-[15px] font-medium text-mist transition hover:border-line-strong hover:bg-raised"
               >
                 <Sparkles className="size-4 text-muted" aria-hidden />
                 Review updates
               </Link>
             </div>
-            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-xs text-faint">
+            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-[15px] text-faint">
               {[
                 [stats.sections.toLocaleString(), "nested sections"],
                 ["2", "review states"],
@@ -108,21 +108,21 @@ export function NotesHome() {
               <div className="flex items-center justify-between border-b border-line px-4 py-3">
                 <div className="flex items-center gap-2">
                   <FileCode2 className="size-4 text-lime" aria-hidden />
-                  <span className="text-sm font-semibold text-mist">TypeScript Mastery</span>
+                  <span className="text-[15px] font-semibold text-mist">TypeScript Mastery</span>
                 </div>
                 <StatusPill status="reviewed" compact />
               </div>
               <div className="p-4 sm:p-5">
                 <div className="flex items-end justify-between gap-4">
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
+                    <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">
                       Your reading progress
                     </p>
                     <p className="mt-1 text-3xl font-semibold tracking-[-0.04em] text-mist">
                       {hydrated ? `${readPercent}%` : "—"}
                     </p>
                   </div>
-                  <p className="text-right text-[11px] leading-5 text-faint">
+                  <p className="text-right text-[13px] leading-5 text-faint">
                     {hydrated ? readCount.toLocaleString() : "—"} of{" "}
                     {stats.sections.toLocaleString()}
                     <br />
@@ -132,27 +132,27 @@ export function NotesHome() {
                 <ProgressBar value={hydrated ? readPercent : 0} className="mt-4" />
                 <div className="mt-5 grid grid-cols-2 gap-2">
                   <div className="rounded-lg border border-line bg-canvas/70 px-3 py-2.5">
-                    <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-faint">
+                    <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-faint">
                       Reviewed
                     </p>
-                    <p className="mt-1 text-sm font-semibold text-mist">
+                    <p className="mt-1 text-[15px] font-semibold text-mist">
                       {stats.reviewed} / {stats.sections}
                     </p>
                     <ProgressBar value={reviewedPercent} tone="success" className="mt-2" />
                   </div>
                   <div className="rounded-lg border border-line bg-canvas/70 px-3 py-2.5">
-                    <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-faint">
+                    <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-faint">
                       Est. reading
                     </p>
-                    <p className="mt-1 text-sm font-semibold text-mist">
+                    <p className="mt-1 text-[15px] font-semibold text-mist">
                       {Math.round(stats.minutes / 60)}h {stats.minutes % 60}m
                     </p>
-                    <p className="mt-2 text-[10px] text-faint">across every section</p>
+                    <p className="mt-2 text-[13px] text-faint">across every section</p>
                   </div>
                 </div>
               </div>
               <div className="border-t border-line bg-canvas/60 px-4 py-3">
-                <p className="text-[11px] leading-5 text-faint">
+                <p className="text-[13px] leading-5 text-faint">
                   Every section ends with a mark-as-read action. Progress is stored in this
                   browser, so it follows you between visits on this device.
                 </p>
@@ -175,13 +175,13 @@ export function NotesHome() {
           >
             <div className="grid-lines flex items-start justify-between gap-4 border-b border-line p-5 sm:p-6">
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-lime">
+                <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-lime">
                   Available now
                 </p>
                 <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-mist">
                   TypeScript Mastery
                 </h2>
-                <p className="mt-2 max-w-lg text-sm leading-6 text-muted">
+                <p className="mt-2 max-w-lg text-[15px] leading-6 text-muted">
                   From your first annotation to generics, conditional types, production
                   architecture and seven capstone projects.
                 </p>
@@ -196,15 +196,15 @@ export function NotesHome() {
             <div className="grid gap-px bg-line sm:grid-cols-3">
               {typescriptRoadmap.phases.slice(0, 3).map((phase) => (
                 <div key={phase.id} className="bg-surface px-4 py-3.5">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-faint">
+                  <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-faint">
                     Phase {String(phase.number).padStart(2, "0")}
                   </p>
-                  <p className="mt-1 text-xs font-medium text-mist">{phase.title}</p>
-                  <p className="mt-0.5 text-[10px] text-faint">{phase.subtitle}</p>
+                  <p className="mt-1 text-[15px] font-medium text-mist">{phase.title}</p>
+                  <p className="mt-0.5 text-[13px] text-faint">{phase.subtitle}</p>
                 </div>
               ))}
             </div>
-            <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line px-4 py-3 text-[11px] text-faint">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line px-4 py-3 text-[13px] text-faint">
               <span>{pluralize(stats.sections, "section")} ready for notes</span>
               <span className="font-medium text-lime group-hover:underline">
                 Open the roadmap
@@ -213,7 +213,7 @@ export function NotesHome() {
           </Link>
 
           <div className="rounded-xl border border-line bg-surface p-5 sm:p-6">
-            <p className="text-sm font-medium text-lime">How this works</p>
+            <p className="text-[15px] font-medium text-lime">How this works</p>
             <h2 className="mt-1 text-2xl font-semibold tracking-[-0.035em] text-mist">
               Built for trust, not just reading
             </h2>
@@ -251,8 +251,8 @@ export function NotesHome() {
                       <Icon className={cn("size-4", item.color)} aria-hidden />
                     </span>
                     <div>
-                      <p className="text-sm font-medium text-mist">{item.title}</p>
-                      <p className="mt-0.5 text-[12px] leading-5 text-muted">{item.body}</p>
+                      <p className="text-[15px] font-medium text-mist">{item.title}</p>
+                      <p className="mt-0.5 text-[15px] leading-5 text-muted">{item.body}</p>
                     </div>
                   </div>
                 );
@@ -268,16 +268,16 @@ export function NotesHome() {
         <div className="mt-10">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-sm font-medium text-lime">Notes library</p>
+              <p className="text-[15px] font-medium text-lime">Notes library</p>
               <h2 className="mt-1 text-2xl font-semibold tracking-[-0.035em] text-mist">
                 The full stack, one library
               </h2>
-              <p className="mt-1.5 max-w-2xl text-sm leading-6 text-muted">
+              <p className="mt-1.5 max-w-2xl text-[15px] leading-6 text-muted">
                 TypeScript is available now. HTML, CSS, Bootstrap, JavaScript and React are
                 queued with the same visual notes system.
               </p>
             </div>
-            <p className="text-xs text-faint">More stacks are coming soon</p>
+            <p className="text-[15px] text-faint">More stacks are coming soon</p>
           </div>
 
           <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -302,18 +302,18 @@ export function NotesHome() {
                       >
                         <Icon className="size-4" aria-hidden />
                       </span>
-                      <span className="rounded-full border border-line bg-canvas px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.12em] text-faint">
+                      <span className="rounded-full border border-line bg-canvas px-2 py-0.5 font-mono text-[11px] uppercase tracking-[0.12em] text-faint">
                         Coming soon
                       </span>
                     </div>
-                    <p className="mt-3 text-sm font-semibold text-mist">{course.title}</p>
-                    <p className="mt-0.5 text-[10px] text-faint">
+                    <p className="mt-3 text-[15px] font-semibold text-mist">{course.title}</p>
+                    <p className="mt-0.5 text-[13px] text-faint">
                       {course.kicker} · {courseStatsValue.modules} modules
                     </p>
-                    <p className="mt-2 line-clamp-3 text-[11px] leading-5 text-muted">
+                    <p className="mt-2 line-clamp-3 text-[13px] leading-5 text-muted">
                       {course.summary}
                     </p>
-                    <span className="mt-auto flex items-center gap-1 pt-3 text-[10px] font-medium text-lime">
+                    <span className="mt-auto flex items-center gap-1 pt-3 text-[13px] font-medium text-lime">
                       Preview scope
                       <ArrowRight
                         className="size-3 transition-transform group-hover:translate-x-0.5"

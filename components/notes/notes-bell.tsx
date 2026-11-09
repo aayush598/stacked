@@ -20,7 +20,7 @@ export function NotesBell() {
     >
       <Bell className="size-4" aria-hidden />
       {unread > 0 ? (
-        <span className="absolute -right-1.5 -top-1.5 grid min-w-4 place-items-center rounded-full bg-coral px-1 py-0.5 font-mono text-[9px] font-semibold leading-none text-white">
+        <span className="absolute -right-1.5 -top-1.5 grid min-w-4 place-items-center rounded-full bg-coral px-1 py-0.5 font-mono text-[13px] font-semibold leading-none text-white">
           {unread > 9 ? "9+" : unread}
         </span>
       ) : null}

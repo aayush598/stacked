@@ -36,19 +36,19 @@ function AuthoringShell({ section }: { section: NoteSection }) {
     <div className="mt-7 rounded-xl border border-dashed border-line-strong bg-canvas/45 p-5 sm:p-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
+          <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">
             Content shell
           </p>
           <h2 className="mt-1 text-lg font-semibold tracking-[-0.025em] text-mist">
             This section is ready for your notes
           </h2>
-          <p className="mt-1.5 max-w-xl text-[13px] leading-6 text-muted">
+          <p className="mt-1.5 max-w-xl text-[15px] leading-6 text-muted">
             The roadmap, review state, read tracking and notifications are wired. Add the
             finished note component to the TypeScript content registry when the writing is
             ready.
           </p>
         </div>
-        <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1 text-[10px] text-faint">
+        <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1 text-[13px] text-faint">
           <FileText className="size-3" aria-hidden />
           {section.topics.length} subtopics
         </span>
@@ -56,14 +56,14 @@ function AuthoringShell({ section }: { section: NoteSection }) {
 
       {section.topics.length > 0 ? (
         <div className="mt-5">
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+          <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-faint">
             Planned coverage
           </p>
           <div className="mt-2 flex flex-wrap gap-1.5">
             {section.topics.map((topic) => (
               <span
                 key={topic}
-                className="rounded-full border border-line bg-surface px-2.5 py-1 text-[10px] text-muted"
+                className="rounded-full border border-line bg-surface px-2.5 py-1 text-[13px] text-muted"
               >
                 {topic}
               </span>
@@ -79,8 +79,8 @@ function AuthoringShell({ section }: { section: NoteSection }) {
           ["Check", "Takeaways and pitfalls that make the idea stick."],
         ].map(([title, body]) => (
           <div key={title} className="rounded-lg border border-line bg-surface px-3 py-3">
-            <p className="text-[11px] font-semibold text-mist">{title}</p>
-            <p className="mt-1 text-[10px] leading-5 text-faint">{body}</p>
+            <p className="text-[13px] font-semibold text-mist">{title}</p>
+            <p className="mt-1 text-[13px] leading-5 text-faint">{body}</p>
           </div>
         ))}
       </div>
@@ -106,7 +106,7 @@ export function NoteReader({
   return (
     <article className="overflow-hidden rounded-xl border border-line bg-surface">
       <div className="border-b border-line bg-canvas/45 px-5 py-4 sm:px-7 sm:py-5">
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] text-faint">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] text-faint">
           <span className="font-mono uppercase tracking-[0.14em]">
             Phase {String(phase.number).padStart(2, "0")}
           </span>
@@ -127,18 +127,18 @@ export function NoteReader({
             </h1>
             <div className="mt-2.5 flex flex-wrap items-center gap-2">
               <StatusPill status={section.status} compact />
-              <span className="inline-flex items-center gap-1.5 text-[10px] text-faint">
+              <span className="inline-flex items-center gap-1.5 text-[13px] text-faint">
                 <Clock className="size-3" aria-hidden />
                 {section.minutes} min read
               </span>
-              <span className="inline-flex items-center gap-1.5 text-[10px] text-faint">
+              <span className="inline-flex items-center gap-1.5 text-[13px] text-faint">
                 <Layers3 className="size-3" aria-hidden />
                 Section {position} of {total}
               </span>
               {hydrated ? (
                 <span
                   className={cn(
-                    "inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10px] font-medium",
+                    "inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[13px] font-medium",
                     read
                       ? "border-success/25 bg-success/[0.07] text-success"
                       : "border-line bg-canvas text-faint",
@@ -159,7 +159,7 @@ export function NoteReader({
             type="button"
             onClick={onToggleRead}
             className={cn(
-              "inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-lg border px-3 text-[11px] font-semibold transition",
+              "inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-lg border px-3 text-[13px] font-semibold transition",
               read
                 ? "border-success/25 bg-success/[0.07] text-success hover:bg-success/[0.11]"
                 : "border-line bg-surface text-mist hover:border-line-strong hover:bg-raised",
@@ -170,7 +170,7 @@ export function NoteReader({
           </button>
         </div>
 
-        <div className="mt-3 flex items-start gap-2 rounded-lg border border-line bg-surface px-3 py-2.5 text-[11px] leading-5 text-muted">
+        <div className="mt-3 flex items-start gap-2 rounded-lg border border-line bg-surface px-3 py-2.5 text-[13px] leading-5 text-muted">
           <Sparkles className="mt-0.5 size-3.5 shrink-0 text-lime" aria-hidden />
           <span>{statusDescription(section.status)}</span>
         </div>
@@ -185,10 +185,10 @@ export function NoteReader({
               <div className="flex items-start gap-2.5">
                 <BookOpen className="mt-0.5 size-4 shrink-0 text-lime" aria-hidden />
                 <div>
-                  <p className="text-sm font-semibold text-mist">
+                  <p className="text-[15px] font-semibold text-mist">
                     {read ? "You have covered this section" : "Finished this section?"}
                   </p>
-                  <p className="mt-0.5 text-[11px] leading-5 text-faint">
+                  <p className="mt-0.5 text-[13px] leading-5 text-faint">
                     {read
                       ? "Your progress is saved locally. You can mark it unread at any time."
                       : "Mark it as read to update your progress across phases and modules."}
@@ -199,7 +199,7 @@ export function NoteReader({
                 type="button"
                 onClick={onToggleRead}
                 className={cn(
-                  "inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-lg px-4 text-xs font-semibold transition",
+                  "inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-lg px-4 text-[15px] font-semibold transition",
                   read
                     ? "border border-success/25 bg-success/[0.07] text-success hover:bg-success/[0.11]"
                     : "bg-lime text-white hover:bg-lime/90",
@@ -223,10 +223,10 @@ export function NoteReader({
                   aria-hidden
                 />
                 <span className="min-w-0">
-                  <span className="block text-[9px] uppercase tracking-[0.12em] text-faint">
+                  <span className="block text-[13px] uppercase tracking-[0.12em] text-faint">
                     Previous
                   </span>
-                  <span className="block truncate text-[11px] font-medium text-mist">
+                  <span className="block truncate text-[13px] font-medium text-mist">
                     {previous.title}
                   </span>
                 </span>
@@ -241,10 +241,10 @@ export function NoteReader({
                 className="group flex items-center justify-end gap-2 rounded-lg border border-line bg-surface px-3 py-2.5 text-right transition hover:border-line-strong hover:bg-raised"
               >
                 <span className="min-w-0">
-                  <span className="block text-[9px] uppercase tracking-[0.12em] text-faint">
+                  <span className="block text-[13px] uppercase tracking-[0.12em] text-faint">
                     Next
                   </span>
-                  <span className="block truncate text-[11px] font-medium text-mist">
+                  <span className="block truncate text-[13px] font-medium text-mist">
                     {next.title}
                   </span>
                 </span>
