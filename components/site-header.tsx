@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Flame, Zap } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
+import { NotesBell } from "@/components/notes/notes-bell";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
 import { currentStreak, useProgressStore } from "@/lib/store/progress-store";
 import { cn } from "@/lib/utils";
@@ -11,6 +12,7 @@ import { cn } from "@/lib/utils";
 const NAV = [
   { href: "/", label: "Home" },
   { href: "/learn", label: "Courses" },
+  { href: "/notes", label: "Notes" },
   { href: "/play/html/easy", label: "Play" },
 ];
 
@@ -60,6 +62,13 @@ export function SiteHeader() {
           >
             Courses
           </Link>
+          <Link
+            href="/notes"
+            className="rounded-md px-2 py-1.5 text-xs font-medium text-muted transition hover:text-mist md:hidden"
+          >
+            Notes
+          </Link>
+          <NotesBell />
           <div className="hidden items-center gap-1.5 text-xs text-muted sm:flex">
             <Flame className="size-3.5 text-coral" aria-hidden />
             <span className="font-mono text-[11px] text-mist">

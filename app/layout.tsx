@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Geist_Mono, Instrument_Sans } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
+import { NotesSync } from "@/components/notes/notes-sync";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <body className="flex min-h-full flex-col overflow-x-clip">
         <SiteHeader />
+        <NotesSync />
         <div className="flex flex-1 flex-col">{children}</div>
       </body>
     </html>
