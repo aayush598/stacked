@@ -4,336 +4,165 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export function Module3HeroVisual() {
-  const nodes = [
-    { label: "Annotate", x: "12%", y: "28%", tone: "lime" },
-    { label: "Infer", x: "36%", y: "18%", tone: "sky" },
-    { label: "Narrow", x: "62%", y: "26%", tone: "violet" },
-    { label: "Assign", x: "84%", y: "44%", tone: "coral" },
-  ] as const;
-
   return (
-    <div className="relative mt-6 overflow-hidden rounded-2xl border border-line bg-[radial-gradient(circle_at_top,_rgba(33,73,232,0.12),_transparent_38%),linear-gradient(180deg,_#fbfcf9,_#f2f5f0)] p-4 sm:p-6">
-      <div className="absolute inset-0 opacity-50 [background-image:linear-gradient(to_right,rgba(17,23,20,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(17,23,20,0.05)_1px,transparent_1px)] [background-size:22px_22px]" />
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 800 260" aria-hidden>
-        <defs>
-          <linearGradient id="m3line" x1="0" x2="1">
-            <stop offset="0%" stopColor="#2149e8" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="#6a4bd4" stopOpacity="0.45" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M110 95 C 220 70, 300 65, 390 78 S 560 92, 675 128"
-          fill="none"
-          stroke="url(#m3line)"
-          strokeWidth="3"
-          strokeDasharray="8 8"
-        >
-          <animate attributeName="stroke-dashoffset" from="120" to="0" dur="10s" repeatCount="indefinite" />
-        </path>
-      </svg>
-      <div className="relative grid gap-3 sm:grid-cols-[1.15fr_0.85fr]">
-        <div>
-          <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">Module 3 map</p>
-          <h3 className="mt-1 text-xl font-semibold tracking-[-0.03em] text-mist sm:text-2xl">
-            Basic types are the grammar of safe TypeScript
-          </h3>
-          <p className="mt-2 max-w-xl text-[15px] leading-7 text-muted">
-            You annotate intent, let TypeScript infer obvious facts, narrow values when they could be many things,
-            and rely on assignability to keep contracts honest.
-          </p>
-        </div>
-        <div className="rounded-xl border border-line bg-surface/90 p-3 shadow-[0_10px_30px_-24px_rgba(17,23,20,0.5)]">
-          <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-faint">Compiler mindset</p>
-          <ul className="mt-2 space-y-2 text-[13px] text-muted">
-            <li className="rounded-lg border border-line bg-canvas/70 px-3 py-2">Types describe values before runtime.</li>
-            <li className="rounded-lg border border-line bg-canvas/70 px-3 py-2">Literals can widen unless you constrain them.</li>
-            <li className="rounded-lg border border-line bg-canvas/70 px-3 py-2">Checks narrow unions into usable types.</li>
-          </ul>
-        </div>
-      </div>
-      <div className="relative mt-5 h-28 sm:h-24">
-        {nodes.map((node, index) => (
-          <div
-            key={node.label}
-            className={cn(
-              "absolute -translate-x-1/2 rounded-full border px-3 py-1.5 text-[13px] font-semibold shadow-sm backdrop-blur-sm",
-              node.tone === "lime" && "border-lime/25 bg-lime/[0.09] text-lime",
-              node.tone === "sky" && "border-sky/25 bg-sky/[0.09] text-sky",
-              node.tone === "violet" && "border-violet/25 bg-violet/[0.09] text-violet",
-              node.tone === "coral" && "border-coral/25 bg-coral/[0.09] text-coral",
-            )}
-            style={{ left: node.x, top: node.y, animation: `pop 420ms ${index * 90}ms both` }}
-          >
-            {node.label}
+    <div className="relative mt-6 overflow-hidden rounded-xl border border-line bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))] p-4 sm:p-5">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(200,255,0,0.08),transparent_26%),radial-gradient(circle_at_85%_20%,rgba(116,179,255,0.08),transparent_24%)]" />
+      <div className="relative grid gap-3 md:grid-cols-[1.15fr_.85fr]">
+        <div className="rounded-lg border border-line bg-canvas/75 p-4">
+          <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">Module 3 flow</p>
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-[13px] text-muted">
+            {["Annotate", "Infer", "Model", "Widen/Narrow", "Assign safely"].map((step, i) => (
+              <span key={step} className="flex items-center gap-2">
+                <span className="rounded-md border border-line bg-surface px-2.5 py-1 font-mono text-mist animate-[fadeIn_220ms_ease-out_both]" style={{ animationDelay: `${i * 50}ms` }}>{step}</span>
+                {i < 4 ? <span className="text-faint">→</span> : null}
+              </span>
+            ))}
           </div>
-        ))}
+          <p className="mt-3 text-[15px] leading-8 text-muted">Every section answers: <strong className="text-mist">what is it?</strong> syntax, valid/invalid example, compiler behavior, when to use, and what to avoid.</p>
+        </div>
+        <div className="rounded-lg border border-line bg-canvas/75 p-4">
+          <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">Coverage</p>
+          <div className="mt-3 space-y-2 text-[13px]">
+            {[["Annotations/Inference", 3], ["Primitives/Special", 8], ["Literals/Collections", 11], ["Enums/Safety rules", 10]].map(([label, n]) => (
+              <div key={String(label)} className="flex items-center gap-2">
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-line"><div className="h-full rounded-full bg-lime/80" style={{ width: `${Number(n) * 3.1}%` }} /></div>
+                <span className="w-36 text-muted">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-export function TypePipeline({
-  steps,
-}: {
-  steps: { label: string; detail: string; tone?: "lime" | "sky" | "violet" | "coral" | "neutral" }[];
-}) {
+export function TypePipeline({ steps }: { steps: { label: string; detail: string; tone: "lime" | "sky" | "violet" | "coral" }[] }) {
+  const tone = { lime: "border-lime/25 bg-lime/[0.05] text-lime", sky: "border-sky/25 bg-sky/[0.05] text-sky", violet: "border-violet/25 bg-violet/[0.05] text-violet", coral: "border-coral/25 bg-coral/[0.05] text-coral" } as const;
   return (
-    <div className="mt-6 grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
-      {steps.map((step, index) => (
-        <div
-          key={step.label}
-          className={cn(
-            "group rounded-xl border bg-surface p-4 transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-24px_rgba(17,23,20,0.55)]",
-            step.tone === "lime" && "border-lime/20",
-            step.tone === "sky" && "border-sky/20",
-            step.tone === "violet" && "border-violet/20",
-            step.tone === "coral" && "border-coral/20",
-            (!step.tone || step.tone === "neutral") && "border-line",
-          )}
-          style={{ animation: `pop 360ms ${index * 70}ms both` }}
-        >
-          <div className="flex items-center justify-between gap-2">
-            <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-faint">
-              Step {index + 1}
-            </p>
-            <span
-              className={cn(
-                "size-2 rounded-full",
-                step.tone === "lime" && "bg-lime",
-                step.tone === "sky" && "bg-sky",
-                step.tone === "violet" && "bg-violet",
-                step.tone === "coral" && "bg-coral",
-                (!step.tone || step.tone === "neutral") && "bg-faint/60",
-              )}
-            />
-          </div>
-          <p className="mt-2 text-[15px] font-semibold text-mist">{step.label}</p>
-          <p className="mt-1 text-[13px] leading-5 text-muted">{step.detail}</p>
+    <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      {steps.map((step, i) => (
+        <div key={step.label} className={cn("rounded-xl border p-4 transition-transform hover:-translate-y-0.5", tone[step.tone])} style={{ animation: `pop 260ms ${i * 45}ms both` }}>
+          <p className="font-mono text-[13px] uppercase tracking-[0.14em]">{step.label}</p>
+          <p className="mt-2 text-[15px] leading-7 text-mist/90">{step.detail}</p>
         </div>
       ))}
     </div>
   );
 }
 
-export function ValidInvalidCards({
-  valid,
-  invalid,
-}: {
-  valid: { code: string; note: string };
-  invalid: { code: string; note: string };
-}) {
+export function ValidInvalidCards({ valid, invalid }: { valid: { code: string; note: string }; invalid: { code: string; note: string } }) {
   return (
-    <div className="mt-6 grid gap-3 md:grid-cols-2">
-      <div className="rounded-xl border border-success/25 bg-success/[0.045] p-4">
+    <div className="mt-6 grid gap-4 md:grid-cols-2">
+      <div className="rounded-xl border border-success/25 bg-success/[0.04] p-4 transition hover:border-success/35">
         <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-success">Valid</p>
-        <pre className="mt-3 overflow-x-auto rounded-lg border border-success/15 bg-surface/90 p-3 font-mono text-[13px] leading-6 text-mist">
-          <code>{valid.code}</code>
-        </pre>
-        <p className="mt-2 text-[13px] leading-5 text-muted">{valid.note}</p>
+        <pre className="mt-3 overflow-x-auto rounded-lg border border-line bg-canvas/70 p-3 text-[13px] leading-6 text-mist"><code>{valid.code}</code></pre>
+        <p className="mt-2 text-[15px] leading-7 text-muted">{valid.note}</p>
       </div>
-      <div className="rounded-xl border border-coral/25 bg-coral/[0.045] p-4">
-        <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-coral">Invalid</p>
-        <pre className="mt-3 overflow-x-auto rounded-lg border border-coral/15 bg-surface/90 p-3 font-mono text-[13px] leading-6 text-mist">
-          <code>{invalid.code}</code>
-        </pre>
-        <p className="mt-2 text-[13px] leading-5 text-muted">{invalid.note}</p>
+      <div className="rounded-xl border border-danger/25 bg-danger/[0.04] p-4 transition hover:border-danger/35">
+        <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-danger">Invalid / risky</p>
+        <pre className="mt-3 overflow-x-auto rounded-lg border border-line bg-canvas/70 p-3 text-[13px] leading-6 text-mist"><code>{invalid.code}</code></pre>
+        <p className="mt-2 text-[15px] leading-7 text-muted">{invalid.note}</p>
       </div>
     </div>
   );
 }
 
 export function WideningNarrowingDemo() {
-  const [mode, setMode] = useState<"let" | "const">("let");
-  const [narrow, setNarrow] = useState(false);
-
+  const [mode, setMode] = useState<"let" | "const" | "asconst">("let");
+  const result = mode === "let" ? { value: 'let status = "success"', type: "string (widened)", detail: "Mutable binding: TypeScript usually widens the literal." } : mode === "const" ? { value: 'const status = "success"', type: '"success" (literal)', detail: "Immutable binding: the exact primitive literal is preserved." } : { value: 'const role = { type: "admin" } as const', type: '{ readonly type: "admin" }', detail: "as const prevents object/array widening deeply." };
   return (
     <div className="mt-6 rounded-xl border border-line bg-surface p-4 sm:p-5">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-faint">Interactive</p>
-          <p className="mt-1 text-[15px] font-semibold text-mist">Widening and narrowing</p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => setMode("let")}
-            className={cn(
-              "rounded-lg border px-3 py-1.5 text-[13px] font-medium transition",
-              mode === "let" ? "border-lime/35 bg-lime/[0.08] text-mist" : "border-line bg-canvas text-muted",
-            )}
-          >
-            let
-          </button>
-          <button
-            type="button"
-            onClick={() => setMode("const")}
-            className={cn(
-              "rounded-lg border px-3 py-1.5 text-[13px] font-medium transition",
-              mode === "const" ? "border-lime/35 bg-lime/[0.08] text-mist" : "border-line bg-canvas text-muted",
-            )}
-          >
-            const
-          </button>
-          <button
-            type="button"
-            onClick={() => setNarrow((v) => !v)}
-            className={cn(
-              "rounded-lg border px-3 py-1.5 text-[13px] font-medium transition",
-              narrow ? "border-violet/35 bg-violet/[0.08] text-mist" : "border-line bg-canvas text-muted",
-            )}
-          >
-            {narrow ? "narrowed" : "union"}
-          </button>
-        </div>
-      </div>
-      <div className="mt-4 grid gap-3 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
-        <div className="rounded-xl border border-line bg-canvas/60 p-4">
-          <p className="font-mono text-[13px] text-faint">Source</p>
-          <pre className="mt-2 font-mono text-[13px] leading-6 text-mist">
-            <code>{`${mode} status = "active";`}</code>
-          </pre>
-        </div>
-        <div className="hidden justify-center lg:flex">
-          <div className="rounded-full border border-line bg-surface px-3 py-1 font-mono text-[13px] text-faint">→</div>
-        </div>
-        <div className="rounded-xl border border-lime/20 bg-lime/[0.04] p-4">
-          <p className="font-mono text-[13px] text-faint">Inferred type</p>
-          <p className="mt-2 font-mono text-[15px] font-semibold text-mist">
-            {mode === "const" ? '"active"' : narrow ? '"active" (after check)' : "string"}
-          </p>
-          <p className="mt-1 text-[13px] leading-5 text-muted">
-            {mode === "const"
-              ? "A const binding preserves the literal because it cannot be reassigned."
-              : narrow
-                ? "A control-flow check narrows a wider type to a specific member."
-                : "A let binding widens to a broader type because reassignment is possible."}
-          </p>
-        </div>
-      </div>
+      <div className="flex flex-wrap gap-2">{([{ id: "let", label: "let" }, { id: "const", label: "const" }, { id: "asconst", label: "as const" }] as const).map((o) => <button key={o.id} type="button" onClick={() => setMode(o.id)} className={cn("rounded-lg border px-3 py-1.5 text-[13px] transition", mode === o.id ? "border-lime/30 bg-lime/10 text-lime" : "border-line bg-canvas text-muted hover:text-mist")}>{o.label}</button>)}</div>
+      <pre className="mt-4 overflow-x-auto rounded-lg border border-line bg-canvas/70 p-3 font-mono text-[13px] text-mist"><code>{result.value}</code></pre>
+      <div className="mt-3 grid gap-2 sm:grid-cols-2 text-[15px]"><div className="rounded-lg border border-line bg-canvas/60 p-3"><p className="text-[13px] text-faint">Inferred type</p><p className="mt-1 font-mono text-mist">{result.type}</p></div><div className="rounded-lg border border-line bg-canvas/60 p-3"><p className="text-[13px] text-faint">Why</p><p className="mt-1 text-muted">{result.detail}</p></div></div>
     </div>
   );
 }
 
 export function AssignabilityLadder() {
-  const [source, setSource] = useState<"literal" | "number" | "unknown" | "never">("literal");
+  const [source, setSource] = useState<"literal" | "number" | "unknown" | "never" | "any">("literal");
   const targets = [
-    { label: "string", accepts: source === "literal" || source === "never" },
-    { label: "number", accepts: source === "number" || source === "never" },
-    { label: "unknown", accepts: true },
-    { label: "never", accepts: source === "never" },
+    { label: "string", ok: source === "literal" || source === "never" || source === "any" },
+    { label: "number", ok: source === "number" || source === "never" || source === "any" },
+    { label: "unknown", ok: true },
+    { label: "any", ok: true },
+    { label: "never", ok: source === "never" },
   ];
   return (
     <div className="mt-6 rounded-xl border border-line bg-surface p-4 sm:p-5">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-faint">Interactive</p>
-          <p className="mt-1 text-[15px] font-semibold text-mist">Assignability explorer</p>
-        </div>
-        <select
-          value={source}
-          onChange={(e) => setSource(e.target.value as typeof source)}
-          className="h-9 rounded-lg border border-line bg-canvas px-3 text-[13px] text-mist outline-none focus:border-line-strong"
-          aria-label="Source type"
-        >
-          <option value="literal">&quot;hello&quot; (literal)</option>
-          <option value="number">number</option>
-          <option value="unknown">unknown</option>
-          <option value="never">never</option>
-        </select>
-      </div>
-      <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-        {targets.map((target) => (
-          <div
-            key={target.label}
-            className={cn(
-              "rounded-xl border p-3 transition",
-              target.accepts ? "border-success/25 bg-success/[0.045]" : "border-coral/25 bg-coral/[0.045]",
-            )}
-          >
-            <p className="font-mono text-[13px] text-faint">to {target.label}</p>
-            <p className={cn("mt-1 text-[15px] font-semibold", target.accepts ? "text-success" : "text-coral")}>
-              {target.accepts ? "Assignable" : "Not assignable"}
-            </p>
-          </div>
-        ))}
-      </div>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><p className="text-[15px] font-semibold text-mist">Assignability explorer</p><select value={source} onChange={(e) => setSource(e.target.value as typeof source)} className="h-9 rounded-lg border border-line bg-canvas px-3 text-[13px] text-mist outline-none"><option value="literal">&quot;hello&quot;</option><option value="number">number</option><option value="unknown">unknown</option><option value="any">any</option><option value="never">never</option></select></div>
+      <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">{targets.map((t) => <div key={t.label} className={cn("rounded-lg border p-3 transition-all", t.ok ? "border-success/25 bg-success/[0.05]" : "border-danger/20 bg-danger/[0.04]")}><p className="font-mono text-[13px] text-mist">→ {t.label}</p><p className={cn("mt-1 text-[13px]", t.ok ? "text-success" : "text-danger")}>{t.ok ? "assignable" : "blocked"}</p></div>)}</div>
     </div>
   );
 }
 
 export function AnimatedMeter({ value, label }: { value: number; label: string }) {
   const [width, setWidth] = useState(0);
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setWidth(Math.max(0, Math.min(100, value))));
-    return () => cancelAnimationFrame(id);
-  }, [value]);
-  return (
-    <div className="mt-4">
-      <div className="flex items-center justify-between text-[13px] text-faint">
-        <span>{label}</span>
-        <span className="font-mono text-mist">{value}%</span>
-      </div>
-      <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-line">
-        <div
-          className="h-full rounded-full bg-lime transition-[width] duration-700 ease-out"
-          style={{ width: `${width}%` }}
-        />
-      </div>
-    </div>
-  );
+  useEffect(() => { const id = requestAnimationFrame(() => setWidth(Math.max(0, Math.min(100, value)))); return () => cancelAnimationFrame(id); }, [value]);
+  return <div className="mt-4"><div className="flex items-center justify-between text-[13px] text-faint"><span>{label}</span><span className="font-mono text-mist">{value}%</span></div><div className="mt-1.5 h-2 overflow-hidden rounded-full bg-line"><div className="h-full rounded-full bg-lime transition-[width] duration-700 ease-out" style={{ width: `${width}%` }} /></div></div>;
 }
 
-export function ModuleSequenceCards() {
-  const groups = [
-    { title: "Annotations & inference", items: ["Type annotations", "Inference", "Explicit vs inferred", "Widening"], tone: "border-lime/20 bg-lime/[0.03]" },
-    { title: "Primitive & special types", items: ["Primitives", "null/undefined", "void/never", "any/unknown/object"], tone: "border-sky/20 bg-sky/[0.03]" },
-    { title: "Literal modeling", items: ["String literals", "Numeric literals", "Boolean literals", "Discriminants"], tone: "border-violet/20 bg-violet/[0.03]" },
-    { title: "Safety system", items: ["Narrowing", "Compatibility", "Assignability", "Best practices"], tone: "border-coral/20 bg-coral/[0.03]" },
-  ];
-  return (
-    <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-      {groups.map((group, index) => (
-        <div key={group.title} className={cn("rounded-xl border p-4", group.tone)} style={{ animation: `pop 360ms ${index * 70}ms both` }}>
-          <p className="text-[15px] font-semibold text-mist">{group.title}</p>
-          <ul className="mt-2 space-y-1.5 text-[13px] text-muted">
-            {group.items.map((item) => (
-              <li key={item} className="flex items-center gap-2"><span className="size-1 rounded-full bg-current opacity-50" />{item}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-export function PracticeChecklist() {
-  const [done, setDone] = useState<Record<string, boolean>>({});
-  const items = [
-    "Create typed variables for name, age, salary, and active status.",
-    "Write a nullable email and an optional parameter.",
-    "Narrow an unknown value with typeof and a type guard.",
-    "Create string and numeric literal unions.",
-    "Explain widening, narrowing, compatibility, and assignability.",
-  ];
-  const completed = items.filter((item) => done[item]).length;
+export function SyntaxPlayground({ options, initial = 0, title = "Syntax variations" }: { options: { label: string; code: string; note: string }[]; initial?: number; title?: string }) {
+  const [active, setActive] = useState(initial);
+  const current = options[active] ?? options[0];
   return (
     <div className="mt-6 rounded-xl border border-line bg-surface p-4 sm:p-5">
-      <div className="flex items-center justify-between gap-3">
-        <div>
-          <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-faint">Interactive practice</p>
-          <p className="mt-1 text-[15px] font-semibold text-mist">Quick self-check</p>
-        </div>
-        <span className="font-mono text-[13px] text-muted">{completed}/{items.length}</span>
+      <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-faint">{title}</p>
+      <div className="mt-3 flex flex-wrap gap-2">{options.map((o, i) => <button key={o.label} type="button" onClick={() => setActive(i)} className={cn("rounded-lg border px-3 py-1.5 text-[13px] transition", i === active ? "border-lime/30 bg-lime/10 text-lime" : "border-line bg-canvas text-muted hover:text-mist")}>{o.label}</button>)}</div>
+      <pre className="mt-4 overflow-x-auto rounded-lg border border-line bg-canvas/70 p-3 font-mono text-[13px] leading-6 text-mist"><code>{current.code}</code></pre>
+      <p className="mt-2 text-[15px] leading-7 text-muted">{current.note}</p>
+    </div>
+  );
+}
+
+export function NarrowingFlowDemo() {
+  const [kind, setKind] = useState<"typeof" | "truthiness" | "equality" | "in">("typeof");
+  const map = {
+    typeof: { input: "value: string | number", check: 'if (typeof value === "string")', narrowed: "value is string here", else: "value is number here" },
+    truthiness: { input: "name: string | null", check: "if (name)", narrowed: "name is string (truthy) here", else: "name is null or empty string in else branch" },
+    equality: { input: "id: number | null", check: "if (id !== null)", narrowed: "id is number here", else: "id is null here" },
+    in: { input: 'pet: { bark(): void } | { meow(): void }', check: 'if ("bark" in pet)', narrowed: "pet has bark()", else: "pet has meow()" },
+  } as const;
+  const r = map[kind];
+  return (
+    <div className="mt-6 rounded-xl border border-line bg-surface p-4 sm:p-5">
+      <div className="flex flex-wrap gap-2">{(["typeof", "truthiness", "equality", "in"] as const).map((k) => <button key={k} type="button" onClick={() => setKind(k)} className={cn("rounded-lg border px-3 py-1.5 font-mono text-[13px] transition", kind === k ? "border-sky/30 bg-sky/10 text-sky" : "border-line bg-canvas text-muted")}>{k}</button>)}</div>
+      <div className="mt-4 grid gap-3 md:grid-cols-3 text-[13px]">
+        <div className="rounded-lg border border-line bg-canvas/60 p-3"><p className="text-faint">Input</p><p className="mt-1 font-mono text-mist">{r.input}</p></div>
+        <div className="rounded-lg border border-sky/20 bg-sky/[0.04] p-3"><p className="text-sky">Check</p><p className="mt-1 font-mono text-mist">{r.check}</p></div>
+        <div className="rounded-lg border border-success/20 bg-success/[0.04] p-3"><p className="text-success">Narrowed</p><p className="mt-1 text-mist">{r.narrowed}</p><p className="mt-1 text-muted">{r.else}</p></div>
       </div>
-      <AnimatedMeter value={Math.round((completed / items.length) * 100)} label="Completion" />
-      <div className="mt-4 space-y-2">
-        {items.map((item) => (
-          <button key={item} type="button" onClick={() => setDone((d) => ({ ...d, [item]: !d[item] }))} className={cn("flex w-full items-start gap-3 rounded-lg border px-3 py-2.5 text-left text-[13px] transition", done[item] ? "border-success/25 bg-success/[0.05] text-mist" : "border-line bg-canvas/50 text-muted hover:border-line-strong")}> 
-            <span className={cn("mt-0.5 grid size-4 shrink-0 place-items-center rounded border text-[11px]", done[item] ? "border-success bg-success text-white" : "border-line bg-surface")}>{done[item] ? "✓" : ""}</span>
-            <span>{item}</span>
+    </div>
+  );
+}
+
+export function ArrayTupleMockup() {
+  return (
+    <div className="mt-6 grid gap-4 lg:grid-cols-2">
+      <div className="rounded-xl border border-line bg-surface p-4"><p className="font-mono text-[13px] text-faint">Array (same kind, flexible length)</p><div className="mt-3 flex flex-wrap gap-2">{[10, 20, 30, 40].map((n, i) => <div key={n} className="rounded-lg border border-lime/20 bg-lime/[0.05] px-3 py-2 text-center animate-[pop_220ms_ease-out_both]" style={{ animationDelay: `${i * 35}ms` }}><p className="font-mono text-[11px] text-faint">[{i}]</p><p className="font-mono text-mist">{n}</p></div>)}<div className="rounded-lg border border-dashed border-line px-3 py-2 text-[13px] text-faint">+ more</div></div></div>
+      <div className="rounded-xl border border-line bg-surface p-4"><p className="font-mono text-[13px] text-faint">Tuple (fixed positions, specific meaning)</p><div className="mt-3 flex flex-wrap gap-2">{[{ l: "id", v: "7" }, { l: "name", v: '"Alex"' }, { l: "active", v: "true" }].map((c, i) => <div key={c.l} className="rounded-lg border border-sky/20 bg-sky/[0.05] px-3 py-2 animate-[pop_220ms_ease-out_both]" style={{ animationDelay: `${i * 35}ms` }}><p className="font-mono text-[11px] text-sky">{c.l}</p><p className="font-mono text-mist">{c.v}</p></div>)}</div></div>
+    </div>
+  );
+}
+
+export function EnumCompareVisual() {
+  const [tab, setTab] = useState<"enum" | "union" | "const">("union");
+  const code = {
+    enum: `enum Status { Pending = "pending", Done = "done" }\nconst s: Status = Status.Pending; // runtime object exists`,
+    union: `type Status = "pending" | "done";\nconst s: Status = "pending"; // erased at runtime`,
+    const: `const STATUS = { Pending: "pending", Done: "done" } as const;\ntype Status = typeof STATUS[keyof typeof STATUS];`,
+  } as const;
+  return (
+    <div className="mt-6 rounded-xl border border-line bg-surface p-4 sm:p-5">
+      <div className="flex flex-wrap gap-2">
+        {(["enum", "union", "const"] as const).map((t) => (
+          <button key={t} type="button" onClick={() => setTab(t)} className={cn("rounded-lg border px-3 py-1.5 text-[13px]", tab === t ? "border-violet/30 bg-violet/10 text-violet" : "border-line bg-canvas text-muted")}>
+            {t === "const" ? "as const object" : t}
           </button>
         ))}
       </div>
+      <pre className="mt-4 overflow-x-auto rounded-lg border border-line bg-canvas/70 p-3 font-mono text-[13px] text-mist"><code>{code[tab]}</code></pre>
     </div>
   );
 }
+
