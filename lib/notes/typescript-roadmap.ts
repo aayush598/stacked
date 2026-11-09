@@ -21,6 +21,8 @@ const reviewedSectionIds = new Set([
   "ts-m01-s03",
 ]);
 
+const incompleteSectionIds = new Set<string>([]);
+
 function buildSections(moduleId: string, seeds: SectionSeed[]): NoteSection[] {
   return seeds.map((seed, index) => {
     const id = `${moduleId}-s${String(index + 1).padStart(2, "0")}`;
@@ -29,7 +31,11 @@ function buildSections(moduleId: string, seeds: SectionSeed[]): NoteSection[] {
       id,
       title: seed.title,
       topics,
-      status: reviewedSectionIds.has(id) ? "reviewed" : "draft",
+      status: reviewedSectionIds.has(id)
+        ? "reviewed"
+        : incompleteSectionIds.has(id)
+          ? "incomplete"
+          : "draft",
       minutes: Math.max(4, Math.ceil((seed.title.length + topics.join(" ").length) / 90)),
     };
   });

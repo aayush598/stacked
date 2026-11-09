@@ -15,7 +15,7 @@ const notificationSchema = z.object({
 
 const persistedNotesSchema = z.object({
   readSections: z.record(z.string(), z.number()),
-  reviewSnapshot: z.record(z.string(), z.enum(["draft", "reviewed"])).nullable(),
+  reviewSnapshot: z.record(z.string(), z.enum(["incomplete", "draft", "reviewed"])).nullable(),
   notifications: z.array(notificationSchema),
 });
 

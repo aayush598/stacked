@@ -1,4 +1,4 @@
-export const REVIEW_STATUSES = ["draft", "reviewed"] as const;
+export const REVIEW_STATUSES = ["incomplete", "draft", "reviewed"] as const;
 
 export type ReviewStatus = (typeof REVIEW_STATUSES)[number];
 
@@ -69,13 +69,16 @@ export type NoteStats = {
 };
 
 export function statusLabel(status: ReviewStatus) {
-  return status === "reviewed" ? "Human reviewed" : "Needs review";
+  if (status === "reviewed") return "Human reviewed";
+  if (status === "incomplete") return "Incomplete";
+  return "Needs review";
 }
 
 export function statusDescription(status: ReviewStatus) {
-  return status === "reviewed"
-    ? "Final human touch and review added."
-    : "Content is in place, final human review is pending.";
+  if (status === "reviewed") return "Final human touch and review added.";
+  if (status === "incomplete")
+    return "This section is not completed yet. Content and review are still in progress.";
+  return "Content is in place, final human review is pending.";
 }
 
 export function moduleStats(module: NoteModule) {

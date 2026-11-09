@@ -32,20 +32,28 @@ type ReaderProps = {
 };
 
 function AuthoringShell({ section }: { section: NoteSection }) {
+  const incomplete = section.status === "incomplete";
   return (
-    <div className="mt-7 rounded-xl border border-dashed border-line-strong bg-canvas/45 p-5 sm:p-6">
+    <div
+      className={cn(
+        "mt-7 rounded-xl border border-dashed p-5 sm:p-6",
+        incomplete
+          ? "border-faint/35 bg-faint/[0.04]"
+          : "border-line-strong bg-canvas/45",
+      )}
+    >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">
-            Content shell
+            {incomplete ? "Incomplete section" : "Content shell"}
           </p>
           <h2 className="mt-1 text-lg font-semibold tracking-[-0.025em] text-mist">
-            This section is ready for your notes
+            {incomplete ? "This section is not completed yet" : "This section is ready for your notes"}
           </h2>
           <p className="mt-1.5 max-w-xl text-[15px] leading-6 text-muted">
-            The roadmap, review state, read tracking and notifications are wired. Add the
-            finished note component to the TypeScript content registry when the writing is
-            ready.
+            {incomplete
+              ? "The roadmap entry exists, but the full note content, interactive visuals, and human review are still in progress. It is tagged incomplete until the section is finished."
+              : "The roadmap, review state, read tracking and notifications are wired. Add the finished note component to the TypeScript content registry when the writing is ready."}
           </p>
         </div>
         <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1 text-[13px] text-faint">

@@ -1,4 +1,4 @@
-import { CheckCircle2, CircleDashed } from "lucide-react";
+import { CheckCircle2, CircleDashed, CircleDot } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { statusLabel, type ReviewStatus } from "@/lib/notes/types";
 
@@ -10,6 +10,7 @@ export function StatusPill({
   compact?: boolean;
 }) {
   const reviewed = status === "reviewed";
+  const incomplete = status === "incomplete";
   return (
     <span
       className={cn(
@@ -17,11 +18,15 @@ export function StatusPill({
         compact ? "px-2 py-0.5 text-[13px]" : "px-2.5 py-1 text-[13px]",
         reviewed
           ? "border-success/25 bg-success/[0.07] text-success"
-          : "border-coral/20 bg-coral/[0.055] text-coral",
+          : incomplete
+            ? "border-faint/30 bg-faint/[0.08] text-muted"
+            : "border-coral/20 bg-coral/[0.055] text-coral",
       )}
     >
       {reviewed ? (
         <CheckCircle2 className={compact ? "size-2.5" : "size-3"} aria-hidden />
+      ) : incomplete ? (
+        <CircleDot className={compact ? "size-2.5" : "size-3"} aria-hidden />
       ) : (
         <CircleDashed className={compact ? "size-2.5" : "size-3"} aria-hidden />
       )}

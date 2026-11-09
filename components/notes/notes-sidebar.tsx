@@ -55,7 +55,9 @@ export function NotesSidebar({
     );
     const read = sections.filter((section) => readSections[section.id]).length;
     const reviewed = sections.filter((section) => section.status === "reviewed").length;
-    return { sections: sections.length, read, reviewed };
+    const incomplete = sections.filter((section) => section.status === "incomplete").length;
+    const draft = sections.filter((section) => section.status === "draft").length;
+    return { sections: sections.length, read, reviewed, incomplete, draft };
   }, [phases, readSections]);
 
   const readPercent = Math.round((totals.read / totals.sections) * 100);
@@ -156,6 +158,8 @@ export function NotesSidebar({
                 ["all", "All"],
                 ["draft", "Needs review"],
                 ["reviewed", "Reviewed"],
+                ["incomplete", "Incomplete"],
+                ["incomplete", "Incomplete"],
               ] as const
             ).map(([value, label]) => (
               <button
@@ -332,15 +336,19 @@ export function NotesSidebar({
                                     </span>
                                     <span
                                       className={cn(
-                                        "mt-1 size-1.5 shrink-0 rounded-full",
+                                        "mt-1.5 block size-1.5 shrink-0 rounded-full",
                                         section.status === "reviewed"
                                           ? "bg-success"
-                                          : "bg-coral/70",
+                                          : section.status === "incomplete"
+                                            ? "bg-faint/70"
+                                            : "bg-coral/70",
                                       )}
                                       title={
                                         section.status === "reviewed"
                                           ? "Human reviewed"
-                                          : "Needs review"
+                                          : section.status === "incomplete"
+                                            ? "Incomplete"
+                                            : "Needs review"
                                       }
                                     />
                                   </button>
@@ -359,7 +367,7 @@ export function NotesSidebar({
         )}
       </div>
 
-      <div className="flex items-center justify-between gap-2 border-t border-line px-3.5 py-2.5 text-[13px] text-faint">
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 border-t border-line px-3.5 py-2.5 text-[13px] text-faint">
         <span className="flex items-center gap-1.5">
           <span className="size-1.5 rounded-full bg-success" />
           Reviewed
@@ -367,6 +375,10 @@ export function NotesSidebar({
         <span className="flex items-center gap-1.5">
           <span className="size-1.5 rounded-full bg-coral/70" />
           Needs review
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="size-1.5 rounded-full bg-faint/70" />
+          Incomplete
         </span>
         <span className="hidden items-center gap-1.5 sm:flex">
           <Check className="size-3 text-success" />
