@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function KeysOfUnionUtil(){ return (<div><NoteLead>Gets all keys across a union of object types.</NoteLead><NoteCode filename="keysofunion.ts" code={`type KeysOfUnion<T> = T extends any ? keyof T : never;`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Union object access."]} /></div>); }

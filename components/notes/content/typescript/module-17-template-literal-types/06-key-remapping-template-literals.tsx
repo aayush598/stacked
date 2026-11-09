@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function KeyRemappingTemplateLiteralsNote(){ return (<div><NoteLead>Combine mapped types and template literals to create renamed APIs from existing keys.</NoteLead><NoteCode filename="key-remapping-template-literals.ts" code={"type Api<T> = { [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K] };"} /><NoteTakeaways items={["Template literals shine in key remapping.","Generate consistent method/property names from models."]} /></div>); }

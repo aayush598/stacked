@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function AssignabilityM18Note(){ return (<div><NoteLead>Assignability rules determine whether a value type can be used where a target type is expected.</NoteLead><NoteCode filename="assignability.ts" code={`let x: unknown = 'hi'; // OK
+// let y: string = x; // Error without narrowing`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Assignability depends on type relationships, variance, and checks."]} /></div>); }

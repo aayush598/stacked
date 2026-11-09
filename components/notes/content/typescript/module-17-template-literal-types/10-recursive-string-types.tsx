@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function RecursiveStringTypesNote(){ return (<div><NoteLead>Recursive template/conditional types can parse or transform strings, but can become complex and slow.</NoteLead><NoteCode filename="recursive-string-types.ts" code={"type TrimLeft<S extends string> = S extends ` ${infer R}` ? TrimLeft<R> : S;"} /><NoteTakeaways items={["Possible, but use sparingly.","Compiler performance and readability matter."]} /></div>); }

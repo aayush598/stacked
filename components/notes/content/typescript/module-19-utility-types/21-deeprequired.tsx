@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function DeepRequiredUtil(){ return (<div><NoteLead>Custom: recursively required.</NoteLead><NoteCode filename="deeprequired.ts" code={`type DeepRequired<T> = { [K in keyof T]-?: T[K] extends object ? DeepRequired<T[K]> : T[K] };`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Fully populated configs."]} /></div>); }

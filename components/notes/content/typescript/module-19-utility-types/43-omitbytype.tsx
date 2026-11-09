@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function OmitByTypeUtil(){ return (<div><NoteLead>Alias/pattern for omitting by assignable value type.</NoteLead><NoteCode filename="omitbytype.ts" code={`type OmitByType<T,V> = OmitByValue<T,V>;`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Naming variant."]} /></div>); }

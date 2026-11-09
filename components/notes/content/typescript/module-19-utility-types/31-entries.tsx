@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function EntriesUtil(){ return (<div><NoteLead>Custom: tuple entries type from object.</NoteLead><NoteCode filename="entries.ts" code={`type Entries<T> = { [K in keyof T]: [K, T[K]] }[keyof T];`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Typed Object.entries helpers."]} /></div>); }

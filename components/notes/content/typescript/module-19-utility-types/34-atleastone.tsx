@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function AtLeastOneUtil(){ return (<div><NoteLead>Require at least one property from T.</NoteLead><NoteCode filename="atleastone.ts" code={`type AtLeastOne<T> = { [K in keyof T]-?: Required<Pick<T,K>> & Partial<Omit<T,K>> }[keyof T];`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Options objects."]} /></div>); }

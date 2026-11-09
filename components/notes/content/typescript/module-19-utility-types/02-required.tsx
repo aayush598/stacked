@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function RequiredUtil(){ return (<div><NoteLead>`Required&lt;T&gt;` makes all properties required.</NoteLead><NoteCode filename="required.ts" code={`type T = Required<{ a?: number }>; `} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["After defaults/validation."]} /></div>); }

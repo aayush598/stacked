@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function ThisTypeUtil(){ return (<div><NoteLead>Marker utility for contextual this typing in object literals.</NoteLead><NoteCode filename="thistype.ts" code={`type Obj = { data:number; m():number } & ThisType<{data:number}>;`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Advanced object literal this."]} /></div>); }

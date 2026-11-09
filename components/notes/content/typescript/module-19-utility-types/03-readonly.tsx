@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function ReadonlyUtil(){ return (<div><NoteLead>`Readonly&lt;T&gt;` makes all properties readonly.</NoteLead><NoteCode filename="readonly.ts" code={`type T = Readonly<{ a: number }>; `} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Immutable view."]} /></div>); }

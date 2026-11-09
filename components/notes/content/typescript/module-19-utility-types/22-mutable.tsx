@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function MutableUtil(){ return (<div><NoteLead>Custom: remove readonly modifiers.</NoteLead><NoteCode filename="mutable.ts" code={`type Mutable<T> = { -readonly [K in keyof T]: T[K] };`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Editable copy type."]} /></div>); }

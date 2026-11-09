@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function UnionDistributionM17Note(){ return (<div><NoteLead>Template literals distribute over unions, producing all combinations.</NoteLead><NoteCode filename="union-distribution.ts" code={"type Lang = 'en' | 'fr';\ntype Path = `/${Lang}/home`; // '/en/home' | '/fr/home'"} /><NoteTakeaways items={["Distribution is powerful but can explode combinatorially.","Use for controlled finite vocabularies."]} /></div>); }

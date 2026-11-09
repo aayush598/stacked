@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function TemplateLiteralInferenceNote(){ return (<div><NoteLead>Use infer inside template literal conditional types to parse string patterns.</NoteLead><NoteCode filename="template-literal-inference.ts" code={"type Param<T> = T extends `:${infer P}` ? P : never;\ntype R = Param<':id'>; // 'id'"} /><NoteTakeaways items={["Infer can extract parts of string literal patterns.","Useful for route/path parsing types."]} /></div>); }

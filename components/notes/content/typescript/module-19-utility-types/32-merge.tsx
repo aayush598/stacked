@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function MergeUtil(){ return (<div><NoteLead>Custom: merge two object types (right overrides).</NoteLead><NoteCode filename="merge.ts" code={`type Merge<A,B> = Omit<A, keyof B> & B;`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Object composition."]} /></div>); }

@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function PartialUtil(){ return (<div><NoteLead>`Partial&lt;T&gt;` makes all properties optional.</NoteLead><NoteCode filename="partial.ts" code={`type T = Partial<{ a: number; b: string }>;`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Patch/update shapes."]} /></div>); }

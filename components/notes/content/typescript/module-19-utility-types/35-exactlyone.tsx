@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function ExactlyOneUtil(){ return (<div><NoteLead>Require exactly one property from T.</NoteLead><NoteCode filename="exactlyone.ts" code={`type ExactlyOne<T> = { [K in keyof T]-?: Required<Pick<T,K>> & Partial<Record<Exclude<keyof T,K>, never>> }[keyof T];`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Mutually exclusive options."]} /></div>); }

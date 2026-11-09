@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function FreshObjectLiteralsNote(){ return (<div><NoteLead>Fresh object literals receive excess property checking in some assignment contexts.</NoteLead><NoteCode filename="fresh-object-literals.ts" code={`type Point = { x: number; y: number };
+// const p: Point = { x: 1, y: 2, z: 3 }; // excess property error`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Freshness helps catch typos.", "The check is contextual, not universal."]} /></div>); }

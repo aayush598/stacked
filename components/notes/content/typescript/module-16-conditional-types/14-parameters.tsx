@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function ParametersNote(){ return (<div><NoteLead>`Parameters&lt;T&gt;` extracts a function parameter tuple type.</NoteLead><NoteCode filename="parameters.ts" code={`function f(id: number, name: string) {}
+type P = Parameters<typeof f>; // [id: number, name: string]`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Returns a tuple of parameter types.", "Useful for wrappers, proxies, and HOF typing."]} /></div>); }

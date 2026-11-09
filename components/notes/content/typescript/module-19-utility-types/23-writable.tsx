@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function WritableUtil(){ return (<div><NoteLead>Alias/pattern for removing readonly (same idea as Mutable).</NoteLead><NoteCode filename="writable.ts" code={`type Writable<T> = { -readonly [K in keyof T]: T[K] };`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Naming variant."]} /></div>); }

@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function DistributiveConditionalTypesNote(){ return (<div><NoteLead>Conditional types distribute over naked union type parameters.</NoteLead><NoteCode filename="distributive-conditional-types.ts" code={`type ToArray<T> = T extends any ? T[] : never;
+type R = ToArray<string | number>; // string[] | number[]`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Distribution applies to naked type parameters checked directly.", "Each union member is evaluated separately.", "Useful, but sometimes you must prevent it."]} /></div>); }

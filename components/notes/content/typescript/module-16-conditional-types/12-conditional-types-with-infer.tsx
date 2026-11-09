@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function ConditionalTypesWithInferNote(){ return (<div><NoteLead>`infer` can capture multiple positions and be used in nested conditions.</NoteLead><NoteCode filename="conditional-types-with-infer.ts" code={`type FirstArg<T> = T extends (a: infer A, ...rest: any[]) => any ? A : never;
+type ArrayItem<T> = T extends (infer I)[] ? I : never;`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Infer extracts argument, return, element, and other positions.", "You can infer in arrays, tuples, functions, promises, etc."]} /></div>); }

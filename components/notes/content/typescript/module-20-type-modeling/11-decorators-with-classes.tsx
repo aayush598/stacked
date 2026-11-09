@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function DecoratorsWithClassesNote(){ return (<div><NoteLead>Decorators commonly appear in class-based frameworks for DI, routing, ORM entities, and validation.</NoteLead><NoteCode filename="decorators-with-classes.ts" code={`// @Controller('/users')
+// class UserController {}`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Use framework conventions carefully; understand emitted/runtime behavior."]} /></div>); }

@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function ConditionalTypesWithUnionsNote(){ return (<div><NoteLead>Conditional types can filter, map, or test union members.</NoteLead><NoteCode filename="conditional-types-with-unions.ts" code={`type OnlyStrings<T> = T extends string ? T : never;
+type R = OnlyStrings<string | number | boolean>; // string`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Filtering unions is a common conditional-type pattern.", "`Extract`/`Exclude` are built on this idea."]} /></div>); }

@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function PickByTypeUtil(){ return (<div><NoteLead>Alias/pattern for picking by assignable value type.</NoteLead><NoteCode filename="pickbytype.ts" code={`type PickByType<T,V> = PickByValue<T,V>;`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Naming variant."]} /></div>); }

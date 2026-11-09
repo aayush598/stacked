@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function InferKeywordNote(){ return (<div><NoteLead>`infer` declares a type variable to capture part of a type inside a conditional type.</NoteLead><NoteCode filename="infer-keyword.ts" code={`type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
+type A = UnwrapPromise<Promise<string>>; // string`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["`infer` works in the extends clause of a conditional type.", "It extracts types from matched positions.", "Core to ReturnType/Parameters/Awaited patterns."]} /></div>); }

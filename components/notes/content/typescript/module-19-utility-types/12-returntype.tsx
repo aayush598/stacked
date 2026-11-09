@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function ReturnTypeUtil(){ return (<div><NoteLead>Gets function return type.</NoteLead><NoteCode filename="returntype.ts" code={`type T = ReturnType<() => number>; // number`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Derive from impl."]} /></div>); }

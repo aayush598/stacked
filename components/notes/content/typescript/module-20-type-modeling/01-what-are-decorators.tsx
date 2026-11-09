@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function WhatAreDecoratorsNote(){ return (<div><NoteLead>Decorators are special annotations/functions that can modify or observe classes and class members, depending on the decorator system.</NoteLead><NoteCode filename="what-are-decorators.ts" code={`// Experimental (legacy) decorator syntax required compiler flag.
+// Stage 3 decorators differ in API/behavior.`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Decorators are not core TypeScript types; they are a language feature with evolving standards."]} /></div>); }

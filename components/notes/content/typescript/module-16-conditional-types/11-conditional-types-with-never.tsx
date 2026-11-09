@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function ConditionalTypesWithNeverNote(){ return (<div><NoteLead>Returning `never` in a conditional branch removes members from unions.</NoteLead><NoteCode filename="conditional-types-with-never.ts" code={`type NonNullish<T> = T extends null | undefined ? never : T;
+type R = NonNullish<string | null | undefined>; // string`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["`never` disappears from unions.", "Useful for filtering impossible/undesired members."]} /></div>); }

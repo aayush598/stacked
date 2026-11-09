@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function EventNamePatternsNote(){ return (<div><NoteLead>Template literals model event systems with structured names.</NoteLead><NoteCode filename="event-name-patterns.ts" code={"type Domain = 'user' | 'order';\ntype Action = 'created' | 'deleted';\ntype Event = `${Domain}:${Action}`;"} /><NoteTakeaways items={["Useful for typed event emitters and pub/sub contracts.","Keeps event names consistent and discoverable."]} /></div>); }

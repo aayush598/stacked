@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function FunctionKeysUtil(){ return (<div><NoteLead>Keys whose values are functions.</NoteLead><NoteCode filename="functionkeys.ts" code={`type FunctionKeys<T> = { [K in keyof T]: T[K] extends Function ? K : never }[keyof T];`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Method extraction."]} /></div>); }

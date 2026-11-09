@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function NominalTypingNote(){ return (<div><NoteLead>TypeScript does not have built-in nominal types for primitives/aliases, but branding can simulate nominal distinctions.</NoteLead><NoteCode filename="nominal-typing.ts" code={`type USD = number & { __brand: 'USD' };
+type EUR = number & { __brand: 'EUR' };`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Use branding/opaque types for nominal-like safety."]} /></div>); }

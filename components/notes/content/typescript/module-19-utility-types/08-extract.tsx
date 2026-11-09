@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function ExtractUtil(){ return (<div><NoteLead>`Extract&lt;T,U&gt;` keeps union members assignable to U.</NoteLead><NoteCode filename="extract.ts" code={`type T = Extract<'a'|1|'b', string>; // 'a'|'b'`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Union selection."]} /></div>); }

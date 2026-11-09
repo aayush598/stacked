@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function NonNullableUtil(){ return (<div><NoteLead>`NonNullable&lt;T&gt;` removes null and undefined.</NoteLead><NoteCode filename="nonnullable.ts" code={`type T = NonNullable<string | null | undefined>; // string`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["After null checks."]} /></div>); }

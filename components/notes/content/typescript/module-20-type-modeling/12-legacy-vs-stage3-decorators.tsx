@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function LegacyVsStage3DecoratorsNote(){ return (<div><NoteLead>TypeScript has legacy experimental decorators and newer standard-aligned decorators. Their APIs and capabilities differ.</NoteLead><NoteCode filename="legacy-vs-stage3-decorators.ts" code={`// tsconfig: experimentalDecorators (legacy)
+// modern TS also supports standard decorators in supported versions/configs`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Check your TS version, tsconfig, and framework compatibility."]} /></div>); }

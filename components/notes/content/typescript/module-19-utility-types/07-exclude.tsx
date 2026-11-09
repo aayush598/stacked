@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function ExcludeUtil(){ return (<div><NoteLead>`Exclude&lt;T,U&gt;` removes union members assignable to U.</NoteLead><NoteCode filename="exclude.ts" code={`type T = Exclude<'a'|'b'|'c','a'>; // 'b'|'c'`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Union filtering."]} /></div>); }

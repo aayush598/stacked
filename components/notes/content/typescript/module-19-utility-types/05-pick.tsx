@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function PickUtil(){ return (<div><NoteLead>`Pick&lt;T,K&gt;` selects keys.</NoteLead><NoteCode filename="pick.ts" code={`type T = Pick<{a:number;b:string}, 'a'>; `} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["DTO subsets."]} /></div>); }

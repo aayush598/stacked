@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function ReadonlyKeysUtil(){ return (<div><NoteLead>Advanced: detect readonly keys (implementation varies by TS behavior/technique).</NoteLead><NoteCode filename="readonlykeys.ts" code={`// Detecting readonly keys is tricky and version-sensitive.
+// Prefer explicit modeling or simpler conventions.`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Use carefully; can be brittle."]} /></div>); }

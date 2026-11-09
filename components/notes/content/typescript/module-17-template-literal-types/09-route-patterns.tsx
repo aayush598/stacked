@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function RoutePatternsNote(){ return (<div><NoteLead>Template literals can type route patterns and parameterized paths.</NoteLead><NoteCode filename="route-patterns.ts" code={"type IdRoute = `/users/${string}`;\nconst r: IdRoute = '/users/123';"} /><NoteTakeaways items={["Use for path conventions and typed route builders.","Combine with inference for parameter extraction."]} /></div>); }

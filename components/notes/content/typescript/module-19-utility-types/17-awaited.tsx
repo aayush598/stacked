@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function AwaitedUtil(){ return (<div><NoteLead>Recursively unwraps Promise resolved values.</NoteLead><NoteCode filename="awaited.ts" code={`type T = Awaited<Promise<Promise<string>>>; // string`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Async results."]} /></div>); }

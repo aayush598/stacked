@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function UnwrapPromiseUtil(){ return (<div><NoteLead>Custom equivalent concept to Awaited (single-level or recursive variants).</NoteLead><NoteCode filename="unwrappromise.ts" code={`type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Promise internals."]} /></div>); }

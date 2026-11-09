@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function OptionalKeysUtil(){ return (<div><NoteLead>Keys that are optional.</NoteLead><NoteCode filename="optionalkeys.ts" code={`type OptionalKeys<T> = { [K in keyof T]-?: {} extends Pick<T,K> ? K : never }[keyof T];`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Schema/meta tooling."]} /></div>); }

@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function OmitByValueUtil(){ return (<div><NoteLead>Omit properties whose value type matches V.</NoteLead><NoteCode filename="omitbyvalue.ts" code={`type OmitByValue<T,V> = { [K in keyof T as T[K] extends V ? never : K]: T[K] };`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Remove functions/strings/etc."]} /></div>); }

@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function ExcessPropertyChecksNote(){ return (<div><NoteLead>Excess property checks warn when object literals include properties not expected by the target type.</NoteLead><NoteCode filename="excess-property-checks.ts" code={`type Opts = { color?: string };
+// const o: Opts = { colour: 'red' }; // likely typo caught`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Useful for options objects.", "Not applied the same way after indirection in all cases."]} /></div>); }

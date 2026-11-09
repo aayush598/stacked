@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function UnionToTupleUtil(){ return (<div><NoteLead>Advanced/limited: attempt to serialize union members to tuple (not generally reliable for all unions).</NoteLead><NoteCode filename="uniontotuple.ts" code={`// Advanced technique; order is not semantically guaranteed for unions.
+// Prefer designs that don't require union order.`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Usually avoid; unions are unordered."]} /></div>); }

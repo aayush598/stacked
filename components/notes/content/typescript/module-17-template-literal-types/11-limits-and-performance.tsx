@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function LimitsAndPerformanceNote(){ return (<div><NoteLead>Large template literal unions can harm compile performance and readability.</NoteLead><NoteCode filename="limits-and-performance.ts" code={`type Digit = '0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9';
+// Combining many positions can explode quickly`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Be mindful of union explosion.", "Prefer runtime validation for huge string spaces."]} /></div>); }

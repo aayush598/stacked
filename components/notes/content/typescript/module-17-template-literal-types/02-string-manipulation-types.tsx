@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function StringManipulationTypesNote(){ return (<div><NoteLead>Built-in intrinsics transform string literal types: Uppercase, Lowercase, Capitalize, Uncapitalize.</NoteLead><NoteCode filename="string-manipulation-types.ts" code={`type A = Uppercase<'hello'>; // 'HELLO'
+type B = Capitalize<'role'>; // 'Role'`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Intrinsics operate on string literal types.", "Useful with key remapping and template literals."]} /></div>); }

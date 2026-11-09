@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function RecordUtil(){ return (<div><NoteLead>`Record&lt;K,V&gt;` maps keys to values.</NoteLead><NoteCode filename="record.ts" code={`type T = Record<'a'|'b', number>; `} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Lookup tables."]} /></div>); }

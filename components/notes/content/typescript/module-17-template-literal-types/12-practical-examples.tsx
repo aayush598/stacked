@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function PracticalExamplesM17Note(){ return (<div><NoteLead>Practical uses: event maps, getters/setters, route IDs, CSS tokens, and typed command names.</NoteLead><NoteCode filename="practical-examples.ts" code={"type Command = `app:${'init' | 'build' | 'test'}`;"} /><NoteTakeaways items={["Use template literal types where finite string patterns add safety.","Keep them bounded and meaningful."]} /></div>); }

@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function ValueOfUtil(){ return (<div><NoteLead>Gets union of object property value types.</NoteLead><NoteCode filename="valueof.ts" code={`type ValueOf<T> = T[keyof T];`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Enum-like object values."]} /></div>); }

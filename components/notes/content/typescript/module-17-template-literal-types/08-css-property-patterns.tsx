@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function CSSPropertyPatternsNote(){ return (<div><NoteLead>Template literals can model structured CSS-like tokens and utility class patterns (with care for union size).</NoteLead><NoteCode filename="css-property-patterns.ts" code={"type Side = 'top' | 'right' | 'bottom' | 'left';\ntype Margin = `margin-${Side}`;"} /><NoteTakeaways items={["Good for constrained design-token patterns.","Avoid generating enormous unions."]} /></div>); }

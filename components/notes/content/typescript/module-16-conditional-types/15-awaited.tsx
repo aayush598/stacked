@@ -1,0 +1,3 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function AwaitedNote(){ return (<div><NoteLead>`Awaited&lt;T&gt;` recursively unwraps Promise-like resolved types.</NoteLead><NoteCode filename="awaited.ts" code={`type A = Awaited<Promise<string>>; // string
+type B = Awaited<Promise<Promise<number>>>; // number`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Handles nested promises/thenables.", "Used by async typing patterns.", "Helpful for modeling resolved values."]} /></div>); }

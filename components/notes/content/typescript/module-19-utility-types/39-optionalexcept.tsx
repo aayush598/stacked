@@ -1,0 +1,2 @@
+import { NoteCallout, NoteCode, NoteLead, NoteTakeaways } from "@/components/notes/note-blocks";
+export function OptionalExceptUtil(){ return (<div><NoteLead>Make all optional except selected keys.</NoteLead><NoteCode filename="optionalexcept.ts" code={`type OptionalExcept<T,K extends keyof T> = Partial<Omit<T,K>> & Required<Pick<T,K>>;`} /><NoteCallout tone="tip">Learn this as a pattern: understand the rule, then practice with small type-level examples.</NoteCallout><NoteTakeaways items={["Form/edit models."]} /></div>); }
