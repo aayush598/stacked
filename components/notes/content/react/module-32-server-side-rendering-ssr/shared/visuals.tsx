@@ -151,19 +151,21 @@ export function RuleGrid({ rules }: { rules: { title: string; body: string; icon
   );
 }
 
-export function SyntaxMatrix({ rows }: { rows: { syntax: string; example: string; note: string; valid?: boolean }[] }) {
+export function SyntaxMatrix({ rows }: { rows: { syntax: string; example: string; note: string; valid?: boolean; output?: string }[] }) {
   return (
     <div className="mt-5 overflow-hidden rounded-xl border border-line bg-surface">
-      <div className="grid grid-cols-[1fr_1.2fr_1.4fr] gap-px bg-line text-[13px]">
+      <div className="grid grid-cols-[0.9fr_1.1fr_1fr_1.2fr] gap-px bg-line text-[13px]">
         <div className="bg-raised/70 px-3 py-2 font-semibold text-mist">Syntax / Pattern</div>
         <div className="bg-raised/70 px-3 py-2 font-semibold text-mist">Example</div>
+        <div className="bg-raised/70 px-3 py-2 font-semibold text-mist">Output / what happens</div>
         <div className="bg-raised/70 px-3 py-2 font-semibold text-mist">Notes</div>
       </div>
       <div className="divide-y divide-line">
         {rows.map((r, i) => (
-          <div key={i} className="grid grid-cols-[1fr_1.2fr_1.4fr] gap-px bg-line transition-colors hover:bg-sky/10">
+          <div key={i} className="grid grid-cols-[0.9fr_1.1fr_1fr_1.2fr] gap-px bg-line transition-colors hover:bg-sky/10">
             <div className="bg-surface px-3 py-2.5 font-mono text-[12px] text-mist flex items-start gap-1.5">{r.valid === false ? <X className="mt-0.5 size-3.5 shrink-0 text-coral" /> : r.valid === true ? <Check className="mt-0.5 size-3.5 shrink-0 text-success" /> : null}<span>{r.syntax}</span></div>
             <div className="bg-surface px-3 py-2.5 font-mono text-[12px] text-muted whitespace-pre-wrap">{r.example}</div>
+            <div className="bg-surface px-3 py-2.5">{r.output ? <pre className="whitespace-pre-wrap rounded-md border border-sky/20 bg-sky/[0.04] p-2 font-mono text-[12px] leading-5 text-mist"><code>{r.output}</code></pre> : <span className="text-[12px] text-faint">See example → result depends on data/props above</span>}</div>
             <div className="bg-surface px-3 py-2.5 text-[13px] leading-5 text-muted">{r.note}</div>
           </div>
         ))}
@@ -171,7 +173,6 @@ export function SyntaxMatrix({ rows }: { rows: { syntax: string; example: string
     </div>
   );
 }
-
 export function JSXTransformDemo({ jsx, classic, automatic }: { jsx: string; classic: string; automatic: string }) {
   const [mode, setMode] = useState<"jsx" | "classic" | "auto">("jsx");
   const code = mode === "jsx" ? jsx : mode === "classic" ? classic : automatic;

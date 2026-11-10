@@ -157,23 +157,23 @@ export function RuleGrid({ rules }: { rules: { title: string; body: string }[] }
   );
 }
 
-export function SyntaxMatrix({ rows }: { rows: { label: string; syntax: string; note: string }[] }) {
+export function SyntaxMatrix({ rows }: { rows: { label?: string; syntax: string; note: string; output?: string }[] }) {
   return (
     <div className="mt-5 overflow-hidden rounded-xl border border-line">
-      <div className="grid grid-cols-[1fr_1.2fr_1.4fr] bg-surface/80 text-[13px] font-semibold text-faint">
-        <div className="px-3 py-2">Form</div><div className="px-3 py-2">Syntax / Class</div><div className="px-3 py-2">Quick use</div>
+      <div className="grid grid-cols-[0.8fr_1.1fr_1fr_1.2fr] bg-surface/80 text-[13px] font-semibold text-faint">
+        <div className="px-3 py-2">Form</div><div className="px-3 py-2">Syntax / Class</div><div className="px-3 py-2">Output / visual result</div><div className="px-3 py-2">Quick use</div>
       </div>
-      {rows.map((r) => (
-        <div key={r.label} className="grid grid-cols-[1fr_1.2fr_1.4fr] border-t border-line text-[14px]">
-          <div className="px-3 py-2 text-mist">{r.label}</div>
+      {rows.map((r, i) => (
+        <div key={r.label ?? i} className="grid grid-cols-[0.8fr_1.1fr_1fr_1.2fr] border-t border-line text-[14px]">
+          <div className="px-3 py-2 text-mist">{r.label ?? "—"}</div>
           <div className="px-3 py-2"><code className="rounded bg-violet/10 px-1.5 py-0.5 font-mono text-[12.5px] text-violet">{r.syntax}</code></div>
+          <div className="px-3 py-2">{r.output ? <pre className="whitespace-pre-wrap rounded-md border border-sky/20 bg-sky/[0.04] p-2 font-mono text-[12px] leading-5 text-mist"><code>{r.output}</code></pre> : <span className="text-[12px] text-faint">Rendered UI: applies this class/syntax (see examples below for visual output)</span>}</div>
           <div className="px-3 py-2 text-muted">{r.note}</div>
         </div>
       ))}
     </div>
   );
 }
-
 export function Checklist({ items }: { items: string[] }) {
   const [on, setOn] = useState<boolean[]>(() => items.map(() => false));
   return (

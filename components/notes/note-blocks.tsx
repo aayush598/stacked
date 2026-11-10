@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { AlertTriangle, CheckCircle2, Lightbulb, Sparkles, Zap } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Eye, Lightbulb, Sparkles, Terminal, Zap } from "lucide-react";
 import { CodeBlock, InlineCode } from "@/components/ui/code-block";
 import { cn } from "@/lib/utils";
 
@@ -82,6 +82,19 @@ export function NoteCode({ code, filename, compact = false }: { code: string; fi
   return <div className="mt-5"><CodeBlock code={code} filename={filename} compact={compact} /></div>;
 }
 
+export function NoteOutput({ title = "Output / Result", code, children }: { title?: string; code?: string; children?: ReactNode }) {
+  return (
+    <div className="mt-4 overflow-hidden rounded-xl border border-sky/20 bg-sky/[0.04]">
+      <div className="flex items-center gap-2 border-b border-sky/15 px-3.5 py-2 text-[12px] font-medium text-sky">
+        <Terminal className="size-3.5" aria-hidden />
+        {title}
+      </div>
+      {code ? <pre className="overflow-x-auto p-3 font-mono text-[13px] leading-6 text-mist"><code>{code}</code></pre> : null}
+      {children ? <div className="p-3">{children}</div> : null}
+    </div>
+  );
+}
+
 export function NoteTakeaways({ items }: { items: ReactNode[] }) {
   return (
     <div className="mt-8 rounded-xl border border-line bg-raised/60 p-4 sm:p-5">
@@ -112,6 +125,102 @@ export function NoteCardGrid({ items }: { items: Array<{ title: string; body: Re
           </div>
         );
       })}
+    </div>
+  );
+}
+
+export function CodeWithOutput({
+  title,
+  code,
+  output,
+  note,
+  preview,
+}: {
+  title?: string;
+  code: string;
+  output?: string;
+  preview?: ReactNode;
+  note?: ReactNode;
+}) {
+  return (
+    <div className="mt-5 overflow-hidden rounded-xl border border-line bg-surface">
+      {title ? <div className="border-b border-line px-4 py-2 text-[14px] font-semibold text-mist">{title}</div> : null}
+      <div className="grid gap-0 md:grid-cols-2">
+        <div className="border-b border-line md:border-b-0 md:border-r">
+          <div className="flex items-center gap-2 border-b border-line px-3.5 py-2 text-[12px] font-medium text-faint">
+            <CodeBlock code="" filename="code" />
+          </div>
+          <CodeBlock code={code} filename="example" showLineNumbers compact className="rounded-none border-0" />
+        </div>
+        <div>
+          <div className="flex items-center gap-2 border-b border-line px-3.5 py-2 text-[12px] font-medium text-sky">
+            <Eye className="size-3.5" aria-hidden />
+            Output / Rendered result
+          </div>
+          {preview ? (
+            <div className="p-3">
+              <div className="rounded-lg border border-line bg-canvas/70 p-3">{preview}</div>
+            </div>
+          ) : null}
+          {output ? (
+            <pre className="overflow-x-auto p-3 font-mono text-[13px] leading-6 text-mist"><code>{output}</code></pre>
+          ) : null}
+          {!preview && !output ? <div className="p-3 text-[13px] text-faint">No output shown.</div> : null}
+        </div>
+      </div>
+      {note ? <div className="border-t border-line px-4 py-2 text-[14px] text-muted">{note}</div> : null}
+    </div>
+  );
+}
+
+export function TableWithOutput({
+  caption,
+  headers,
+  rows,
+}: {
+  caption?: string;
+  headers: string[];
+  rows: Array<{ pattern: string; exampleCode?: string; outputPreview?: ReactNode; outputText?: string; notes: string }>;
+}) {
+  return (
+    <div className="mt-6 overflow-x-auto rounded-xl border border-line">
+      {caption ? <div className="border-b border-line bg-surface/80 px-4 py-2 text-[14px] font-semibold text-mist">{caption}</div> : null}
+      <table className="w-full min-w-[880px] text-left text-[14px]">
+        <thead className="bg-surface/80 text-[13px] text-faint">
+          <tr>
+            {headers.map((h) => (
+              <th key={h} className="px-3 py-2 font-semibold">{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-line">
+          {rows.map((row, i) => (
+            <tr key={i} className="align-top">
+              <td className="px-3 py-3 font-mono text-[12.5px] text-violet">{row.pattern}</td>
+              <td className="px-3 py-3">
+                {row.exampleCode ? (
+                  <pre className="overflow-x-auto rounded-lg border border-line bg-canvas/80 p-2 font-mono text-[12.5px] leading-5 text-mist"><code>{row.exampleCode}</code></pre>
+                ) : (
+                  <span className="text-faint">—</span>
+                )}
+              </td>
+              <td className="px-3 py-3">
+                {row.outputPreview ? (
+                  <div className="rounded-lg border border-sky/20 bg-sky/[0.04] p-2">
+                    <p className="mb-1 font-mono text-[11px] uppercase tracking-wide text-sky">Rendered output</p>
+                    {row.outputPreview}
+                  </div>
+                ) : row.outputText ? (
+                  <pre className="overflow-x-auto rounded-lg border border-sky/20 bg-sky/[0.04] p-2 font-mono text-[12.5px] leading-5 text-mist"><code>{row.outputText}</code></pre>
+                ) : (
+                  <span className="text-faint">—</span>
+                )}
+              </td>
+              <td className="px-3 py-3 text-muted">{row.notes}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

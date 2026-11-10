@@ -1,4 +1,5 @@
 import { NoteCallout, NoteCode, NoteHeading, NoteList, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
+import { TableWithOutput } from "@/components/notes/note-blocks";
 import { AnimatedFlow, ComparePanels, KeyVisualizer, RuleGrid, SectionHero, SyntaxMatrix, Tabs } from "./shared/visuals";
 
 export function RenderingListsInJsxR3S11() {
@@ -55,15 +56,116 @@ export function RenderingListsInJsxR3S11() {
         { title: "No key warnings", body: "Missing/unstable keys can cause subtle bugs even when UI ‘looks fine’ initially." },
       ]} />
 
-      <NoteHeading>Advanced list patterns</NoteHeading>
-      <SyntaxMatrix rows={[
-        { syntax: "Conditional items", example: "items.map(i => show(i) && <Row key={i.id}/>)", note: "May insert false/null in array; prefer filter before map.", valid: true },
-        { syntax: "reduce to nodes", example: "items.reduce((acc, i) => [...], [])", note: "Useful for separators/complex accumulation." },
-        { syntax: "Interleaving separators", example: "items.flatMap((i,idx)=> idx?[<Sep key=.../>,<I/>]:[<I/>])", note: "Ensure every element in result has a stable key." },
-        { syntax: "Windowing/virtualization", example: "render visible slice only", note: "Performance pattern for very large lists (libraries/common technique)." },
-        { syntax: "Pagination/infinite", example: "concat pages then map", note: "Maintain stable ids across pages; handle loading/empty states." },
-        { syntax: "Grouped rendering", example: "Object.groupBy/map groups", note: "Render section headers + nested lists with proper keys at each level." },
-      ]} />
+      <NoteHeading>Advanced list patterns (code → actual output)</NoteHeading>
+      <NoteText>Same sample data shown for each pattern so you can see exactly what renders.</NoteText>
+      <TableWithOutput
+        headers={["Syntax / Pattern", "Example (with data)", "Output / Rendered result", "Notes"]}
+        rows={[
+          {
+            pattern: "Conditional items",
+            exampleCode: `const items = [
+  { id: 1, name: "A", show: true },
+  { id: 2, name: "B", show: false },
+  { id: 3, name: "C", show: true },
+];
+
+<ul>
+  {items.map(i => show(i) && <li key={i.id}>{i.name}</li>)}
+</ul>
+// children array: [<li>A</li>, false, <li>C</li>]`,
+            outputPreview: (
+              <ul className="list-disc pl-5 text-[13px] text-mist">
+                <li>A</li>
+                <li>C</li>
+              </ul>
+            ),
+            outputText: "Renders only A, C. But map produced [<A>, false, <C>] (false is ignored).",
+            notes: "May insert false/null in array; prefer filter before map for clarity.",
+          },
+          {
+            pattern: "reduce to nodes",
+            exampleCode: `const items = ["A", "B", "C"];
+
+<ul>
+  {items.reduce((acc, name, i) => {
+    acc.push(<li key={name}>{name}</li>);
+    return acc;
+  }, [])}
+</ul>`,
+            outputPreview: (
+              <ul className="list-disc pl-5 text-[13px] text-mist">
+                <li>A</li>
+                <li>B</li>
+                <li>C</li>
+              </ul>
+            ),
+            outputText: "Final children: [<li>A</li>, <li>B</li>, <li>C</li>]",
+            notes: "Useful for separators/complex accumulation where map is awkward.",
+          },
+          {
+            pattern: "Interleaving separators",
+            exampleCode: `const items = ["A", "B", "C"];
+
+<p>
+  {items.flatMap((name, idx) =>
+    idx ? [<span key={"s"+idx}> | </span>, <b key={name}>{name}</b>] : [<b key={name}>{name}</b>]
+  )}
+</p>`,
+            outputPreview: (
+              <p className="text-[13px] text-mist"><b>A</b><span> | </span><b>B</b><span> | </span><b>C</b></p>
+            ),
+            outputText: 'Rendered text: "A | B | C"',
+            notes: "Ensure every element in result has a stable key (separators included).",
+          },
+          {
+            pattern: "Windowing/virtualization",
+            exampleCode: `const all = Array.from({length: 10000}, (_,i)=>({id:i, name:"Row "+i}));
+const visible = all.slice(100, 105); // only viewport rows
+
+<ul>{visible.map(r => <li key={r.id}>{r.name}</li>)}</ul>`,
+            outputPreview: (
+              <ul className="list-disc pl-5 text-[13px] text-mist">
+                <li>Row 100</li><li>Row 101</li><li>Row 102</li><li>Row 103</li><li>Row 104</li>
+              </ul>
+            ),
+            outputText: "DOM contains only 5 items instead of 10,000; on scroll, slice changes.",
+            notes: "Performance pattern for very large lists (libraries/common technique).",
+          },
+          {
+            pattern: "Pagination/infinite",
+            exampleCode: `const pages = [
+  [{id:1,name:"A"},{id:2,name:"B"}],
+  [{id:3,name:"C"}],
+];
+const items = pages.flat(); // concat pages
+<ul>{items.map(x => <li key={x.id}>{x.name}</li>)}</ul>`,
+            outputPreview: (
+              <ul className="list-disc pl-5 text-[13px] text-mist"><li>A</li><li>B</li><li>C</li></ul>
+            ),
+            outputText: "Page 1 -> [A,B], after loading page 2 -> [A,B,C] appended.",
+            notes: "Maintain stable ids across pages; handle loading/empty states.",
+          },
+          {
+            pattern: "Grouped rendering",
+            exampleCode: `const groups = { Fruit: [{id:1,name:"Apple"}], Veg: [{id:2,name:"Carrot"}] };
+
+{Object.entries(groups).map(([label, items]) => (
+  <section key={label}>
+    <h4>{label}</h4>
+    <ul>{items.map(i => <li key={i.id}>{i.name}</li>)}</ul>
+  </section>
+))}`,
+            outputPreview: (
+              <div className="space-y-1 text-[13px] text-mist">
+                <div><p className="font-semibold">Fruit</p><ul className="list-disc pl-5"><li>Apple</li></ul></div>
+                <div><p className="font-semibold">Veg</p><ul className="list-disc pl-5"><li>Carrot</li></ul></div>
+              </div>
+            ),
+            outputText: "Section 'Fruit' with [Apple], section 'Veg' with [Carrot].",
+            notes: "Render section headers + nested lists with proper keys at each level.",
+          },
+        ]}
+      />
 
       <NoteTakeaways items={[
         "Use map/filter/sort/flatMap to transform data into renderable lists; keep transforms readable.",
