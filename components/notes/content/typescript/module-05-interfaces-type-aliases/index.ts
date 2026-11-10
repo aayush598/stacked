@@ -1,28 +1,28 @@
 import type { ComponentType } from "react";
-import { WhatIsInterfaceNote } from "./01-what-is-interface";
-import { WhatIsTypeAliasNote } from "./02-what-is-type-alias";
-import { InterfaceVsTypeNote } from "./03-interface-vs-type";
-import { ExtendingInterfacesNote } from "./04-extending-interfaces";
-import { IntersectionTypesNote } from "./05-intersection-types";
-import { UnionTypesNote } from "./06-union-types";
-import { DeclarationMergingNote } from "./07-declaration-merging";
-import { IndexSignaturesNote } from "./08-index-signatures";
-import { CallableInterfacesNote } from "./09-callable-interfaces";
-import { ConstructableInterfacesNote } from "./10-constructable-interfaces";
-import { HybridTypesNote } from "./11-hybrid-types";
-import { BestPracticesM5Note } from "./12-best-practices";
+import { WhatIsAnInterface51 } from "./01-what-is-an-interface";
+import { WhatIsATypeAlias52 } from "./02-what-is-a-type-alias";
+import { InterfaceVsType53 } from "./03-interface-vs-type";
+import { ExtendingInterfaces54 } from "./04-extending-interfaces";
+import { IntersectionTypes55 } from "./05-intersection-types";
+import { UnionTypes56 } from "./06-union-types";
+import { DeclarationMerging57 } from "./07-declaration-merging";
+import { IndexSignatures58 } from "./08-index-signatures";
+import { CallableInterfaces59 } from "./09-callable-interfaces";
+import { ConstructableInterfaces510 } from "./10-constructable-interfaces";
+import { HybridTypes511 } from "./11-hybrid-types";
+import { BestPractices512 } from "./12-best-practices";
 
 export const module05Content: Record<string, ComponentType> = {
-  "ts-m05-s01": WhatIsInterfaceNote,
-  "ts-m05-s02": WhatIsTypeAliasNote,
-  "ts-m05-s03": InterfaceVsTypeNote,
-  "ts-m05-s04": ExtendingInterfacesNote,
-  "ts-m05-s05": IntersectionTypesNote,
-  "ts-m05-s06": UnionTypesNote,
-  "ts-m05-s07": DeclarationMergingNote,
-  "ts-m05-s08": IndexSignaturesNote,
-  "ts-m05-s09": CallableInterfacesNote,
-  "ts-m05-s10": ConstructableInterfacesNote,
-  "ts-m05-s11": HybridTypesNote,
-  "ts-m05-s12": BestPracticesM5Note,
+  "ts-m05-s01": WhatIsAnInterface51,
+  "ts-m05-s02": WhatIsATypeAlias52,
+  "ts-m05-s03": InterfaceVsType53,
+  "ts-m05-s04": ExtendingInterfaces54,
+  "ts-m05-s05": IntersectionTypes55,
+  "ts-m05-s06": UnionTypes56,
+  "ts-m05-s07": DeclarationMerging57,
+  "ts-m05-s08": IndexSignatures58,
+  "ts-m05-s09": CallableInterfaces59,
+  "ts-m05-s10": ConstructableInterfaces510,
+  "ts-m05-s11": HybridTypes511,
+  "ts-m05-s12": BestPractices512,
 };

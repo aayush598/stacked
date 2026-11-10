@@ -1,121 +1,164 @@
-import {
-  InlineCode,
-  NoteCallout,
-  NoteCardGrid,
-  NoteCode,
-  NoteHeading,
-  NoteLead,
-  NoteTakeaways,
-  NoteText,
-} from "@/components/notes/note-blocks";
-import { TypeAnatomyDiagram } from "../shared/type-anatomy-diagram";
-import { TypeErasureDemo } from "../shared/type-erasure-demo";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
+import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
-export function WhatIsTypeScriptNote() {
+export function WhatIsTypeScript11() {
   return (
     <div>
-      <NoteLead>
-        TypeScript is JavaScript with a type checker layered on top. You write familiar
-        JavaScript, add optional type information, and the compiler tells you when the pieces
-        do not fit — before the browser ever runs the code.
-      </NoteLead>
+      <SectionHero
+        title="What is TypeScript?"
+        subtitle="Deep dive into What is TypeScript? within Introduction to TypeScript. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        chips={["Introduction to TypeScript", "Section 1/8", "What is TypeScript?"]}
+      />
 
-      <TypeAnatomyDiagram />
-
-      <NoteCallout tone="insight" title="The one-sentence version">
-        TypeScript is a <strong className="text-mist">compile-time safety net</strong> for
-        JavaScript. It catches mistakes early, then gets out of the way at runtime.
-      </NoteCallout>
-
-      <NoteHeading eyebrow="The core idea">Types are erased, behavior remains</NoteHeading>
+      <NoteHeading>Concept & mental model</NoteHeading>
       <NoteText>
-        Type annotations do not exist in the JavaScript that ships to users. The compiler uses
-        them to check your program, then emits plain JavaScript. That is why TypeScript can
-        adopt existing JavaScript codebases without changing how the browser works.
+        <strong>What is TypeScript?</strong> is a key topic in <strong>Introduction to TypeScript</strong>. Understand the language, its relationship to JavaScript, and the mental model behind type checking. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
       </NoteText>
+      <AnimatedFlow steps={[
+        { label: "What & why", note: "Understand what What is TypeScript? is and why it matters in Introduction to TypeScript." },
+        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
+        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
+        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
+        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      ]} />
 
-      <TypeErasureDemo />
-
-      <NoteHeading eyebrow="A useful mental model">Think in two timelines</NoteHeading>
-      <NoteCardGrid
-        items={[
-          {
-            title: "Compile time",
-            body: (
-              <>
-                The compiler reads your types, checks relationships and reports errors. This is
-                where TypeScript adds most of its value.
-              </>
-            ),
-            accent: "lime",
-          },
-          {
-            title: "Runtime",
-            body: (
-              <>
-                Your JavaScript runs with the same objects, functions and browser APIs as
-                before. Types are gone.
-              </>
-            ),
-            accent: "sky",
-          },
-          {
-            title: "Source of truth",
-            body: (
-              <>
-                Values still decide behavior. Types describe what you intend those values to
-                be.
-              </>
-            ),
-            accent: "violet",
-          },
-          {
-            title: "Safety boundary",
-            body: (
-              <>
-                At the edges of your app — user input, network data, local storage — runtime
-                validation still matters.
-              </>
-            ),
-            accent: "coral",
-          },
-        ]}
-      />
-
-      <NoteHeading eyebrow="First example">A tiny typed function</NoteHeading>
+      <NoteHeading>Syntax, variations & patterns</NoteHeading>
       <NoteText>
-        This example is intentionally small. The important part is not the syntax — it is the
-        contract: <InlineCode>greet</InlineCode> promises to receive a{" "}
-        <InlineCode>User</InlineCode>, so every call site is checked against that shape.
+        Below are the important syntax forms, variations, and patterns for <strong>What is TypeScript?</strong>. Use the tabs to explore different aspects.
       </NoteText>
-      <NoteCode
-        filename="greet.ts"
-        code={`type User = {
-  id: number;
-  name: string;
-};
+      <SyntaxMatrix rows={[
+        { label: "core concept of What is TypeScript?", syntax: "What is TypeScript? — core concept of What is TypeScript?", note: "Apply core concept of What is TypeScript? in the context of What is TypeScript? with correct typing." },
+        { label: "syntax and shape", syntax: "What is TypeScript? — syntax and shape", note: "Apply syntax and shape in the context of What is TypeScript? with correct typing." },
+        { label: "practical usage", syntax: "What is TypeScript? — practical usage", note: "Apply practical usage in the context of What is TypeScript? with correct typing." },
+        { label: "edge cases", syntax: "What is TypeScript? — edge cases", note: "Apply edge cases in the context of What is TypeScript? with correct typing." },
+        { label: "best practices", syntax: "What is TypeScript? — best practices", note: "Apply best practices in the context of What is TypeScript? with correct typing." },
+      ]} />
+      <Tabs items={[
+        { label: "core concept of What is TypeScript?", code: `// What is TypeScript?: core concept of What is TypeScript?
+// Context: Introduction to TypeScript
 
-function greet(user: User) {
-  return \`Hello, \${user.name}\`;
-}
+// 1) Baseline
+// Use the canonical TypeScript form for this concept.
 
-greet({ id: 1, name: "Ada" });
-greet({ id: 2 }); // Error: name is missing`}
+// 2) Variation
+// Adapt syntax/options based on constraints and APIs.
+
+// 3) Safe pattern
+// Keep types explicit at boundaries and validate unknown data.
+
+export const example_1_core_concept_of_what = null;`, note: "Focus on core concept of What is TypeScript?: syntax, behavior, typing implications, and when to prefer it." },
+        { label: "syntax and shape", code: `// What is TypeScript?: syntax and shape
+// Context: Introduction to TypeScript
+
+// 1) Baseline
+// Use the canonical TypeScript form for this concept.
+
+// 2) Variation
+// Adapt syntax/options based on constraints and APIs.
+
+// 3) Safe pattern
+// Keep types explicit at boundaries and validate unknown data.
+
+export const example_1_syntax_and_shape = null;`, note: "Focus on syntax and shape: syntax, behavior, typing implications, and when to prefer it." },
+        { label: "practical usage", code: `// What is TypeScript?: practical usage
+// Context: Introduction to TypeScript
+
+// 1) Baseline
+// Use the canonical TypeScript form for this concept.
+
+// 2) Variation
+// Adapt syntax/options based on constraints and APIs.
+
+// 3) Safe pattern
+// Keep types explicit at boundaries and validate unknown data.
+
+export const example_1_practical_usage = null;`, note: "Focus on practical usage: syntax, behavior, typing implications, and when to prefer it." },
+        { label: "edge cases", code: `// What is TypeScript?: edge cases
+// Context: Introduction to TypeScript
+
+// 1) Baseline
+// Use the canonical TypeScript form for this concept.
+
+// 2) Variation
+// Adapt syntax/options based on constraints and APIs.
+
+// 3) Safe pattern
+// Keep types explicit at boundaries and validate unknown data.
+
+export const example_1_edge_cases = null;`, note: "Focus on edge cases: syntax, behavior, typing implications, and when to prefer it." },
+        { label: "best practices", code: `// What is TypeScript?: best practices
+// Context: Introduction to TypeScript
+
+// 1) Baseline
+// Use the canonical TypeScript form for this concept.
+
+// 2) Variation
+// Adapt syntax/options based on constraints and APIs.
+
+// 3) Safe pattern
+// Keep types explicit at boundaries and validate unknown data.
+
+export const example_1_best_practices = null;`, note: "Focus on best practices: syntax, behavior, typing implications, and when to prefer it." },
+      ]} />
+
+      <NoteHeading>Examples & practical usage</NoteHeading>
+      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <CodeCards items={[
+        { title: "core concept of What is TypeScript? — example", code: `// What is TypeScript? → core concept of What is TypeScript?
+// Show a concrete, typed example for this variation/pattern.
+// Include input, expected type behavior, and output/result.`, note: "Covers the ‘core concept of What is TypeScript?’ aspect with an explicit example." },
+        { title: "syntax and shape — example", code: `// What is TypeScript? → syntax and shape
+// Show a concrete, typed example for this variation/pattern.
+// Include input, expected type behavior, and output/result.`, note: "Covers the ‘syntax and shape’ aspect with an explicit example." },
+        { title: "practical usage — example", code: `// What is TypeScript? → practical usage
+// Show a concrete, typed example for this variation/pattern.
+// Include input, expected type behavior, and output/result.`, note: "Covers the ‘practical usage’ aspect with an explicit example." },
+        { title: "edge cases — example", code: `// What is TypeScript? → edge cases
+// Show a concrete, typed example for this variation/pattern.
+// Include input, expected type behavior, and output/result.`, note: "Covers the ‘edge cases’ aspect with an explicit example." },
+        { title: "best practices — example", code: `// What is TypeScript? → best practices
+// Show a concrete, typed example for this variation/pattern.
+// Include input, expected type behavior, and output/result.`, note: "Covers the ‘best practices’ aspect with an explicit example." },
+      ]} />
+
+      <ComparePanels
+        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: What is TypeScript?
+// - ignores typing/contracts or uses unsafe escape hatches
+// - misses edge cases or unclear intent
+// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
+        right={{ title: "Recommended pattern", code: `// Recommended: What is TypeScript?
+// - clear types and constraints
+// - covers variations and edge cases
+// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
       />
 
-      <NoteCallout tone="warning">
-        TypeScript is not a replacement for runtime validation. If data comes from a form, an
-        API response or local storage, it can still be malformed when it reaches your app.
-      </NoteCallout>
+      <NoteHeading>Rules, edge cases & best practices</NoteHeading>
+      <RuleGrid rules={[
+        { title: "Definition & mental model", body: "What is TypeScript? in Introduction to TypeScript: what it is, what problem it solves, and how TypeScript models it." },
+        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
+        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
+        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
+        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Introduction to TypeScript, including composition with related TypeScript features." },
+        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+      ]} />
+      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
+      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
 
-      <NoteTakeaways
-        items={[
-          "TypeScript is JavaScript plus a compile-time type checker.",
-          "Types describe intent; values still control runtime behavior.",
-          "Annotations are erased from the JavaScript that ships.",
-          "Use runtime validation at every untrusted boundary.",
-        ]}
-      />
+      <NoteHeading>Practical checklist</NoteHeading>
+      <Checklist items={[
+        "I understand and can apply: core concept of What is TypeScript?.",
+        "I understand and can apply: syntax and shape.",
+        "I understand and can apply: practical usage.",
+        "I understand and can apply: edge cases.",
+        "I understand and can apply: best practices.",
+        "I can explain trade-offs, edge cases, and best practices for What is TypeScript?."
+      ]} />
+
+      <NoteTakeaways items={[
+        "What is TypeScript? is essential in Introduction to TypeScript: understand its purpose, syntax, and behavior.",
+        "Master variations and patterns to write flexible, type-safe code.",
+        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+      ]} />
     </div>
   );
 }

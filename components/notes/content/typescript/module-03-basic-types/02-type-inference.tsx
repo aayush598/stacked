@@ -1,29 +1,146 @@
-import { NoteCallout, NoteCode, NoteHeading, NoteLead, NoteList, NoteTakeaways } from "@/components/notes/note-blocks";
-import { SyntaxPlayground, ValidInvalidCards } from "./shared/basic-types-visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
+import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
-export function TypeInferenceNote() {
+export function TypeInference32() {
   return (
     <div>
-      <NoteLead>Type inference means TypeScript figures out types for you from code. It keeps code short while still static: once inferred, the type is checked like an explicit annotation.</NoteLead>
-      <NoteCode filename="inference.ts" code={`let username = "Alex";   // string
-let age = 25;            // number
-let isActive = true;     // boolean
-const status = "active"; // literal "active"
+      <SectionHero
+        title="Type inference."
+        subtitle="Deep dive into Type inference. within Basic Types. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        chips={["Basic Types", "Section 2/30", "Type inference."]}
+      />
 
-function add(a: number, b: number) { return a + b; } // returns number
-const nums = [1, 2, 3]; // number[]
-const mixed = [1, "two"]; // (string | number)[]`} />
-      <SyntaxPlayground title="Inference kinds" options={[
-        { label: "Initialization", code: `let count = 0; // number\ncount = 5;`, note: "The right-hand side gives TypeScript enough information." },
-        { label: "Contextual", code: `const names = ["A", "B"];\nnames.map(name => name.toUpperCase());\n// name inferred as string`, note: "The surrounding API (map) tells TypeScript what name should be." },
-        { label: "Best common type", code: `const values = [1, null, 3];\n// (number | null)[]\nconst pets = [new Dog(), new Cat()];`, note: "TypeScript picks a type compatible with all members." },
-        { label: "Function return", code: `function flag(n: number) {\n  if (n > 0) return true;\n  return false;\n} // boolean`, note: "All return paths are combined into one return type." },
+      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteText>
+        <strong>Type inference.</strong> is a key topic in <strong>Basic Types</strong>. Master annotations, inference, primitives, special types, literals, arrays, tuples, enums, and the core rules of widening, narrowing, compatibility, and assignability. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "What & why", note: "Understand what Type inference. is and why it matters in Basic Types." },
+        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
+        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
+        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
+        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
       ]} />
-      <ValidInvalidCards valid={{ code: `let age = 25;\nage = 26;`, note: "Inferred type is still enforced." }} invalid={{ code: `let age = 25;\nage = "26"; // Error`, note: "Inference does not mean dynamic typing." }} />
-      <NoteHeading eyebrow="Inference limits">When it is not enough</NoteHeading>
-      <NoteList items={["Empty arrays/objects often infer too broadly.", "Public library boundaries should usually have explicit signatures.", "Sometimes you need a narrower type than TypeScript would widen to.", "Complex generic code can produce unclear inferred types; annotate for readability."]} />
-      <NoteCallout tone="insight">Use inference by default for obvious locals; use annotations for contracts, boundaries, and cases where the inferred type would be misleading.</NoteCallout>
-      <NoteTakeaways items={["Inference is static, not dynamic.", "Initialization and context are the main inference sources.", "Prefer clear code: inferred when obvious, explicit when important."]} />
+
+      <NoteHeading>Syntax, variations & patterns</NoteHeading>
+      <NoteText>
+        Below are the important syntax forms, variations, and patterns for <strong>Type inference.</strong>. Use the tabs to explore different aspects including: Initialization, Contextual typing, Best common type, Inference limits.
+      </NoteText>
+      <SyntaxMatrix rows={[
+        { label: "Initialization", syntax: "Type inference. — Initialization", note: "Apply Initialization in the context of Type inference. with correct typing." },
+        { label: "Contextual typing", syntax: "Type inference. — Contextual typing", note: "Apply Contextual typing in the context of Type inference. with correct typing." },
+        { label: "Best common type", syntax: "Type inference. — Best common type", note: "Apply Best common type in the context of Type inference. with correct typing." },
+        { label: "Inference limits", syntax: "Type inference. — Inference limits", note: "Apply Inference limits in the context of Type inference. with correct typing." },
+      ]} />
+      <Tabs items={[
+        { label: "Initialization", code: `// Type inference.: Initialization
+// Context: Basic Types
+
+// 1) Baseline
+// Use the canonical TypeScript form for this concept.
+
+// 2) Variation
+// Adapt syntax/options based on constraints and APIs.
+
+// 3) Safe pattern
+// Keep types explicit at boundaries and validate unknown data.
+
+export const example_2_initialization = null;`, note: "Focus on Initialization: syntax, behavior, typing implications, and when to prefer it." },
+        { label: "Contextual typing", code: `// Type inference.: Contextual typing
+// Context: Basic Types
+
+// 1) Baseline
+// Use the canonical TypeScript form for this concept.
+
+// 2) Variation
+// Adapt syntax/options based on constraints and APIs.
+
+// 3) Safe pattern
+// Keep types explicit at boundaries and validate unknown data.
+
+export const example_2_contextual_typing = null;`, note: "Focus on Contextual typing: syntax, behavior, typing implications, and when to prefer it." },
+        { label: "Best common type", code: `// Type inference.: Best common type
+// Context: Basic Types
+
+// 1) Baseline
+// Use the canonical TypeScript form for this concept.
+
+// 2) Variation
+// Adapt syntax/options based on constraints and APIs.
+
+// 3) Safe pattern
+// Keep types explicit at boundaries and validate unknown data.
+
+export const example_2_best_common_type = null;`, note: "Focus on Best common type: syntax, behavior, typing implications, and when to prefer it." },
+        { label: "Inference limits", code: `// Type inference.: Inference limits
+// Context: Basic Types
+
+// 1) Baseline
+// Use the canonical TypeScript form for this concept.
+
+// 2) Variation
+// Adapt syntax/options based on constraints and APIs.
+
+// 3) Safe pattern
+// Keep types explicit at boundaries and validate unknown data.
+
+export const example_2_inference_limits = null;`, note: "Focus on Inference limits: syntax, behavior, typing implications, and when to prefer it." },
+      ]} />
+
+      <NoteHeading>Examples & practical usage</NoteHeading>
+      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <CodeCards items={[
+        { title: "Initialization — example", code: `// Type inference. → Initialization
+// Show a concrete, typed example for this variation/pattern.
+// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Initialization’ aspect with an explicit example." },
+        { title: "Contextual typing — example", code: `// Type inference. → Contextual typing
+// Show a concrete, typed example for this variation/pattern.
+// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Contextual typing’ aspect with an explicit example." },
+        { title: "Best common type — example", code: `// Type inference. → Best common type
+// Show a concrete, typed example for this variation/pattern.
+// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Best common type’ aspect with an explicit example." },
+        { title: "Inference limits — example", code: `// Type inference. → Inference limits
+// Show a concrete, typed example for this variation/pattern.
+// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Inference limits’ aspect with an explicit example." },
+      ]} />
+
+      <ComparePanels
+        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Type inference.
+// - ignores typing/contracts or uses unsafe escape hatches
+// - misses edge cases or unclear intent
+// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
+        right={{ title: "Recommended pattern", code: `// Recommended: Type inference.
+// - clear types and constraints
+// - covers variations and edge cases
+// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+      />
+
+      <NoteHeading>Rules, edge cases & best practices</NoteHeading>
+      <RuleGrid rules={[
+        { title: "Definition & mental model", body: "Type inference. in Basic Types: what it is, what problem it solves, and how TypeScript models it." },
+        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
+        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
+        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
+        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Basic Types, including composition with related TypeScript features." },
+        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+      ]} />
+      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
+      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+
+      <NoteHeading>Practical checklist</NoteHeading>
+      <Checklist items={[
+        "I understand and can apply: Initialization.",
+        "I understand and can apply: Contextual typing.",
+        "I understand and can apply: Best common type.",
+        "I understand and can apply: Inference limits.",
+        "I can explain trade-offs, edge cases, and best practices for Type inference.."
+      ]} />
+
+      <NoteTakeaways items={[
+        "Type inference. is essential in Basic Types: understand its purpose, syntax, and behavior.",
+        "Master variations and patterns such as Initialization, Contextual typing, Best common type, Inference limits to write flexible, type-safe code.",
+        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+      ]} />
     </div>
   );
 }

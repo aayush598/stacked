@@ -1,28 +1,28 @@
 import type { ComponentType } from "react";
-import { TypeInferenceM18Note } from "./01-type-inference";
-import { BestCommonTypeNote } from "./02-best-common-type";
-import { ContextualTypingNote } from "./03-contextual-typing";
-import { TypeWideningM18Note } from "./04-type-widening";
-import { TypeNarrowingM18Note } from "./05-type-narrowing";
-import { LiteralWideningNote } from "./06-literal-widening";
-import { FreshObjectLiteralsNote } from "./07-fresh-object-literals";
-import { ExcessPropertyChecksNote } from "./08-excess-property-checks";
-import { StructuralTypingNote } from "./09-structural-typing";
-import { NominalTypingNote } from "./10-nominal-typing";
-import { AssignabilityM18Note } from "./11-assignability";
-import { TypeCompatibilityNote } from "./12-type-compatibility";
+import { TypeInference181 } from "./01-type-inference";
+import { BestCommonType182 } from "./02-best-common-type";
+import { ContextualTyping183 } from "./03-contextual-typing";
+import { TypeWidening184 } from "./04-type-widening";
+import { TypeNarrowing185 } from "./05-type-narrowing";
+import { LiteralWidening186 } from "./06-literal-widening";
+import { FreshObjectLiterals187 } from "./07-fresh-object-literals";
+import { ExcessPropertyChecks188 } from "./08-excess-property-checks";
+import { StructuralTyping189 } from "./09-structural-typing";
+import { NominalTyping1810 } from "./10-nominal-typing";
+import { Assignability1811 } from "./11-assignability";
+import { TypeCompatibility1812 } from "./12-type-compatibility";
 
 export const module18Content: Record<string, ComponentType> = {
-  "ts-m18-s01": TypeInferenceM18Note,
-  "ts-m18-s02": BestCommonTypeNote,
-  "ts-m18-s03": ContextualTypingNote,
-  "ts-m18-s04": TypeWideningM18Note,
-  "ts-m18-s05": TypeNarrowingM18Note,
-  "ts-m18-s06": LiteralWideningNote,
-  "ts-m18-s07": FreshObjectLiteralsNote,
-  "ts-m18-s08": ExcessPropertyChecksNote,
-  "ts-m18-s09": StructuralTypingNote,
-  "ts-m18-s10": NominalTypingNote,
-  "ts-m18-s11": AssignabilityM18Note,
-  "ts-m18-s12": TypeCompatibilityNote,
+  "ts-m18-s01": TypeInference181,
+  "ts-m18-s02": BestCommonType182,
+  "ts-m18-s03": ContextualTyping183,
+  "ts-m18-s04": TypeWidening184,
+  "ts-m18-s05": TypeNarrowing185,
+  "ts-m18-s06": LiteralWidening186,
+  "ts-m18-s07": FreshObjectLiterals187,
+  "ts-m18-s08": ExcessPropertyChecks188,
+  "ts-m18-s09": StructuralTyping189,
+  "ts-m18-s10": NominalTyping1810,
+  "ts-m18-s11": Assignability1811,
+  "ts-m18-s12": TypeCompatibility1812,
 };

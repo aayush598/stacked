@@ -1,34 +1,34 @@
 import type { ComponentType } from "react";
-import { WhatAreConditionalTypesNote } from "./01-what-are-conditional-types";
-import { ExtendsKeywordNote } from "./02-extends-keyword";
-import { ConditionalTypeSyntaxNote } from "./03-conditional-type-syntax";
-import { InferKeywordNote } from "./04-infer-keyword";
-import { DistributiveConditionalTypesNote } from "./05-distributive-conditional-types";
-import { NakedTypeParametersNote } from "./06-naked-type-parameters";
-import { NonDistributiveTypesNote } from "./07-non-distributive-types";
-import { ConditionalTypeConstraintsNote } from "./08-conditional-type-constraints";
-import { RecursiveConditionalTypesNote } from "./09-recursive-conditional-types";
-import { ConditionalTypesWithUnionsNote } from "./10-conditional-types-with-unions";
-import { ConditionalTypesWithNeverNote } from "./11-conditional-types-with-never";
-import { ConditionalTypesWithInferNote } from "./12-conditional-types-with-infer";
-import { ReturnTypeNote } from "./13-returntype";
-import { ParametersNote } from "./14-parameters";
-import { AwaitedNote } from "./15-awaited";
+import { WhatAreConditionalTypes161 } from "./01-what-are-conditional-types";
+import { ExtendsKeyword162 } from "./02-extends-keyword";
+import { ConditionalTypeSyntax163 } from "./03-conditional-type-syntax";
+import { InferKeyword164 } from "./04-infer-keyword";
+import { DistributiveConditionalTypes165 } from "./05-distributive-conditional-types";
+import { NakedTypeParameters166 } from "./06-naked-type-parameters";
+import { NonDistributiveTypes167 } from "./07-non-distributive-types";
+import { ConditionalTypeConstraints168 } from "./08-conditional-type-constraints";
+import { RecursiveConditionalTypes169 } from "./09-recursive-conditional-types";
+import { ConditionalTypesWithUnions1610 } from "./10-conditional-types-with-unions";
+import { ConditionalTypesWithNever1611 } from "./11-conditional-types-with-never";
+import { ConditionalTypesWithInfer1612 } from "./12-conditional-types-with-infer";
+import { ReturnType1613 } from "./13-returntype";
+import { Parameters1614 } from "./14-parameters";
+import { Awaited1615 } from "./15-awaited";
 
 export const module16Content: Record<string, ComponentType> = {
-  "ts-m16-s01": WhatAreConditionalTypesNote,
-  "ts-m16-s02": ExtendsKeywordNote,
-  "ts-m16-s03": ConditionalTypeSyntaxNote,
-  "ts-m16-s04": InferKeywordNote,
-  "ts-m16-s05": DistributiveConditionalTypesNote,
-  "ts-m16-s06": NakedTypeParametersNote,
-  "ts-m16-s07": NonDistributiveTypesNote,
-  "ts-m16-s08": ConditionalTypeConstraintsNote,
-  "ts-m16-s09": RecursiveConditionalTypesNote,
-  "ts-m16-s10": ConditionalTypesWithUnionsNote,
-  "ts-m16-s11": ConditionalTypesWithNeverNote,
-  "ts-m16-s12": ConditionalTypesWithInferNote,
-  "ts-m16-s13": ReturnTypeNote,
-  "ts-m16-s14": ParametersNote,
-  "ts-m16-s15": AwaitedNote,
+  "ts-m16-s01": WhatAreConditionalTypes161,
+  "ts-m16-s02": ExtendsKeyword162,
+  "ts-m16-s03": ConditionalTypeSyntax163,
+  "ts-m16-s04": InferKeyword164,
+  "ts-m16-s05": DistributiveConditionalTypes165,
+  "ts-m16-s06": NakedTypeParameters166,
+  "ts-m16-s07": NonDistributiveTypes167,
+  "ts-m16-s08": ConditionalTypeConstraints168,
+  "ts-m16-s09": RecursiveConditionalTypes169,
+  "ts-m16-s10": ConditionalTypesWithUnions1610,
+  "ts-m16-s11": ConditionalTypesWithNever1611,
+  "ts-m16-s12": ConditionalTypesWithInfer1612,
+  "ts-m16-s13": ReturnType1613,
+  "ts-m16-s14": Parameters1614,
+  "ts-m16-s15": Awaited1615,
 };
