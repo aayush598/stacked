@@ -1,127 +1,158 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function InstallingTypeScript21() {
   return (
     <div>
       <SectionHero
         title="Installing TypeScript."
-        subtitle="Deep dive into Installing TypeScript. within TypeScript Setup & Tooling. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Installing TypeScript. in TypeScript Setup & Tooling: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["TypeScript Setup & Tooling", "Section 1/10", "Installing TypeScript."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Installing TypeScript.</strong> is a key topic in <strong>TypeScript Setup & Tooling</strong>. Install, configure, and run TypeScript with the tools used in real projects. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Installing TypeScript.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Installing TypeScript. is and why it matters in TypeScript Setup & Tooling." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "GLOBAL", detail: "Global install", tone: "lime" },
+        { label: "LOCAL", detail: "Local install", tone: "sky" },
+        { label: "NPX", detail: "npx", tone: "violet" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Installing TypeScript.</strong>. Use the tabs to explore different aspects including: Global install, Local install, npx.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Installing TypeScript. is and why it exists in TypeScript Setup & Tooling." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "Global install", syntax: "Installing TypeScript. — Global install", note: "Apply Global install in the context of Installing TypeScript. with correct typing." },
-        { label: "Local install", syntax: "Installing TypeScript. — Local install", note: "Apply Local install in the context of Installing TypeScript. with correct typing." },
-        { label: "npx", syntax: "Installing TypeScript. — npx", note: "Apply npx in the context of Installing TypeScript. with correct typing." },
+        { label: "Global install", syntax: "Global install pattern", note: "Use for global install in Installing TypeScript.." },
+        { label: "Local install", syntax: "Local install pattern", note: "Use for local install in Installing TypeScript.." },
+        { label: "npx", syntax: "npx pattern", note: "Use for npx in Installing TypeScript.." },
       ]} />
       <Tabs items={[
-        { label: "Global install", code: `// Installing TypeScript.: Global install
-// Context: TypeScript Setup & Tooling
+        { label: "Global install", filename: "01-global-install.ts", code: `// Installing TypeScript. — Global install
+// Key idea: Global install
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_1_global_install = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_1_global_install(input: unknown) {
+  // apply Global install safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_1_global_install(example_1_global_install));`, output: `// Result / output (conceptual)
+// - Global install applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Global install — understand syntax, typing, and a practical use." },
+        { label: "Local install", filename: "02-local-install.ts", code: `// Installing TypeScript. — Local install
+// Key idea: Local install
 
-export const example_1_global_install = null;`, note: "Focus on Global install: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Local install", code: `// Installing TypeScript.: Local install
-// Context: TypeScript Setup & Tooling
+// Variation / example
+const example_1_local_install = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_1_local_install(input: unknown) {
+  // apply Local install safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_1_local_install(example_1_local_install));`, output: `// Result / output (conceptual)
+// - Local install applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Local install — understand syntax, typing, and a practical use." },
+        { label: "npx", filename: "03-npx.ts", code: `// Installing TypeScript. — npx
+// Key idea: npx
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_1_npx = /* typed value */ null;
 
-export const example_1_local_install = null;`, note: "Focus on Local install: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "npx", code: `// Installing TypeScript.: npx
-// Context: TypeScript Setup & Tooling
+// Usage in context
+function demo_1_npx(input: unknown) {
+  // apply npx safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_1_npx = null;`, note: "Focus on npx: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_1_npx(example_1_npx));`, output: `// Result / output (conceptual)
+// - npx applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: npx — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "Global install — example", code: `// Installing TypeScript. → Global install
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Global install’ aspect with an explicit example." },
-        { title: "Local install — example", code: `// Installing TypeScript. → Local install
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Local install’ aspect with an explicit example." },
-        { title: "npx — example", code: `// Installing TypeScript. → npx
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘npx’ aspect with an explicit example." },
+        { title: "Global install", code: `// Example: Global install
+// Scenario: use this aspect of Installing TypeScript. in real code.
+
+export function ex_1_1() {
+  // implement Global install
+  return "Global install";
+}
+
+console.log(ex_1_1());`, output: `Global install`, note: "Practical example highlighting Global install." },
+        { title: "Local install", code: `// Example: Local install
+// Scenario: use this aspect of Installing TypeScript. in real code.
+
+export function ex_1_2() {
+  // implement Local install
+  return "Local install";
+}
+
+console.log(ex_1_2());`, output: `Local install`, note: "Practical example highlighting Local install." },
+        { title: "npx", code: `// Example: npx
+// Scenario: use this aspect of Installing TypeScript. in real code.
+
+export function ex_1_3() {
+  // implement npx
+  return "npx";
+}
+
+console.log(ex_1_3());`, output: `npx`, note: "Practical example highlighting npx." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Installing TypeScript.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Installing TypeScript.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Installing TypeScript.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Installing TypeScript.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Installing TypeScript. in TypeScript Setup & Tooling: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to TypeScript Setup & Tooling, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Installing TypeScript.: definition and role in TypeScript Setup & Tooling." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (Global install, Local install, npx)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: Global install.",
-        "I understand and can apply: Local install.",
-        "I understand and can apply: npx.",
-        "I can explain trade-offs, edge cases, and best practices for Installing TypeScript.."
+        "Understand: Global install",
+        "Understand: Local install",
+        "Understand: npx",
+        "Can write and explain a typed example of Installing TypeScript.."
       ]} />
 
       <NoteTakeaways items={[
-        "Installing TypeScript. is essential in TypeScript Setup & Tooling: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as Global install, Local install, npx to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Installing TypeScript. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

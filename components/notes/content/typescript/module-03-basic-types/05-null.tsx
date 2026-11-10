@@ -1,145 +1,186 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function Null35() {
   return (
     <div>
       <SectionHero
         title="Null."
-        subtitle="Deep dive into Null. within Basic Types. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Null. in Basic Types: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Basic Types", "Section 5/30", "Null."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Null.</strong> is a key topic in <strong>Basic Types</strong>. Master annotations, inference, primitives, special types, literals, arrays, tuples, enums, and the core rules of widening, narrowing, compatibility, and assignability. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Null.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Null. is and why it matters in Basic Types." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "INTENTIONA", detail: "Intentional absence", tone: "lime" },
+        { label: "STRICTNULL", detail: "strictNullChecks", tone: "sky" },
+        { label: "NULLABLE", detail: "Nullable unions", tone: "violet" },
+        { label: "??", detail: "?? and ?.", tone: "coral" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Null.</strong>. Use the tabs to explore different aspects including: Intentional absence, strictNullChecks, Nullable unions, ?? and ?..
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Null. is and why it exists in Basic Types." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "Intentional absence", syntax: "Null. — Intentional absence", note: "Apply Intentional absence in the context of Null. with correct typing." },
-        { label: "strictNullChecks", syntax: "Null. — strictNullChecks", note: "Apply strictNullChecks in the context of Null. with correct typing." },
-        { label: "Nullable unions", syntax: "Null. — Nullable unions", note: "Apply Nullable unions in the context of Null. with correct typing." },
-        { label: "?? and ?.", syntax: "Null. — ?? and ?.", note: "Apply ?? and ?. in the context of Null. with correct typing." },
+        { label: "Intentional absence", syntax: "Intentional absence pattern", note: "Use for intentional absence in Null.." },
+        { label: "strictNullChecks", syntax: "strictNullChecks pattern", note: "Use for strictnullchecks in Null.." },
+        { label: "Nullable unions", syntax: "Nullable unions pattern", note: "Use for nullable unions in Null.." },
+        { label: "?? and ?.", syntax: "?? and ?. pattern", note: "Use for ?? and ?. in Null.." },
       ]} />
       <Tabs items={[
-        { label: "Intentional absence", code: `// Null.: Intentional absence
-// Context: Basic Types
+        { label: "Intentional absence", filename: "01-intentional-absenc.ts", code: `// Null. — Intentional absence
+// Key idea: Intentional absence
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_5_intentional_absenc = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_5_intentional_absenc(input: unknown) {
+  // apply Intentional absence safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_5_intentional_absenc(example_5_intentional_absenc));`, output: `// Result / output (conceptual)
+// - Intentional absence applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Intentional absence — understand syntax, typing, and a practical use." },
+        { label: "strictNullChecks", filename: "02-strictnullchecks.ts", code: `// Null. — strictNullChecks
+// Key idea: strictNullChecks
 
-export const example_5_intentional_absence = null;`, note: "Focus on Intentional absence: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "strictNullChecks", code: `// Null.: strictNullChecks
-// Context: Basic Types
+// Variation / example
+const example_5_strictnullchecks = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_5_strictnullchecks(input: unknown) {
+  // apply strictNullChecks safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_5_strictnullchecks(example_5_strictnullchecks));`, output: `// Result / output (conceptual)
+// - strictNullChecks applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: strictNullChecks — understand syntax, typing, and a practical use." },
+        { label: "Nullable unions", filename: "03-nullable-unions.ts", code: `// Null. — Nullable unions
+// Key idea: Nullable unions
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_5_nullable_unions = /* typed value */ null;
 
-export const example_5_strictnullchecks = null;`, note: "Focus on strictNullChecks: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Nullable unions", code: `// Null.: Nullable unions
-// Context: Basic Types
+// Usage in context
+function demo_5_nullable_unions(input: unknown) {
+  // apply Nullable unions safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_5_nullable_unions(example_5_nullable_unions));`, output: `// Result / output (conceptual)
+// - Nullable unions applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Nullable unions — understand syntax, typing, and a practical use." },
+        { label: "?? and ?.", filename: "04-and.ts", code: `// Null. — ?? and ?.
+// Key idea: ?? and ?.
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_5_and = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_5_and(input: unknown) {
+  // apply ?? and ?. safely
+  return input;
+}
 
-export const example_5_nullable_unions = null;`, note: "Focus on Nullable unions: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "?? and ?.", code: `// Null.: ?? and ?.
-// Context: Basic Types
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_5_and = null;`, note: "Focus on ?? and ?.: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_5_and(example_5_and));`, output: `// Result / output (conceptual)
+// - ?? and ?. applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: ?? and ?. — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "Intentional absence — example", code: `// Null. → Intentional absence
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Intentional absence’ aspect with an explicit example." },
-        { title: "strictNullChecks — example", code: `// Null. → strictNullChecks
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘strictNullChecks’ aspect with an explicit example." },
-        { title: "Nullable unions — example", code: `// Null. → Nullable unions
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Nullable unions’ aspect with an explicit example." },
-        { title: "?? and ?. — example", code: `// Null. → ?? and ?.
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘?? and ?.’ aspect with an explicit example." },
+        { title: "Intentional absence", code: `// Example: Intentional absence
+// Scenario: use this aspect of Null. in real code.
+
+export function ex_5_1() {
+  // implement Intentional absence
+  return "Intentional absence";
+}
+
+console.log(ex_5_1());`, output: `Intentional absence`, note: "Practical example highlighting Intentional absence." },
+        { title: "strictNullChecks", code: `// Example: strictNullChecks
+// Scenario: use this aspect of Null. in real code.
+
+export function ex_5_2() {
+  // implement strictNullChecks
+  return "strictNullChecks";
+}
+
+console.log(ex_5_2());`, output: `strictNullChecks`, note: "Practical example highlighting strictNullChecks." },
+        { title: "Nullable unions", code: `// Example: Nullable unions
+// Scenario: use this aspect of Null. in real code.
+
+export function ex_5_3() {
+  // implement Nullable unions
+  return "Nullable unions";
+}
+
+console.log(ex_5_3());`, output: `Nullable unions`, note: "Practical example highlighting Nullable unions." },
+        { title: "?? and ?.", code: `// Example: ?? and ?.
+// Scenario: use this aspect of Null. in real code.
+
+export function ex_5_4() {
+  // implement ?? and ?.
+  return "?? and ?.";
+}
+
+console.log(ex_5_4());`, output: `?? and ?.`, note: "Practical example highlighting ?? and ?.." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Null.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Null.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Null.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Null.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Null. in Basic Types: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Basic Types, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Null.: definition and role in Basic Types." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (Intentional absence, strictNullChecks, Nullable unions)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: Intentional absence.",
-        "I understand and can apply: strictNullChecks.",
-        "I understand and can apply: Nullable unions.",
-        "I understand and can apply: ?? and ?..",
-        "I can explain trade-offs, edge cases, and best practices for Null.."
+        "Understand: Intentional absence",
+        "Understand: strictNullChecks",
+        "Understand: Nullable unions",
+        "Understand: ?? and ?.",
+        "Can write and explain a typed example of Null.."
       ]} />
 
       <NoteTakeaways items={[
-        "Null. is essential in Basic Types: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as Intentional absence, strictNullChecks, Nullable unions, ?? and ?. to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Null. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

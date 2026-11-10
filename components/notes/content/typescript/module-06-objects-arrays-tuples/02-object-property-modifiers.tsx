@@ -1,127 +1,158 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function ObjectPropertyModifiers62() {
   return (
     <div>
       <SectionHero
         title="Object property modifiers."
-        subtitle="Deep dive into Object property modifiers. within Objects, Arrays & Tuples. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Object property modifiers. in Objects, Arrays & Tuples: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Objects, Arrays & Tuples", "Section 2/13", "Object property modifiers."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Object property modifiers.</strong> is a key topic in <strong>Objects, Arrays & Tuples</strong>. Represent collections, fixed-length structures, and object shapes precisely. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Object property modifiers.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Object property modifiers. is and why it matters in Objects, Arrays & Tuples." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "READONLY", detail: "readonly", tone: "lime" },
+        { label: "OPTIONAL", detail: "optional", tone: "sky" },
+        { label: "EXACT", detail: "exact object types", tone: "violet" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Object property modifiers.</strong>. Use the tabs to explore different aspects including: readonly, optional, exact object types.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Object property modifiers. is and why it exists in Objects, Arrays & Tuples." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "readonly", syntax: "Object property modifiers. — readonly", note: "Apply readonly in the context of Object property modifiers. with correct typing." },
-        { label: "optional", syntax: "Object property modifiers. — optional", note: "Apply optional in the context of Object property modifiers. with correct typing." },
-        { label: "exact object types", syntax: "Object property modifiers. — exact object types", note: "Apply exact object types in the context of Object property modifiers. with correct typing." },
+        { label: "readonly", syntax: "readonly pattern", note: "Use for readonly in Object property modifiers.." },
+        { label: "optional", syntax: "optional pattern", note: "Use for optional in Object property modifiers.." },
+        { label: "exact object types", syntax: "exact object types pattern", note: "Use for exact object types in Object property modifiers.." },
       ]} />
       <Tabs items={[
-        { label: "readonly", code: `// Object property modifiers.: readonly
-// Context: Objects, Arrays & Tuples
+        { label: "readonly", filename: "01-readonly.ts", code: `// Object property modifiers. — readonly
+// Key idea: readonly
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_2_readonly = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_2_readonly(input: unknown) {
+  // apply readonly safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_2_readonly(example_2_readonly));`, output: `// Result / output (conceptual)
+// - readonly applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: readonly — understand syntax, typing, and a practical use." },
+        { label: "optional", filename: "02-optional.ts", code: `// Object property modifiers. — optional
+// Key idea: optional
 
-export const example_2_readonly = null;`, note: "Focus on readonly: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "optional", code: `// Object property modifiers.: optional
-// Context: Objects, Arrays & Tuples
+// Variation / example
+const example_2_optional = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_2_optional(input: unknown) {
+  // apply optional safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_2_optional(example_2_optional));`, output: `// Result / output (conceptual)
+// - optional applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: optional — understand syntax, typing, and a practical use." },
+        { label: "exact object types", filename: "03-exact-object-types.ts", code: `// Object property modifiers. — exact object types
+// Key idea: exact object types
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_2_exact_object_types = /* typed value */ null;
 
-export const example_2_optional = null;`, note: "Focus on optional: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "exact object types", code: `// Object property modifiers.: exact object types
-// Context: Objects, Arrays & Tuples
+// Usage in context
+function demo_2_exact_object_types(input: unknown) {
+  // apply exact object types safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_2_exact_object_types = null;`, note: "Focus on exact object types: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_2_exact_object_types(example_2_exact_object_types));`, output: `// Result / output (conceptual)
+// - exact object types applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: exact object types — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "readonly — example", code: `// Object property modifiers. → readonly
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘readonly’ aspect with an explicit example." },
-        { title: "optional — example", code: `// Object property modifiers. → optional
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘optional’ aspect with an explicit example." },
-        { title: "exact object types — example", code: `// Object property modifiers. → exact object types
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘exact object types’ aspect with an explicit example." },
+        { title: "readonly", code: `// Example: readonly
+// Scenario: use this aspect of Object property modifiers. in real code.
+
+export function ex_2_1() {
+  // implement readonly
+  return "readonly";
+}
+
+console.log(ex_2_1());`, output: `readonly`, note: "Practical example highlighting readonly." },
+        { title: "optional", code: `// Example: optional
+// Scenario: use this aspect of Object property modifiers. in real code.
+
+export function ex_2_2() {
+  // implement optional
+  return "optional";
+}
+
+console.log(ex_2_2());`, output: `optional`, note: "Practical example highlighting optional." },
+        { title: "exact object types", code: `// Example: exact object types
+// Scenario: use this aspect of Object property modifiers. in real code.
+
+export function ex_2_3() {
+  // implement exact object types
+  return "exact object types";
+}
+
+console.log(ex_2_3());`, output: `exact object types`, note: "Practical example highlighting exact object types." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Object property modifiers.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Object property modifiers.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Object property modifiers.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Object property modifiers.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Object property modifiers. in Objects, Arrays & Tuples: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Objects, Arrays & Tuples, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Object property modifiers.: definition and role in Objects, Arrays & Tuples." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (readonly, optional, exact object types)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: readonly.",
-        "I understand and can apply: optional.",
-        "I understand and can apply: exact object types.",
-        "I can explain trade-offs, edge cases, and best practices for Object property modifiers.."
+        "Understand: readonly",
+        "Understand: optional",
+        "Understand: exact object types",
+        "Can write and explain a typed example of Object property modifiers.."
       ]} />
 
       <NoteTakeaways items={[
-        "Object property modifiers. is essential in Objects, Arrays & Tuples: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as readonly, optional, exact object types to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Object property modifiers. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

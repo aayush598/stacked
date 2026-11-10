@@ -1,109 +1,130 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function EnumTypes321() {
   return (
     <div>
       <SectionHero
         title="Enum types."
-        subtitle="Deep dive into Enum types. within Basic Types. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Enum types. in Basic Types: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Basic Types", "Section 21/30", "Enum types."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Enum types.</strong> is a key topic in <strong>Basic Types</strong>. Master annotations, inference, primitives, special types, literals, arrays, tuples, enums, and the core rules of widening, narrowing, compatibility, and assignability. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Enum types.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Enum types. is and why it matters in Basic Types." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "NAMED", detail: "Named constants", tone: "lime" },
+        { label: "RUNTIME", detail: "Runtime behavior", tone: "sky" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Enum types.</strong>. Use the tabs to explore different aspects including: Named constants, Runtime behavior.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Enum types. is and why it exists in Basic Types." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "Named constants", syntax: "Enum types. — Named constants", note: "Apply Named constants in the context of Enum types. with correct typing." },
-        { label: "Runtime behavior", syntax: "Enum types. — Runtime behavior", note: "Apply Runtime behavior in the context of Enum types. with correct typing." },
+        { label: "Named constants", syntax: "Named constants pattern", note: "Use for named constants in Enum types.." },
+        { label: "Runtime behavior", syntax: "Runtime behavior pattern", note: "Use for runtime behavior in Enum types.." },
       ]} />
       <Tabs items={[
-        { label: "Named constants", code: `// Enum types.: Named constants
-// Context: Basic Types
+        { label: "Named constants", filename: "01-named-constants.ts", code: `// Enum types. — Named constants
+// Key idea: Named constants
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_21_named_constants = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_21_named_constants(input: unknown) {
+  // apply Named constants safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_21_named_constants(example_21_named_constants));`, output: `// Result / output (conceptual)
+// - Named constants applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Named constants — understand syntax, typing, and a practical use." },
+        { label: "Runtime behavior", filename: "02-runtime-behavior.ts", code: `// Enum types. — Runtime behavior
+// Key idea: Runtime behavior
 
-export const example_21_named_constants = null;`, note: "Focus on Named constants: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Runtime behavior", code: `// Enum types.: Runtime behavior
-// Context: Basic Types
+// Variation / example
+const example_21_runtime_behavior = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_21_runtime_behavior(input: unknown) {
+  // apply Runtime behavior safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_21_runtime_behavior = null;`, note: "Focus on Runtime behavior: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_21_runtime_behavior(example_21_runtime_behavior));`, output: `// Result / output (conceptual)
+// - Runtime behavior applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Runtime behavior — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "Named constants — example", code: `// Enum types. → Named constants
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Named constants’ aspect with an explicit example." },
-        { title: "Runtime behavior — example", code: `// Enum types. → Runtime behavior
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Runtime behavior’ aspect with an explicit example." },
+        { title: "Named constants", code: `// Example: Named constants
+// Scenario: use this aspect of Enum types. in real code.
+
+export function ex_21_1() {
+  // implement Named constants
+  return "Named constants";
+}
+
+console.log(ex_21_1());`, output: `Named constants`, note: "Practical example highlighting Named constants." },
+        { title: "Runtime behavior", code: `// Example: Runtime behavior
+// Scenario: use this aspect of Enum types. in real code.
+
+export function ex_21_2() {
+  // implement Runtime behavior
+  return "Runtime behavior";
+}
+
+console.log(ex_21_2());`, output: `Runtime behavior`, note: "Practical example highlighting Runtime behavior." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Enum types.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Enum types.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Enum types.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Enum types.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Enum types. in Basic Types: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Basic Types, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Enum types.: definition and role in Basic Types." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (Named constants, Runtime behavior)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: Named constants.",
-        "I understand and can apply: Runtime behavior.",
-        "I can explain trade-offs, edge cases, and best practices for Enum types.."
+        "Understand: Named constants",
+        "Understand: Runtime behavior",
+        "Can write and explain a typed example of Enum types.."
       ]} />
 
       <NoteTakeaways items={[
-        "Enum types. is essential in Basic Types: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as Named constants, Runtime behavior to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Enum types. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

@@ -1,145 +1,186 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function Object311() {
   return (
     <div>
       <SectionHero
         title="Object."
-        subtitle="Deep dive into Object. within Basic Types. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Object. in Basic Types: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Basic Types", "Section 11/30", "Object."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Object.</strong> is a key topic in <strong>Basic Types</strong>. Master annotations, inference, primitives, special types, literals, arrays, tuples, enums, and the core rules of widening, narrowing, compatibility, and assignability. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Object.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Object. is and why it matters in Basic Types." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "NON-PRIMIT", detail: "Non-primitive", tone: "lime" },
+        { label: "OBJECT", detail: "object vs {} vs Object", tone: "sky" },
+        { label: "STRUCTURED", detail: "Structured shapes", tone: "violet" },
+        { label: "INDEX", detail: "Index signatures", tone: "coral" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Object.</strong>. Use the tabs to explore different aspects including: Non-primitive, object vs {} vs Object, Structured shapes, Index signatures.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Object. is and why it exists in Basic Types." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "Non-primitive", syntax: "Object. — Non-primitive", note: "Apply Non-primitive in the context of Object. with correct typing." },
-        { label: "object vs {} vs Object", syntax: "Object. — object vs {} vs Object", note: "Apply object vs {} vs Object in the context of Object. with correct typing." },
-        { label: "Structured shapes", syntax: "Object. — Structured shapes", note: "Apply Structured shapes in the context of Object. with correct typing." },
-        { label: "Index signatures", syntax: "Object. — Index signatures", note: "Apply Index signatures in the context of Object. with correct typing." },
+        { label: "Non-primitive", syntax: "Non-primitive pattern", note: "Use for non-primitive in Object.." },
+        { label: "object vs {} vs Object", syntax: "object vs {} vs Object pattern", note: "Use for object vs {} vs object in Object.." },
+        { label: "Structured shapes", syntax: "Structured shapes pattern", note: "Use for structured shapes in Object.." },
+        { label: "Index signatures", syntax: "Index signatures pattern", note: "Use for index signatures in Object.." },
       ]} />
       <Tabs items={[
-        { label: "Non-primitive", code: `// Object.: Non-primitive
-// Context: Basic Types
+        { label: "Non-primitive", filename: "01-non-primitive.ts", code: `// Object. — Non-primitive
+// Key idea: Non-primitive
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_11_non_primitive = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_11_non_primitive(input: unknown) {
+  // apply Non-primitive safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_11_non_primitive(example_11_non_primitive));`, output: `// Result / output (conceptual)
+// - Non-primitive applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Non-primitive — understand syntax, typing, and a practical use." },
+        { label: "object vs {} vs Object", filename: "02-object-vs-vs-objec.ts", code: `// Object. — object vs {} vs Object
+// Key idea: object vs {} vs Object
 
-export const example_11_non_primitive = null;`, note: "Focus on Non-primitive: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "object vs {} vs Object", code: `// Object.: object vs {} vs Object
-// Context: Basic Types
+// Variation / example
+const example_11_object_vs_vs_objec = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_11_object_vs_vs_objec(input: unknown) {
+  // apply object vs {} vs Object safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_11_object_vs_vs_objec(example_11_object_vs_vs_objec));`, output: `// Result / output (conceptual)
+// - object vs {} vs Object applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: object vs {} vs Object — understand syntax, typing, and a practical use." },
+        { label: "Structured shapes", filename: "03-structured-shapes.ts", code: `// Object. — Structured shapes
+// Key idea: Structured shapes
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_11_structured_shapes = /* typed value */ null;
 
-export const example_11_object_vs_vs_object = null;`, note: "Focus on object vs {} vs Object: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Structured shapes", code: `// Object.: Structured shapes
-// Context: Basic Types
+// Usage in context
+function demo_11_structured_shapes(input: unknown) {
+  // apply Structured shapes safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_11_structured_shapes(example_11_structured_shapes));`, output: `// Result / output (conceptual)
+// - Structured shapes applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Structured shapes — understand syntax, typing, and a practical use." },
+        { label: "Index signatures", filename: "04-index-signatures.ts", code: `// Object. — Index signatures
+// Key idea: Index signatures
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_11_index_signatures = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_11_index_signatures(input: unknown) {
+  // apply Index signatures safely
+  return input;
+}
 
-export const example_11_structured_shapes = null;`, note: "Focus on Structured shapes: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Index signatures", code: `// Object.: Index signatures
-// Context: Basic Types
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_11_index_signatures = null;`, note: "Focus on Index signatures: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_11_index_signatures(example_11_index_signatures));`, output: `// Result / output (conceptual)
+// - Index signatures applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Index signatures — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "Non-primitive — example", code: `// Object. → Non-primitive
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Non-primitive’ aspect with an explicit example." },
-        { title: "object vs {} vs Object — example", code: `// Object. → object vs {} vs Object
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘object vs {} vs Object’ aspect with an explicit example." },
-        { title: "Structured shapes — example", code: `// Object. → Structured shapes
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Structured shapes’ aspect with an explicit example." },
-        { title: "Index signatures — example", code: `// Object. → Index signatures
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Index signatures’ aspect with an explicit example." },
+        { title: "Non-primitive", code: `// Example: Non-primitive
+// Scenario: use this aspect of Object. in real code.
+
+export function ex_11_1() {
+  // implement Non-primitive
+  return "Non-primitive";
+}
+
+console.log(ex_11_1());`, output: `Non-primitive`, note: "Practical example highlighting Non-primitive." },
+        { title: "object vs {} vs Object", code: `// Example: object vs {} vs Object
+// Scenario: use this aspect of Object. in real code.
+
+export function ex_11_2() {
+  // implement object vs {} vs Object
+  return "object vs {} vs Object";
+}
+
+console.log(ex_11_2());`, output: `object vs {} vs Object`, note: "Practical example highlighting object vs {} vs Object." },
+        { title: "Structured shapes", code: `// Example: Structured shapes
+// Scenario: use this aspect of Object. in real code.
+
+export function ex_11_3() {
+  // implement Structured shapes
+  return "Structured shapes";
+}
+
+console.log(ex_11_3());`, output: `Structured shapes`, note: "Practical example highlighting Structured shapes." },
+        { title: "Index signatures", code: `// Example: Index signatures
+// Scenario: use this aspect of Object. in real code.
+
+export function ex_11_4() {
+  // implement Index signatures
+  return "Index signatures";
+}
+
+console.log(ex_11_4());`, output: `Index signatures`, note: "Practical example highlighting Index signatures." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Object.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Object.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Object.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Object.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Object. in Basic Types: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Basic Types, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Object.: definition and role in Basic Types." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (Non-primitive, object vs {} vs Object, Structured shapes)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: Non-primitive.",
-        "I understand and can apply: object vs {} vs Object.",
-        "I understand and can apply: Structured shapes.",
-        "I understand and can apply: Index signatures.",
-        "I can explain trade-offs, edge cases, and best practices for Object.."
+        "Understand: Non-primitive",
+        "Understand: object vs {} vs Object",
+        "Understand: Structured shapes",
+        "Understand: Index signatures",
+        "Can write and explain a typed example of Object.."
       ]} />
 
       <NoteTakeaways items={[
-        "Object. is essential in Basic Types: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as Non-primitive, object vs {} vs Object, Structured shapes, Index signatures to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Object. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

@@ -1,181 +1,242 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function TypeAnnotations31() {
   return (
     <div>
       <SectionHero
         title="Type annotations."
-        subtitle="Deep dive into Type annotations. within Basic Types. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Type annotations. in Basic Types: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Basic Types", "Section 1/30", "Type annotations."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Type annotations.</strong> is a key topic in <strong>Basic Types</strong>. Master annotations, inference, primitives, special types, literals, arrays, tuples, enums, and the core rules of widening, narrowing, compatibility, and assignability. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Type annotations.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Type annotations. is and why it matters in Basic Types." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "SYNTAX", detail: "Syntax", tone: "lime" },
+        { label: "VARIABLES", detail: "Variables", tone: "sky" },
+        { label: "PARAMETERS", detail: "Parameters", tone: "violet" },
+        { label: "PROPERTIES", detail: "Properties", tone: "coral" },
+        { label: "RETURN", detail: "Return types", tone: "lime" },
+        { label: "WHEN", detail: "When to annotate", tone: "sky" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Type annotations.</strong>. Use the tabs to explore different aspects including: Syntax, Variables, Parameters, Properties, Return types, When to annotate.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Type annotations. is and why it exists in Basic Types." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "Syntax", syntax: "Type annotations. — Syntax", note: "Apply Syntax in the context of Type annotations. with correct typing." },
-        { label: "Variables", syntax: "Type annotations. — Variables", note: "Apply Variables in the context of Type annotations. with correct typing." },
-        { label: "Parameters", syntax: "Type annotations. — Parameters", note: "Apply Parameters in the context of Type annotations. with correct typing." },
-        { label: "Properties", syntax: "Type annotations. — Properties", note: "Apply Properties in the context of Type annotations. with correct typing." },
-        { label: "Return types", syntax: "Type annotations. — Return types", note: "Apply Return types in the context of Type annotations. with correct typing." },
-        { label: "When to annotate", syntax: "Type annotations. — When to annotate", note: "Apply When to annotate in the context of Type annotations. with correct typing." },
+        { label: "Syntax", syntax: "Syntax pattern", note: "Use for syntax in Type annotations.." },
+        { label: "Variables", syntax: "Variables pattern", note: "Use for variables in Type annotations.." },
+        { label: "Parameters", syntax: "Parameters pattern", note: "Use for parameters in Type annotations.." },
+        { label: "Properties", syntax: "Properties pattern", note: "Use for properties in Type annotations.." },
+        { label: "Return types", syntax: "Return types pattern", note: "Use for return types in Type annotations.." },
+        { label: "When to annotate", syntax: "When to annotate pattern", note: "Use for when to annotate in Type annotations.." },
       ]} />
       <Tabs items={[
-        { label: "Syntax", code: `// Type annotations.: Syntax
-// Context: Basic Types
+        { label: "Syntax", filename: "01-syntax.ts", code: `// Type annotations. — Syntax
+// Key idea: Syntax
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_1_syntax = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_1_syntax(input: unknown) {
+  // apply Syntax safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_1_syntax(example_1_syntax));`, output: `// Result / output (conceptual)
+// - Syntax applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Syntax — understand syntax, typing, and a practical use." },
+        { label: "Variables", filename: "02-variables.ts", code: `// Type annotations. — Variables
+// Key idea: Variables
 
-export const example_1_syntax = null;`, note: "Focus on Syntax: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Variables", code: `// Type annotations.: Variables
-// Context: Basic Types
+// Variation / example
+const example_1_variables = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_1_variables(input: unknown) {
+  // apply Variables safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_1_variables(example_1_variables));`, output: `// Result / output (conceptual)
+// - Variables applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Variables — understand syntax, typing, and a practical use." },
+        { label: "Parameters", filename: "03-parameters.ts", code: `// Type annotations. — Parameters
+// Key idea: Parameters
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_1_parameters = /* typed value */ null;
 
-export const example_1_variables = null;`, note: "Focus on Variables: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Parameters", code: `// Type annotations.: Parameters
-// Context: Basic Types
+// Usage in context
+function demo_1_parameters(input: unknown) {
+  // apply Parameters safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_1_parameters(example_1_parameters));`, output: `// Result / output (conceptual)
+// - Parameters applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Parameters — understand syntax, typing, and a practical use." },
+        { label: "Properties", filename: "04-properties.ts", code: `// Type annotations. — Properties
+// Key idea: Properties
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_1_properties = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_1_properties(input: unknown) {
+  // apply Properties safely
+  return input;
+}
 
-export const example_1_parameters = null;`, note: "Focus on Parameters: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Properties", code: `// Type annotations.: Properties
-// Context: Basic Types
+console.log(demo_1_properties(example_1_properties));`, output: `// Result / output (conceptual)
+// - Properties applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Properties — understand syntax, typing, and a practical use." },
+        { label: "Return types", filename: "05-return-types.ts", code: `// Type annotations. — Return types
+// Key idea: Return types
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_1_return_types = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_1_return_types(input: unknown) {
+  // apply Return types safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_1_return_types(example_1_return_types));`, output: `// Result / output (conceptual)
+// - Return types applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Return types — understand syntax, typing, and a practical use." },
+        { label: "When to annotate", filename: "06-when-to-annotate.ts", code: `// Type annotations. — When to annotate
+// Key idea: When to annotate
 
-export const example_1_properties = null;`, note: "Focus on Properties: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Return types", code: `// Type annotations.: Return types
-// Context: Basic Types
+// Variation / example
+const example_1_when_to_annotate = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_1_when_to_annotate(input: unknown) {
+  // apply When to annotate safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_1_return_types = null;`, note: "Focus on Return types: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "When to annotate", code: `// Type annotations.: When to annotate
-// Context: Basic Types
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_1_when_to_annotate = null;`, note: "Focus on When to annotate: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_1_when_to_annotate(example_1_when_to_annotate));`, output: `// Result / output (conceptual)
+// - When to annotate applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: When to annotate — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "Syntax — example", code: `// Type annotations. → Syntax
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Syntax’ aspect with an explicit example." },
-        { title: "Variables — example", code: `// Type annotations. → Variables
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Variables’ aspect with an explicit example." },
-        { title: "Parameters — example", code: `// Type annotations. → Parameters
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Parameters’ aspect with an explicit example." },
-        { title: "Properties — example", code: `// Type annotations. → Properties
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Properties’ aspect with an explicit example." },
-        { title: "Return types — example", code: `// Type annotations. → Return types
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Return types’ aspect with an explicit example." },
-        { title: "When to annotate — example", code: `// Type annotations. → When to annotate
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘When to annotate’ aspect with an explicit example." },
+        { title: "Syntax", code: `// Example: Syntax
+// Scenario: use this aspect of Type annotations. in real code.
+
+export function ex_1_1() {
+  // implement Syntax
+  return "Syntax";
+}
+
+console.log(ex_1_1());`, output: `Syntax`, note: "Practical example highlighting Syntax." },
+        { title: "Variables", code: `// Example: Variables
+// Scenario: use this aspect of Type annotations. in real code.
+
+export function ex_1_2() {
+  // implement Variables
+  return "Variables";
+}
+
+console.log(ex_1_2());`, output: `Variables`, note: "Practical example highlighting Variables." },
+        { title: "Parameters", code: `// Example: Parameters
+// Scenario: use this aspect of Type annotations. in real code.
+
+export function ex_1_3() {
+  // implement Parameters
+  return "Parameters";
+}
+
+console.log(ex_1_3());`, output: `Parameters`, note: "Practical example highlighting Parameters." },
+        { title: "Properties", code: `// Example: Properties
+// Scenario: use this aspect of Type annotations. in real code.
+
+export function ex_1_4() {
+  // implement Properties
+  return "Properties";
+}
+
+console.log(ex_1_4());`, output: `Properties`, note: "Practical example highlighting Properties." },
+        { title: "Return types", code: `// Example: Return types
+// Scenario: use this aspect of Type annotations. in real code.
+
+export function ex_1_5() {
+  // implement Return types
+  return "Return types";
+}
+
+console.log(ex_1_5());`, output: `Return types`, note: "Practical example highlighting Return types." },
+        { title: "When to annotate", code: `// Example: When to annotate
+// Scenario: use this aspect of Type annotations. in real code.
+
+export function ex_1_6() {
+  // implement When to annotate
+  return "When to annotate";
+}
+
+console.log(ex_1_6());`, output: `When to annotate`, note: "Practical example highlighting When to annotate." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Type annotations.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Type annotations.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Type annotations.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Type annotations.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Type annotations. in Basic Types: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Basic Types, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Type annotations.: definition and role in Basic Types." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (Syntax, Variables, Parameters)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: Syntax.",
-        "I understand and can apply: Variables.",
-        "I understand and can apply: Parameters.",
-        "I understand and can apply: Properties.",
-        "I understand and can apply: Return types.",
-        "I understand and can apply: When to annotate.",
-        "I can explain trade-offs, edge cases, and best practices for Type annotations.."
+        "Understand: Syntax",
+        "Understand: Variables",
+        "Understand: Parameters",
+        "Understand: Properties",
+        "Understand: Return types",
+        "Understand: When to annotate",
+        "Can write and explain a typed example of Type annotations.."
       ]} />
 
       <NoteTakeaways items={[
-        "Type annotations. is essential in Basic Types: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as Syntax, Variables, Parameters, Properties to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Type annotations. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

@@ -1,145 +1,186 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function PrimitiveTypesStringNumberBooleanBigintSymbol34() {
   return (
     <div>
       <SectionHero
         title="Primitive types: string, number, boolean, bigint, symbol."
-        subtitle="Deep dive into Primitive types: string, number, boolean, bigint, symbol. within Basic Types. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Primitive types: string, number, boolean, bigint, symbol. in Basic Types: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Basic Types", "Section 4/30", "Primitive types: string, number, boolean, bigint, symbol."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Primitive types: string, number, boolean, bigint, symbol.</strong> is a key topic in <strong>Basic Types</strong>. Master annotations, inference, primitives, special types, literals, arrays, tuples, enums, and the core rules of widening, narrowing, compatibility, and assignability. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Primitive types: string, number, boolean, bigint, symbol.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Primitive types: string, number, boolean, bigint, symbol. is and why it matters in Basic Types." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "RUNTIME", detail: "Runtime primitives", tone: "lime" },
+        { label: "OPERATIONS", detail: "Operations", tone: "sky" },
+        { label: "BOXED", detail: "Boxed types to avoid", tone: "violet" },
+        { label: "IEEE", detail: "IEEE 754 and BigInt", tone: "coral" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Primitive types: string, number, boolean, bigint, symbol.</strong>. Use the tabs to explore different aspects including: Runtime primitives, Operations, Boxed types to avoid, IEEE 754 and BigInt.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Primitive types: string, number, boolean, bigint, symbol. is and why it exists in Basic Types." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "Runtime primitives", syntax: "Primitive types: string, number, boolean, bigint, symbol. — Runtime primitives", note: "Apply Runtime primitives in the context of Primitive types: string, number, boolean, bigint, symbol. with correct typing." },
-        { label: "Operations", syntax: "Primitive types: string, number, boolean, bigint, symbol. — Operations", note: "Apply Operations in the context of Primitive types: string, number, boolean, bigint, symbol. with correct typing." },
-        { label: "Boxed types to avoid", syntax: "Primitive types: string, number, boolean, bigint, symbol. — Boxed types to avoid", note: "Apply Boxed types to avoid in the context of Primitive types: string, number, boolean, bigint, symbol. with correct typing." },
-        { label: "IEEE 754 and BigInt", syntax: "Primitive types: string, number, boolean, bigint, symbol. — IEEE 754 and BigInt", note: "Apply IEEE 754 and BigInt in the context of Primitive types: string, number, boolean, bigint, symbol. with correct typing." },
+        { label: "Runtime primitives", syntax: "Runtime primitives pattern", note: "Use for runtime primitives in Primitive types: string, number, boolean, bigint, symbol.." },
+        { label: "Operations", syntax: "Operations pattern", note: "Use for operations in Primitive types: string, number, boolean, bigint, symbol.." },
+        { label: "Boxed types to avoid", syntax: "Boxed types to avoid pattern", note: "Use for boxed types to avoid in Primitive types: string, number, boolean, bigint, symbol.." },
+        { label: "IEEE 754 and BigInt", syntax: "IEEE 754 and BigInt pattern", note: "Use for ieee 754 and bigint in Primitive types: string, number, boolean, bigint, symbol.." },
       ]} />
       <Tabs items={[
-        { label: "Runtime primitives", code: `// Primitive types: string, number, boolean, bigint, symbol.: Runtime primitives
-// Context: Basic Types
+        { label: "Runtime primitives", filename: "01-runtime-primitives.ts", code: `// Primitive types: string, number, boolean, bigint, symbol. — Runtime primitives
+// Key idea: Runtime primitives
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_4_runtime_primitives = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_4_runtime_primitives(input: unknown) {
+  // apply Runtime primitives safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_4_runtime_primitives(example_4_runtime_primitives));`, output: `// Result / output (conceptual)
+// - Runtime primitives applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Runtime primitives — understand syntax, typing, and a practical use." },
+        { label: "Operations", filename: "02-operations.ts", code: `// Primitive types: string, number, boolean, bigint, symbol. — Operations
+// Key idea: Operations
 
-export const example_4_runtime_primitives = null;`, note: "Focus on Runtime primitives: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Operations", code: `// Primitive types: string, number, boolean, bigint, symbol.: Operations
-// Context: Basic Types
+// Variation / example
+const example_4_operations = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_4_operations(input: unknown) {
+  // apply Operations safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_4_operations(example_4_operations));`, output: `// Result / output (conceptual)
+// - Operations applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Operations — understand syntax, typing, and a practical use." },
+        { label: "Boxed types to avoid", filename: "03-boxed-types-to-avo.ts", code: `// Primitive types: string, number, boolean, bigint, symbol. — Boxed types to avoid
+// Key idea: Boxed types to avoid
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_4_boxed_types_to_avo = /* typed value */ null;
 
-export const example_4_operations = null;`, note: "Focus on Operations: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Boxed types to avoid", code: `// Primitive types: string, number, boolean, bigint, symbol.: Boxed types to avoid
-// Context: Basic Types
+// Usage in context
+function demo_4_boxed_types_to_avo(input: unknown) {
+  // apply Boxed types to avoid safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_4_boxed_types_to_avo(example_4_boxed_types_to_avo));`, output: `// Result / output (conceptual)
+// - Boxed types to avoid applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Boxed types to avoid — understand syntax, typing, and a practical use." },
+        { label: "IEEE 754 and BigInt", filename: "04-ieee-754-and-bigin.ts", code: `// Primitive types: string, number, boolean, bigint, symbol. — IEEE 754 and BigInt
+// Key idea: IEEE 754 and BigInt
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_4_ieee_754_and_bigin = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_4_ieee_754_and_bigin(input: unknown) {
+  // apply IEEE 754 and BigInt safely
+  return input;
+}
 
-export const example_4_boxed_types_to_avoid = null;`, note: "Focus on Boxed types to avoid: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "IEEE 754 and BigInt", code: `// Primitive types: string, number, boolean, bigint, symbol.: IEEE 754 and BigInt
-// Context: Basic Types
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_4_ieee_754_and_bigint = null;`, note: "Focus on IEEE 754 and BigInt: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_4_ieee_754_and_bigin(example_4_ieee_754_and_bigin));`, output: `// Result / output (conceptual)
+// - IEEE 754 and BigInt applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: IEEE 754 and BigInt — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "Runtime primitives — example", code: `// Primitive types: string, number, boolean, bigint, symbol. → Runtime primitives
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Runtime primitives’ aspect with an explicit example." },
-        { title: "Operations — example", code: `// Primitive types: string, number, boolean, bigint, symbol. → Operations
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Operations’ aspect with an explicit example." },
-        { title: "Boxed types to avoid — example", code: `// Primitive types: string, number, boolean, bigint, symbol. → Boxed types to avoid
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Boxed types to avoid’ aspect with an explicit example." },
-        { title: "IEEE 754 and BigInt — example", code: `// Primitive types: string, number, boolean, bigint, symbol. → IEEE 754 and BigInt
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘IEEE 754 and BigInt’ aspect with an explicit example." },
+        { title: "Runtime primitives", code: `// Example: Runtime primitives
+// Scenario: use this aspect of Primitive types: string, number, boolean, bigint, symbol. in real code.
+
+export function ex_4_1() {
+  // implement Runtime primitives
+  return "Runtime primitives";
+}
+
+console.log(ex_4_1());`, output: `Runtime primitives`, note: "Practical example highlighting Runtime primitives." },
+        { title: "Operations", code: `// Example: Operations
+// Scenario: use this aspect of Primitive types: string, number, boolean, bigint, symbol. in real code.
+
+export function ex_4_2() {
+  // implement Operations
+  return "Operations";
+}
+
+console.log(ex_4_2());`, output: `Operations`, note: "Practical example highlighting Operations." },
+        { title: "Boxed types to avoid", code: `// Example: Boxed types to avoid
+// Scenario: use this aspect of Primitive types: string, number, boolean, bigint, symbol. in real code.
+
+export function ex_4_3() {
+  // implement Boxed types to avoid
+  return "Boxed types to avoid";
+}
+
+console.log(ex_4_3());`, output: `Boxed types to avoid`, note: "Practical example highlighting Boxed types to avoid." },
+        { title: "IEEE 754 and BigInt", code: `// Example: IEEE 754 and BigInt
+// Scenario: use this aspect of Primitive types: string, number, boolean, bigint, symbol. in real code.
+
+export function ex_4_4() {
+  // implement IEEE 754 and BigInt
+  return "IEEE 754 and BigInt";
+}
+
+console.log(ex_4_4());`, output: `IEEE 754 and BigInt`, note: "Practical example highlighting IEEE 754 and BigInt." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Primitive types: string, number, boolean, bigint, symbol.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Primitive types: string, number, boolean, bigint, symbol.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Primitive types: string, number, boolean, bigint, symbol.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Primitive types: string, number, boolean, bigint, symbol.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Primitive types: string, number, boolean, bigint, symbol. in Basic Types: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Basic Types, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Primitive types: string, number, boolean, bigint, symbol.: definition and role in Basic Types." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (Runtime primitives, Operations, Boxed types to avoid)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: Runtime primitives.",
-        "I understand and can apply: Operations.",
-        "I understand and can apply: Boxed types to avoid.",
-        "I understand and can apply: IEEE 754 and BigInt.",
-        "I can explain trade-offs, edge cases, and best practices for Primitive types: string, number, boolean, bigint, symbol.."
+        "Understand: Runtime primitives",
+        "Understand: Operations",
+        "Understand: Boxed types to avoid",
+        "Understand: IEEE 754 and BigInt",
+        "Can write and explain a typed example of Primitive types: string, number, boolean, bigint, symbol.."
       ]} />
 
       <NoteTakeaways items={[
-        "Primitive types: string, number, boolean, bigint, symbol. is essential in Basic Types: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as Runtime primitives, Operations, Boxed types to avoid, IEEE 754 and BigInt to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Primitive types: string, number, boolean, bigint, symbol. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

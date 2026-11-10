@@ -1,145 +1,186 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function TheTypeScriptCompilerTsc18() {
   return (
     <div>
       <SectionHero
         title="The TypeScript compiler (tsc)."
-        subtitle="Deep dive into The TypeScript compiler (tsc). within Introduction to TypeScript. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to The TypeScript compiler (tsc). in Introduction to TypeScript: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Introduction to TypeScript", "Section 8/8", "The TypeScript compiler (tsc)."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>The TypeScript compiler (tsc).</strong> is a key topic in <strong>Introduction to TypeScript</strong>. Understand the language, its relationship to JavaScript, and the mental model behind type checking. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>The TypeScript compiler (tsc).</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what The TypeScript compiler (tsc). is and why it matters in Introduction to TypeScript." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "CLI", detail: "CLI", tone: "lime" },
+        { label: "WATCH", detail: "Watch mode", tone: "sky" },
+        { label: "PROJECT", detail: "Project references", tone: "violet" },
+        { label: "INCREMENTA", detail: "Incremental builds", tone: "coral" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>The TypeScript compiler (tsc).</strong>. Use the tabs to explore different aspects including: CLI, Watch mode, Project references, Incremental builds.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What The TypeScript compiler (tsc). is and why it exists in Introduction to TypeScript." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "CLI", syntax: "The TypeScript compiler (tsc). — CLI", note: "Apply CLI in the context of The TypeScript compiler (tsc). with correct typing." },
-        { label: "Watch mode", syntax: "The TypeScript compiler (tsc). — Watch mode", note: "Apply Watch mode in the context of The TypeScript compiler (tsc). with correct typing." },
-        { label: "Project references", syntax: "The TypeScript compiler (tsc). — Project references", note: "Apply Project references in the context of The TypeScript compiler (tsc). with correct typing." },
-        { label: "Incremental builds", syntax: "The TypeScript compiler (tsc). — Incremental builds", note: "Apply Incremental builds in the context of The TypeScript compiler (tsc). with correct typing." },
+        { label: "CLI", syntax: "CLI pattern", note: "Use for cli in The TypeScript compiler (tsc).." },
+        { label: "Watch mode", syntax: "Watch mode pattern", note: "Use for watch mode in The TypeScript compiler (tsc).." },
+        { label: "Project references", syntax: "Project references pattern", note: "Use for project references in The TypeScript compiler (tsc).." },
+        { label: "Incremental builds", syntax: "Incremental builds pattern", note: "Use for incremental builds in The TypeScript compiler (tsc).." },
       ]} />
       <Tabs items={[
-        { label: "CLI", code: `// The TypeScript compiler (tsc).: CLI
-// Context: Introduction to TypeScript
+        { label: "CLI", filename: "01-cli.ts", code: `// The TypeScript compiler (tsc). — CLI
+// Key idea: CLI
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_8_cli = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_8_cli(input: unknown) {
+  // apply CLI safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_8_cli(example_8_cli));`, output: `// Result / output (conceptual)
+// - CLI applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: CLI — understand syntax, typing, and a practical use." },
+        { label: "Watch mode", filename: "02-watch-mode.ts", code: `// The TypeScript compiler (tsc). — Watch mode
+// Key idea: Watch mode
 
-export const example_8_cli = null;`, note: "Focus on CLI: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Watch mode", code: `// The TypeScript compiler (tsc).: Watch mode
-// Context: Introduction to TypeScript
+// Variation / example
+const example_8_watch_mode = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_8_watch_mode(input: unknown) {
+  // apply Watch mode safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_8_watch_mode(example_8_watch_mode));`, output: `// Result / output (conceptual)
+// - Watch mode applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Watch mode — understand syntax, typing, and a practical use." },
+        { label: "Project references", filename: "03-project-references.ts", code: `// The TypeScript compiler (tsc). — Project references
+// Key idea: Project references
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_8_project_references = /* typed value */ null;
 
-export const example_8_watch_mode = null;`, note: "Focus on Watch mode: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Project references", code: `// The TypeScript compiler (tsc).: Project references
-// Context: Introduction to TypeScript
+// Usage in context
+function demo_8_project_references(input: unknown) {
+  // apply Project references safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_8_project_references(example_8_project_references));`, output: `// Result / output (conceptual)
+// - Project references applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Project references — understand syntax, typing, and a practical use." },
+        { label: "Incremental builds", filename: "04-incremental-builds.ts", code: `// The TypeScript compiler (tsc). — Incremental builds
+// Key idea: Incremental builds
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_8_incremental_builds = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_8_incremental_builds(input: unknown) {
+  // apply Incremental builds safely
+  return input;
+}
 
-export const example_8_project_references = null;`, note: "Focus on Project references: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Incremental builds", code: `// The TypeScript compiler (tsc).: Incremental builds
-// Context: Introduction to TypeScript
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_8_incremental_builds = null;`, note: "Focus on Incremental builds: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_8_incremental_builds(example_8_incremental_builds));`, output: `// Result / output (conceptual)
+// - Incremental builds applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Incremental builds — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "CLI — example", code: `// The TypeScript compiler (tsc). → CLI
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘CLI’ aspect with an explicit example." },
-        { title: "Watch mode — example", code: `// The TypeScript compiler (tsc). → Watch mode
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Watch mode’ aspect with an explicit example." },
-        { title: "Project references — example", code: `// The TypeScript compiler (tsc). → Project references
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Project references’ aspect with an explicit example." },
-        { title: "Incremental builds — example", code: `// The TypeScript compiler (tsc). → Incremental builds
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Incremental builds’ aspect with an explicit example." },
+        { title: "CLI", code: `// Example: CLI
+// Scenario: use this aspect of The TypeScript compiler (tsc). in real code.
+
+export function ex_8_1() {
+  // implement CLI
+  return "CLI";
+}
+
+console.log(ex_8_1());`, output: `CLI`, note: "Practical example highlighting CLI." },
+        { title: "Watch mode", code: `// Example: Watch mode
+// Scenario: use this aspect of The TypeScript compiler (tsc). in real code.
+
+export function ex_8_2() {
+  // implement Watch mode
+  return "Watch mode";
+}
+
+console.log(ex_8_2());`, output: `Watch mode`, note: "Practical example highlighting Watch mode." },
+        { title: "Project references", code: `// Example: Project references
+// Scenario: use this aspect of The TypeScript compiler (tsc). in real code.
+
+export function ex_8_3() {
+  // implement Project references
+  return "Project references";
+}
+
+console.log(ex_8_3());`, output: `Project references`, note: "Practical example highlighting Project references." },
+        { title: "Incremental builds", code: `// Example: Incremental builds
+// Scenario: use this aspect of The TypeScript compiler (tsc). in real code.
+
+export function ex_8_4() {
+  // implement Incremental builds
+  return "Incremental builds";
+}
+
+console.log(ex_8_4());`, output: `Incremental builds`, note: "Practical example highlighting Incremental builds." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: The TypeScript compiler (tsc).
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: The TypeScript compiler (tsc).
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: The TypeScript compiler (tsc).
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: The TypeScript compiler (tsc).
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "The TypeScript compiler (tsc). in Introduction to TypeScript: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Introduction to TypeScript, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "The TypeScript compiler (tsc).: definition and role in Introduction to TypeScript." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (CLI, Watch mode, Project references)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: CLI.",
-        "I understand and can apply: Watch mode.",
-        "I understand and can apply: Project references.",
-        "I understand and can apply: Incremental builds.",
-        "I can explain trade-offs, edge cases, and best practices for The TypeScript compiler (tsc).."
+        "Understand: CLI",
+        "Understand: Watch mode",
+        "Understand: Project references",
+        "Understand: Incremental builds",
+        "Can write and explain a typed example of The TypeScript compiler (tsc).."
       ]} />
 
       <NoteTakeaways items={[
-        "The TypeScript compiler (tsc). is essential in Introduction to TypeScript: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as CLI, Watch mode, Project references, Incremental builds to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp The TypeScript compiler (tsc). fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

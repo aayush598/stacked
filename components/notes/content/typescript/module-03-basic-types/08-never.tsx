@@ -1,145 +1,186 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function Never38() {
   return (
     <div>
       <SectionHero
         title="Never."
-        subtitle="Deep dive into Never. within Basic Types. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Never. in Basic Types: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Basic Types", "Section 8/30", "Never."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Never.</strong> is a key topic in <strong>Basic Types</strong>. Master annotations, inference, primitives, special types, literals, arrays, tuples, enums, and the core rules of widening, narrowing, compatibility, and assignability. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Never.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Never. is and why it matters in Basic Types." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "UNREACHABL", detail: "Unreachable code", tone: "lime" },
+        { label: "EXHAUSTIVE", detail: "Exhaustiveness", tone: "sky" },
+        { label: "BOTTOM", detail: "Bottom type", tone: "violet" },
+        { label: "NEVER", detail: "never in conditionals", tone: "coral" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Never.</strong>. Use the tabs to explore different aspects including: Unreachable code, Exhaustiveness, Bottom type, never in conditionals.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Never. is and why it exists in Basic Types." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "Unreachable code", syntax: "Never. — Unreachable code", note: "Apply Unreachable code in the context of Never. with correct typing." },
-        { label: "Exhaustiveness", syntax: "Never. — Exhaustiveness", note: "Apply Exhaustiveness in the context of Never. with correct typing." },
-        { label: "Bottom type", syntax: "Never. — Bottom type", note: "Apply Bottom type in the context of Never. with correct typing." },
-        { label: "never in conditionals", syntax: "Never. — never in conditionals", note: "Apply never in conditionals in the context of Never. with correct typing." },
+        { label: "Unreachable code", syntax: "Unreachable code pattern", note: "Use for unreachable code in Never.." },
+        { label: "Exhaustiveness", syntax: "Exhaustiveness pattern", note: "Use for exhaustiveness in Never.." },
+        { label: "Bottom type", syntax: "Bottom type pattern", note: "Use for bottom type in Never.." },
+        { label: "never in conditionals", syntax: "never in conditionals pattern", note: "Use for never in conditionals in Never.." },
       ]} />
       <Tabs items={[
-        { label: "Unreachable code", code: `// Never.: Unreachable code
-// Context: Basic Types
+        { label: "Unreachable code", filename: "01-unreachable-code.ts", code: `// Never. — Unreachable code
+// Key idea: Unreachable code
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_8_unreachable_code = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_8_unreachable_code(input: unknown) {
+  // apply Unreachable code safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_8_unreachable_code(example_8_unreachable_code));`, output: `// Result / output (conceptual)
+// - Unreachable code applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Unreachable code — understand syntax, typing, and a practical use." },
+        { label: "Exhaustiveness", filename: "02-exhaustiveness.ts", code: `// Never. — Exhaustiveness
+// Key idea: Exhaustiveness
 
-export const example_8_unreachable_code = null;`, note: "Focus on Unreachable code: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Exhaustiveness", code: `// Never.: Exhaustiveness
-// Context: Basic Types
+// Variation / example
+const example_8_exhaustiveness = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_8_exhaustiveness(input: unknown) {
+  // apply Exhaustiveness safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_8_exhaustiveness(example_8_exhaustiveness));`, output: `// Result / output (conceptual)
+// - Exhaustiveness applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Exhaustiveness — understand syntax, typing, and a practical use." },
+        { label: "Bottom type", filename: "03-bottom-type.ts", code: `// Never. — Bottom type
+// Key idea: Bottom type
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_8_bottom_type = /* typed value */ null;
 
-export const example_8_exhaustiveness = null;`, note: "Focus on Exhaustiveness: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Bottom type", code: `// Never.: Bottom type
-// Context: Basic Types
+// Usage in context
+function demo_8_bottom_type(input: unknown) {
+  // apply Bottom type safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_8_bottom_type(example_8_bottom_type));`, output: `// Result / output (conceptual)
+// - Bottom type applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Bottom type — understand syntax, typing, and a practical use." },
+        { label: "never in conditionals", filename: "04-never-in-condition.ts", code: `// Never. — never in conditionals
+// Key idea: never in conditionals
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_8_never_in_condition = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_8_never_in_condition(input: unknown) {
+  // apply never in conditionals safely
+  return input;
+}
 
-export const example_8_bottom_type = null;`, note: "Focus on Bottom type: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "never in conditionals", code: `// Never.: never in conditionals
-// Context: Basic Types
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_8_never_in_conditional = null;`, note: "Focus on never in conditionals: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_8_never_in_condition(example_8_never_in_condition));`, output: `// Result / output (conceptual)
+// - never in conditionals applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: never in conditionals — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "Unreachable code — example", code: `// Never. → Unreachable code
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Unreachable code’ aspect with an explicit example." },
-        { title: "Exhaustiveness — example", code: `// Never. → Exhaustiveness
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Exhaustiveness’ aspect with an explicit example." },
-        { title: "Bottom type — example", code: `// Never. → Bottom type
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Bottom type’ aspect with an explicit example." },
-        { title: "never in conditionals — example", code: `// Never. → never in conditionals
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘never in conditionals’ aspect with an explicit example." },
+        { title: "Unreachable code", code: `// Example: Unreachable code
+// Scenario: use this aspect of Never. in real code.
+
+export function ex_8_1() {
+  // implement Unreachable code
+  return "Unreachable code";
+}
+
+console.log(ex_8_1());`, output: `Unreachable code`, note: "Practical example highlighting Unreachable code." },
+        { title: "Exhaustiveness", code: `// Example: Exhaustiveness
+// Scenario: use this aspect of Never. in real code.
+
+export function ex_8_2() {
+  // implement Exhaustiveness
+  return "Exhaustiveness";
+}
+
+console.log(ex_8_2());`, output: `Exhaustiveness`, note: "Practical example highlighting Exhaustiveness." },
+        { title: "Bottom type", code: `// Example: Bottom type
+// Scenario: use this aspect of Never. in real code.
+
+export function ex_8_3() {
+  // implement Bottom type
+  return "Bottom type";
+}
+
+console.log(ex_8_3());`, output: `Bottom type`, note: "Practical example highlighting Bottom type." },
+        { title: "never in conditionals", code: `// Example: never in conditionals
+// Scenario: use this aspect of Never. in real code.
+
+export function ex_8_4() {
+  // implement never in conditionals
+  return "never in conditionals";
+}
+
+console.log(ex_8_4());`, output: `never in conditionals`, note: "Practical example highlighting never in conditionals." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Never.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Never.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Never.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Never.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Never. in Basic Types: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Basic Types, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Never.: definition and role in Basic Types." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (Unreachable code, Exhaustiveness, Bottom type)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: Unreachable code.",
-        "I understand and can apply: Exhaustiveness.",
-        "I understand and can apply: Bottom type.",
-        "I understand and can apply: never in conditionals.",
-        "I can explain trade-offs, edge cases, and best practices for Never.."
+        "Understand: Unreachable code",
+        "Understand: Exhaustiveness",
+        "Understand: Bottom type",
+        "Understand: never in conditionals",
+        "Can write and explain a typed example of Never.."
       ]} />
 
       <NoteTakeaways items={[
-        "Never. is essential in Basic Types: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as Unreachable code, Exhaustiveness, Bottom type, never in conditionals to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Never. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

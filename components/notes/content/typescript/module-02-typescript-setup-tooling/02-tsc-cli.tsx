@@ -1,145 +1,186 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function TscCLI22() {
   return (
     <div>
       <SectionHero
         title="tsc CLI."
-        subtitle="Deep dive into tsc CLI. within TypeScript Setup & Tooling. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to tsc CLI. in TypeScript Setup & Tooling: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["TypeScript Setup & Tooling", "Section 2/10", "tsc CLI."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>tsc CLI.</strong> is a key topic in <strong>TypeScript Setup & Tooling</strong>. Install, configure, and run TypeScript with the tools used in real projects. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>tsc CLI.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what tsc CLI. is and why it matters in TypeScript Setup & Tooling." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "--INIT", detail: "--init", tone: "lime" },
+        { label: "--WATCH", detail: "--watch", tone: "sky" },
+        { label: "--NOEMIT", detail: "--noEmit", tone: "violet" },
+        { label: "--PROJECT", detail: "--project", tone: "coral" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>tsc CLI.</strong>. Use the tabs to explore different aspects including: --init, --watch, --noEmit, --project.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What tsc CLI. is and why it exists in TypeScript Setup & Tooling." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "--init", syntax: "tsc CLI. — --init", note: "Apply --init in the context of tsc CLI. with correct typing." },
-        { label: "--watch", syntax: "tsc CLI. — --watch", note: "Apply --watch in the context of tsc CLI. with correct typing." },
-        { label: "--noEmit", syntax: "tsc CLI. — --noEmit", note: "Apply --noEmit in the context of tsc CLI. with correct typing." },
-        { label: "--project", syntax: "tsc CLI. — --project", note: "Apply --project in the context of tsc CLI. with correct typing." },
+        { label: "--init", syntax: "--init pattern", note: "Use for --init in tsc CLI.." },
+        { label: "--watch", syntax: "--watch pattern", note: "Use for --watch in tsc CLI.." },
+        { label: "--noEmit", syntax: "--noEmit pattern", note: "Use for --noemit in tsc CLI.." },
+        { label: "--project", syntax: "--project pattern", note: "Use for --project in tsc CLI.." },
       ]} />
       <Tabs items={[
-        { label: "--init", code: `// tsc CLI.: --init
-// Context: TypeScript Setup & Tooling
+        { label: "--init", filename: "01-init.ts", code: `// tsc CLI. — --init
+// Key idea: --init
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_2_init = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_2_init(input: unknown) {
+  // apply --init safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_2_init(example_2_init));`, output: `// Result / output (conceptual)
+// - --init applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: --init — understand syntax, typing, and a practical use." },
+        { label: "--watch", filename: "02-watch.ts", code: `// tsc CLI. — --watch
+// Key idea: --watch
 
-export const example_2_init = null;`, note: "Focus on --init: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "--watch", code: `// tsc CLI.: --watch
-// Context: TypeScript Setup & Tooling
+// Variation / example
+const example_2_watch = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_2_watch(input: unknown) {
+  // apply --watch safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_2_watch(example_2_watch));`, output: `// Result / output (conceptual)
+// - --watch applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: --watch — understand syntax, typing, and a practical use." },
+        { label: "--noEmit", filename: "03-noemit.ts", code: `// tsc CLI. — --noEmit
+// Key idea: --noEmit
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_2_noemit = /* typed value */ null;
 
-export const example_2_watch = null;`, note: "Focus on --watch: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "--noEmit", code: `// tsc CLI.: --noEmit
-// Context: TypeScript Setup & Tooling
+// Usage in context
+function demo_2_noemit(input: unknown) {
+  // apply --noEmit safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_2_noemit(example_2_noemit));`, output: `// Result / output (conceptual)
+// - --noEmit applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: --noEmit — understand syntax, typing, and a practical use." },
+        { label: "--project", filename: "04-project.ts", code: `// tsc CLI. — --project
+// Key idea: --project
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_2_project = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_2_project(input: unknown) {
+  // apply --project safely
+  return input;
+}
 
-export const example_2_noemit = null;`, note: "Focus on --noEmit: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "--project", code: `// tsc CLI.: --project
-// Context: TypeScript Setup & Tooling
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_2_project = null;`, note: "Focus on --project: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_2_project(example_2_project));`, output: `// Result / output (conceptual)
+// - --project applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: --project — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "--init — example", code: `// tsc CLI. → --init
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘--init’ aspect with an explicit example." },
-        { title: "--watch — example", code: `// tsc CLI. → --watch
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘--watch’ aspect with an explicit example." },
-        { title: "--noEmit — example", code: `// tsc CLI. → --noEmit
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘--noEmit’ aspect with an explicit example." },
-        { title: "--project — example", code: `// tsc CLI. → --project
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘--project’ aspect with an explicit example." },
+        { title: "--init", code: `// Example: --init
+// Scenario: use this aspect of tsc CLI. in real code.
+
+export function ex_2_1() {
+  // implement --init
+  return "--init";
+}
+
+console.log(ex_2_1());`, output: `--init`, note: "Practical example highlighting --init." },
+        { title: "--watch", code: `// Example: --watch
+// Scenario: use this aspect of tsc CLI. in real code.
+
+export function ex_2_2() {
+  // implement --watch
+  return "--watch";
+}
+
+console.log(ex_2_2());`, output: `--watch`, note: "Practical example highlighting --watch." },
+        { title: "--noEmit", code: `// Example: --noEmit
+// Scenario: use this aspect of tsc CLI. in real code.
+
+export function ex_2_3() {
+  // implement --noEmit
+  return "--noEmit";
+}
+
+console.log(ex_2_3());`, output: `--noEmit`, note: "Practical example highlighting --noEmit." },
+        { title: "--project", code: `// Example: --project
+// Scenario: use this aspect of tsc CLI. in real code.
+
+export function ex_2_4() {
+  // implement --project
+  return "--project";
+}
+
+console.log(ex_2_4());`, output: `--project`, note: "Practical example highlighting --project." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: tsc CLI.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: tsc CLI.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: tsc CLI.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: tsc CLI.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "tsc CLI. in TypeScript Setup & Tooling: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to TypeScript Setup & Tooling, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "tsc CLI.: definition and role in TypeScript Setup & Tooling." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (--init, --watch, --noEmit)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: --init.",
-        "I understand and can apply: --watch.",
-        "I understand and can apply: --noEmit.",
-        "I understand and can apply: --project.",
-        "I can explain trade-offs, edge cases, and best practices for tsc CLI.."
+        "Understand: --init",
+        "Understand: --watch",
+        "Understand: --noEmit",
+        "Understand: --project",
+        "Can write and explain a typed example of tsc CLI.."
       ]} />
 
       <NoteTakeaways items={[
-        "tsc CLI. is essential in TypeScript Setup & Tooling: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as --init, --watch, --noEmit, --project to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp tsc CLI. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

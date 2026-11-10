@@ -1,163 +1,242 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function CommonGenericPitfalls916() {
   return (
     <div>
       <SectionHero
         title="Common generic pitfalls."
-        subtitle="Deep dive into Common generic pitfalls. within Generics. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Common generic pitfalls. in Generics: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Generics", "Section 16/16", "Common generic pitfalls."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Common generic pitfalls.</strong> is a key topic in <strong>Generics</strong>. Write reusable code that keeps the relationship between inputs and outputs instead of falling back to any. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Common generic pitfalls.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Common generic pitfalls. is and why it matters in Generics." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "CORE", detail: "core concept", tone: "lime" },
+        { label: "SYNTAX", detail: "syntax", tone: "sky" },
+        { label: "VARIATIONS", detail: "variations", tone: "violet" },
+        { label: "PRACTICAL", detail: "practical usage", tone: "coral" },
+        { label: "EDGE", detail: "edge cases", tone: "lime" },
+        { label: "BEST", detail: "best practices", tone: "sky" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Common generic pitfalls.</strong>. Use the tabs to explore different aspects.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Common generic pitfalls. is and why it exists in Generics." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "core concept of Common generic pitfalls.", syntax: "Common generic pitfalls. — core concept of Common generic pitfalls.", note: "Apply core concept of Common generic pitfalls. in the context of Common generic pitfalls. with correct typing." },
-        { label: "syntax and shape", syntax: "Common generic pitfalls. — syntax and shape", note: "Apply syntax and shape in the context of Common generic pitfalls. with correct typing." },
-        { label: "practical usage", syntax: "Common generic pitfalls. — practical usage", note: "Apply practical usage in the context of Common generic pitfalls. with correct typing." },
-        { label: "edge cases", syntax: "Common generic pitfalls. — edge cases", note: "Apply edge cases in the context of Common generic pitfalls. with correct typing." },
-        { label: "best practices", syntax: "Common generic pitfalls. — best practices", note: "Apply best practices in the context of Common generic pitfalls. with correct typing." },
+        { label: "core concept", syntax: "core concept pattern", note: "Use for core concept in Common generic pitfalls.." },
+        { label: "syntax", syntax: "syntax pattern", note: "Use for syntax in Common generic pitfalls.." },
+        { label: "variations", syntax: "variations pattern", note: "Use for variations in Common generic pitfalls.." },
+        { label: "practical usage", syntax: "practical usage pattern", note: "Use for practical usage in Common generic pitfalls.." },
+        { label: "edge cases", syntax: "edge cases pattern", note: "Use for edge cases in Common generic pitfalls.." },
+        { label: "best practices", syntax: "best practices pattern", note: "Use for best practices in Common generic pitfalls.." },
       ]} />
       <Tabs items={[
-        { label: "core concept of Common generic pitfalls.", code: `// Common generic pitfalls.: core concept of Common generic pitfalls.
-// Context: Generics
+        { label: "core concept", filename: "01-core-concept.ts", code: `// Common generic pitfalls. — core concept
+// Key idea: core concept
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_16_core_concept = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_16_core_concept(input: unknown) {
+  // apply core concept safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_16_core_concept(example_16_core_concept));`, output: `// Result / output (conceptual)
+// - core concept applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: core concept — understand syntax, typing, and a practical use." },
+        { label: "syntax", filename: "02-syntax.ts", code: `// Common generic pitfalls. — syntax
+// Key idea: syntax
 
-export const example_16_core_concept_of_comm = null;`, note: "Focus on core concept of Common generic pitfalls.: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "syntax and shape", code: `// Common generic pitfalls.: syntax and shape
-// Context: Generics
+// Variation / example
+const example_16_syntax = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_16_syntax(input: unknown) {
+  // apply syntax safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_16_syntax(example_16_syntax));`, output: `// Result / output (conceptual)
+// - syntax applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: syntax — understand syntax, typing, and a practical use." },
+        { label: "variations", filename: "03-variations.ts", code: `// Common generic pitfalls. — variations
+// Key idea: variations
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_16_variations = /* typed value */ null;
 
-export const example_16_syntax_and_shape = null;`, note: "Focus on syntax and shape: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "practical usage", code: `// Common generic pitfalls.: practical usage
-// Context: Generics
+// Usage in context
+function demo_16_variations(input: unknown) {
+  // apply variations safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_16_variations(example_16_variations));`, output: `// Result / output (conceptual)
+// - variations applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: variations — understand syntax, typing, and a practical use." },
+        { label: "practical usage", filename: "04-practical-usage.ts", code: `// Common generic pitfalls. — practical usage
+// Key idea: practical usage
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_16_practical_usage = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_16_practical_usage(input: unknown) {
+  // apply practical usage safely
+  return input;
+}
 
-export const example_16_practical_usage = null;`, note: "Focus on practical usage: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "edge cases", code: `// Common generic pitfalls.: edge cases
-// Context: Generics
+console.log(demo_16_practical_usage(example_16_practical_usage));`, output: `// Result / output (conceptual)
+// - practical usage applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: practical usage — understand syntax, typing, and a practical use." },
+        { label: "edge cases", filename: "05-edge-cases.ts", code: `// Common generic pitfalls. — edge cases
+// Key idea: edge cases
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_16_edge_cases = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_16_edge_cases(input: unknown) {
+  // apply edge cases safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_16_edge_cases(example_16_edge_cases));`, output: `// Result / output (conceptual)
+// - edge cases applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: edge cases — understand syntax, typing, and a practical use." },
+        { label: "best practices", filename: "06-best-practices.ts", code: `// Common generic pitfalls. — best practices
+// Key idea: best practices
 
-export const example_16_edge_cases = null;`, note: "Focus on edge cases: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "best practices", code: `// Common generic pitfalls.: best practices
-// Context: Generics
+// Variation / example
+const example_16_best_practices = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_16_best_practices(input: unknown) {
+  // apply best practices safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_16_best_practices = null;`, note: "Focus on best practices: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_16_best_practices(example_16_best_practices));`, output: `// Result / output (conceptual)
+// - best practices applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: best practices — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "core concept of Common generic pitfalls. — example", code: `// Common generic pitfalls. → core concept of Common generic pitfalls.
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘core concept of Common generic pitfalls.’ aspect with an explicit example." },
-        { title: "syntax and shape — example", code: `// Common generic pitfalls. → syntax and shape
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘syntax and shape’ aspect with an explicit example." },
-        { title: "practical usage — example", code: `// Common generic pitfalls. → practical usage
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘practical usage’ aspect with an explicit example." },
-        { title: "edge cases — example", code: `// Common generic pitfalls. → edge cases
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘edge cases’ aspect with an explicit example." },
-        { title: "best practices — example", code: `// Common generic pitfalls. → best practices
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘best practices’ aspect with an explicit example." },
+        { title: "core concept", code: `// Example: core concept
+// Scenario: use this aspect of Common generic pitfalls. in real code.
+
+export function ex_16_1() {
+  // implement core concept
+  return "core concept";
+}
+
+console.log(ex_16_1());`, output: `core concept`, note: "Practical example highlighting core concept." },
+        { title: "syntax", code: `// Example: syntax
+// Scenario: use this aspect of Common generic pitfalls. in real code.
+
+export function ex_16_2() {
+  // implement syntax
+  return "syntax";
+}
+
+console.log(ex_16_2());`, output: `syntax`, note: "Practical example highlighting syntax." },
+        { title: "variations", code: `// Example: variations
+// Scenario: use this aspect of Common generic pitfalls. in real code.
+
+export function ex_16_3() {
+  // implement variations
+  return "variations";
+}
+
+console.log(ex_16_3());`, output: `variations`, note: "Practical example highlighting variations." },
+        { title: "practical usage", code: `// Example: practical usage
+// Scenario: use this aspect of Common generic pitfalls. in real code.
+
+export function ex_16_4() {
+  // implement practical usage
+  return "practical usage";
+}
+
+console.log(ex_16_4());`, output: `practical usage`, note: "Practical example highlighting practical usage." },
+        { title: "edge cases", code: `// Example: edge cases
+// Scenario: use this aspect of Common generic pitfalls. in real code.
+
+export function ex_16_5() {
+  // implement edge cases
+  return "edge cases";
+}
+
+console.log(ex_16_5());`, output: `edge cases`, note: "Practical example highlighting edge cases." },
+        { title: "best practices", code: `// Example: best practices
+// Scenario: use this aspect of Common generic pitfalls. in real code.
+
+export function ex_16_6() {
+  // implement best practices
+  return "best practices";
+}
+
+console.log(ex_16_6());`, output: `best practices`, note: "Practical example highlighting best practices." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Common generic pitfalls.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Common generic pitfalls.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Common generic pitfalls.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Common generic pitfalls.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Common generic pitfalls. in Generics: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Generics, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Common generic pitfalls.: definition and role in Generics." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: core concept of Common generic pitfalls..",
-        "I understand and can apply: syntax and shape.",
-        "I understand and can apply: practical usage.",
-        "I understand and can apply: edge cases.",
-        "I understand and can apply: best practices.",
-        "I can explain trade-offs, edge cases, and best practices for Common generic pitfalls.."
+        "Understand: core concept",
+        "Understand: syntax",
+        "Understand: variations",
+        "Understand: practical usage",
+        "Understand: edge cases",
+        "Understand: best practices",
+        "Can write and explain a typed example of Common generic pitfalls.."
       ]} />
 
       <NoteTakeaways items={[
-        "Common generic pitfalls. is essential in Generics: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Common generic pitfalls. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

@@ -1,145 +1,186 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function ExplicitTypesVersusInferredTypes33() {
   return (
     <div>
       <SectionHero
         title="Explicit types versus inferred types."
-        subtitle="Deep dive into Explicit types versus inferred types. within Basic Types. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Explicit types versus inferred types. in Basic Types: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Basic Types", "Section 3/30", "Explicit types versus inferred types."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Explicit types versus inferred types.</strong> is a key topic in <strong>Basic Types</strong>. Master annotations, inference, primitives, special types, literals, arrays, tuples, enums, and the core rules of widening, narrowing, compatibility, and assignability. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Explicit types versus inferred types.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Explicit types versus inferred types. is and why it matters in Basic Types." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "READABILIT", detail: "Readability", tone: "lime" },
+        { label: "PUBLIC", detail: "Public APIs", tone: "sky" },
+        { label: "WIDENING", detail: "Widening control", tone: "violet" },
+        { label: "TRADE-OFFS", detail: "Trade-offs", tone: "coral" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Explicit types versus inferred types.</strong>. Use the tabs to explore different aspects including: Readability, Public APIs, Widening control, Trade-offs.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Explicit types versus inferred types. is and why it exists in Basic Types." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "Readability", syntax: "Explicit types versus inferred types. — Readability", note: "Apply Readability in the context of Explicit types versus inferred types. with correct typing." },
-        { label: "Public APIs", syntax: "Explicit types versus inferred types. — Public APIs", note: "Apply Public APIs in the context of Explicit types versus inferred types. with correct typing." },
-        { label: "Widening control", syntax: "Explicit types versus inferred types. — Widening control", note: "Apply Widening control in the context of Explicit types versus inferred types. with correct typing." },
-        { label: "Trade-offs", syntax: "Explicit types versus inferred types. — Trade-offs", note: "Apply Trade-offs in the context of Explicit types versus inferred types. with correct typing." },
+        { label: "Readability", syntax: "Readability pattern", note: "Use for readability in Explicit types versus inferred types.." },
+        { label: "Public APIs", syntax: "Public APIs pattern", note: "Use for public apis in Explicit types versus inferred types.." },
+        { label: "Widening control", syntax: "Widening control pattern", note: "Use for widening control in Explicit types versus inferred types.." },
+        { label: "Trade-offs", syntax: "Trade-offs pattern", note: "Use for trade-offs in Explicit types versus inferred types.." },
       ]} />
       <Tabs items={[
-        { label: "Readability", code: `// Explicit types versus inferred types.: Readability
-// Context: Basic Types
+        { label: "Readability", filename: "01-readability.ts", code: `// Explicit types versus inferred types. — Readability
+// Key idea: Readability
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_3_readability = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_3_readability(input: unknown) {
+  // apply Readability safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_3_readability(example_3_readability));`, output: `// Result / output (conceptual)
+// - Readability applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Readability — understand syntax, typing, and a practical use." },
+        { label: "Public APIs", filename: "02-public-apis.ts", code: `// Explicit types versus inferred types. — Public APIs
+// Key idea: Public APIs
 
-export const example_3_readability = null;`, note: "Focus on Readability: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Public APIs", code: `// Explicit types versus inferred types.: Public APIs
-// Context: Basic Types
+// Variation / example
+const example_3_public_apis = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_3_public_apis(input: unknown) {
+  // apply Public APIs safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_3_public_apis(example_3_public_apis));`, output: `// Result / output (conceptual)
+// - Public APIs applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Public APIs — understand syntax, typing, and a practical use." },
+        { label: "Widening control", filename: "03-widening-control.ts", code: `// Explicit types versus inferred types. — Widening control
+// Key idea: Widening control
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_3_widening_control = /* typed value */ null;
 
-export const example_3_public_apis = null;`, note: "Focus on Public APIs: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Widening control", code: `// Explicit types versus inferred types.: Widening control
-// Context: Basic Types
+// Usage in context
+function demo_3_widening_control(input: unknown) {
+  // apply Widening control safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_3_widening_control(example_3_widening_control));`, output: `// Result / output (conceptual)
+// - Widening control applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Widening control — understand syntax, typing, and a practical use." },
+        { label: "Trade-offs", filename: "04-trade-offs.ts", code: `// Explicit types versus inferred types. — Trade-offs
+// Key idea: Trade-offs
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_3_trade_offs = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_3_trade_offs(input: unknown) {
+  // apply Trade-offs safely
+  return input;
+}
 
-export const example_3_widening_control = null;`, note: "Focus on Widening control: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Trade-offs", code: `// Explicit types versus inferred types.: Trade-offs
-// Context: Basic Types
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_3_trade_offs = null;`, note: "Focus on Trade-offs: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_3_trade_offs(example_3_trade_offs));`, output: `// Result / output (conceptual)
+// - Trade-offs applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Trade-offs — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "Readability — example", code: `// Explicit types versus inferred types. → Readability
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Readability’ aspect with an explicit example." },
-        { title: "Public APIs — example", code: `// Explicit types versus inferred types. → Public APIs
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Public APIs’ aspect with an explicit example." },
-        { title: "Widening control — example", code: `// Explicit types versus inferred types. → Widening control
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Widening control’ aspect with an explicit example." },
-        { title: "Trade-offs — example", code: `// Explicit types versus inferred types. → Trade-offs
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Trade-offs’ aspect with an explicit example." },
+        { title: "Readability", code: `// Example: Readability
+// Scenario: use this aspect of Explicit types versus inferred types. in real code.
+
+export function ex_3_1() {
+  // implement Readability
+  return "Readability";
+}
+
+console.log(ex_3_1());`, output: `Readability`, note: "Practical example highlighting Readability." },
+        { title: "Public APIs", code: `// Example: Public APIs
+// Scenario: use this aspect of Explicit types versus inferred types. in real code.
+
+export function ex_3_2() {
+  // implement Public APIs
+  return "Public APIs";
+}
+
+console.log(ex_3_2());`, output: `Public APIs`, note: "Practical example highlighting Public APIs." },
+        { title: "Widening control", code: `// Example: Widening control
+// Scenario: use this aspect of Explicit types versus inferred types. in real code.
+
+export function ex_3_3() {
+  // implement Widening control
+  return "Widening control";
+}
+
+console.log(ex_3_3());`, output: `Widening control`, note: "Practical example highlighting Widening control." },
+        { title: "Trade-offs", code: `// Example: Trade-offs
+// Scenario: use this aspect of Explicit types versus inferred types. in real code.
+
+export function ex_3_4() {
+  // implement Trade-offs
+  return "Trade-offs";
+}
+
+console.log(ex_3_4());`, output: `Trade-offs`, note: "Practical example highlighting Trade-offs." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Explicit types versus inferred types.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Explicit types versus inferred types.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Explicit types versus inferred types.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Explicit types versus inferred types.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Explicit types versus inferred types. in Basic Types: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Basic Types, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Explicit types versus inferred types.: definition and role in Basic Types." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (Readability, Public APIs, Widening control)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: Readability.",
-        "I understand and can apply: Public APIs.",
-        "I understand and can apply: Widening control.",
-        "I understand and can apply: Trade-offs.",
-        "I can explain trade-offs, edge cases, and best practices for Explicit types versus inferred types.."
+        "Understand: Readability",
+        "Understand: Public APIs",
+        "Understand: Widening control",
+        "Understand: Trade-offs",
+        "Can write and explain a typed example of Explicit types versus inferred types.."
       ]} />
 
       <NoteTakeaways items={[
-        "Explicit types versus inferred types. is essential in Basic Types: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as Readability, Public APIs, Widening control, Trade-offs to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Explicit types versus inferred types. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

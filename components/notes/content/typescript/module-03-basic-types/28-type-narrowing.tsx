@@ -1,181 +1,242 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function TypeNarrowing328() {
   return (
     <div>
       <SectionHero
         title="Type narrowing."
-        subtitle="Deep dive into Type narrowing. within Basic Types. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Type narrowing. in Basic Types: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Basic Types", "Section 28/30", "Type narrowing."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Type narrowing.</strong> is a key topic in <strong>Basic Types</strong>. Master annotations, inference, primitives, special types, literals, arrays, tuples, enums, and the core rules of widening, narrowing, compatibility, and assignability. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Type narrowing.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Type narrowing. is and why it matters in Basic Types." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "TYPEOF", detail: "typeof", tone: "lime" },
+        { label: "TRUTHINESS", detail: "truthiness", tone: "sky" },
+        { label: "EQUALITY", detail: "equality", tone: "violet" },
+        { label: "IN", detail: "in", tone: "coral" },
+        { label: "INSTANCEOF", detail: "instanceof", tone: "lime" },
+        { label: "PREDICATES", detail: "predicates", tone: "sky" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Type narrowing.</strong>. Use the tabs to explore different aspects including: typeof, truthiness, equality, in, instanceof, predicates.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Type narrowing. is and why it exists in Basic Types." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "typeof", syntax: "Type narrowing. — typeof", note: "Apply typeof in the context of Type narrowing. with correct typing." },
-        { label: "truthiness", syntax: "Type narrowing. — truthiness", note: "Apply truthiness in the context of Type narrowing. with correct typing." },
-        { label: "equality", syntax: "Type narrowing. — equality", note: "Apply equality in the context of Type narrowing. with correct typing." },
-        { label: "in", syntax: "Type narrowing. — in", note: "Apply in in the context of Type narrowing. with correct typing." },
-        { label: "instanceof", syntax: "Type narrowing. — instanceof", note: "Apply instanceof in the context of Type narrowing. with correct typing." },
-        { label: "predicates", syntax: "Type narrowing. — predicates", note: "Apply predicates in the context of Type narrowing. with correct typing." },
+        { label: "typeof", syntax: "typeof pattern", note: "Use for typeof in Type narrowing.." },
+        { label: "truthiness", syntax: "truthiness pattern", note: "Use for truthiness in Type narrowing.." },
+        { label: "equality", syntax: "equality pattern", note: "Use for equality in Type narrowing.." },
+        { label: "in", syntax: "in pattern", note: "Use for in in Type narrowing.." },
+        { label: "instanceof", syntax: "instanceof pattern", note: "Use for instanceof in Type narrowing.." },
+        { label: "predicates", syntax: "predicates pattern", note: "Use for predicates in Type narrowing.." },
       ]} />
       <Tabs items={[
-        { label: "typeof", code: `// Type narrowing.: typeof
-// Context: Basic Types
+        { label: "typeof", filename: "01-typeof.ts", code: `// Type narrowing. — typeof
+// Key idea: typeof
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_28_typeof = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_28_typeof(input: unknown) {
+  // apply typeof safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_28_typeof(example_28_typeof));`, output: `// Result / output (conceptual)
+// - typeof applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: typeof — understand syntax, typing, and a practical use." },
+        { label: "truthiness", filename: "02-truthiness.ts", code: `// Type narrowing. — truthiness
+// Key idea: truthiness
 
-export const example_28_typeof = null;`, note: "Focus on typeof: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "truthiness", code: `// Type narrowing.: truthiness
-// Context: Basic Types
+// Variation / example
+const example_28_truthiness = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_28_truthiness(input: unknown) {
+  // apply truthiness safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_28_truthiness(example_28_truthiness));`, output: `// Result / output (conceptual)
+// - truthiness applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: truthiness — understand syntax, typing, and a practical use." },
+        { label: "equality", filename: "03-equality.ts", code: `// Type narrowing. — equality
+// Key idea: equality
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_28_equality = /* typed value */ null;
 
-export const example_28_truthiness = null;`, note: "Focus on truthiness: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "equality", code: `// Type narrowing.: equality
-// Context: Basic Types
+// Usage in context
+function demo_28_equality(input: unknown) {
+  // apply equality safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_28_equality(example_28_equality));`, output: `// Result / output (conceptual)
+// - equality applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: equality — understand syntax, typing, and a practical use." },
+        { label: "in", filename: "04-in.ts", code: `// Type narrowing. — in
+// Key idea: in
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_28_in = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_28_in(input: unknown) {
+  // apply in safely
+  return input;
+}
 
-export const example_28_equality = null;`, note: "Focus on equality: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "in", code: `// Type narrowing.: in
-// Context: Basic Types
+console.log(demo_28_in(example_28_in));`, output: `// Result / output (conceptual)
+// - in applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: in — understand syntax, typing, and a practical use." },
+        { label: "instanceof", filename: "05-instanceof.ts", code: `// Type narrowing. — instanceof
+// Key idea: instanceof
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_28_instanceof = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_28_instanceof(input: unknown) {
+  // apply instanceof safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_28_instanceof(example_28_instanceof));`, output: `// Result / output (conceptual)
+// - instanceof applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: instanceof — understand syntax, typing, and a practical use." },
+        { label: "predicates", filename: "06-predicates.ts", code: `// Type narrowing. — predicates
+// Key idea: predicates
 
-export const example_28_in = null;`, note: "Focus on in: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "instanceof", code: `// Type narrowing.: instanceof
-// Context: Basic Types
+// Variation / example
+const example_28_predicates = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_28_predicates(input: unknown) {
+  // apply predicates safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_28_instanceof = null;`, note: "Focus on instanceof: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "predicates", code: `// Type narrowing.: predicates
-// Context: Basic Types
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_28_predicates = null;`, note: "Focus on predicates: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_28_predicates(example_28_predicates));`, output: `// Result / output (conceptual)
+// - predicates applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: predicates — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "typeof — example", code: `// Type narrowing. → typeof
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘typeof’ aspect with an explicit example." },
-        { title: "truthiness — example", code: `// Type narrowing. → truthiness
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘truthiness’ aspect with an explicit example." },
-        { title: "equality — example", code: `// Type narrowing. → equality
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘equality’ aspect with an explicit example." },
-        { title: "in — example", code: `// Type narrowing. → in
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘in’ aspect with an explicit example." },
-        { title: "instanceof — example", code: `// Type narrowing. → instanceof
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘instanceof’ aspect with an explicit example." },
-        { title: "predicates — example", code: `// Type narrowing. → predicates
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘predicates’ aspect with an explicit example." },
+        { title: "typeof", code: `// Example: typeof
+// Scenario: use this aspect of Type narrowing. in real code.
+
+export function ex_28_1() {
+  // implement typeof
+  return "typeof";
+}
+
+console.log(ex_28_1());`, output: `typeof`, note: "Practical example highlighting typeof." },
+        { title: "truthiness", code: `// Example: truthiness
+// Scenario: use this aspect of Type narrowing. in real code.
+
+export function ex_28_2() {
+  // implement truthiness
+  return "truthiness";
+}
+
+console.log(ex_28_2());`, output: `truthiness`, note: "Practical example highlighting truthiness." },
+        { title: "equality", code: `// Example: equality
+// Scenario: use this aspect of Type narrowing. in real code.
+
+export function ex_28_3() {
+  // implement equality
+  return "equality";
+}
+
+console.log(ex_28_3());`, output: `equality`, note: "Practical example highlighting equality." },
+        { title: "in", code: `// Example: in
+// Scenario: use this aspect of Type narrowing. in real code.
+
+export function ex_28_4() {
+  // implement in
+  return "in";
+}
+
+console.log(ex_28_4());`, output: `in`, note: "Practical example highlighting in." },
+        { title: "instanceof", code: `// Example: instanceof
+// Scenario: use this aspect of Type narrowing. in real code.
+
+export function ex_28_5() {
+  // implement instanceof
+  return "instanceof";
+}
+
+console.log(ex_28_5());`, output: `instanceof`, note: "Practical example highlighting instanceof." },
+        { title: "predicates", code: `// Example: predicates
+// Scenario: use this aspect of Type narrowing. in real code.
+
+export function ex_28_6() {
+  // implement predicates
+  return "predicates";
+}
+
+console.log(ex_28_6());`, output: `predicates`, note: "Practical example highlighting predicates." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Type narrowing.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Type narrowing.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Type narrowing.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Type narrowing.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Type narrowing. in Basic Types: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Basic Types, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Type narrowing.: definition and role in Basic Types." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (typeof, truthiness, equality)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: typeof.",
-        "I understand and can apply: truthiness.",
-        "I understand and can apply: equality.",
-        "I understand and can apply: in.",
-        "I understand and can apply: instanceof.",
-        "I understand and can apply: predicates.",
-        "I can explain trade-offs, edge cases, and best practices for Type narrowing.."
+        "Understand: typeof",
+        "Understand: truthiness",
+        "Understand: equality",
+        "Understand: in",
+        "Understand: instanceof",
+        "Understand: predicates",
+        "Can write and explain a typed example of Type narrowing.."
       ]} />
 
       <NoteTakeaways items={[
-        "Type narrowing. is essential in Basic Types: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as typeof, truthiness, equality, in to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Type narrowing. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

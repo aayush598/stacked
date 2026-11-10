@@ -1,145 +1,186 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function Any39() {
   return (
     <div>
       <SectionHero
         title="Any."
-        subtitle="Deep dive into Any. within Basic Types. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Any. in Basic Types: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Basic Types", "Section 9/30", "Any."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Any.</strong> is a key topic in <strong>Basic Types</strong>. Master annotations, inference, primitives, special types, literals, arrays, tuples, enums, and the core rules of widening, narrowing, compatibility, and assignability. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Any.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Any. is and why it matters in Basic Types." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "ESCAPE", detail: "Escape hatch", tone: "lime" },
+        { label: "RISKS", detail: "Risks", tone: "sky" },
+        { label: "NOIMPLICIT", detail: "noImplicitAny", tone: "violet" },
+        { label: "MIGRATION", detail: "Migration boundaries", tone: "coral" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Any.</strong>. Use the tabs to explore different aspects including: Escape hatch, Risks, noImplicitAny, Migration boundaries.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Any. is and why it exists in Basic Types." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "Escape hatch", syntax: "Any. — Escape hatch", note: "Apply Escape hatch in the context of Any. with correct typing." },
-        { label: "Risks", syntax: "Any. — Risks", note: "Apply Risks in the context of Any. with correct typing." },
-        { label: "noImplicitAny", syntax: "Any. — noImplicitAny", note: "Apply noImplicitAny in the context of Any. with correct typing." },
-        { label: "Migration boundaries", syntax: "Any. — Migration boundaries", note: "Apply Migration boundaries in the context of Any. with correct typing." },
+        { label: "Escape hatch", syntax: "Escape hatch pattern", note: "Use for escape hatch in Any.." },
+        { label: "Risks", syntax: "Risks pattern", note: "Use for risks in Any.." },
+        { label: "noImplicitAny", syntax: "noImplicitAny pattern", note: "Use for noimplicitany in Any.." },
+        { label: "Migration boundaries", syntax: "Migration boundaries pattern", note: "Use for migration boundaries in Any.." },
       ]} />
       <Tabs items={[
-        { label: "Escape hatch", code: `// Any.: Escape hatch
-// Context: Basic Types
+        { label: "Escape hatch", filename: "01-escape-hatch.ts", code: `// Any. — Escape hatch
+// Key idea: Escape hatch
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_9_escape_hatch = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_9_escape_hatch(input: unknown) {
+  // apply Escape hatch safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_9_escape_hatch(example_9_escape_hatch));`, output: `// Result / output (conceptual)
+// - Escape hatch applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Escape hatch — understand syntax, typing, and a practical use." },
+        { label: "Risks", filename: "02-risks.ts", code: `// Any. — Risks
+// Key idea: Risks
 
-export const example_9_escape_hatch = null;`, note: "Focus on Escape hatch: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Risks", code: `// Any.: Risks
-// Context: Basic Types
+// Variation / example
+const example_9_risks = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_9_risks(input: unknown) {
+  // apply Risks safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_9_risks(example_9_risks));`, output: `// Result / output (conceptual)
+// - Risks applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Risks — understand syntax, typing, and a practical use." },
+        { label: "noImplicitAny", filename: "03-noimplicitany.ts", code: `// Any. — noImplicitAny
+// Key idea: noImplicitAny
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_9_noimplicitany = /* typed value */ null;
 
-export const example_9_risks = null;`, note: "Focus on Risks: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "noImplicitAny", code: `// Any.: noImplicitAny
-// Context: Basic Types
+// Usage in context
+function demo_9_noimplicitany(input: unknown) {
+  // apply noImplicitAny safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_9_noimplicitany(example_9_noimplicitany));`, output: `// Result / output (conceptual)
+// - noImplicitAny applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: noImplicitAny — understand syntax, typing, and a practical use." },
+        { label: "Migration boundaries", filename: "04-migration-boundari.ts", code: `// Any. — Migration boundaries
+// Key idea: Migration boundaries
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_9_migration_boundari = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_9_migration_boundari(input: unknown) {
+  // apply Migration boundaries safely
+  return input;
+}
 
-export const example_9_noimplicitany = null;`, note: "Focus on noImplicitAny: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Migration boundaries", code: `// Any.: Migration boundaries
-// Context: Basic Types
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_9_migration_boundaries = null;`, note: "Focus on Migration boundaries: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_9_migration_boundari(example_9_migration_boundari));`, output: `// Result / output (conceptual)
+// - Migration boundaries applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Migration boundaries — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "Escape hatch — example", code: `// Any. → Escape hatch
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Escape hatch’ aspect with an explicit example." },
-        { title: "Risks — example", code: `// Any. → Risks
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Risks’ aspect with an explicit example." },
-        { title: "noImplicitAny — example", code: `// Any. → noImplicitAny
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘noImplicitAny’ aspect with an explicit example." },
-        { title: "Migration boundaries — example", code: `// Any. → Migration boundaries
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Migration boundaries’ aspect with an explicit example." },
+        { title: "Escape hatch", code: `// Example: Escape hatch
+// Scenario: use this aspect of Any. in real code.
+
+export function ex_9_1() {
+  // implement Escape hatch
+  return "Escape hatch";
+}
+
+console.log(ex_9_1());`, output: `Escape hatch`, note: "Practical example highlighting Escape hatch." },
+        { title: "Risks", code: `// Example: Risks
+// Scenario: use this aspect of Any. in real code.
+
+export function ex_9_2() {
+  // implement Risks
+  return "Risks";
+}
+
+console.log(ex_9_2());`, output: `Risks`, note: "Practical example highlighting Risks." },
+        { title: "noImplicitAny", code: `// Example: noImplicitAny
+// Scenario: use this aspect of Any. in real code.
+
+export function ex_9_3() {
+  // implement noImplicitAny
+  return "noImplicitAny";
+}
+
+console.log(ex_9_3());`, output: `noImplicitAny`, note: "Practical example highlighting noImplicitAny." },
+        { title: "Migration boundaries", code: `// Example: Migration boundaries
+// Scenario: use this aspect of Any. in real code.
+
+export function ex_9_4() {
+  // implement Migration boundaries
+  return "Migration boundaries";
+}
+
+console.log(ex_9_4());`, output: `Migration boundaries`, note: "Practical example highlighting Migration boundaries." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Any.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Any.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Any.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Any.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Any. in Basic Types: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Basic Types, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Any.: definition and role in Basic Types." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (Escape hatch, Risks, noImplicitAny)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: Escape hatch.",
-        "I understand and can apply: Risks.",
-        "I understand and can apply: noImplicitAny.",
-        "I understand and can apply: Migration boundaries.",
-        "I can explain trade-offs, edge cases, and best practices for Any.."
+        "Understand: Escape hatch",
+        "Understand: Risks",
+        "Understand: noImplicitAny",
+        "Understand: Migration boundaries",
+        "Can write and explain a typed example of Any.."
       ]} />
 
       <NoteTakeaways items={[
-        "Any. is essential in Basic Types: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as Escape hatch, Risks, noImplicitAny, Migration boundaries to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Any. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

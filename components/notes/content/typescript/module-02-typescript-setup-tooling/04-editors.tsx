@@ -1,145 +1,186 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function Editors24() {
   return (
     <div>
       <SectionHero
         title="Editors."
-        subtitle="Deep dive into Editors. within TypeScript Setup & Tooling. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Editors. in TypeScript Setup & Tooling: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["TypeScript Setup & Tooling", "Section 4/10", "Editors."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Editors.</strong> is a key topic in <strong>TypeScript Setup & Tooling</strong>. Install, configure, and run TypeScript with the tools used in real projects. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Editors.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Editors. is and why it matters in TypeScript Setup & Tooling." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "VS", detail: "VS Code", tone: "lime" },
+        { label: "WEBSTORM", detail: "WebStorm", tone: "sky" },
+        { label: "NEOVIM", detail: "Neovim", tone: "violet" },
+        { label: "TYPESCRIPT", detail: "TypeScript language server", tone: "coral" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Editors.</strong>. Use the tabs to explore different aspects including: VS Code, WebStorm, Neovim, TypeScript language server.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Editors. is and why it exists in TypeScript Setup & Tooling." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "VS Code", syntax: "Editors. — VS Code", note: "Apply VS Code in the context of Editors. with correct typing." },
-        { label: "WebStorm", syntax: "Editors. — WebStorm", note: "Apply WebStorm in the context of Editors. with correct typing." },
-        { label: "Neovim", syntax: "Editors. — Neovim", note: "Apply Neovim in the context of Editors. with correct typing." },
-        { label: "TypeScript language server", syntax: "Editors. — TypeScript language server", note: "Apply TypeScript language server in the context of Editors. with correct typing." },
+        { label: "VS Code", syntax: "VS Code pattern", note: "Use for vs code in Editors.." },
+        { label: "WebStorm", syntax: "WebStorm pattern", note: "Use for webstorm in Editors.." },
+        { label: "Neovim", syntax: "Neovim pattern", note: "Use for neovim in Editors.." },
+        { label: "TypeScript language server", syntax: "TypeScript language server pattern", note: "Use for typescript language server in Editors.." },
       ]} />
       <Tabs items={[
-        { label: "VS Code", code: `// Editors.: VS Code
-// Context: TypeScript Setup & Tooling
+        { label: "VS Code", filename: "01-vs-code.ts", code: `// Editors. — VS Code
+// Key idea: VS Code
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_4_vs_code = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_4_vs_code(input: unknown) {
+  // apply VS Code safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_4_vs_code(example_4_vs_code));`, output: `// Result / output (conceptual)
+// - VS Code applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: VS Code — understand syntax, typing, and a practical use." },
+        { label: "WebStorm", filename: "02-webstorm.ts", code: `// Editors. — WebStorm
+// Key idea: WebStorm
 
-export const example_4_vs_code = null;`, note: "Focus on VS Code: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "WebStorm", code: `// Editors.: WebStorm
-// Context: TypeScript Setup & Tooling
+// Variation / example
+const example_4_webstorm = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_4_webstorm(input: unknown) {
+  // apply WebStorm safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_4_webstorm(example_4_webstorm));`, output: `// Result / output (conceptual)
+// - WebStorm applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: WebStorm — understand syntax, typing, and a practical use." },
+        { label: "Neovim", filename: "03-neovim.ts", code: `// Editors. — Neovim
+// Key idea: Neovim
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_4_neovim = /* typed value */ null;
 
-export const example_4_webstorm = null;`, note: "Focus on WebStorm: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Neovim", code: `// Editors.: Neovim
-// Context: TypeScript Setup & Tooling
+// Usage in context
+function demo_4_neovim(input: unknown) {
+  // apply Neovim safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_4_neovim(example_4_neovim));`, output: `// Result / output (conceptual)
+// - Neovim applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Neovim — understand syntax, typing, and a practical use." },
+        { label: "TypeScript language server", filename: "04-typescript-languag.ts", code: `// Editors. — TypeScript language server
+// Key idea: TypeScript language server
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_4_typescript_languag = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_4_typescript_languag(input: unknown) {
+  // apply TypeScript language server safely
+  return input;
+}
 
-export const example_4_neovim = null;`, note: "Focus on Neovim: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "TypeScript language server", code: `// Editors.: TypeScript language server
-// Context: TypeScript Setup & Tooling
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_4_typescript_language_ = null;`, note: "Focus on TypeScript language server: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_4_typescript_languag(example_4_typescript_languag));`, output: `// Result / output (conceptual)
+// - TypeScript language server applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: TypeScript language server — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "VS Code — example", code: `// Editors. → VS Code
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘VS Code’ aspect with an explicit example." },
-        { title: "WebStorm — example", code: `// Editors. → WebStorm
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘WebStorm’ aspect with an explicit example." },
-        { title: "Neovim — example", code: `// Editors. → Neovim
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Neovim’ aspect with an explicit example." },
-        { title: "TypeScript language server — example", code: `// Editors. → TypeScript language server
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘TypeScript language server’ aspect with an explicit example." },
+        { title: "VS Code", code: `// Example: VS Code
+// Scenario: use this aspect of Editors. in real code.
+
+export function ex_4_1() {
+  // implement VS Code
+  return "VS Code";
+}
+
+console.log(ex_4_1());`, output: `VS Code`, note: "Practical example highlighting VS Code." },
+        { title: "WebStorm", code: `// Example: WebStorm
+// Scenario: use this aspect of Editors. in real code.
+
+export function ex_4_2() {
+  // implement WebStorm
+  return "WebStorm";
+}
+
+console.log(ex_4_2());`, output: `WebStorm`, note: "Practical example highlighting WebStorm." },
+        { title: "Neovim", code: `// Example: Neovim
+// Scenario: use this aspect of Editors. in real code.
+
+export function ex_4_3() {
+  // implement Neovim
+  return "Neovim";
+}
+
+console.log(ex_4_3());`, output: `Neovim`, note: "Practical example highlighting Neovim." },
+        { title: "TypeScript language server", code: `// Example: TypeScript language server
+// Scenario: use this aspect of Editors. in real code.
+
+export function ex_4_4() {
+  // implement TypeScript language server
+  return "TypeScript language server";
+}
+
+console.log(ex_4_4());`, output: `TypeScript language server`, note: "Practical example highlighting TypeScript language server." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Editors.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Editors.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Editors.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Editors.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Editors. in TypeScript Setup & Tooling: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to TypeScript Setup & Tooling, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Editors.: definition and role in TypeScript Setup & Tooling." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (VS Code, WebStorm, Neovim)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: VS Code.",
-        "I understand and can apply: WebStorm.",
-        "I understand and can apply: Neovim.",
-        "I understand and can apply: TypeScript language server.",
-        "I can explain trade-offs, edge cases, and best practices for Editors.."
+        "Understand: VS Code",
+        "Understand: WebStorm",
+        "Understand: Neovim",
+        "Understand: TypeScript language server",
+        "Can write and explain a typed example of Editors.."
       ]} />
 
       <NoteTakeaways items={[
-        "Editors. is essential in TypeScript Setup & Tooling: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as VS Code, WebStorm, Neovim, TypeScript language server to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Editors. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

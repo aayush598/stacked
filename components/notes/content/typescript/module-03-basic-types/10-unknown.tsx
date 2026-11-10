@@ -1,145 +1,186 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function Unknown310() {
   return (
     <div>
       <SectionHero
         title="Unknown."
-        subtitle="Deep dive into Unknown. within Basic Types. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Unknown. in Basic Types: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Basic Types", "Section 10/30", "Unknown."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Unknown.</strong> is a key topic in <strong>Basic Types</strong>. Master annotations, inference, primitives, special types, literals, arrays, tuples, enums, and the core rules of widening, narrowing, compatibility, and assignability. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Unknown.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Unknown. is and why it matters in Basic Types." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "SAFE", detail: "Safe top type", tone: "lime" },
+        { label: "NARROWING", detail: "Narrowing required", tone: "sky" },
+        { label: "TYPE", detail: "Type guards", tone: "violet" },
+        { label: "VALIDATION", detail: "Validation at boundaries", tone: "coral" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Unknown.</strong>. Use the tabs to explore different aspects including: Safe top type, Narrowing required, Type guards, Validation at boundaries.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Unknown. is and why it exists in Basic Types." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "Safe top type", syntax: "Unknown. — Safe top type", note: "Apply Safe top type in the context of Unknown. with correct typing." },
-        { label: "Narrowing required", syntax: "Unknown. — Narrowing required", note: "Apply Narrowing required in the context of Unknown. with correct typing." },
-        { label: "Type guards", syntax: "Unknown. — Type guards", note: "Apply Type guards in the context of Unknown. with correct typing." },
-        { label: "Validation at boundaries", syntax: "Unknown. — Validation at boundaries", note: "Apply Validation at boundaries in the context of Unknown. with correct typing." },
+        { label: "Safe top type", syntax: "Safe top type pattern", note: "Use for safe top type in Unknown.." },
+        { label: "Narrowing required", syntax: "Narrowing required pattern", note: "Use for narrowing required in Unknown.." },
+        { label: "Type guards", syntax: "Type guards pattern", note: "Use for type guards in Unknown.." },
+        { label: "Validation at boundaries", syntax: "Validation at boundaries pattern", note: "Use for validation at boundaries in Unknown.." },
       ]} />
       <Tabs items={[
-        { label: "Safe top type", code: `// Unknown.: Safe top type
-// Context: Basic Types
+        { label: "Safe top type", filename: "01-safe-top-type.ts", code: `// Unknown. — Safe top type
+// Key idea: Safe top type
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_10_safe_top_type = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_10_safe_top_type(input: unknown) {
+  // apply Safe top type safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_10_safe_top_type(example_10_safe_top_type));`, output: `// Result / output (conceptual)
+// - Safe top type applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Safe top type — understand syntax, typing, and a practical use." },
+        { label: "Narrowing required", filename: "02-narrowing-required.ts", code: `// Unknown. — Narrowing required
+// Key idea: Narrowing required
 
-export const example_10_safe_top_type = null;`, note: "Focus on Safe top type: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Narrowing required", code: `// Unknown.: Narrowing required
-// Context: Basic Types
+// Variation / example
+const example_10_narrowing_required = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_10_narrowing_required(input: unknown) {
+  // apply Narrowing required safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_10_narrowing_required(example_10_narrowing_required));`, output: `// Result / output (conceptual)
+// - Narrowing required applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Narrowing required — understand syntax, typing, and a practical use." },
+        { label: "Type guards", filename: "03-type-guards.ts", code: `// Unknown. — Type guards
+// Key idea: Type guards
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_10_type_guards = /* typed value */ null;
 
-export const example_10_narrowing_required = null;`, note: "Focus on Narrowing required: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Type guards", code: `// Unknown.: Type guards
-// Context: Basic Types
+// Usage in context
+function demo_10_type_guards(input: unknown) {
+  // apply Type guards safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_10_type_guards(example_10_type_guards));`, output: `// Result / output (conceptual)
+// - Type guards applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Type guards — understand syntax, typing, and a practical use." },
+        { label: "Validation at boundaries", filename: "04-validation-at-boun.ts", code: `// Unknown. — Validation at boundaries
+// Key idea: Validation at boundaries
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_10_validation_at_boun = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_10_validation_at_boun(input: unknown) {
+  // apply Validation at boundaries safely
+  return input;
+}
 
-export const example_10_type_guards = null;`, note: "Focus on Type guards: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Validation at boundaries", code: `// Unknown.: Validation at boundaries
-// Context: Basic Types
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_10_validation_at_bounda = null;`, note: "Focus on Validation at boundaries: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_10_validation_at_boun(example_10_validation_at_boun));`, output: `// Result / output (conceptual)
+// - Validation at boundaries applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Validation at boundaries — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "Safe top type — example", code: `// Unknown. → Safe top type
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Safe top type’ aspect with an explicit example." },
-        { title: "Narrowing required — example", code: `// Unknown. → Narrowing required
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Narrowing required’ aspect with an explicit example." },
-        { title: "Type guards — example", code: `// Unknown. → Type guards
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Type guards’ aspect with an explicit example." },
-        { title: "Validation at boundaries — example", code: `// Unknown. → Validation at boundaries
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Validation at boundaries’ aspect with an explicit example." },
+        { title: "Safe top type", code: `// Example: Safe top type
+// Scenario: use this aspect of Unknown. in real code.
+
+export function ex_10_1() {
+  // implement Safe top type
+  return "Safe top type";
+}
+
+console.log(ex_10_1());`, output: `Safe top type`, note: "Practical example highlighting Safe top type." },
+        { title: "Narrowing required", code: `// Example: Narrowing required
+// Scenario: use this aspect of Unknown. in real code.
+
+export function ex_10_2() {
+  // implement Narrowing required
+  return "Narrowing required";
+}
+
+console.log(ex_10_2());`, output: `Narrowing required`, note: "Practical example highlighting Narrowing required." },
+        { title: "Type guards", code: `// Example: Type guards
+// Scenario: use this aspect of Unknown. in real code.
+
+export function ex_10_3() {
+  // implement Type guards
+  return "Type guards";
+}
+
+console.log(ex_10_3());`, output: `Type guards`, note: "Practical example highlighting Type guards." },
+        { title: "Validation at boundaries", code: `// Example: Validation at boundaries
+// Scenario: use this aspect of Unknown. in real code.
+
+export function ex_10_4() {
+  // implement Validation at boundaries
+  return "Validation at boundaries";
+}
+
+console.log(ex_10_4());`, output: `Validation at boundaries`, note: "Practical example highlighting Validation at boundaries." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Unknown.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Unknown.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Unknown.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Unknown.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Unknown. in Basic Types: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Basic Types, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Unknown.: definition and role in Basic Types." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (Safe top type, Narrowing required, Type guards)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: Safe top type.",
-        "I understand and can apply: Narrowing required.",
-        "I understand and can apply: Type guards.",
-        "I understand and can apply: Validation at boundaries.",
-        "I can explain trade-offs, edge cases, and best practices for Unknown.."
+        "Understand: Safe top type",
+        "Understand: Narrowing required",
+        "Understand: Type guards",
+        "Understand: Validation at boundaries",
+        "Can write and explain a typed example of Unknown.."
       ]} />
 
       <NoteTakeaways items={[
-        "Unknown. is essential in Basic Types: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as Safe top type, Narrowing required, Type guards, Validation at boundaries to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Unknown. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

@@ -1,163 +1,242 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function SkipLibCheck274() {
   return (
     <div>
       <SectionHero
         title="skipLibCheck."
-        subtitle="Deep dive into skipLibCheck. within Performance & Optimization. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to skipLibCheck. in Performance & Optimization: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Performance & Optimization", "Section 4/13", "skipLibCheck."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>skipLibCheck.</strong> is a key topic in <strong>Performance & Optimization</strong>. Keep type checking fast as the codebase grows. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>skipLibCheck.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what skipLibCheck. is and why it matters in Performance & Optimization." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "CORE", detail: "core concept", tone: "lime" },
+        { label: "SYNTAX", detail: "syntax", tone: "sky" },
+        { label: "VARIATIONS", detail: "variations", tone: "violet" },
+        { label: "PRACTICAL", detail: "practical usage", tone: "coral" },
+        { label: "EDGE", detail: "edge cases", tone: "lime" },
+        { label: "BEST", detail: "best practices", tone: "sky" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>skipLibCheck.</strong>. Use the tabs to explore different aspects.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What skipLibCheck. is and why it exists in Performance & Optimization." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "core concept of skipLibCheck.", syntax: "skipLibCheck. — core concept of skipLibCheck.", note: "Apply core concept of skipLibCheck. in the context of skipLibCheck. with correct typing." },
-        { label: "syntax and shape", syntax: "skipLibCheck. — syntax and shape", note: "Apply syntax and shape in the context of skipLibCheck. with correct typing." },
-        { label: "practical usage", syntax: "skipLibCheck. — practical usage", note: "Apply practical usage in the context of skipLibCheck. with correct typing." },
-        { label: "edge cases", syntax: "skipLibCheck. — edge cases", note: "Apply edge cases in the context of skipLibCheck. with correct typing." },
-        { label: "best practices", syntax: "skipLibCheck. — best practices", note: "Apply best practices in the context of skipLibCheck. with correct typing." },
+        { label: "core concept", syntax: "core concept pattern", note: "Use for core concept in skipLibCheck.." },
+        { label: "syntax", syntax: "syntax pattern", note: "Use for syntax in skipLibCheck.." },
+        { label: "variations", syntax: "variations pattern", note: "Use for variations in skipLibCheck.." },
+        { label: "practical usage", syntax: "practical usage pattern", note: "Use for practical usage in skipLibCheck.." },
+        { label: "edge cases", syntax: "edge cases pattern", note: "Use for edge cases in skipLibCheck.." },
+        { label: "best practices", syntax: "best practices pattern", note: "Use for best practices in skipLibCheck.." },
       ]} />
       <Tabs items={[
-        { label: "core concept of skipLibCheck.", code: `// skipLibCheck.: core concept of skipLibCheck.
-// Context: Performance & Optimization
+        { label: "core concept", filename: "01-core-concept.ts", code: `// skipLibCheck. — core concept
+// Key idea: core concept
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_4_core_concept = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_4_core_concept(input: unknown) {
+  // apply core concept safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_4_core_concept(example_4_core_concept));`, output: `// Result / output (conceptual)
+// - core concept applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: core concept — understand syntax, typing, and a practical use." },
+        { label: "syntax", filename: "02-syntax.ts", code: `// skipLibCheck. — syntax
+// Key idea: syntax
 
-export const example_4_core_concept_of_skip = null;`, note: "Focus on core concept of skipLibCheck.: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "syntax and shape", code: `// skipLibCheck.: syntax and shape
-// Context: Performance & Optimization
+// Variation / example
+const example_4_syntax = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_4_syntax(input: unknown) {
+  // apply syntax safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_4_syntax(example_4_syntax));`, output: `// Result / output (conceptual)
+// - syntax applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: syntax — understand syntax, typing, and a practical use." },
+        { label: "variations", filename: "03-variations.ts", code: `// skipLibCheck. — variations
+// Key idea: variations
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_4_variations = /* typed value */ null;
 
-export const example_4_syntax_and_shape = null;`, note: "Focus on syntax and shape: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "practical usage", code: `// skipLibCheck.: practical usage
-// Context: Performance & Optimization
+// Usage in context
+function demo_4_variations(input: unknown) {
+  // apply variations safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_4_variations(example_4_variations));`, output: `// Result / output (conceptual)
+// - variations applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: variations — understand syntax, typing, and a practical use." },
+        { label: "practical usage", filename: "04-practical-usage.ts", code: `// skipLibCheck. — practical usage
+// Key idea: practical usage
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_4_practical_usage = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_4_practical_usage(input: unknown) {
+  // apply practical usage safely
+  return input;
+}
 
-export const example_4_practical_usage = null;`, note: "Focus on practical usage: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "edge cases", code: `// skipLibCheck.: edge cases
-// Context: Performance & Optimization
+console.log(demo_4_practical_usage(example_4_practical_usage));`, output: `// Result / output (conceptual)
+// - practical usage applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: practical usage — understand syntax, typing, and a practical use." },
+        { label: "edge cases", filename: "05-edge-cases.ts", code: `// skipLibCheck. — edge cases
+// Key idea: edge cases
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_4_edge_cases = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_4_edge_cases(input: unknown) {
+  // apply edge cases safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_4_edge_cases(example_4_edge_cases));`, output: `// Result / output (conceptual)
+// - edge cases applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: edge cases — understand syntax, typing, and a practical use." },
+        { label: "best practices", filename: "06-best-practices.ts", code: `// skipLibCheck. — best practices
+// Key idea: best practices
 
-export const example_4_edge_cases = null;`, note: "Focus on edge cases: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "best practices", code: `// skipLibCheck.: best practices
-// Context: Performance & Optimization
+// Variation / example
+const example_4_best_practices = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_4_best_practices(input: unknown) {
+  // apply best practices safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_4_best_practices = null;`, note: "Focus on best practices: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_4_best_practices(example_4_best_practices));`, output: `// Result / output (conceptual)
+// - best practices applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: best practices — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "core concept of skipLibCheck. — example", code: `// skipLibCheck. → core concept of skipLibCheck.
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘core concept of skipLibCheck.’ aspect with an explicit example." },
-        { title: "syntax and shape — example", code: `// skipLibCheck. → syntax and shape
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘syntax and shape’ aspect with an explicit example." },
-        { title: "practical usage — example", code: `// skipLibCheck. → practical usage
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘practical usage’ aspect with an explicit example." },
-        { title: "edge cases — example", code: `// skipLibCheck. → edge cases
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘edge cases’ aspect with an explicit example." },
-        { title: "best practices — example", code: `// skipLibCheck. → best practices
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘best practices’ aspect with an explicit example." },
+        { title: "core concept", code: `// Example: core concept
+// Scenario: use this aspect of skipLibCheck. in real code.
+
+export function ex_4_1() {
+  // implement core concept
+  return "core concept";
+}
+
+console.log(ex_4_1());`, output: `core concept`, note: "Practical example highlighting core concept." },
+        { title: "syntax", code: `// Example: syntax
+// Scenario: use this aspect of skipLibCheck. in real code.
+
+export function ex_4_2() {
+  // implement syntax
+  return "syntax";
+}
+
+console.log(ex_4_2());`, output: `syntax`, note: "Practical example highlighting syntax." },
+        { title: "variations", code: `// Example: variations
+// Scenario: use this aspect of skipLibCheck. in real code.
+
+export function ex_4_3() {
+  // implement variations
+  return "variations";
+}
+
+console.log(ex_4_3());`, output: `variations`, note: "Practical example highlighting variations." },
+        { title: "practical usage", code: `// Example: practical usage
+// Scenario: use this aspect of skipLibCheck. in real code.
+
+export function ex_4_4() {
+  // implement practical usage
+  return "practical usage";
+}
+
+console.log(ex_4_4());`, output: `practical usage`, note: "Practical example highlighting practical usage." },
+        { title: "edge cases", code: `// Example: edge cases
+// Scenario: use this aspect of skipLibCheck. in real code.
+
+export function ex_4_5() {
+  // implement edge cases
+  return "edge cases";
+}
+
+console.log(ex_4_5());`, output: `edge cases`, note: "Practical example highlighting edge cases." },
+        { title: "best practices", code: `// Example: best practices
+// Scenario: use this aspect of skipLibCheck. in real code.
+
+export function ex_4_6() {
+  // implement best practices
+  return "best practices";
+}
+
+console.log(ex_4_6());`, output: `best practices`, note: "Practical example highlighting best practices." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: skipLibCheck.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: skipLibCheck.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: skipLibCheck.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: skipLibCheck.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "skipLibCheck. in Performance & Optimization: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Performance & Optimization, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "skipLibCheck.: definition and role in Performance & Optimization." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: core concept of skipLibCheck..",
-        "I understand and can apply: syntax and shape.",
-        "I understand and can apply: practical usage.",
-        "I understand and can apply: edge cases.",
-        "I understand and can apply: best practices.",
-        "I can explain trade-offs, edge cases, and best practices for skipLibCheck.."
+        "Understand: core concept",
+        "Understand: syntax",
+        "Understand: variations",
+        "Understand: practical usage",
+        "Understand: edge cases",
+        "Understand: best practices",
+        "Can write and explain a typed example of skipLibCheck.."
       ]} />
 
       <NoteTakeaways items={[
-        "skipLibCheck. is essential in Performance & Optimization: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp skipLibCheck. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

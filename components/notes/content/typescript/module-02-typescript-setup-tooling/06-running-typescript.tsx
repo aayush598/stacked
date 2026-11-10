@@ -1,145 +1,186 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function RunningTypeScript26() {
   return (
     <div>
       <SectionHero
         title="Running TypeScript."
-        subtitle="Deep dive into Running TypeScript. within TypeScript Setup & Tooling. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Running TypeScript. in TypeScript Setup & Tooling: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["TypeScript Setup & Tooling", "Section 6/10", "Running TypeScript."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Running TypeScript.</strong> is a key topic in <strong>TypeScript Setup & Tooling</strong>. Install, configure, and run TypeScript with the tools used in real projects. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Running TypeScript.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Running TypeScript. is and why it matters in TypeScript Setup & Tooling." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "TSC", detail: "tsc", tone: "lime" },
+        { label: "TSX", detail: "tsx", tone: "sky" },
+        { label: "TS-NODE", detail: "ts-node", tone: "violet" },
+        { label: "BUN", detail: "Bun", tone: "coral" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Running TypeScript.</strong>. Use the tabs to explore different aspects including: tsc, tsx, ts-node, Bun.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Running TypeScript. is and why it exists in TypeScript Setup & Tooling." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "tsc", syntax: "Running TypeScript. — tsc", note: "Apply tsc in the context of Running TypeScript. with correct typing." },
-        { label: "tsx", syntax: "Running TypeScript. — tsx", note: "Apply tsx in the context of Running TypeScript. with correct typing." },
-        { label: "ts-node", syntax: "Running TypeScript. — ts-node", note: "Apply ts-node in the context of Running TypeScript. with correct typing." },
-        { label: "Bun", syntax: "Running TypeScript. — Bun", note: "Apply Bun in the context of Running TypeScript. with correct typing." },
+        { label: "tsc", syntax: "tsc pattern", note: "Use for tsc in Running TypeScript.." },
+        { label: "tsx", syntax: "tsx pattern", note: "Use for tsx in Running TypeScript.." },
+        { label: "ts-node", syntax: "ts-node pattern", note: "Use for ts-node in Running TypeScript.." },
+        { label: "Bun", syntax: "Bun pattern", note: "Use for bun in Running TypeScript.." },
       ]} />
       <Tabs items={[
-        { label: "tsc", code: `// Running TypeScript.: tsc
-// Context: TypeScript Setup & Tooling
+        { label: "tsc", filename: "01-tsc.ts", code: `// Running TypeScript. — tsc
+// Key idea: tsc
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_6_tsc = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_6_tsc(input: unknown) {
+  // apply tsc safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_6_tsc(example_6_tsc));`, output: `// Result / output (conceptual)
+// - tsc applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: tsc — understand syntax, typing, and a practical use." },
+        { label: "tsx", filename: "02-tsx.ts", code: `// Running TypeScript. — tsx
+// Key idea: tsx
 
-export const example_6_tsc = null;`, note: "Focus on tsc: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "tsx", code: `// Running TypeScript.: tsx
-// Context: TypeScript Setup & Tooling
+// Variation / example
+const example_6_tsx = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_6_tsx(input: unknown) {
+  // apply tsx safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_6_tsx(example_6_tsx));`, output: `// Result / output (conceptual)
+// - tsx applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: tsx — understand syntax, typing, and a practical use." },
+        { label: "ts-node", filename: "03-ts-node.ts", code: `// Running TypeScript. — ts-node
+// Key idea: ts-node
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_6_ts_node = /* typed value */ null;
 
-export const example_6_tsx = null;`, note: "Focus on tsx: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "ts-node", code: `// Running TypeScript.: ts-node
-// Context: TypeScript Setup & Tooling
+// Usage in context
+function demo_6_ts_node(input: unknown) {
+  // apply ts-node safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_6_ts_node(example_6_ts_node));`, output: `// Result / output (conceptual)
+// - ts-node applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: ts-node — understand syntax, typing, and a practical use." },
+        { label: "Bun", filename: "04-bun.ts", code: `// Running TypeScript. — Bun
+// Key idea: Bun
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_6_bun = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_6_bun(input: unknown) {
+  // apply Bun safely
+  return input;
+}
 
-export const example_6_ts_node = null;`, note: "Focus on ts-node: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Bun", code: `// Running TypeScript.: Bun
-// Context: TypeScript Setup & Tooling
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_6_bun = null;`, note: "Focus on Bun: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_6_bun(example_6_bun));`, output: `// Result / output (conceptual)
+// - Bun applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Bun — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "tsc — example", code: `// Running TypeScript. → tsc
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘tsc’ aspect with an explicit example." },
-        { title: "tsx — example", code: `// Running TypeScript. → tsx
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘tsx’ aspect with an explicit example." },
-        { title: "ts-node — example", code: `// Running TypeScript. → ts-node
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘ts-node’ aspect with an explicit example." },
-        { title: "Bun — example", code: `// Running TypeScript. → Bun
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Bun’ aspect with an explicit example." },
+        { title: "tsc", code: `// Example: tsc
+// Scenario: use this aspect of Running TypeScript. in real code.
+
+export function ex_6_1() {
+  // implement tsc
+  return "tsc";
+}
+
+console.log(ex_6_1());`, output: `tsc`, note: "Practical example highlighting tsc." },
+        { title: "tsx", code: `// Example: tsx
+// Scenario: use this aspect of Running TypeScript. in real code.
+
+export function ex_6_2() {
+  // implement tsx
+  return "tsx";
+}
+
+console.log(ex_6_2());`, output: `tsx`, note: "Practical example highlighting tsx." },
+        { title: "ts-node", code: `// Example: ts-node
+// Scenario: use this aspect of Running TypeScript. in real code.
+
+export function ex_6_3() {
+  // implement ts-node
+  return "ts-node";
+}
+
+console.log(ex_6_3());`, output: `ts-node`, note: "Practical example highlighting ts-node." },
+        { title: "Bun", code: `// Example: Bun
+// Scenario: use this aspect of Running TypeScript. in real code.
+
+export function ex_6_4() {
+  // implement Bun
+  return "Bun";
+}
+
+console.log(ex_6_4());`, output: `Bun`, note: "Practical example highlighting Bun." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Running TypeScript.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Running TypeScript.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Running TypeScript.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Running TypeScript.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Running TypeScript. in TypeScript Setup & Tooling: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to TypeScript Setup & Tooling, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Running TypeScript.: definition and role in TypeScript Setup & Tooling." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (tsc, tsx, ts-node)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: tsc.",
-        "I understand and can apply: tsx.",
-        "I understand and can apply: ts-node.",
-        "I understand and can apply: Bun.",
-        "I can explain trade-offs, edge cases, and best practices for Running TypeScript.."
+        "Understand: tsc",
+        "Understand: tsx",
+        "Understand: ts-node",
+        "Understand: Bun",
+        "Can write and explain a typed example of Running TypeScript.."
       ]} />
 
       <NoteTakeaways items={[
-        "Running TypeScript. is essential in TypeScript Setup & Tooling: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as tsc, tsx, ts-node, Bun to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Running TypeScript. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

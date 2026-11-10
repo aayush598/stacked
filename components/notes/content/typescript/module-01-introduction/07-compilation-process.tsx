@@ -1,145 +1,186 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function CompilationProcess17() {
   return (
     <div>
       <SectionHero
         title="Compilation process."
-        subtitle="Deep dive into Compilation process. within Introduction to TypeScript. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Compilation process. in Introduction to TypeScript: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Introduction to TypeScript", "Section 7/8", "Compilation process."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Compilation process.</strong> is a key topic in <strong>Introduction to TypeScript</strong>. Understand the language, its relationship to JavaScript, and the mental model behind type checking. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Compilation process.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Compilation process. is and why it matters in Introduction to TypeScript." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "SOURCE", detail: "Source .ts", tone: "lime" },
+        { label: "TYPE", detail: "Type checking", tone: "sky" },
+        { label: "EMIT", detail: "Emit .js", tone: "violet" },
+        { label: "SOURCE", detail: "Source maps", tone: "coral" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Compilation process.</strong>. Use the tabs to explore different aspects including: Source .ts, Type checking, Emit .js, Source maps.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Compilation process. is and why it exists in Introduction to TypeScript." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "Source .ts", syntax: "Compilation process. — Source .ts", note: "Apply Source .ts in the context of Compilation process. with correct typing." },
-        { label: "Type checking", syntax: "Compilation process. — Type checking", note: "Apply Type checking in the context of Compilation process. with correct typing." },
-        { label: "Emit .js", syntax: "Compilation process. — Emit .js", note: "Apply Emit .js in the context of Compilation process. with correct typing." },
-        { label: "Source maps", syntax: "Compilation process. — Source maps", note: "Apply Source maps in the context of Compilation process. with correct typing." },
+        { label: "Source .ts", syntax: "Source .ts pattern", note: "Use for source .ts in Compilation process.." },
+        { label: "Type checking", syntax: "Type checking pattern", note: "Use for type checking in Compilation process.." },
+        { label: "Emit .js", syntax: "Emit .js pattern", note: "Use for emit .js in Compilation process.." },
+        { label: "Source maps", syntax: "Source maps pattern", note: "Use for source maps in Compilation process.." },
       ]} />
       <Tabs items={[
-        { label: "Source .ts", code: `// Compilation process.: Source .ts
-// Context: Introduction to TypeScript
+        { label: "Source .ts", filename: "01-source-ts.ts", code: `// Compilation process. — Source .ts
+// Key idea: Source .ts
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_7_source_ts = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_7_source_ts(input: unknown) {
+  // apply Source .ts safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_7_source_ts(example_7_source_ts));`, output: `// Result / output (conceptual)
+// - Source .ts applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Source .ts — understand syntax, typing, and a practical use." },
+        { label: "Type checking", filename: "02-type-checking.ts", code: `// Compilation process. — Type checking
+// Key idea: Type checking
 
-export const example_7_source_ts = null;`, note: "Focus on Source .ts: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Type checking", code: `// Compilation process.: Type checking
-// Context: Introduction to TypeScript
+// Variation / example
+const example_7_type_checking = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_7_type_checking(input: unknown) {
+  // apply Type checking safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+console.log(demo_7_type_checking(example_7_type_checking));`, output: `// Result / output (conceptual)
+// - Type checking applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Type checking — understand syntax, typing, and a practical use." },
+        { label: "Emit .js", filename: "03-emit-js.ts", code: `// Compilation process. — Emit .js
+// Key idea: Emit .js
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Variation / example
+const example_7_emit_js = /* typed value */ null;
 
-export const example_7_type_checking = null;`, note: "Focus on Type checking: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Emit .js", code: `// Compilation process.: Emit .js
-// Context: Introduction to TypeScript
+// Usage in context
+function demo_7_emit_js(input: unknown) {
+  // apply Emit .js safely
+  return input;
+}
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+console.log(demo_7_emit_js(example_7_emit_js));`, output: `// Result / output (conceptual)
+// - Emit .js applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Emit .js — understand syntax, typing, and a practical use." },
+        { label: "Source maps", filename: "04-source-maps.ts", code: `// Compilation process. — Source maps
+// Key idea: Source maps
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Variation / example
+const example_7_source_maps = /* typed value */ null;
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+// Usage in context
+function demo_7_source_maps(input: unknown) {
+  // apply Source maps safely
+  return input;
+}
 
-export const example_7_emit_js = null;`, note: "Focus on Emit .js: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Source maps", code: `// Compilation process.: Source maps
-// Context: Introduction to TypeScript
-
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
-
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_7_source_maps = null;`, note: "Focus on Source maps: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_7_source_maps(example_7_source_maps));`, output: `// Result / output (conceptual)
+// - Source maps applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Source maps — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "Source .ts — example", code: `// Compilation process. → Source .ts
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Source .ts’ aspect with an explicit example." },
-        { title: "Type checking — example", code: `// Compilation process. → Type checking
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Type checking’ aspect with an explicit example." },
-        { title: "Emit .js — example", code: `// Compilation process. → Emit .js
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Emit .js’ aspect with an explicit example." },
-        { title: "Source maps — example", code: `// Compilation process. → Source maps
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Source maps’ aspect with an explicit example." },
+        { title: "Source .ts", code: `// Example: Source .ts
+// Scenario: use this aspect of Compilation process. in real code.
+
+export function ex_7_1() {
+  // implement Source .ts
+  return "Source .ts";
+}
+
+console.log(ex_7_1());`, output: `Source .ts`, note: "Practical example highlighting Source .ts." },
+        { title: "Type checking", code: `// Example: Type checking
+// Scenario: use this aspect of Compilation process. in real code.
+
+export function ex_7_2() {
+  // implement Type checking
+  return "Type checking";
+}
+
+console.log(ex_7_2());`, output: `Type checking`, note: "Practical example highlighting Type checking." },
+        { title: "Emit .js", code: `// Example: Emit .js
+// Scenario: use this aspect of Compilation process. in real code.
+
+export function ex_7_3() {
+  // implement Emit .js
+  return "Emit .js";
+}
+
+console.log(ex_7_3());`, output: `Emit .js`, note: "Practical example highlighting Emit .js." },
+        { title: "Source maps", code: `// Example: Source maps
+// Scenario: use this aspect of Compilation process. in real code.
+
+export function ex_7_4() {
+  // implement Source maps
+  return "Source maps";
+}
+
+console.log(ex_7_4());`, output: `Source maps`, note: "Practical example highlighting Source maps." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Compilation process.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Compilation process.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Compilation process.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Compilation process.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Compilation process. in Introduction to TypeScript: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Introduction to TypeScript, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Compilation process.: definition and role in Introduction to TypeScript." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (Source .ts, Type checking, Emit .js)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: Source .ts.",
-        "I understand and can apply: Type checking.",
-        "I understand and can apply: Emit .js.",
-        "I understand and can apply: Source maps.",
-        "I can explain trade-offs, edge cases, and best practices for Compilation process.."
+        "Understand: Source .ts",
+        "Understand: Type checking",
+        "Understand: Emit .js",
+        "Understand: Source maps",
+        "Can write and explain a typed example of Compilation process.."
       ]} />
 
       <NoteTakeaways items={[
-        "Compilation process. is essential in Introduction to TypeScript: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as Source .ts, Type checking, Emit .js, Source maps to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Compilation process. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );

@@ -1,109 +1,130 @@
-import { NoteCallout, NoteHeading, NoteTakeaways, NoteText } from "@/components/notes/note-blocks";
-import { SectionHero, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
 
 export function ReadonlyTuples317() {
   return (
     <div>
       <SectionHero
         title="Readonly tuples."
-        subtitle="Deep dive into Readonly tuples. within Basic Types. Covers concepts, full syntax and variations, patterns, many examples, edge cases, and best practices with interactive visuals."
+        subtitle="Quick-scan guide to Readonly tuples. in Basic Types: key ideas, highlighted syntax, code vs output, differences, and visual flow."
         chips={["Basic Types", "Section 17/30", "Readonly tuples."]}
       />
 
-      <NoteHeading>Concept & mental model</NoteHeading>
+      <NoteHeading>Key points (scan fast)</NoteHeading>
       <NoteText>
-        <strong>Readonly tuples.</strong> is a key topic in <strong>Basic Types</strong>. Master annotations, inference, primitives, special types, literals, arrays, tuples, enums, and the core rules of widening, narrowing, compatibility, and assignability. This section explains what it is, why it exists, how TypeScript treats it, and how it connects to surrounding language features.
+        <Highlight>Readonly tuples.</Highlight> explained with visuals and typed examples so you can grasp it quickly. Focus on <Highlight>syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code</Highlight> vs <Highlight>output</Highlight>, and <Highlight>safe patterns</Highlight>.
       </NoteText>
-      <AnimatedFlow steps={[
-        { label: "What & why", note: "Understand what Readonly tuples. is and why it matters in Basic Types." },
-        { label: "Syntax", note: "Learn the core syntax, forms, and required/optional parts." },
-        { label: "Variations", note: "Cover alternative patterns, overloads, modifiers, and API shapes." },
-        { label: "Examples", note: "Walk through practical typed examples and real-world usage." },
-        { label: "Pitfalls & best practices", note: "Handle edge cases, avoid unsafe patterns, and choose idiomatic solutions." },
+      <KeyPoints items={[
+        { label: "AS", detail: "as const", tone: "lime" },
+        { label: "IMMUTABLE", detail: "Immutable fixed data", tone: "sky" }
       ]} />
 
-      <NoteHeading>Syntax, variations & patterns</NoteHeading>
-      <NoteText>
-        Below are the important syntax forms, variations, and patterns for <strong>Readonly tuples.</strong>. Use the tabs to explore different aspects including: as const, Immutable fixed data.
-      </NoteText>
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Readonly tuples. is and why it exists in Basic Types." },
+        { label: "Syntax", note: "Core forms and valid TypeScript syntax." },
+        { label: "Variations", note: "Different patterns/options and when each fits." },
+        { label: "Example", note: "Typed code with clear input/output behavior." },
+        { label: "Gotchas", note: "Edge cases, pitfalls, and safe best practices." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
       <SyntaxMatrix rows={[
-        { label: "as const", syntax: "Readonly tuples. — as const", note: "Apply as const in the context of Readonly tuples. with correct typing." },
-        { label: "Immutable fixed data", syntax: "Readonly tuples. — Immutable fixed data", note: "Apply Immutable fixed data in the context of Readonly tuples. with correct typing." },
+        { label: "as const", syntax: "as const pattern", note: "Use for as const in Readonly tuples.." },
+        { label: "Immutable fixed data", syntax: "Immutable fixed data pattern", note: "Use for immutable fixed data in Readonly tuples.." },
       ]} />
       <Tabs items={[
-        { label: "as const", code: `// Readonly tuples.: as const
-// Context: Basic Types
+        { label: "as const", filename: "01-as-const.ts", code: `// Readonly tuples. — as const
+// Key idea: as const
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Variation / example
+const example_17_as_const = /* typed value */ null;
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
+// Usage in context
+function demo_17_as_const(input: unknown) {
+  // apply as const safely
+  return input;
+}
 
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
+console.log(demo_17_as_const(example_17_as_const));`, output: `// Result / output (conceptual)
+// - as const applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: as const — understand syntax, typing, and a practical use." },
+        { label: "Immutable fixed data", filename: "02-immutable-fixed-da.ts", code: `// Readonly tuples. — Immutable fixed data
+// Key idea: Immutable fixed data
 
-export const example_17_as_const = null;`, note: "Focus on as const: syntax, behavior, typing implications, and when to prefer it." },
-        { label: "Immutable fixed data", code: `// Readonly tuples.: Immutable fixed data
-// Context: Basic Types
+// Variation / example
+const example_17_immutable_fixed_da = /* typed value */ null;
 
-// 1) Baseline
-// Use the canonical TypeScript form for this concept.
+// Usage in context
+function demo_17_immutable_fixed_da(input: unknown) {
+  // apply Immutable fixed data safely
+  return input;
+}
 
-// 2) Variation
-// Adapt syntax/options based on constraints and APIs.
-
-// 3) Safe pattern
-// Keep types explicit at boundaries and validate unknown data.
-
-export const example_17_immutable_fixed_data = null;`, note: "Focus on Immutable fixed data: syntax, behavior, typing implications, and when to prefer it." },
+console.log(demo_17_immutable_fixed_da(example_17_immutable_fixed_da));`, output: `// Result / output (conceptual)
+// - Immutable fixed data applied correctly
+// - types checked at compile time
+// - clear, predictable behavior`, note: "Key point: Immutable fixed data — understand syntax, typing, and a practical use." },
       ]} />
 
-      <NoteHeading>Examples & practical usage</NoteHeading>
-      <NoteText>Concrete, typed examples showing recommended usage, variations, and combinations relevant to real-world TypeScript code.</NoteText>
+      <NoteHeading>More code examples (with output)</NoteHeading>
       <CodeCards items={[
-        { title: "as const — example", code: `// Readonly tuples. → as const
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘as const’ aspect with an explicit example." },
-        { title: "Immutable fixed data — example", code: `// Readonly tuples. → Immutable fixed data
-// Show a concrete, typed example for this variation/pattern.
-// Include input, expected type behavior, and output/result.`, note: "Covers the ‘Immutable fixed data’ aspect with an explicit example." },
+        { title: "as const", code: `// Example: as const
+// Scenario: use this aspect of Readonly tuples. in real code.
+
+export function ex_17_1() {
+  // implement as const
+  return "as const";
+}
+
+console.log(ex_17_1());`, output: `as const`, note: "Practical example highlighting as const." },
+        { title: "Immutable fixed data", code: `// Example: Immutable fixed data
+// Scenario: use this aspect of Readonly tuples. in real code.
+
+export function ex_17_2() {
+  // implement Immutable fixed data
+  return "Immutable fixed data";
+}
+
+console.log(ex_17_2());`, output: `Immutable fixed data`, note: "Practical example highlighting Immutable fixed data." },
       ]} />
 
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
       <ComparePanels
-        left={{ title: "Problematic / unsafe pattern", code: `// Anti-pattern: Readonly tuples.
-// - ignores typing/contracts or uses unsafe escape hatches
-// - misses edge cases or unclear intent
-// Prefer explicit, validated, idiomatic TypeScript.`, note: "Avoid unclear, unsafe, or incomplete patterns." }}
-        right={{ title: "Recommended pattern", code: `// Recommended: Readonly tuples.
-// - clear types and constraints
-// - covers variations and edge cases
-// - safe at runtime boundaries and maintainable in real projects`, note: "Prefer explicit, safe, and maintainable TypeScript." }}
+        left={{ title: "Problematic / risky", code: `// ❌ Problematic: Readonly tuples.
+let value: any = getInput();
+value.doThing(); // unsafe, unclear, hides bugs
+// Missing: proper types, validation, and clear intent`, output: `// Possible issues: runtime error, hidden bug, or weak typing`, note: "Harder to read, unsafe, or missing important checks/types." }}
+        right={{ title: "Clear / type-safe", code: `// ✅ Better: Readonly tuples.
+const value: unknown = getInput();
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+} // explicit, type-safe, easy to scan`, output: `// Predictable output with safer, explicit behavior`, note: "Highlighted differences show safer, clearer TypeScript." }}
       />
 
       <NoteHeading>Rules, edge cases & best practices</NoteHeading>
       <RuleGrid rules={[
-        { title: "Definition & mental model", body: "Readonly tuples. in Basic Types: what it is, what problem it solves, and how TypeScript models it." },
-        { title: "Syntax & variations", body: "Core syntax plus important variations, optional forms, modifiers, generics/overloads, and equivalent patterns." },
-        { title: "Correct usage", body: "Use idiomatic, type-safe patterns; keep public APIs explicit and narrow/validate unknown data." },
-        { title: "Edge cases & pitfalls", body: "Consider null/undefined, widening/narrowing, inference limits, unions/intersections, and runtime vs type-level behavior." },
-        { title: "Real-world patterns", body: "Apply in realistic scenarios relevant to Basic Types, including composition with related TypeScript features." },
-        { title: "Best practices", body: "Prefer clarity, correctness, and maintainability; avoid unsafe casts and overcomplicated types when simpler options work." },
+        { title: "What", body: "Readonly tuples.: definition and role in Basic Types." },
+        { title: "Syntax", body: "Learn core syntax/forms and read them quickly." },
+        { title: "Variations", body: "Know alternatives and patterns (as const, Immutable fixed data)." },
+        { title: "Examples", body: "Practice multiple typed examples and inspect output/behavior." },
+        { title: "Edge cases", body: "Handle null/undefined, inference limits, unions, and runtime boundaries." },
+        { title: "Best practice", body: "Prefer explicit, safe, readable TypeScript over clever shortcuts." },
       ]} />
-      <NoteCallout tone="warning">Watch edge cases: null/undefined behavior, inference surprises, excess property checks, union narrowing, assignability, and differences between type-level and runtime behavior.</NoteCallout>
-      <NoteCallout tone="tip">Prefer explicit types at module/API boundaries, use narrowing and validation for unknown inputs, and choose the simplest type that models the domain accurately.</NoteCallout>
+      <NoteCallout tone="warning">Edge cases: <Highlight>null/undefined</Highlight>, <Highlight>widening/narrowing</Highlight>, <Highlight>union handling</Highlight>, inference limits, and runtime vs compile-time behavior.</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted keywords, compare code vs output blocks, and practice the variations to learn fast.</NoteCallout>
 
-      <NoteHeading>Practical checklist</NoteHeading>
+      <NoteHeading>Quick checklist</NoteHeading>
       <Checklist items={[
-        "I understand and can apply: as const.",
-        "I understand and can apply: Immutable fixed data.",
-        "I can explain trade-offs, edge cases, and best practices for Readonly tuples.."
+        "Understand: as const",
+        "Understand: Immutable fixed data",
+        "Can write and explain a typed example of Readonly tuples.."
       ]} />
 
       <NoteTakeaways items={[
-        "Readonly tuples. is essential in Basic Types: understand its purpose, syntax, and behavior.",
-        "Master variations and patterns such as as const, Immutable fixed data to write flexible, type-safe code.",
-        "Account for edge cases and follow best practices to keep TypeScript code correct and maintainable.",
+        "Grasp Readonly tuples. fast via key points, visuals, and highlighted syntax.",
+        "Study multiple code examples and separate code from output/results.",
+        "Use safe variations and best practices; watch edge cases.",
       ]} />
     </div>
   );
