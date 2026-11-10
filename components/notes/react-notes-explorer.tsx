@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, ListFilter, Sparkles } from "lucide-react";
+import { ArrowLeft, PanelLeftClose, PanelLeftOpen, Sparkles } from "lucide-react";
 import { NoteReader } from "@/components/notes/note-reader";
 import { NotesSidebar } from "@/components/notes/notes-sidebar";
 import { ProgressBar, Skeleton } from "@/components/notes/notes-ui";
@@ -28,7 +28,7 @@ export function ReactNotesExplorer() {
   const toggleRead = useNotesStore((state) => state.toggleRead);
 
   const [filters, setFilters] = useState<NoteFilters>(defaultFilters);
-  const [showToc, setShowToc] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const requestedId = searchParams.get("section");
   const requestedEntry = requestedId ? reactSectionById.get(requestedId) : undefined;
@@ -70,53 +70,55 @@ export function ReactNotesExplorer() {
   function selectSection(sectionId: string) {
     const params = new URLSearchParams(searchParams.toString());
     params.set("section", sectionId);
-    setShowToc(false);
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
     window.requestAnimationFrame(() => { readerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }); });
   }
 
   return (
     <main className="flex-1">
-      <section className="mx-auto w-full max-w-7xl px-4 pb-16 pt-8 sm:px-6 sm:pt-10 lg:px-8">
-        <div className="flex flex-col gap-4 border-b border-line pb-6 sm:flex-row sm:items-end sm:justify-between">
-          <div>
+      <section className="mx-auto w-full max-w-[90rem] px-3 pb-10 pt-6 sm:px-4 sm:pt-8 lg:px-6">
+        <div className="flex flex-col gap-3 border-b border-line pb-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="min-w-0">
             <Link href="/notes" className="inline-flex items-center gap-1.5 text-[13px] font-medium text-faint transition hover:text-mist">
               <ArrowLeft className="size-3" aria-hidden />Notes library
             </Link>
-            <div className="mt-3 flex flex-wrap items-center gap-2">
-              <h1 className="text-3xl font-semibold tracking-[-0.045em] text-mist sm:text-4xl">React Mastery</h1>
-              <span className="rounded-full border border-sky/20 bg-sky/[0.06] px-2 py-0.5 font-mono text-[13px] uppercase tracking-[0.12em] text-sky">In progress</span>
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              <h1 className="text-2xl font-semibold tracking-[-0.04em] text-mist sm:text-3xl">React Mastery</h1>
+              <span className="rounded-full border border-sky/20 bg-sky/[0.06] px-2 py-0.5 font-mono text-[12px] uppercase tracking-[0.12em] text-sky">In progress</span>
             </div>
-            <p className="mt-2 max-w-2xl text-[15px] leading-6 text-muted">
-              {stats.phases} phases · {stats.modules} modules · {stats.projects} projects · {stats.sections.toLocaleString()} nested sections. Filter by review state, track what you have read, and learn React from foundations to production.
+            <p className="mt-1.5 max-w-3xl text-[14px] leading-6 text-muted sm:text-[15px]">
+              {stats.phases} phases · {stats.modules} modules · {stats.projects} projects · {stats.sections.toLocaleString()} nested sections. Filter, track progress, and search across all notes.
             </p>
           </div>
-          <div className="w-full max-w-xs shrink-0 sm:w-64">
-            <div className="flex items-center justify-between gap-2 text-[13px] text-faint">
+          <div className="w-full max-w-xs shrink-0 sm:w-56">
+            <div className="flex items-center justify-between gap-2 text-[12px] text-faint">
               <span>Reading progress</span>
               {hydrated ? <span className="font-mono text-muted">{readPercent}%</span> : <Skeleton className="h-4 w-10" />}
             </div>
-            {hydrated ? <ProgressBar value={readPercent} className="mt-2" /> : <Skeleton className="mt-2 h-1.5 w-full rounded-full" />}
-            {hydrated ? <p className="mt-1.5 text-[13px] text-faint">{readCount} of {stats.sections} sections read</p> : <Skeleton className="mt-1.5 h-4 w-44" />}
+            {hydrated ? <ProgressBar value={readPercent} className="mt-1.5" /> : <Skeleton className="mt-1.5 h-1.5 w-full rounded-full" />}
+            {hydrated ? <p className="mt-1 text-[12px] text-faint">{readCount} of {stats.sections} sections read</p> : <Skeleton className="mt-1 h-4 w-40" />}
           </div>
         </div>
-        <div className="mt-4">
+        <div className="mt-3">
           <NotesGlobalSearch className="max-w-2xl" />
         </div>
 
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-          <button type="button" onClick={() => setShowToc((c) => !c)} className="inline-flex h-9 items-center gap-2 rounded-lg border border-line bg-surface px-3 text-[15px] font-medium text-mist transition hover:border-line-strong hover:bg-raised lg:hidden">
-            <ListFilter className="size-3.5 text-muted" aria-hidden />{showToc ? "Hide contents" : "Contents & filters"}
+        <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+          <button type="button" onClick={() => setSidebarOpen((v) => !v)} className="inline-flex h-8 items-center gap-2 rounded-lg border border-line bg-surface px-2.5 text-[13px] font-medium text-mist transition hover:border-line-strong hover:bg-raised" aria-expanded={sidebarOpen} aria-controls="notes-sidebar">
+            {sidebarOpen ? <PanelLeftClose className="size-3.5 text-muted" aria-hidden /> : <PanelLeftOpen className="size-3.5 text-muted" aria-hidden />}
+            {sidebarOpen ? "Hide sidebar" : "Show sidebar"}
           </button>
-          <div className="flex flex-wrap items-center gap-2 text-[13px] text-faint">
-            {filtersActive ? <span className="rounded-full border border-sky/20 bg-sky/[0.06] px-2 py-1 font-medium text-sky">{matchedIds.size.toLocaleString()} matching sections</span> : null}
-            <span className="inline-flex items-center gap-1.5"><Sparkles className="size-3 text-sky" aria-hidden />{stats.reviewed} human reviewed</span>
+          <div className="flex flex-wrap items-center gap-2 text-[12px] text-faint">
+            {filtersActive ? <span className="rounded-full border border-sky/20 bg-sky/[0.06] px-2 py-0.5 font-medium text-sky">{matchedIds.size.toLocaleString()} matching</span> : null}
+            <span className="inline-flex items-center gap-1.5"><Sparkles className="size-3 text-sky" aria-hidden />{stats.reviewed} reviewed</span>
           </div>
         </div>
-        <div className="mt-4 grid gap-4 lg:grid-cols-[360px_minmax(0,1fr)] lg:items-start">
-          <aside className={cn("lg:sticky lg:top-20 lg:block", showToc ? "block" : "hidden")}>
-            <NotesSidebar phases={reactRoadmap.phases} selectedId={selectedId} readSections={readSections} filters={filters} matchedIds={matchedIds} hydrated={hydrated} onFiltersChange={setFilters} onClearFilters={() => setFilters(defaultFilters)} onSelect={selectSection} />
-          </aside>
+        <div className={cn("mt-3 grid items-start gap-3", sidebarOpen ? "lg:grid-cols-[320px_minmax(0,1fr)]" : "grid-cols-1")}>
+          {sidebarOpen ? (
+            <aside id="notes-sidebar" className="lg:sticky lg:top-20">
+              <NotesSidebar phases={reactRoadmap.phases} selectedId={selectedId} readSections={readSections} filters={filters} matchedIds={matchedIds} hydrated={hydrated} onFiltersChange={setFilters} onClearFilters={() => setFilters(defaultFilters)} onSelect={selectSection} />
+            </aside>
+          ) : null}
           <div ref={readerRef} className="min-w-0 scroll-mt-24">
             <NoteReader section={activeEntry.section} module={activeEntry.module} phase={activeEntry.phase} read={read} hydrated={hydrated} position={position + 1} total={reactSections.length} previous={previousEntry ? { id: previousEntry.section.id, title: previousEntry.section.title } : undefined} next={nextEntry ? { id: nextEntry.section.id, title: nextEntry.section.title } : undefined} onToggleRead={() => toggleRead(selectedId)} onNavigate={selectSection} />
           </div>

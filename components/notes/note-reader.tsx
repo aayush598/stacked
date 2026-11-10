@@ -117,8 +117,8 @@ export function NoteReader({
 
   return (
     <article className="overflow-hidden rounded-xl border border-line bg-surface">
-      <div className="border-b border-line bg-canvas/45 px-5 py-4 sm:px-7 sm:py-5">
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] text-faint">
+      <div className="border-b border-line bg-canvas/45 px-4 py-3 sm:px-5 sm:py-4">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] text-faint sm:text-[13px]">
           <span className="font-mono uppercase tracking-[0.14em]">
             Phase {String(phase.number).padStart(2, "0")}
           </span>
@@ -132,25 +132,25 @@ export function NoteReader({
           <span>{module.title}</span>
         </div>
 
-        <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div className="mt-2.5 flex flex-col gap-2.5 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0">
-            <h1 className="text-2xl font-semibold leading-tight tracking-[-0.035em] text-mist sm:text-[2rem]">
+            <h1 className="text-xl font-semibold leading-tight tracking-[-0.03em] text-mist sm:text-2xl lg:text-[1.8rem]">
               {section.title}
             </h1>
-            <div className="mt-2.5 flex flex-wrap items-center gap-2">
+            <div className="mt-2 flex flex-wrap items-center gap-1.5 sm:gap-2">
               <StatusPill status={section.status} compact />
-              <span className="inline-flex items-center gap-1.5 text-[13px] text-faint">
+              <span className="inline-flex items-center gap-1.5 text-[12px] text-faint sm:text-[13px]">
                 <Clock className="size-3" aria-hidden />
                 {section.minutes} min read
               </span>
-              <span className="inline-flex items-center gap-1.5 text-[13px] text-faint">
+              <span className="inline-flex items-center gap-1.5 text-[12px] text-faint sm:text-[13px]">
                 <Layers3 className="size-3" aria-hidden />
                 Section {position} of {total}
               </span>
               {hydrated ? (
                 <span
                   className={cn(
-                    "inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[13px] font-medium",
+                    "inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[12px] font-medium sm:text-[13px]",
                     read
                       ? "border-success/25 bg-success/[0.07] text-success"
                       : "border-line bg-canvas text-faint",
@@ -170,7 +170,7 @@ export function NoteReader({
               type="button"
               onClick={onToggleRead}
               className={cn(
-                "inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-lg border px-3 text-[13px] font-semibold transition",
+                "inline-flex h-8 shrink-0 items-center justify-center gap-1.5 rounded-lg border px-3 text-[13px] font-semibold transition sm:h-9",
                 read
                   ? "border-success/25 bg-success/[0.07] text-success hover:bg-success/[0.11]"
                   : "border-line bg-surface text-mist hover:border-line-strong hover:bg-raised",
@@ -184,18 +184,18 @@ export function NoteReader({
           )}
         </div>
 
-        <div className="mt-3 flex items-start gap-2 rounded-lg border border-line bg-surface px-3 py-2.5 text-[13px] leading-5 text-muted">
+        <div className="mt-2.5 flex items-start gap-2 rounded-lg border border-line bg-surface px-3 py-2 text-[12px] leading-5 text-muted sm:text-[13px]">
           <Sparkles className="mt-0.5 size-3.5 shrink-0 text-lime" aria-hidden />
           <span>{statusDescription(section.status)}</span>
         </div>
       </div>
 
-      <div className="px-5 py-6 sm:px-7 sm:py-8">
+      <div className="px-4 py-4 sm:px-5 sm:py-6">
         {Content ? <Content /> : <AuthoringShell section={section} />}
 
         <RelatedNotes sectionId={section.id} />
 
-        <div className="mt-10 border-t border-line pt-6">
+        <div className="mt-8 border-t border-line pt-5">
           <div className="rounded-xl border border-line bg-canvas/60 p-4 sm:p-5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-start gap-2.5">
