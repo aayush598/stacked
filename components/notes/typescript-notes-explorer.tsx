@@ -7,6 +7,7 @@ import { ArrowLeft, ListFilter, Sparkles } from "lucide-react";
 import { NoteReader } from "@/components/notes/note-reader";
 import { NotesSidebar } from "@/components/notes/notes-sidebar";
 import { ProgressBar, Skeleton } from "@/components/notes/notes-ui";
+import { NotesGlobalSearch } from "@/components/notes/notes-global-search";
 import { useNotesHydrated } from "@/lib/hooks/use-notes-hydrated";
 import { courseStats, type NoteFilters } from "@/lib/notes/types";
 import {
@@ -142,7 +143,11 @@ export function TypeScriptNotesExplorer() {
           </div>
         </div>
 
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="mt-4">
+          <NotesGlobalSearch className="max-w-2xl" />
+        </div>
+
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
           <button
             type="button"
             onClick={() => setShowToc((current) => !current)}

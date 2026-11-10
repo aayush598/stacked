@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { typescriptNoteContent } from "@/components/notes/content/typescript";
 import { reactNoteContent } from "@/components/notes/content/react";
+import { RelatedNotes } from "@/components/notes/related-notes";
 import { Skeleton, StatusPill } from "@/components/notes/notes-ui";
 import type { NoteModule, NotePhase, NoteSection } from "@/lib/notes/types";
 import { statusDescription } from "@/lib/notes/types";
@@ -191,6 +192,8 @@ export function NoteReader({
 
       <div className="px-5 py-6 sm:px-7 sm:py-8">
         {Content ? <Content /> : <AuthoringShell section={section} />}
+
+        <RelatedNotes sectionId={section.id} />
 
         <div className="mt-10 border-t border-line pt-6">
           <div className="rounded-xl border border-line bg-canvas/60 p-4 sm:p-5">

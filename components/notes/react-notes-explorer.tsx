@@ -7,6 +7,7 @@ import { ArrowLeft, ListFilter, Sparkles } from "lucide-react";
 import { NoteReader } from "@/components/notes/note-reader";
 import { NotesSidebar } from "@/components/notes/notes-sidebar";
 import { ProgressBar, Skeleton } from "@/components/notes/notes-ui";
+import { NotesGlobalSearch } from "@/components/notes/notes-global-search";
 import { useNotesHydrated } from "@/lib/hooks/use-notes-hydrated";
 import { courseStats, type NoteFilters } from "@/lib/notes/types";
 import { reactRoadmap, reactSectionById, reactSections } from "@/lib/notes/react-roadmap";
@@ -99,7 +100,11 @@ export function ReactNotesExplorer() {
             {hydrated ? <p className="mt-1.5 text-[13px] text-faint">{readCount} of {stats.sections} sections read</p> : <Skeleton className="mt-1.5 h-4 w-44" />}
           </div>
         </div>
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="mt-4">
+          <NotesGlobalSearch className="max-w-2xl" />
+        </div>
+
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
           <button type="button" onClick={() => setShowToc((c) => !c)} className="inline-flex h-9 items-center gap-2 rounded-lg border border-line bg-surface px-3 text-[15px] font-medium text-mist transition hover:border-line-strong hover:bg-raised lg:hidden">
             <ListFilter className="size-3.5 text-muted" aria-hidden />{showToc ? "Hide contents" : "Contents & filters"}
           </button>

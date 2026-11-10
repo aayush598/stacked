@@ -16,6 +16,7 @@ import {
   Palette,
 } from "lucide-react";
 import { NotesNotifications } from "@/components/notes/notes-notifications";
+import { NotesGlobalSearch } from "@/components/notes/notes-global-search";
 import { NotesStat, ProgressBar, Skeleton, StatusPill } from "@/components/notes/notes-ui";
 import { courses, getCourseStats } from "@/lib/content/courses";
 import { useNotesHydrated } from "@/lib/hooks/use-notes-hydrated";
@@ -70,7 +71,10 @@ export function NotesHome() {
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted">
               Visual, deeply structured notes built for understanding. Explore complete roadmaps: TypeScript ({tsStats.sections.toLocaleString()} sections) and React ({reactStats.sections.toLocaleString()} sections), all marked incomplete and ready to learn/review.
             </p>
-            <div className="mt-8 flex flex-col gap-2.5 sm:flex-row">
+            <div className="mt-8 max-w-2xl">
+              <NotesGlobalSearch placeholder="Search all TypeScript & React notes…" />
+            </div>
+            <div className="mt-4 flex flex-col gap-2.5 sm:flex-row">
               <Link href="/notes/typescript" className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-lime px-5 text-[15px] font-semibold text-white transition hover:bg-lime/90">
                 TypeScript notes <ArrowRight className="size-4" aria-hidden />
               </Link>
