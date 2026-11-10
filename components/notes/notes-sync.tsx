@@ -3,11 +3,12 @@
 import { useEffect } from "react";
 import { reviewSnapshot, typescriptSectionById } from "@/lib/notes/typescript-roadmap";
 import { reactReviewSnapshot, reactSectionById } from "@/lib/notes/react-roadmap";
+import { bootstrapReviewSnapshot, bootstrapSectionById } from "@/lib/notes/bootstrap-roadmap";
 import type { NoteNotification } from "@/lib/notes/types";
 import { useNotesHydrated } from "@/lib/hooks/use-notes-hydrated";
 import { useNotesStore } from "@/lib/store/notes-store";
 
-const sectionById = new Map([...typescriptSectionById, ...reactSectionById]);
+const sectionById = new Map([...typescriptSectionById, ...reactSectionById, ...bootstrapSectionById]);
 
 export function NotesSync() {
   const hydrated = useNotesHydrated();
@@ -15,7 +16,7 @@ export function NotesSync() {
   useEffect(() => {
     if (!hydrated) return;
 
-    const current = { ...reviewSnapshot(), ...reactReviewSnapshot() };
+    const current = { ...reviewSnapshot(), ...reactReviewSnapshot(), ...bootstrapReviewSnapshot() };
     const previous = useNotesStore.getState().reviewSnapshot;
 
     if (!previous) {

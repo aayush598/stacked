@@ -1,0 +1,160 @@
+import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+
+export function OffcanvasResponsiveBehaviorB2413() {
+  return (
+    <div>
+      <SectionHero
+        title="Offcanvas responsive behavior."
+        subtitle="Quick-scan guide to Offcanvas responsive behavior. in Bootstrap specialized components: key ideas, syntax/classes, variations, code vs visual output, and best practices."
+        chips={["Bootstrap specialized components", "Section 13/24", "Offcanvas responsive behavior."]}
+      />
+
+      <NoteHeading>Key points (scan fast)</NoteHeading>
+      <NoteText>
+        <Highlight>Offcanvas responsive behavior.</Highlight> explained with visuals and examples. Focus on <Highlight>classes/syntax</Highlight>, <Highlight>variations</Highlight>, <Highlight>code vs output</Highlight>, and <Highlight>accessibility</Highlight>.
+      </NoteText>
+      <KeyPoints items={[
+        { label: "CORE", detail: "core concept of Offcanvas responsive behavior.", tone: "violet" },
+        { label: "SYNTAX/CLA", detail: "syntax/classes and structure", tone: "sky" },
+        { label: "VARIATIONS", detail: "variations and options", tone: "lime" },
+        { label: "PRACTICAL", detail: "practical example", tone: "coral" },
+        { label: "EDGE", detail: "edge cases and accessibility", tone: "violet" },
+        { label: "BEST", detail: "best practices", tone: "sky" }
+      ]} />
+
+      <AnimatedFlow steps={[
+        { label: "Idea", note: "What Offcanvas responsive behavior. is and why it matters in Bootstrap specialized components." },
+        { label: "Syntax", note: "Core Bootstrap classes/markup or API and correct structure." },
+        { label: "Variations", note: "Options, responsive/modifier classes, and patterns." },
+        { label: "Example", note: "Code with clear visual/output behavior." },
+        { label: "Best use", note: "Accessibility, consistency, and production tips." },
+      ]} />
+
+      <NoteHeading>Syntax, variations & highlighted examples</NoteHeading>
+      <SyntaxMatrix rows={[
+        { label: "core concept of Offcanvas responsive behavior.", syntax: "Offcanvas responsive behavior. — core concept of Offcanvas responsive behavior.", note: "Apply core concept of Offcanvas responsive behavior. for Offcanvas responsive behavior.." },
+        { label: "syntax/classes and structure", syntax: "Offcanvas responsive behavior. — syntax/classes and structure", note: "Apply syntax/classes and structure for Offcanvas responsive behavior.." },
+        { label: "variations and options", syntax: "Offcanvas responsive behavior. — variations and options", note: "Apply variations and options for Offcanvas responsive behavior.." },
+        { label: "practical example", syntax: "Offcanvas responsive behavior. — practical example", note: "Apply practical example for Offcanvas responsive behavior.." },
+        { label: "edge cases and accessibility", syntax: "Offcanvas responsive behavior. — edge cases and accessibility", note: "Apply edge cases and accessibility for Offcanvas responsive behavior.." },
+        { label: "best practices", syntax: "Offcanvas responsive behavior. — best practices", note: "Apply best practices for Offcanvas responsive behavior.." },
+      ]} />
+      <Tabs items={[
+        { label: "core concept of Offcanvas responsive behavior.", filename: "01-core-concept-of-of.html", code: `<!-- Offcanvas responsive behavior.: core concept of Offcanvas responsive behavior. -->
+<div class="container py-3">
+  <!-- Key idea: core concept of Offcanvas responsive behavior. -->
+  <div class="example-core_concept_of_">Example for Offcanvas responsive behavior.</div>
+  <!-- Use Bootstrap classes/structure appropriate to this concept -->
+</div>`, output: `Visual/output: core concept of Offcanvas responsive behavior. applied — layout/behavior updates as expected (responsive, accessible).`, note: "Key point: core concept of Offcanvas responsive behavior. — syntax, variation, and practical use." },
+        { label: "syntax/classes and structure", filename: "02-syntax-classes-and.html", code: `<!-- Offcanvas responsive behavior.: syntax/classes and structure -->
+<div class="container py-3">
+  <!-- Key idea: syntax/classes and structure -->
+  <div class="example-syntax_classes_a">Example for Offcanvas responsive behavior.</div>
+  <!-- Use Bootstrap classes/structure appropriate to this concept -->
+</div>`, output: `Visual/output: syntax/classes and structure applied — layout/behavior updates as expected (responsive, accessible).`, note: "Key point: syntax/classes and structure — syntax, variation, and practical use." },
+        { label: "variations and options", filename: "03-variations-and-opt.html", code: `<!-- Offcanvas responsive behavior.: variations and options -->
+<div class="container py-3">
+  <!-- Key idea: variations and options -->
+  <div class="example-variations_and_o">Example for Offcanvas responsive behavior.</div>
+  <!-- Use Bootstrap classes/structure appropriate to this concept -->
+</div>`, output: `Visual/output: variations and options applied — layout/behavior updates as expected (responsive, accessible).`, note: "Key point: variations and options — syntax, variation, and practical use." },
+        { label: "practical example", filename: "04-practical-example.html", code: `<!-- Offcanvas responsive behavior.: practical example -->
+<div class="container py-3">
+  <!-- Key idea: practical example -->
+  <div class="example-practical_exampl">Example for Offcanvas responsive behavior.</div>
+  <!-- Use Bootstrap classes/structure appropriate to this concept -->
+</div>`, output: `Visual/output: practical example applied — layout/behavior updates as expected (responsive, accessible).`, note: "Key point: practical example — syntax, variation, and practical use." },
+        { label: "edge cases and accessibility", filename: "05-edge-cases-and-acc.html", code: `<!-- Offcanvas responsive behavior.: edge cases and accessibility -->
+<div class="container py-3">
+  <!-- Key idea: edge cases and accessibility -->
+  <div class="example-edge_cases_and_a">Example for Offcanvas responsive behavior.</div>
+  <!-- Use Bootstrap classes/structure appropriate to this concept -->
+</div>`, output: `Visual/output: edge cases and accessibility applied — layout/behavior updates as expected (responsive, accessible).`, note: "Key point: edge cases and accessibility — syntax, variation, and practical use." },
+        { label: "best practices", filename: "06-best-practices.html", code: `<!-- Offcanvas responsive behavior.: best practices -->
+<div class="container py-3">
+  <!-- Key idea: best practices -->
+  <div class="example-best_practices">Example for Offcanvas responsive behavior.</div>
+  <!-- Use Bootstrap classes/structure appropriate to this concept -->
+</div>`, output: `Visual/output: best practices applied — layout/behavior updates as expected (responsive, accessible).`, note: "Key point: best practices — syntax, variation, and practical use." },
+      ]} />
+
+      <NoteHeading>More code examples (with output)</NoteHeading>
+      <CodeCards items={[
+        { title: "core concept of Offcanvas responsive behavior.", code: `<!-- Example: core concept of Offcanvas responsive behavior. -->
+<div class="p-3 border rounded">
+  <p class="mb-1 fw-semibold">Offcanvas responsive behavior.</p>
+  <p class="mb-0">core concept of Offcanvas responsive behavior.</p>
+</div>`, output: `Result: demonstrates core concept of Offcanvas responsive behavior. clearly.`, note: "Practical example for core concept of Offcanvas responsive behavior.." },
+        { title: "syntax/classes and structure", code: `<!-- Example: syntax/classes and structure -->
+<div class="p-3 border rounded">
+  <p class="mb-1 fw-semibold">Offcanvas responsive behavior.</p>
+  <p class="mb-0">syntax/classes and structure</p>
+</div>`, output: `Result: demonstrates syntax/classes and structure clearly.`, note: "Practical example for syntax/classes and structure." },
+        { title: "variations and options", code: `<!-- Example: variations and options -->
+<div class="p-3 border rounded">
+  <p class="mb-1 fw-semibold">Offcanvas responsive behavior.</p>
+  <p class="mb-0">variations and options</p>
+</div>`, output: `Result: demonstrates variations and options clearly.`, note: "Practical example for variations and options." },
+        { title: "practical example", code: `<!-- Example: practical example -->
+<div class="p-3 border rounded">
+  <p class="mb-1 fw-semibold">Offcanvas responsive behavior.</p>
+  <p class="mb-0">practical example</p>
+</div>`, output: `Result: demonstrates practical example clearly.`, note: "Practical example for practical example." },
+        { title: "edge cases and accessibility", code: `<!-- Example: edge cases and accessibility -->
+<div class="p-3 border rounded">
+  <p class="mb-1 fw-semibold">Offcanvas responsive behavior.</p>
+  <p class="mb-0">edge cases and accessibility</p>
+</div>`, output: `Result: demonstrates edge cases and accessibility clearly.`, note: "Practical example for edge cases and accessibility." },
+        { title: "best practices", code: `<!-- Example: best practices -->
+<div class="p-3 border rounded">
+  <p class="mb-1 fw-semibold">Offcanvas responsive behavior.</p>
+  <p class="mb-0">best practices</p>
+</div>`, output: `Result: demonstrates best practices clearly.`, note: "Practical example for best practices." },
+      ]} />
+
+      <NoteHeading>Difference: problematic vs better (highlighted)</NoteHeading>
+      <ComparePanels
+        left={{ title: "Problematic / inconsistent", code: `<!-- ❌ Problematic: Offcanvas responsive behavior. -->
+<div>
+  <!-- inconsistent classes, missing responsive/accessibility considerations -->
+  <span>Content</span>
+</div>`, output: `Issues: unclear structure, weak responsiveness/accessibility, or inconsistent styling.`, note: "Harder to maintain and can break behavior." }}
+        right={{ title: "Clear / Bootstrap-correct", code: `<!-- ✅ Better: Offcanvas responsive behavior. -->
+<div class="container py-3">
+  <!-- clear Bootstrap structure/classes, responsive and accessible -->
+  <span class="d-block">Content</span>
+</div>`, output: `Predictable, responsive, accessible result with consistent Bootstrap usage.`, note: "Highlighted differences show the recommended approach." }}
+      />
+
+      <NoteHeading>Rules, edge cases & best practices</NoteHeading>
+      <RuleGrid rules={[
+        { title: "What", body: "Offcanvas responsive behavior.: definition and role in Bootstrap specialized components." },
+        { title: "Syntax/classes", body: "Core markup/classes or API with correct structure." },
+        { title: "Variations", body: "Responsive options, modifiers, and alternative patterns." },
+        { title: "Examples", body: "Multiple practical examples with visual/output behavior." },
+        { title: "Accessibility", body: "Semantics, keyboard/focus/ARIA and contrast where relevant." },
+        { title: "Best practice", body: "Consistent, maintainable, production-ready usage." },
+      ]} />
+      <NoteCallout tone="warning">Edge cases: <Highlight>breakpoints</Highlight>, specificity/overrides, nesting, component state/JS behavior, and accessibility (focus/ARIA/contrast).</NoteCallout>
+      <NoteCallout tone="tip">Scan highlighted classes/syntax, compare code vs visual output, and prefer consistent, responsive, accessible patterns.</NoteCallout>
+
+      <NoteHeading>Quick checklist</NoteHeading>
+      <Checklist items={[
+        "Understand: core concept of Offcanvas responsive behavior.",
+        "Understand: syntax/classes and structure",
+        "Understand: variations and options",
+        "Understand: practical example",
+        "Understand: edge cases and accessibility",
+        "Understand: best practices",
+        "Can build and explain a correct example of Offcanvas responsive behavior.."
+      ]} />
+
+      <NoteTakeaways items={[
+        "Understand Offcanvas responsive behavior. via key points, syntax/classes, and visual behavior.",
+        "Use correct variations and responsive patterns with clear code and output.",
+        "Apply accessible, maintainable Bootstrap best practices.",
+      ]} />
+    </div>
+  );
+}

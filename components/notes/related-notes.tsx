@@ -26,8 +26,8 @@ export function RelatedNotes({ sectionId }: { sectionId: string }) {
             href={item.href}
             className="group flex items-start gap-3 rounded-lg border border-line bg-surface px-3 py-3 transition hover:border-line-strong hover:bg-raised/60"
           >
-            <span className={cn("mt-0.5 rounded-full border px-2 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em]", item.course === "react" ? "border-sky/20 bg-sky/[0.06] text-sky" : "border-lime/20 bg-lime/[0.06] text-lime")}>
-              {item.course === "react" ? "React" : "TS"}
+            <span className={cn("mt-0.5 rounded-full border px-2 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em]", item.course === "react" ? "border-sky/20 bg-sky/[0.06] text-sky" : item.course === "bootstrap" ? "border-violet/20 bg-violet/[0.06] text-violet" : "border-lime/20 bg-lime/[0.06] text-lime")}>
+              {item.course === "react" ? "React" : item.course === "bootstrap" ? "BS" : "TS"}
             </span>
             <span className="min-w-0 flex-1">
               <span className="block text-[14px] font-medium text-mist">{item.section.title}</span>

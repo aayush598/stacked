@@ -1,8 +1,9 @@
 import { reactSections } from "@/lib/notes/react-roadmap";
 import { typescriptSections } from "@/lib/notes/typescript-roadmap";
+import { bootstrapSections } from "@/lib/notes/bootstrap-roadmap";
 import type { NoteModule, NotePhase, NoteSection } from "@/lib/notes/types";
 
-export type NoteCourseId = "typescript" | "react";
+export type NoteCourseId = "typescript" | "react" | "bootstrap";
 
 export type IndexedNote = {
   section: NoteSection;
@@ -15,7 +16,9 @@ export type IndexedNote = {
 };
 
 function courseOf(id: string): NoteCourseId {
-  return id.startsWith("react-") ? "react" : "typescript";
+  if (id.startsWith("react-")) return "react";
+  if (id.startsWith("bs-")) return "bootstrap";
+  return "typescript";
 }
 
 function hrefFor(id: string) {
@@ -56,6 +59,7 @@ function buildIndex(entries: { section: NoteSection; module: NoteModule; phase: 
 export const allNotesIndex: IndexedNote[] = [
   ...buildIndex(typescriptSections, "typescript"),
   ...buildIndex(reactSections, "react"),
+  ...buildIndex(bootstrapSections, "bootstrap"),
 ];
 
 export const noteIndexById = new Map(allNotesIndex.map((n) => [n.section.id, n]));

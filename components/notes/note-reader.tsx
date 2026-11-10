@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { typescriptNoteContent } from "@/components/notes/content/typescript";
 import { reactNoteContent } from "@/components/notes/content/react";
+import { bootstrapNoteContent } from "@/components/notes/content/bootstrap";
 import { RelatedNotes } from "@/components/notes/related-notes";
 import { Skeleton, StatusPill } from "@/components/notes/notes-ui";
 import type { NoteModule, NotePhase, NoteSection } from "@/lib/notes/types";
@@ -33,7 +34,7 @@ type ReaderProps = {
   onNavigate: (sectionId: string) => void;
 };
 
-const noteContent = { ...typescriptNoteContent, ...reactNoteContent };
+const noteContent = { ...typescriptNoteContent, ...reactNoteContent, ...bootstrapNoteContent };
 
 function AuthoringShell({ section }: { section: NoteSection }) {
   const incomplete = section.status === "incomplete";

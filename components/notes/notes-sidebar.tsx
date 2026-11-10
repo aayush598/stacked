@@ -13,9 +13,10 @@ import { ProgressBar, Skeleton } from "@/components/notes/notes-ui";
 import type { NoteFilters, NoteModule, NotePhase } from "@/lib/notes/types";
 import { typescriptSectionById } from "@/lib/notes/typescript-roadmap";
 import { reactSectionById } from "@/lib/notes/react-roadmap";
+import { bootstrapSectionById } from "@/lib/notes/bootstrap-roadmap";
 import { cn, pluralize } from "@/lib/utils";
 
-const sectionById = new Map([...typescriptSectionById, ...reactSectionById]);
+const sectionById = new Map([...typescriptSectionById, ...reactSectionById, ...bootstrapSectionById]);
 
 type SidebarProps = {
   phases: NotePhase[];

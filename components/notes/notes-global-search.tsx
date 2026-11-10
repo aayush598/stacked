@@ -7,10 +7,12 @@ import { searchAllNotes } from "@/lib/notes/search";
 import { cn } from "@/lib/utils";
 
 function courseLabel(course: string) {
-  return course === "react" ? "React" : "TypeScript";
+  if (course === "react") return "React";
+  if (course === "bootstrap") return "Bootstrap";
+  return "TypeScript";
 }
 
-export function NotesGlobalSearch({ className, placeholder = "Search all notes (React + TypeScript)…" }: { className?: string; placeholder?: string }) {
+export function NotesGlobalSearch({ className, placeholder = "Search all notes (React, TypeScript, Bootstrap)…" }: { className?: string; placeholder?: string }) {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
@@ -76,13 +78,13 @@ export function NotesGlobalSearch({ className, placeholder = "Search all notes (
                     onClick={() => setOpen(false)}
                     className={cn("flex items-start gap-3 px-3 py-2.5 transition hover:bg-raised/70", i === active && "bg-raised/70")}
                   >
-                    <span className={cn("mt-0.5 grid size-7 shrink-0 place-items-center rounded-md border", item.course === "react" ? "border-sky/20 bg-sky/[0.08] text-sky" : "border-lime/20 bg-lime/[0.08] text-lime")}> 
+                    <span className={cn("mt-0.5 grid size-7 shrink-0 place-items-center rounded-md border", item.course === "react" ? "border-sky/20 bg-sky/[0.08] text-sky" : item.course === "bootstrap" ? "border-violet/20 bg-violet/[0.08] text-violet" : "border-lime/20 bg-lime/[0.08] text-lime")}> 
                       <BookOpen className="size-3.5" aria-hidden />
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="flex flex-wrap items-center gap-2">
                         <span className="truncate text-[14px] font-medium text-mist">{item.section.title}</span>
-                        <span className={cn("rounded-full border px-1.5 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em]", item.course === "react" ? "border-sky/20 text-sky" : "border-lime/20 text-lime")}>{courseLabel(item.course)}</span>
+                        <span className={cn("rounded-full border px-1.5 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em]", item.course === "react" ? "border-sky/20 text-sky" : item.course === "bootstrap" ? "border-violet/20 text-violet" : "border-lime/20 text-lime")}>{courseLabel(item.course)}</span>
                       </span>
                       <span className="mt-0.5 block truncate text-[12px] text-faint">{item.phase.title} · {item.module.title}</span>
                       {item.section.topics.length ? <span className="mt-0.5 block truncate text-[12px] text-muted">{item.section.topics.slice(0, 4).join(" · ")}</span> : null}
@@ -93,7 +95,7 @@ export function NotesGlobalSearch({ className, placeholder = "Search all notes (
               ))}
             </ul>
           )}
-          <div className="border-t border-line px-3 py-2 text-[12px] text-faint">Searching across all React & TypeScript sections</div>
+          <div className="border-t border-line px-3 py-2 text-[12px] text-faint">Searching across all React, TypeScript & Bootstrap sections</div>
         </div>
       ) : null}
     </div>

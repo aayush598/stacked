@@ -77,7 +77,7 @@ export function NotesNotifications({ compact = false }: { compact?: boolean }) {
               return (
                 <li key={notification.id}>
                   <Link
-                    href={`/notes/${notification.sectionId.startsWith('react-') ? 'react' : 'typescript'}?section=${encodeURIComponent(notification.sectionId)}`}
+                    href={`/notes/${notification.sectionId.startsWith('react-') ? 'react' : notification.sectionId.startsWith('bs-') ? 'bootstrap' : 'typescript'}?section=${encodeURIComponent(notification.sectionId)}`}
                     onClick={() => markNotificationRead(notification.id)}
                     className={cn(
                       "group flex items-start gap-3 px-4 py-3.5 transition hover:bg-canvas",
