@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft, PanelLeftClose, PanelLeftOpen, Sparkles } from "lucide-react";
@@ -38,6 +38,7 @@ export function TypeScriptNotesExplorer() {
 
   const [filters, setFilters] = useState<NoteFilters>(defaultFilters);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [isPending, startTransition] = useTransition();
 
   const requestedId = searchParams.get("section");
   const requestedEntry = requestedId ? typescriptSectionById.get(requestedId) : undefined;
@@ -97,13 +98,18 @@ export function TypeScriptNotesExplorer() {
   }, [selectedId]);
 
   function selectSection(sectionId: string) {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("section", sectionId);
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    window.requestAnimationFrame(() => {
-      readerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (sectionId === selectedId) return;
+    startTransition(() => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("section", sectionId);
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
     });
   }
+
+
+  useEffect(() => {
+    readerRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
+  }, [selectedId]);
 
   return (
     <main className="flex-1">
@@ -187,27 +193,30 @@ export function TypeScriptNotesExplorer() {
           ) : null}
 
           <div ref={readerRef} className="min-w-0 scroll-mt-24">
-            <NoteReader
-              section={activeEntry.section}
-              module={activeEntry.module}
-              phase={activeEntry.phase}
-              read={read}
-              hydrated={hydrated}
-              position={position + 1}
-              total={typescriptSections.length}
-              previous={
-                previousEntry
-                  ? { id: previousEntry.section.id, title: previousEntry.section.title }
-                  : undefined
-              }
-              next={
-                nextEntry
-                  ? { id: nextEntry.section.id, title: nextEntry.section.title }
-                  : undefined
-              }
-              onToggleRead={() => toggleRead(selectedId)}
-              onNavigate={selectSection}
-            />
+            {isPending ? (
+              <div className="overflow-hidden rounded-xl border border-line bg-surface p-4 sm:p-5 animate-in fade-in duration-150" aria-busy="true">
+                <Skeleton className="h-4 w-48" />
+                <Skeleton className="mt-3 h-8 w-3/4" />
+                <div className="mt-4 flex gap-2"><Skeleton className="h-6 w-24 rounded-full" /><Skeleton className="h-6 w-20 rounded-full" /></div>
+                <Skeleton className="mt-6 h-24 w-full rounded-xl" />
+                <Skeleton className="mt-4 h-40 w-full rounded-xl" />
+                <Skeleton className="mt-4 h-56 w-full rounded-xl" />
+              </div>
+            ) : (
+              <NoteReader
+                section={activeEntry.section}
+                module={activeEntry.module}
+                phase={activeEntry.phase}
+                read={read}
+                hydrated={hydrated}
+                position={position + 1}
+                total={typescriptSections.length}
+                previous={previousEntry ? { id: previousEntry.section.id, title: previousEntry.section.title } : undefined}
+                next={nextEntry ? { id: nextEntry.section.id, title: nextEntry.section.title } : undefined}
+                onToggleRead={() => toggleRead(selectedId)}
+                onNavigate={selectSection}
+              />
+            )}
           </div>
         </div>
       </section>

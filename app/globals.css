@@ -30,6 +30,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
+  scrollbar-gutter: stable;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -37,6 +39,21 @@ body {
   color: var(--color-mist);
   font-family: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
+}
+
+/* Smooth, non-janky transitions for interactive UI */
+a,
+button,
+[role="button"],
+input,
+select,
+textarea {
+  transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+  transition-duration: 180ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 ::selection {
@@ -81,9 +98,11 @@ body {
 }
 
 .glass {
-  background: rgba(247, 248, 245, 0.9);
-  backdrop-filter: blur(14px) saturate(120%);
-  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  background: rgba(247, 248, 245, 0.92);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .lime-glow {
@@ -102,7 +121,7 @@ body {
 }
 
 .pop {
-  animation: pop 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: pop 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .shimmer {
@@ -113,17 +132,17 @@ body {
     rgba(17, 23, 20, 0.035) 80%
   );
   background-size: 200% 100%;
-  animation: shimmer 1.8s linear infinite;
+  animation: shimmer 1.6s linear infinite;
 }
 
 @keyframes pop {
   0% {
     opacity: 0;
-    transform: scale(0.94);
+    transform: translateY(4px) scale(0.985);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -134,6 +153,23 @@ body {
   to {
     background-position: -200% 0;
   }
+}
+
+/* Utility animation classes (no dependency) */
+@keyframes fade-in { from { opacity: 0 } to { opacity: 1 } }
+@keyframes fade-in-up { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: translateY(0) } }
+.animate-in { animation-fill-mode: both; }
+.fade-in { animation-name: fade-in; }
+.slide-in-from-bottom-1 { animation-name: fade-in-up; }
+.duration-150 { animation-duration: 150ms; }
+.duration-200 { animation-duration: 200ms; }
+.duration-300 { animation-duration: 300ms; }
+.ease-out { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Containment to reduce layout/repaint cost for long content */
+main {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
 }
 
 @media (prefers-reduced-motion: reduce) {

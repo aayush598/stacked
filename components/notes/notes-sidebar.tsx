@@ -11,12 +11,8 @@ import {
 } from "lucide-react";
 import { ProgressBar, Skeleton } from "@/components/notes/notes-ui";
 import type { NoteFilters, NoteModule, NotePhase } from "@/lib/notes/types";
-import { typescriptSectionById } from "@/lib/notes/typescript-roadmap";
-import { reactSectionById } from "@/lib/notes/react-roadmap";
-import { bootstrapSectionById } from "@/lib/notes/bootstrap-roadmap";
-import { cn, pluralize } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
-const sectionById = new Map([...typescriptSectionById, ...reactSectionById, ...bootstrapSectionById]);
 
 type SidebarProps = {
   phases: NotePhase[];
@@ -98,12 +94,9 @@ export function NotesSidebar({
   }
 
   function sectionIsOpen(phase: NotePhase, module: NoteModule) {
-    const selected = sectionById.get(selectedId);
-    return (
-      filtersActive ||
-      openPhases.has(phase.id) ||
-      selected?.phase.id === phase.id
-    ) && (filtersActive || openModules.has(module.id) || selected?.module.id === module.id);
+    const inSelectedPhase = phase.modules.some((m) => m.sections.some((s) => s.id === selectedId));
+    const inSelectedModule = module.sections.some((s) => s.id === selectedId);
+    return (filtersActive || openPhases.has(phase.id) || inSelectedPhase) && (filtersActive || openModules.has(module.id) || inSelectedModule);
   }
 
   return (
@@ -227,10 +220,11 @@ export function NotesSidebar({
           </div>
         ) : (
           visiblePhases.map(({ phase, modules }) => {
+            const inSelectedPhase = phase.modules.some((m) => m.sections.some((sec) => sec.id === selectedId));
             const phaseOpen =
               filtersActive ||
               openPhases.has(phase.id) ||
-              sectionById.get(selectedId)?.phase.id === phase.id;
+              inSelectedPhase;
             return (
               <div key={phase.id} className="mb-1.5">
                 <button
