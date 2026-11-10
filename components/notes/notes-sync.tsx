@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
-import {
-  reviewSnapshot,
-  typescriptSectionById,
-} from "@/lib/notes/typescript-roadmap";
+import { reviewSnapshot, typescriptSectionById } from "@/lib/notes/typescript-roadmap";
+import { reactReviewSnapshot, reactSectionById } from "@/lib/notes/react-roadmap";
 import type { NoteNotification } from "@/lib/notes/types";
 import { useNotesHydrated } from "@/lib/hooks/use-notes-hydrated";
 import { useNotesStore } from "@/lib/store/notes-store";
+
+const sectionById = new Map([...typescriptSectionById, ...reactSectionById]);
 
 export function NotesSync() {
   const hydrated = useNotesHydrated();
@@ -15,7 +15,7 @@ export function NotesSync() {
   useEffect(() => {
     if (!hydrated) return;
 
-    const current = reviewSnapshot();
+    const current = { ...reviewSnapshot(), ...reactReviewSnapshot() };
     const previous = useNotesStore.getState().reviewSnapshot;
 
     if (!previous) {
@@ -28,7 +28,7 @@ export function NotesSync() {
 
     for (const [sectionId, status] of Object.entries(current)) {
       if (status !== "reviewed" || previous[sectionId] === "reviewed") continue;
-      const entry = typescriptSectionById.get(sectionId);
+      const entry = sectionById.get(sectionId);
       if (!entry) continue;
       notifications.push({
         id: `${sectionId}:${now}`,

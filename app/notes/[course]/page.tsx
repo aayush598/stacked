@@ -42,7 +42,7 @@ const accents = {
 
 export function generateStaticParams() {
   return courses
-    .filter((course) => course.id !== "typescript")
+    .filter((course) => course.id !== "typescript" && course.id !== "react")
     .map((course) => ({ course: course.id }));
 }
 
@@ -52,13 +52,13 @@ export async function generateMetadata({
   params: Promise<{ course: string }>;
 }) {
   const { course: courseId } = await params;
-  if (!isCourseId(courseId) || courseId === "typescript") {
+  if (!isCourseId(courseId) || courseId === "typescript" || courseId === "react") {
     return { title: "Notes — Stacked" };
   }
   const course = getCourse(courseId);
   return {
     title: `${course.title} Notes — Coming Soon — Stacked`,
-    description: `${course.summary} The ${course.title} notes library is coming soon. TypeScript notes are available now.`,
+    description: `${course.summary} The ${course.title} notes library is coming soon. TypeScript and React notes are available now.`,
   };
 }
 
@@ -68,7 +68,7 @@ export default async function ComingSoonNotesPage({
   params: Promise<{ course: string }>;
 }) {
   const { course: courseId } = await params;
-  if (!isCourseId(courseId) || courseId === "typescript") notFound();
+  if (!isCourseId(courseId) || courseId === "typescript" || courseId === "react") notFound();
 
   const course = getCourse(courseId);
   const stats = getCourseStats(courseId);
@@ -172,20 +172,16 @@ export default async function ComingSoonNotesPage({
             <div className="mt-6 flex flex-col gap-3 rounded-xl border border-lime/20 bg-lime/[0.045] p-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-[15px] font-semibold text-mist">
-                  TypeScript notes are available now
+                  TypeScript and React notes are available now
                 </p>
                 <p className="mt-0.5 text-[15px] leading-5 text-muted">
-                  Start with the complete TypeScript roadmap while the rest of the library is
-                  being written and reviewed.
+                  Explore complete roadmaps with nested sections, review states, and read tracking while the rest of the library is being written.
                 </p>
               </div>
-              <Link
-                href="/notes/typescript"
-                className="inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-lg bg-lime px-3.5 text-[15px] font-semibold text-white transition hover:bg-lime/90"
-              >
-                Open TypeScript
-                <ArrowRight className="size-3.5" aria-hidden />
-              </Link>
+              <div className="flex shrink-0 flex-wrap gap-2">
+                <Link href="/notes/typescript" className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg bg-lime px-3.5 text-[15px] font-semibold text-white transition hover:bg-lime/90">TypeScript <ArrowRight className="size-3.5" aria-hidden /></Link>
+                <Link href="/notes/react" className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg border border-sky/30 bg-sky/[0.08] px-3.5 text-[15px] font-semibold text-sky transition hover:bg-sky/[0.14]">React <ArrowRight className="size-3.5" aria-hidden /></Link>
+              </div>
             </div>
           </div>
         </div>

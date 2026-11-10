@@ -12,6 +12,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { typescriptNoteContent } from "@/components/notes/content/typescript";
+import { reactNoteContent } from "@/components/notes/content/react";
 import { StatusPill } from "@/components/notes/notes-ui";
 import type { NoteModule, NotePhase, NoteSection } from "@/lib/notes/types";
 import { statusDescription } from "@/lib/notes/types";
@@ -30,6 +31,8 @@ type ReaderProps = {
   onToggleRead: () => void;
   onNavigate: (sectionId: string) => void;
 };
+
+const noteContent = { ...typescriptNoteContent, ...reactNoteContent };
 
 function AuthoringShell({ section }: { section: NoteSection }) {
   const incomplete = section.status === "incomplete";
@@ -53,7 +56,7 @@ function AuthoringShell({ section }: { section: NoteSection }) {
           <p className="mt-1.5 max-w-xl text-[15px] leading-6 text-muted">
             {incomplete
               ? "The roadmap entry exists, but the full note content, interactive visuals, and human review are still in progress. It is tagged incomplete until the section is finished."
-              : "The roadmap, review state, read tracking and notifications are wired. Add the finished note component to the TypeScript content registry when the writing is ready."}
+              : "The roadmap, review state, read tracking and notifications are wired. Add the finished note component to the content registry when the writing is ready."}
           </p>
         </div>
         <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1 text-[13px] text-faint">
@@ -109,7 +112,7 @@ export function NoteReader({
   onToggleRead,
   onNavigate,
 }: ReaderProps) {
-  const Content = typescriptNoteContent[section.id];
+  const Content = noteContent[section.id];
 
   return (
     <article className="overflow-hidden rounded-xl border border-line bg-surface">

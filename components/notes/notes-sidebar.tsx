@@ -12,7 +12,10 @@ import {
 import { ProgressBar } from "@/components/notes/notes-ui";
 import type { NoteFilters, NoteModule, NotePhase } from "@/lib/notes/types";
 import { typescriptSectionById } from "@/lib/notes/typescript-roadmap";
+import { reactSectionById } from "@/lib/notes/react-roadmap";
 import { cn, pluralize } from "@/lib/utils";
+
+const sectionById = new Map([...typescriptSectionById, ...reactSectionById]);
 
 type SidebarProps = {
   phases: NotePhase[];
@@ -94,7 +97,7 @@ export function NotesSidebar({
   }
 
   function sectionIsOpen(phase: NotePhase, module: NoteModule) {
-    const selected = typescriptSectionById.get(selectedId);
+    const selected = sectionById.get(selectedId);
     return (
       filtersActive ||
       openPhases.has(phase.id) ||
@@ -158,7 +161,6 @@ export function NotesSidebar({
                 ["all", "All"],
                 ["draft", "Needs review"],
                 ["reviewed", "Reviewed"],
-                ["incomplete", "Incomplete"],
                 ["incomplete", "Incomplete"],
               ] as const
             ).map(([value, label]) => (
@@ -233,7 +235,7 @@ export function NotesSidebar({
             const phaseOpen =
               filtersActive ||
               openPhases.has(phase.id) ||
-              typescriptSectionById.get(selectedId)?.phase.id === phase.id;
+              sectionById.get(selectedId)?.phase.id === phase.id;
             return (
               <div key={phase.id} className="mb-1.5">
                 <button
