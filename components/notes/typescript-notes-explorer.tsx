@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft, ListFilter, Sparkles } from "lucide-react";
 import { NoteReader } from "@/components/notes/note-reader";
 import { NotesSidebar } from "@/components/notes/notes-sidebar";
-import { ProgressBar } from "@/components/notes/notes-ui";
+import { ProgressBar, Skeleton } from "@/components/notes/notes-ui";
 import { useNotesHydrated } from "@/lib/hooks/use-notes-hydrated";
 import { courseStats, type NoteFilters } from "@/lib/notes/types";
 import {
@@ -135,12 +135,10 @@ export function TypeScriptNotesExplorer() {
           <div className="w-full max-w-xs shrink-0 sm:w-64">
             <div className="flex items-center justify-between gap-2 text-[13px] text-faint">
               <span>Reading progress</span>
-              <span className="font-mono text-muted">{hydrated ? `${readPercent}%` : "—"}</span>
+              {hydrated ? <span className="font-mono text-muted">{readPercent}%</span> : <Skeleton className="h-4 w-10" />}
             </div>
-            <ProgressBar value={hydrated ? readPercent : 0} className="mt-2" />
-            <p className="mt-1.5 text-[13px] text-faint">
-              {hydrated ? `${readCount} of ${stats.sections} sections read` : "Loading local progress"}
-            </p>
+            {hydrated ? <ProgressBar value={readPercent} className="mt-2" /> : <Skeleton className="mt-2 h-1.5 w-full rounded-full" />}
+            {hydrated ? <p className="mt-1.5 text-[13px] text-faint">{readCount} of {stats.sections} sections read</p> : <Skeleton className="mt-1.5 h-4 w-44" />}
           </div>
         </div>
 

@@ -16,7 +16,7 @@ import {
   Palette,
 } from "lucide-react";
 import { NotesNotifications } from "@/components/notes/notes-notifications";
-import { NotesStat, ProgressBar, StatusPill } from "@/components/notes/notes-ui";
+import { NotesStat, ProgressBar, Skeleton, StatusPill } from "@/components/notes/notes-ui";
 import { courses, getCourseStats } from "@/lib/content/courses";
 import { useNotesHydrated } from "@/lib/hooks/use-notes-hydrated";
 import { courseStats } from "@/lib/notes/types";
@@ -99,8 +99,16 @@ export function NotesHome() {
                 <StatusPill status="incomplete" compact />
               </div>
               <div className="p-4 sm:p-5">
-                <div className="flex items-end justify-between gap-4"><div><p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">Reading progress</p><p className="mt-1 text-3xl font-semibold tracking-[-0.04em] text-mist">{hydrated ? `${tsReadPercent}%` : "—"}</p></div><p className="text-right text-[13px] leading-5 text-faint">{hydrated ? tsReadCount.toLocaleString() : "—"} of {tsStats.sections.toLocaleString()}<br />sections read</p></div>
-                <ProgressBar value={hydrated ? tsReadPercent : 0} className="mt-4" />
+                <div className="flex items-end justify-between gap-4">
+                  <div>
+                    <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">Reading progress</p>
+                    {hydrated ? <p className="mt-1 text-3xl font-semibold tracking-[-0.04em] text-mist">{tsReadPercent}%</p> : <Skeleton className="mt-1 h-9 w-20" />}
+                  </div>
+                  <div className="text-right text-[13px] leading-5 text-faint">
+                    {hydrated ? <p>{tsReadCount.toLocaleString()} of {tsStats.sections.toLocaleString()}<br />sections read</p> : <div className="flex flex-col items-end gap-1.5"><Skeleton className="h-3.5 w-24" /><Skeleton className="h-3.5 w-20" /></div>}
+                  </div>
+                </div>
+                {hydrated ? <ProgressBar value={tsReadPercent} className="mt-4" /> : <Skeleton className="mt-4 h-1.5 w-full rounded-full" />}
                 <div className="mt-4 grid grid-cols-2 gap-2 text-[13px]"><div className="rounded-lg border border-line bg-canvas/70 px-3 py-2"><p className="text-faint">Sections</p><p className="mt-0.5 font-semibold text-mist">{tsStats.sections.toLocaleString()}</p></div><div className="rounded-lg border border-line bg-canvas/70 px-3 py-2"><p className="text-faint">Modules/Projects</p><p className="mt-0.5 font-semibold text-mist">{tsStats.modules} / {tsStats.projects}</p></div></div>
               </div>
             </div>
@@ -110,8 +118,16 @@ export function NotesHome() {
                 <StatusPill status="incomplete" compact />
               </div>
               <div className="p-4 sm:p-5">
-                <div className="flex items-end justify-between gap-4"><div><p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">Reading progress</p><p className="mt-1 text-3xl font-semibold tracking-[-0.04em] text-mist">{hydrated ? `${Math.round((reactReadCount / reactStats.sections) * 100)}%` : "—"}</p></div><p className="text-right text-[13px] leading-5 text-faint">{hydrated ? reactReadCount.toLocaleString() : "—"} of {reactStats.sections.toLocaleString()}<br />sections read</p></div>
-                <ProgressBar value={hydrated ? Math.round((reactReadCount / reactStats.sections) * 100) : 0} className="mt-4" />
+                <div className="flex items-end justify-between gap-4">
+                  <div>
+                    <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">Reading progress</p>
+                    {hydrated ? <p className="mt-1 text-3xl font-semibold tracking-[-0.04em] text-mist">{Math.round((reactReadCount / reactStats.sections) * 100)}%</p> : <Skeleton className="mt-1 h-9 w-20" />}
+                  </div>
+                  <div className="text-right text-[13px] leading-5 text-faint">
+                    {hydrated ? <p>{reactReadCount.toLocaleString()} of {reactStats.sections.toLocaleString()}<br />sections read</p> : <div className="flex flex-col items-end gap-1.5"><Skeleton className="h-3.5 w-24" /><Skeleton className="h-3.5 w-20" /></div>}
+                  </div>
+                </div>
+                {hydrated ? <ProgressBar value={Math.round((reactReadCount / reactStats.sections) * 100)} className="mt-4" /> : <Skeleton className="mt-4 h-1.5 w-full rounded-full" />}
                 <div className="mt-4 grid grid-cols-2 gap-2 text-[13px]"><div className="rounded-lg border border-line bg-canvas/70 px-3 py-2"><p className="text-faint">Sections</p><p className="mt-0.5 font-semibold text-mist">{reactStats.sections.toLocaleString()}</p></div><div className="rounded-lg border border-line bg-canvas/70 px-3 py-2"><p className="text-faint">Modules/Projects</p><p className="mt-0.5 font-semibold text-mist">{reactStats.modules} / {reactStats.projects}</p></div></div>
               </div>
             </div>

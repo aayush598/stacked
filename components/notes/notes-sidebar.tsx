@@ -9,7 +9,7 @@ import {
   Search,
   X,
 } from "lucide-react";
-import { ProgressBar } from "@/components/notes/notes-ui";
+import { ProgressBar, Skeleton } from "@/components/notes/notes-ui";
 import type { NoteFilters, NoteModule, NotePhase } from "@/lib/notes/types";
 import { typescriptSectionById } from "@/lib/notes/typescript-roadmap";
 import { reactSectionById } from "@/lib/notes/react-roadmap";
@@ -109,22 +109,16 @@ export function NotesSidebar({
     <div className="overflow-hidden rounded-xl border border-line bg-surface">
       <div className="border-b border-line p-4">
         <div className="flex items-center justify-between gap-3">
-          <div>
-            <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">
-              Reading progress
-            </p>
-            <p className="mt-1 text-[15px] font-semibold text-mist">
-              {hydrated ? `${totals.read} of ${totals.sections} read` : "Loading progress"}
-            </p>
+          <div className="min-w-0">
+            <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-faint">Reading progress</p>
+            {hydrated ? <p className="mt-1 text-[15px] font-semibold text-mist">{totals.read} of {totals.sections} read</p> : <Skeleton className="mt-1 h-5 w-40" />}
           </div>
-          <span className="font-mono text-[15px] text-muted">
-            {hydrated ? `${readPercent}%` : "—"}
-          </span>
+          {hydrated ? <span className="font-mono text-[15px] text-muted">{readPercent}%</span> : <Skeleton className="h-5 w-10" />}
         </div>
-        <ProgressBar value={hydrated ? readPercent : 0} className="mt-3" />
+        {hydrated ? <ProgressBar value={readPercent} className="mt-3" /> : <Skeleton className="mt-3 h-1.5 w-full rounded-full" />}
         <div className="mt-2.5 flex items-center justify-between gap-2 text-[13px] text-faint">
           <span>{totals.reviewed} human reviewed</span>
-          <span>{pluralize(totals.sections - totals.reviewed, "draft")}</span>
+          <span>{totals.incomplete} incomplete</span>
         </div>
       </div>
 

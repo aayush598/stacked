@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { typescriptNoteContent } from "@/components/notes/content/typescript";
 import { reactNoteContent } from "@/components/notes/content/react";
-import { StatusPill } from "@/components/notes/notes-ui";
+import { Skeleton, StatusPill } from "@/components/notes/notes-ui";
 import type { NoteModule, NotePhase, NoteSection } from "@/lib/notes/types";
 import { statusDescription } from "@/lib/notes/types";
 import { cn } from "@/lib/utils";
@@ -155,30 +155,32 @@ export function NoteReader({
                       : "border-line bg-canvas text-faint",
                   )}
                 >
-                  {read ? (
-                    <Check className="size-2.5" aria-hidden />
-                  ) : (
-                    <Circle className="size-2.5" aria-hidden />
-                  )}
+                  {read ? <Check className="size-2.5" aria-hidden /> : <Circle className="size-2.5" aria-hidden />}
                   {read ? "Read" : "Unread"}
                 </span>
-              ) : null}
+              ) : (
+                <Skeleton className="h-6 w-20 rounded-full" />
+              )}
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={onToggleRead}
-            className={cn(
-              "inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-lg border px-3 text-[13px] font-semibold transition",
-              read
-                ? "border-success/25 bg-success/[0.07] text-success hover:bg-success/[0.11]"
-                : "border-line bg-surface text-mist hover:border-line-strong hover:bg-raised",
-            )}
-          >
-            {read ? <Check className="size-3.5" aria-hidden /> : <Circle className="size-3.5" aria-hidden />}
-            {read ? "Mark unread" : "Mark read"}
-          </button>
+          {hydrated ? (
+            <button
+              type="button"
+              onClick={onToggleRead}
+              className={cn(
+                "inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-lg border px-3 text-[13px] font-semibold transition",
+                read
+                  ? "border-success/25 bg-success/[0.07] text-success hover:bg-success/[0.11]"
+                  : "border-line bg-surface text-mist hover:border-line-strong hover:bg-raised",
+              )}
+            >
+              {read ? <Check className="size-3.5" aria-hidden /> : <Circle className="size-3.5" aria-hidden />}
+              {read ? "Mark unread" : "Mark read"}
+            </button>
+          ) : (
+            <Skeleton className="h-9 w-28 rounded-lg" />
+          )}
         </div>
 
         <div className="mt-3 flex items-start gap-2 rounded-lg border border-line bg-surface px-3 py-2.5 text-[13px] leading-5 text-muted">

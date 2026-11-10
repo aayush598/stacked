@@ -2,6 +2,10 @@ import { CheckCircle2, CircleDashed, CircleDot } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { statusLabel, type ReviewStatus } from "@/lib/notes/types";
 
+export function Skeleton({ className }: { className?: string }) {
+  return <div className={cn("shimmer rounded-md bg-raised", className)} aria-hidden />;
+}
+
 export function StatusPill({
   status,
   compact = false,
