@@ -13,6 +13,7 @@ const NAV = [
   { href: "/", label: "Home" },
   { href: "/learn", label: "Courses" },
   { href: "/notes", label: "Notes" },
+  { href: "/forms", label: "Forms Lab" },
   { href: "/play/html/easy", label: "Play" },
 ];
 
@@ -67,6 +68,12 @@ export function SiteHeader() {
             className="rounded-md px-2 py-1.5 text-xs font-medium text-muted transition hover:text-mist md:hidden"
           >
             Notes
+          </Link>
+          <Link
+            href="/forms"
+            className="rounded-md px-2 py-1.5 text-xs font-medium text-muted transition hover:text-mist md:hidden"
+          >
+            Forms
           </Link>
           <NotesBell />
           <div className="hidden items-center gap-1.5 text-xs text-muted sm:flex">
