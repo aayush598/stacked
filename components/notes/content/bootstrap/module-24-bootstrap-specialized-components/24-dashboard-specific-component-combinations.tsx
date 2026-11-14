@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function DashboardSpecificComponentCombinationsB2424() {
   return (
@@ -40,6 +40,9 @@ export function DashboardSpecificComponentCombinationsB2424() {
         { label: "edge cases and accessibility", syntax: "Dashboard-specific component combinations. — edge cases and accessibility", note: "Apply edge cases and accessibility for Dashboard-specific component combinations.." },
         { label: "best practices", syntax: "Dashboard-specific component combinations. — best practices", note: "Apply best practices for Dashboard-specific component combinations.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "component", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Dashboard-specific component combinations.", filename: "01-core-concept-of-da.html", code: `<!-- Dashboard-specific component combinations.: core concept of Dashboard-specific component combinations. -->
 <div class="container py-3">

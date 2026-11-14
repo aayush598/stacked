@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function TableBordersB133() {
   return (
@@ -40,6 +40,9 @@ export function TableBordersB133() {
         { label: "edge cases and accessibility", syntax: "Table borders. — edge cases and accessibility", note: "Apply edge cases and accessibility for Table borders.." },
         { label: "best practices", syntax: "Table borders. — best practices", note: "Apply best practices for Table borders.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Table borders.", filename: "01-core-concept-of-ta.html", code: `<!-- Table borders.: core concept of Table borders. -->
 <div class="container py-3">

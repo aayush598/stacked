@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function IndividualCornerRoundingB118() {
   return (
@@ -40,6 +40,9 @@ export function IndividualCornerRoundingB118() {
         { label: "edge cases and accessibility", syntax: "Individual corner rounding. — edge cases and accessibility", note: "Apply edge cases and accessibility for Individual corner rounding.." },
         { label: "best practices", syntax: "Individual corner rounding. — best practices", note: "Apply best practices for Individual corner rounding.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "corner", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Individual corner rounding.", filename: "01-core-concept-of-in.html", code: `<!-- Individual corner rounding.: core concept of Individual corner rounding. -->
 <div class="container py-3">

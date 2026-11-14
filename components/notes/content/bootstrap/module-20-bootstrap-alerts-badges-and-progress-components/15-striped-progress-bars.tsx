@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function StripedProgressBarsB2015() {
   return (
@@ -40,6 +40,9 @@ export function StripedProgressBarsB2015() {
         { label: "edge cases and accessibility", syntax: "Striped progress bars. — edge cases and accessibility", note: "Apply edge cases and accessibility for Striped progress bars.." },
         { label: "best practices", syntax: "Striped progress bars. — best practices", note: "Apply best practices for Striped progress bars.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "progress", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Striped progress bars.", filename: "01-core-concept-of-st.html", code: `<!-- Striped progress bars.: core concept of Striped progress bars. -->
 <div class="container py-3">

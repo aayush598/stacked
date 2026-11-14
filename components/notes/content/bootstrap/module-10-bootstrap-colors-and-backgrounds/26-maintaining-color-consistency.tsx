@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function MaintainingColorConsistencyB1026() {
   return (
@@ -40,6 +40,9 @@ export function MaintainingColorConsistencyB1026() {
         { label: "edge cases and accessibility", syntax: "Maintaining color consistency. — edge cases and accessibility", note: "Apply edge cases and accessibility for Maintaining color consistency.." },
         { label: "best practices", syntax: "Maintaining color consistency. — best practices", note: "Apply best practices for Maintaining color consistency.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "color", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Maintaining color consistency.", filename: "01-core-concept-of-ma.html", code: `<!-- Maintaining color consistency.: core concept of Maintaining color consistency. -->
 <div class="container py-3">

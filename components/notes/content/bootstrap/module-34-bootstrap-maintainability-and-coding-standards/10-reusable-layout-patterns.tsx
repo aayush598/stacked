@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function ReusableLayoutPatternsB3410() {
   return (
@@ -40,6 +40,9 @@ export function ReusableLayoutPatternsB3410() {
         { label: "edge cases and accessibility", syntax: "Reusable layout patterns. — edge cases and accessibility", note: "Apply edge cases and accessibility for Reusable layout patterns.." },
         { label: "best practices", syntax: "Reusable layout patterns. — best practices", note: "Apply best practices for Reusable layout patterns.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "layout", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Reusable layout patterns.", filename: "01-core-concept-of-re.html", code: `<!-- Reusable layout patterns.: core concept of Reusable layout patterns. -->
 <div class="container py-3">

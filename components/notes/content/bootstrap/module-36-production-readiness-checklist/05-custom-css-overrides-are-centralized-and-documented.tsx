@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function CustomCSSOverridesAreCentralizedAndDocumentedB365() {
   return (
@@ -40,6 +40,9 @@ export function CustomCSSOverridesAreCentralizedAndDocumentedB365() {
         { label: "edge cases and accessibility", syntax: "Custom CSS overrides are centralized and documented. — edge cases and accessibility", note: "Apply edge cases and accessibility for Custom CSS overrides are centralized and documented.." },
         { label: "best practices", syntax: "Custom CSS overrides are centralized and documented. — best practices", note: "Apply best practices for Custom CSS overrides are centralized and documented.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "overrides", "are", "centralized", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Custom CSS overrides are centralized and documented.", filename: "01-core-concept-of-cu.html", code: `<!-- Custom CSS overrides are centralized and documented.: core concept of Custom CSS overrides are centralized and documented. -->
 <div class="container py-3">

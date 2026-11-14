@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function CustomizingFontFamiliesB287() {
   return (
@@ -40,6 +40,9 @@ export function CustomizingFontFamiliesB287() {
         { label: "edge cases and accessibility", syntax: "Customizing font families. — edge cases and accessibility", note: "Apply edge cases and accessibility for Customizing font families.." },
         { label: "best practices", syntax: "Customizing font families. — best practices", note: "Apply best practices for Customizing font families.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "font", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Customizing font families.", filename: "01-core-concept-of-cu.html", code: `<!-- Customizing font families.: core concept of Customizing font families. -->
 <div class="container py-3">

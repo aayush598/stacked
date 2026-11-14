@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function InfoColorsB108() {
   return (
@@ -40,6 +40,9 @@ export function InfoColorsB108() {
         { label: "edge cases and accessibility", syntax: "Info colors. — edge cases and accessibility", note: "Apply edge cases and accessibility for Info colors.." },
         { label: "best practices", syntax: "Info colors. — best practices", note: "Apply best practices for Info colors.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Info colors.", filename: "01-core-concept-of-in.html", code: `<!-- Info colors.: core concept of Info colors. -->
 <div class="container py-3">

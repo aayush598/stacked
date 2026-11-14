@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function ToggleButtonsB1621() {
   return (
@@ -40,6 +40,9 @@ export function ToggleButtonsB1621() {
         { label: "edge cases and accessibility", syntax: "Toggle buttons. — edge cases and accessibility", note: "Apply edge cases and accessibility for Toggle buttons.." },
         { label: "best practices", syntax: "Toggle buttons. — best practices", note: "Apply best practices for Toggle buttons.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Toggle buttons.", filename: "01-core-concept-of-to.html", code: `<!-- Toggle buttons.: core concept of Toggle buttons. -->
 <div class="container py-3">

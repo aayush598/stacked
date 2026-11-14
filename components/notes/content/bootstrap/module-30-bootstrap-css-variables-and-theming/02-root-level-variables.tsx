@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function RootLevelVariablesB302() {
   return (
@@ -40,6 +40,9 @@ export function RootLevelVariablesB302() {
         { label: "edge cases and accessibility", syntax: "Root-level variables. — edge cases and accessibility", note: "Apply edge cases and accessibility for Root-level variables.." },
         { label: "best practices", syntax: "Root-level variables. — best practices", note: "Apply best practices for Root-level variables.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Root-level variables.", filename: "01-core-concept-of-ro.html", code: `<!-- Root-level variables.: core concept of Root-level variables. -->
 <div class="container py-3">

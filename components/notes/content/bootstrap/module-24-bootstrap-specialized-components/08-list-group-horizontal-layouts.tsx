@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function ListGroupHorizontalLayoutsB248() {
   return (
@@ -40,6 +40,9 @@ export function ListGroupHorizontalLayoutsB248() {
         { label: "edge cases and accessibility", syntax: "List group horizontal layouts. — edge cases and accessibility", note: "Apply edge cases and accessibility for List group horizontal layouts.." },
         { label: "best practices", syntax: "List group horizontal layouts. — best practices", note: "Apply best practices for List group horizontal layouts.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "group", "horizontal", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of List group horizontal layouts.", filename: "01-core-concept-of-li.html", code: `<!-- List group horizontal layouts.: core concept of List group horizontal layouts. -->
 <div class="container py-3">

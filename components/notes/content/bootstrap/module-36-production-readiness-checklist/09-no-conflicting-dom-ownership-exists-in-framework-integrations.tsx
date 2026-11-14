@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function NoConflictingDOMOwnershipExistsInFrameworkIntegrationsB369() {
   return (
@@ -40,6 +40,9 @@ export function NoConflictingDOMOwnershipExistsInFrameworkIntegrationsB369() {
         { label: "edge cases and accessibility", syntax: "No conflicting DOM ownership exists in framework integrations. — edge cases and accessibility", note: "Apply edge cases and accessibility for No conflicting DOM ownership exists in framework integrations.." },
         { label: "best practices", syntax: "No conflicting DOM ownership exists in framework integrations. — best practices", note: "Apply best practices for No conflicting DOM ownership exists in framework integrations.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "conflicting", "ownership", "exists", "in", "framework", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of No conflicting DOM ownership exists in framework integrations.", filename: "01-core-concept-of-no.html", code: `<!-- No conflicting DOM ownership exists in framework integrations.: core concept of No conflicting DOM ownership exists in framework integrations. -->
 <div class="container py-3">

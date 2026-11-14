@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function FocusRingUtilitiesB153() {
   return (
@@ -40,6 +40,9 @@ export function FocusRingUtilitiesB153() {
         { label: "edge cases and accessibility", syntax: "Focus ring utilities. — edge cases and accessibility", note: "Apply edge cases and accessibility for Focus ring utilities.." },
         { label: "best practices", syntax: "Focus ring utilities. — best practices", note: "Apply best practices for Focus ring utilities.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "ring", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Focus ring utilities.", filename: "01-core-concept-of-fo.html", code: `<!-- Focus ring utilities.: core concept of Focus ring utilities. -->
 <div class="container py-3">

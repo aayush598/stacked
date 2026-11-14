@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function CommonSpacingMistakesB627() {
   return (
@@ -40,6 +40,9 @@ export function CommonSpacingMistakesB627() {
         { label: "edge cases and accessibility", syntax: "Common spacing mistakes. — edge cases and accessibility", note: "Apply edge cases and accessibility for Common spacing mistakes.." },
         { label: "best practices", syntax: "Common spacing mistakes. — best practices", note: "Apply best practices for Common spacing mistakes.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "spacing", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Common spacing mistakes.", filename: "01-core-concept-of-co.html", code: `<!-- Common spacing mistakes.: core concept of Common spacing mistakes. -->
 <div class="container py-3">

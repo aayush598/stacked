@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function ControlledComponentBehaviorB2723() {
   return (
@@ -40,6 +40,9 @@ export function ControlledComponentBehaviorB2723() {
         { label: "edge cases and accessibility", syntax: "Controlled component behavior. — edge cases and accessibility", note: "Apply edge cases and accessibility for Controlled component behavior.." },
         { label: "best practices", syntax: "Controlled component behavior. — best practices", note: "Apply best practices for Controlled component behavior.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "component", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Controlled component behavior.", filename: "01-core-concept-of-co.html", code: `<!-- Controlled component behavior.: core concept of Controlled component behavior. -->
 <div class="container py-3">

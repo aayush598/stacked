@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function MobileFirstDesignB52() {
   return (
@@ -40,6 +40,9 @@ export function MobileFirstDesignB52() {
         { label: "edge cases and accessibility", syntax: "Mobile-first design. — edge cases and accessibility", note: "Apply edge cases and accessibility for Mobile-first design.." },
         { label: "best practices", syntax: "Mobile-first design. — best practices", note: "Apply best practices for Mobile-first design.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Mobile-first design.", filename: "01-core-concept-of-mo.html", code: `<!-- Mobile-first design.: core concept of Mobile-first design. -->
 <div class="container py-3">

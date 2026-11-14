@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function AccessibleOffcanvasComponentsB3211() {
   return (
@@ -40,6 +40,9 @@ export function AccessibleOffcanvasComponentsB3211() {
         { label: "edge cases and accessibility", syntax: "Accessible offcanvas components. — edge cases and accessibility", note: "Apply edge cases and accessibility for Accessible offcanvas components.." },
         { label: "best practices", syntax: "Accessible offcanvas components. — best practices", note: "Apply best practices for Accessible offcanvas components.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "offcanvas", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Accessible offcanvas components.", filename: "01-core-concept-of-ac.html", code: `<!-- Accessible offcanvas components.: core concept of Accessible offcanvas components. -->
 <div class="container py-3">

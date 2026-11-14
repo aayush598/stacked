@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function ThemePersistenceIntegrationB3021() {
   return (
@@ -40,6 +40,9 @@ export function ThemePersistenceIntegrationB3021() {
         { label: "edge cases and accessibility", syntax: "Theme persistence integration. — edge cases and accessibility", note: "Apply edge cases and accessibility for Theme persistence integration.." },
         { label: "best practices", syntax: "Theme persistence integration. — best practices", note: "Apply best practices for Theme persistence integration.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "persistence", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Theme persistence integration.", filename: "01-core-concept-of-th.html", code: `<!-- Theme persistence integration.: core concept of Theme persistence integration. -->
 <div class="container py-3">

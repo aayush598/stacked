@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function MigratingSassCustomizationsB3513() {
   return (
@@ -40,6 +40,9 @@ export function MigratingSassCustomizationsB3513() {
         { label: "edge cases and accessibility", syntax: "Migrating Sass customizations. — edge cases and accessibility", note: "Apply edge cases and accessibility for Migrating Sass customizations.." },
         { label: "best practices", syntax: "Migrating Sass customizations. — best practices", note: "Apply best practices for Migrating Sass customizations.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Migrating Sass customizations.", filename: "01-core-concept-of-mi.html", code: `<!-- Migrating Sass customizations.: core concept of Migrating Sass customizations. -->
 <div class="container py-3">

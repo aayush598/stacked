@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function MaintainableArchitectureAndUIConventionsB513() {
   return (
@@ -40,6 +40,9 @@ export function MaintainableArchitectureAndUIConventionsB513() {
         { label: "edge cases and accessibility", syntax: "Maintainable architecture and UI conventions. — edge cases and accessibility", note: "Apply edge cases and accessibility for Maintainable architecture and UI conventions.." },
         { label: "best practices", syntax: "Maintainable architecture and UI conventions. — best practices", note: "Apply best practices for Maintainable architecture and UI conventions.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "architecture", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Maintainable architecture and UI conventions.", filename: "01-core-concept-of-ma.html", code: `<!-- Maintainable architecture and UI conventions.: core concept of Maintainable architecture and UI conventions. -->
 <div class="container py-3">

@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function MultipleProgressBarsB2017() {
   return (
@@ -40,6 +40,9 @@ export function MultipleProgressBarsB2017() {
         { label: "edge cases and accessibility", syntax: "Multiple progress bars. — edge cases and accessibility", note: "Apply edge cases and accessibility for Multiple progress bars.." },
         { label: "best practices", syntax: "Multiple progress bars. — best practices", note: "Apply best practices for Multiple progress bars.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "progress", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Multiple progress bars.", filename: "01-core-concept-of-mu.html", code: `<!-- Multiple progress bars.: core concept of Multiple progress bars. -->
 <div class="container py-3">

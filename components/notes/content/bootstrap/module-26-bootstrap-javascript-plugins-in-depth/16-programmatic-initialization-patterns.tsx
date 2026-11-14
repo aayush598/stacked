@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function ProgrammaticInitializationPatternsB2616() {
   return (
@@ -40,6 +40,9 @@ export function ProgrammaticInitializationPatternsB2616() {
         { label: "edge cases and accessibility", syntax: "Programmatic initialization patterns. — edge cases and accessibility", note: "Apply edge cases and accessibility for Programmatic initialization patterns.." },
         { label: "best practices", syntax: "Programmatic initialization patterns. — best practices", note: "Apply best practices for Programmatic initialization patterns.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "initialization", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Programmatic initialization patterns.", filename: "01-core-concept-of-pr.html", code: `<!-- Programmatic initialization patterns.: core concept of Programmatic initialization patterns. -->
 <div class="container py-3">

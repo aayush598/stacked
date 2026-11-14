@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function FormStylingConventionsB1434() {
   return (
@@ -40,6 +40,9 @@ export function FormStylingConventionsB1434() {
         { label: "edge cases and accessibility", syntax: "Form styling conventions. — edge cases and accessibility", note: "Apply edge cases and accessibility for Form styling conventions.." },
         { label: "best practices", syntax: "Form styling conventions. — best practices", note: "Apply best practices for Form styling conventions.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "styling", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Form styling conventions.", filename: "01-core-concept-of-fo.html", code: `<!-- Form styling conventions.: core concept of Form styling conventions. -->
 <div class="container py-3">

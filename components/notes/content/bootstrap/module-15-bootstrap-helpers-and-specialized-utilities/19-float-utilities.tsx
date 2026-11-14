@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function FloatUtilitiesB1519() {
   return (
@@ -40,6 +40,9 @@ export function FloatUtilitiesB1519() {
         { label: "edge cases and accessibility", syntax: "Float utilities. — edge cases and accessibility", note: "Apply edge cases and accessibility for Float utilities.." },
         { label: "best practices", syntax: "Float utilities. — best practices", note: "Apply best practices for Float utilities.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Float utilities.", filename: "01-core-concept-of-fl.html", code: `<!-- Float utilities.: core concept of Float utilities. -->
 <div class="container py-3">

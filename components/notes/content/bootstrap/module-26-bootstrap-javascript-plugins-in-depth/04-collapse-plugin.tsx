@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function CollapsePluginB264() {
   return (
@@ -40,6 +40,9 @@ export function CollapsePluginB264() {
         { label: "edge cases and accessibility", syntax: "Collapse plugin. — edge cases and accessibility", note: "Apply edge cases and accessibility for Collapse plugin.." },
         { label: "best practices", syntax: "Collapse plugin. — best practices", note: "Apply best practices for Collapse plugin.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Collapse plugin.", filename: "01-core-concept-of-co.html", code: `<!-- Collapse plugin.: core concept of Collapse plugin. -->
 <div class="container py-3">

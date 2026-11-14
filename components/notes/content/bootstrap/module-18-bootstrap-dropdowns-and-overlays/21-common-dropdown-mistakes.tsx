@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function CommonDropdownMistakesB1821() {
   return (
@@ -40,6 +40,9 @@ export function CommonDropdownMistakesB1821() {
         { label: "edge cases and accessibility", syntax: "Common dropdown mistakes. — edge cases and accessibility", note: "Apply edge cases and accessibility for Common dropdown mistakes.." },
         { label: "best practices", syntax: "Common dropdown mistakes. — best practices", note: "Apply best practices for Common dropdown mistakes.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "dropdown", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Common dropdown mistakes.", filename: "01-core-concept-of-co.html", code: `<!-- Common dropdown mistakes.: core concept of Common dropdown mistakes. -->
 <div class="container py-3">

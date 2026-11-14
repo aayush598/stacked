@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function BootstrapVersusOtherUIFrameworksB123() {
   return (
@@ -40,6 +40,9 @@ export function BootstrapVersusOtherUIFrameworksB123() {
         { label: "edge cases and accessibility", syntax: "Bootstrap versus other UI frameworks. — edge cases and accessibility", note: "Apply edge cases and accessibility for Bootstrap versus other UI frameworks.." },
         { label: "best practices", syntax: "Bootstrap versus other UI frameworks. — best practices", note: "Apply best practices for Bootstrap versus other UI frameworks.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "versus", "other", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Bootstrap versus other UI frameworks.", filename: "01-core-concept-of-bo.html", code: `<!-- Bootstrap versus other UI frameworks.: core concept of Bootstrap versus other UI frameworks. -->
 <div class="container py-3">

@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function NoUnnecessaryDuplicateBootstrapImportsExistB364() {
   return (
@@ -40,6 +40,9 @@ export function NoUnnecessaryDuplicateBootstrapImportsExistB364() {
         { label: "edge cases and accessibility", syntax: "No unnecessary duplicate Bootstrap imports exist. — edge cases and accessibility", note: "Apply edge cases and accessibility for No unnecessary duplicate Bootstrap imports exist.." },
         { label: "best practices", syntax: "No unnecessary duplicate Bootstrap imports exist. — best practices", note: "Apply best practices for No unnecessary duplicate Bootstrap imports exist.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "unnecessary", "duplicate", "imports", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of No unnecessary duplicate Bootstrap imports exist.", filename: "01-core-concept-of-no.html", code: `<!-- No unnecessary duplicate Bootstrap imports exist.: core concept of No unnecessary duplicate Bootstrap imports exist. -->
 <div class="container py-3">

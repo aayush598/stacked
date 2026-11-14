@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function PluginHTMLStructurePatternsB2613() {
   return (
@@ -40,6 +40,9 @@ export function PluginHTMLStructurePatternsB2613() {
         { label: "edge cases and accessibility", syntax: "Plugin HTML structure patterns. — edge cases and accessibility", note: "Apply edge cases and accessibility for Plugin HTML structure patterns.." },
         { label: "best practices", syntax: "Plugin HTML structure patterns. — best practices", note: "Apply best practices for Plugin HTML structure patterns.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "structure", "and", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Plugin HTML structure patterns.", filename: "01-core-concept-of-pl.html", code: `<!-- Plugin HTML structure patterns.: core concept of Plugin HTML structure patterns. -->
 <div class="container py-3">

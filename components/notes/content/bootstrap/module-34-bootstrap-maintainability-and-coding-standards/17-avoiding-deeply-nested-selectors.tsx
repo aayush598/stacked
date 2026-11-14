@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function AvoidingDeeplyNestedSelectorsB3417() {
   return (
@@ -40,6 +40,9 @@ export function AvoidingDeeplyNestedSelectorsB3417() {
         { label: "edge cases and accessibility", syntax: "Avoiding deeply nested selectors. — edge cases and accessibility", note: "Apply edge cases and accessibility for Avoiding deeply nested selectors.." },
         { label: "best practices", syntax: "Avoiding deeply nested selectors. — best practices", note: "Apply best practices for Avoiding deeply nested selectors.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "deeply", "nested", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Avoiding deeply nested selectors.", filename: "01-core-concept-of-av.html", code: `<!-- Avoiding deeply nested selectors.: core concept of Avoiding deeply nested selectors. -->
 <div class="container py-3">

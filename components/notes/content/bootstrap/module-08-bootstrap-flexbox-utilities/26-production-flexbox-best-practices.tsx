@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function ProductionFlexboxBestPracticesB826() {
   return (
@@ -40,6 +40,9 @@ export function ProductionFlexboxBestPracticesB826() {
         { label: "edge cases and accessibility", syntax: "Production flexbox best practices. — edge cases and accessibility", note: "Apply edge cases and accessibility for Production flexbox best practices.." },
         { label: "best practices", syntax: "Production flexbox best practices. — best practices", note: "Apply best practices for Production flexbox best practices.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "flexbox", "best", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Production flexbox best practices.", filename: "01-core-concept-of-pr.html", code: `<!-- Production flexbox best practices.: core concept of Production flexbox best practices. -->
 <div class="container py-3">

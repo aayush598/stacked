@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function ChoosingBetweenBootstrapJavaScriptAndReactNativeBehaviorB2727() {
   return (
@@ -40,6 +40,9 @@ export function ChoosingBetweenBootstrapJavaScriptAndReactNativeBehaviorB2727() 
         { label: "edge cases and accessibility", syntax: "Choosing between Bootstrap JavaScript and React-native behavior. — edge cases and accessibility", note: "Apply edge cases and accessibility for Choosing between Bootstrap JavaScript and React-native behavior.." },
         { label: "best practices", syntax: "Choosing between Bootstrap JavaScript and React-native behavior. — best practices", note: "Apply best practices for Choosing between Bootstrap JavaScript and React-native behavior.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "between", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Choosing between Bootstrap JavaScript and React-native behavior.", filename: "01-core-concept-of-ch.html", code: `<!-- Choosing between Bootstrap JavaScript and React-native behavior.: core concept of Choosing between Bootstrap JavaScript and React-native behavior. -->
 <div class="container py-3">

@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function DisposingPluginsCorrectlyB2710() {
   return (
@@ -40,6 +40,9 @@ export function DisposingPluginsCorrectlyB2710() {
         { label: "edge cases and accessibility", syntax: "Disposing plugins correctly. — edge cases and accessibility", note: "Apply edge cases and accessibility for Disposing plugins correctly.." },
         { label: "best practices", syntax: "Disposing plugins correctly. — best practices", note: "Apply best practices for Disposing plugins correctly.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "plugins", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Disposing plugins correctly.", filename: "01-core-concept-of-di.html", code: `<!-- Disposing plugins correctly.: core concept of Disposing plugins correctly. -->
 <div class="container py-3">

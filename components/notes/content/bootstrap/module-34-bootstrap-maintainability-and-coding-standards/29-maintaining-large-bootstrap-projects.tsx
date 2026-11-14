@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function MaintainingLargeBootstrapProjectsB3429() {
   return (
@@ -40,6 +40,9 @@ export function MaintainingLargeBootstrapProjectsB3429() {
         { label: "edge cases and accessibility", syntax: "Maintaining large Bootstrap projects. — edge cases and accessibility", note: "Apply edge cases and accessibility for Maintaining large Bootstrap projects.." },
         { label: "best practices", syntax: "Maintaining large Bootstrap projects. — best practices", note: "Apply best practices for Maintaining large Bootstrap projects.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "large", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Maintaining large Bootstrap projects.", filename: "01-core-concept-of-ma.html", code: `<!-- Maintaining large Bootstrap projects.: core concept of Maintaining large Bootstrap projects. -->
 <div class="container py-3">

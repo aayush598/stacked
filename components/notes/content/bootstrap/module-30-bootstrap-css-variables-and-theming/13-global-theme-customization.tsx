@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function GlobalThemeCustomizationB3013() {
   return (
@@ -40,6 +40,9 @@ export function GlobalThemeCustomizationB3013() {
         { label: "edge cases and accessibility", syntax: "Global theme customization. — edge cases and accessibility", note: "Apply edge cases and accessibility for Global theme customization.." },
         { label: "best practices", syntax: "Global theme customization. — best practices", note: "Apply best practices for Global theme customization.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "theme", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Global theme customization.", filename: "01-core-concept-of-gl.html", code: `<!-- Global theme customization.: core concept of Global theme customization. -->
 <div class="container py-3">

@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function CardColumnsAndVersionConsiderationsB1914() {
   return (
@@ -40,6 +40,9 @@ export function CardColumnsAndVersionConsiderationsB1914() {
         { label: "edge cases and accessibility", syntax: "Card columns and version considerations. — edge cases and accessibility", note: "Apply edge cases and accessibility for Card columns and version considerations.." },
         { label: "best practices", syntax: "Card columns and version considerations. — best practices", note: "Apply best practices for Card columns and version considerations.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "columns", "and", "version", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Card columns and version considerations.", filename: "01-core-concept-of-ca.html", code: `<!-- Card columns and version considerations.: core concept of Card columns and version considerations. -->
 <div class="container py-3">

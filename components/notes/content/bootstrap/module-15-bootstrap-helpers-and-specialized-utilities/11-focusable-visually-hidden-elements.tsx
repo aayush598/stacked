@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function FocusableVisuallyHiddenElementsB1511() {
   return (
@@ -40,6 +40,9 @@ export function FocusableVisuallyHiddenElementsB1511() {
         { label: "edge cases and accessibility", syntax: "Focusable visually hidden elements. — edge cases and accessibility", note: "Apply edge cases and accessibility for Focusable visually hidden elements.." },
         { label: "best practices", syntax: "Focusable visually hidden elements. — best practices", note: "Apply best practices for Focusable visually hidden elements.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "visually", "hidden", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Focusable visually hidden elements.", filename: "01-core-concept-of-fo.html", code: `<!-- Focusable visually hidden elements.: core concept of Focusable visually hidden elements. -->
 <div class="container py-3">

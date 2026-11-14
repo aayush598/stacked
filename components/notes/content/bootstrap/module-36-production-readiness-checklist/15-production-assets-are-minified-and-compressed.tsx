@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function ProductionAssetsAreMinifiedAndCompressedB3615() {
   return (
@@ -40,6 +40,9 @@ export function ProductionAssetsAreMinifiedAndCompressedB3615() {
         { label: "edge cases and accessibility", syntax: "Production assets are minified and compressed. — edge cases and accessibility", note: "Apply edge cases and accessibility for Production assets are minified and compressed.." },
         { label: "best practices", syntax: "Production assets are minified and compressed. — best practices", note: "Apply best practices for Production assets are minified and compressed.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "assets", "are", "minified", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Production assets are minified and compressed.", filename: "01-core-concept-of-pr.html", code: `<!-- Production assets are minified and compressed.: core concept of Production assets are minified and compressed. -->
 <div class="container py-3">

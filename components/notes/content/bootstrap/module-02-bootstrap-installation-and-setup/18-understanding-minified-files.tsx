@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function UnderstandingMinifiedFilesB218() {
   return (
@@ -40,6 +40,9 @@ export function UnderstandingMinifiedFilesB218() {
         { label: "edge cases and accessibility", syntax: "Understanding minified files. — edge cases and accessibility", note: "Apply edge cases and accessibility for Understanding minified files.." },
         { label: "best practices", syntax: "Understanding minified files. — best practices", note: "Apply best practices for Understanding minified files.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "minified", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Understanding minified files.", filename: "01-core-concept-of-un.html", code: `<!-- Understanding minified files.: core concept of Understanding minified files. -->
 <div class="container py-3">

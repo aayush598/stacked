@@ -1,5 +1,5 @@
 import { NoteCallout, NoteHeading, NoteTakeaways, NoteText, Highlight } from "@/components/notes/note-blocks";
-import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist } from "./shared/visuals";
+import { SectionHero, KeyPoints, AnimatedFlow, Tabs, ComparePanels, RuleGrid, SyntaxMatrix, CodeCards, Checklist, ClassGallery, ClassVisualGrid } from "./shared/visuals";
 
 export function KeyboardNavigationB3219() {
   return (
@@ -40,6 +40,9 @@ export function KeyboardNavigationB3219() {
         { label: "edge cases and accessibility", syntax: "Keyboard navigation. — edge cases and accessibility", note: "Apply edge cases and accessibility for Keyboard navigation.." },
         { label: "best practices", syntax: "Keyboard navigation. — best practices", note: "Apply best practices for Keyboard navigation.." },
       ]} />
+      <NoteHeading>Each class → its visual output</NoteHeading>
+      <ClassVisualGrid title="Classname and visual (1 class = 1 visual)" classes={["container", "py-3", "p-3", "border", "rounded", "mb-1", "fw-semibold", "mb-0", "d-block", "and", "structure", "variations", "options", "practical", "example", "edge", "cases", "accessibility", "best", "practices"]} />
+
       <Tabs items={[
         { label: "core concept of Keyboard navigation.", filename: "01-core-concept-of-ke.html", code: `<!-- Keyboard navigation.: core concept of Keyboard navigation. -->
 <div class="container py-3">
