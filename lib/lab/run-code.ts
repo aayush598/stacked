@@ -1,32 +1,32 @@
 import React from "react";
-import axiosBase from "axios";
 import ts from "typescript";
 
 export type RunResult = { ok: true; Component: React.ComponentType } | { ok: false; error: string };
 
-function createMockAxios() {
+function createMockAxios(): unknown {
   const delay = (ms = 500) => new Promise((r) => setTimeout(r, ms));
   const respond = async (url: string, data?: unknown, method = "GET") => {
     await delay(450);
     const lower = String(url).toLowerCase();
     if (lower.includes("upload")) {
-      return { data: { message: "Uploaded successfully (mock)", files: "received", note: (data as any)?.get ? "(FormData)" : "" }, status: 201, statusText: "Created", headers: {}, config: {} as any };
+      const asObj = data && typeof data === "object" ? (data as { get?: unknown }) : null;
+      return { data: { message: "Uploaded successfully (mock)", files: "received", note: asObj?.get ? "(FormData)" : "" }, status: 201, statusText: "Created", headers: {}, config: {} as Record<string, unknown> };
     }
     if (method === "POST" || method === "PUT" || method === "PATCH") {
-      return { data: { message: "Saved successfully (mock API)", method, id: 101, data }, status: 200, statusText: "OK", headers: {}, config: {} as any };
+      return { data: { message: "Saved successfully (mock API)", method, id: 101, data }, status: 200, statusText: "OK", headers: {}, config: {} as Record<string, unknown> };
     }
-    return { data: { message: "Fetched (mock API)", url, data: [{ id: 1, name: "Demo" }, { id: 2, name: "Sample" }] }, status: 200, statusText: "OK", headers: {}, config: {} as any };
+    return { data: { message: "Fetched (mock API)", url, data: [{ id: 1, name: "Demo" }, { id: 2, name: "Sample" }] }, status: 200, statusText: "OK", headers: {}, config: {} as Record<string, unknown> };
   };
-  const inst: any = {
-    get: (url: string, config?: any) => respond(url, config, "GET"),
-    post: (url: string, data?: any) => respond(url, data, "POST"),
-    put: (url: string, data?: any) => respond(url, data, "PUT"),
-    patch: (url: string, data?: any) => respond(url, data, "PATCH"),
+  const inst: Record<string, unknown> = {
+    get: (url: string, config?: unknown) => respond(url, config, "GET"),
+    post: (url: string, data?: unknown) => respond(url, data, "POST"),
+    put: (url: string, data?: unknown) => respond(url, data, "PUT"),
+    patch: (url: string, data?: unknown) => respond(url, data, "PATCH"),
     delete: (url: string) => respond(url, undefined, "DELETE"),
     defaults: { headers: { common: {} } },
     interceptors: { request: { use: () => 0 }, response: { use: () => 0 } },
-    create: () => createMockAxios(),
   };
+  inst.create = () => createMockAxios();
   return inst;
 }
 
@@ -58,19 +58,22 @@ export function transpile(source: string): { ok: true; js: string } | { ok: fals
 export function runComponent(source: string): RunResult {
   const tr = transpile(source);
   if (!tr.ok) return tr;
-  const prevFetch = globalThis.fetch;
+  const g = globalThis as unknown as { fetch: typeof fetch };
+  const prevFetch = g.fetch;
   try {
     const mockAxios = createMockAxios();
-    // mock fetch for examples that use fetch()
-    (globalThis as any).fetch = async (url: any, init?: any) => {
+    g.fetch = async (url: RequestInfo | URL, init?: RequestInit) => {
       await new Promise((r) => setTimeout(r, 450));
-      const body = init?.body ? (() => { try { return JSON.parse(init.body); } catch { return init.body; } })() : null;
+      let body: unknown = null;
+      if (init?.body) {
+        try { body = typeof init.body === "string" ? JSON.parse(init.body) : init.body; } catch { body = init.body; }
+      }
       return {
         ok: true,
         status: 201,
         json: async () => ({ message: "Saved (mock server)", url: String(url), method: init?.method || "GET", data: body }),
         text: async () => JSON.stringify({ message: "Saved (mock server)", data: body }),
-      } as any;
+      } as unknown as Response;
     };
 
     const exportsObj: Record<string, unknown> = {};
@@ -80,8 +83,9 @@ export function runComponent(source: string): RunResult {
       if (name === "axios") return mockAxios;
       throw new Error(`Module not available in playground: "${name}". Allowed: react, axios (permitted stack).`);
     };
-    // eslint-disable-next-line no-new-func
-    const fn = new Function("React", "require", "exports", "module", "axios", tr.js);
+    const fn = new Function("React", "require", "exports", "module", "axios", tr.js) as (
+      R: typeof React, req: (n: string) => unknown, exp: Record<string, unknown>, mod: { exports: Record<string, unknown> }, ax: unknown
+    ) => void;
     fn(React, require, exportsObj, moduleObj, mockAxios);
     const mod = moduleObj.exports as Record<string, unknown>;
     const Comp =
@@ -94,6 +98,6 @@ export function runComponent(source: string): RunResult {
   } catch (e) {
     return { ok: false, error: e instanceof Error ? e.message : String(e) };
   } finally {
-    (globalThis as any).fetch = prevFetch;
+    g.fetch = prevFetch;
   }
 }

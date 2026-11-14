@@ -27,7 +27,7 @@ function tokenClass(token: string) {
   return "text-slate-100";
 }
 
-function highlightLine(line: string, lineIndex: number): ReactNode[] {
+export function highlightLine(line: string, lineIndex: number): ReactNode[] {
   const pieces = line.split(TOKEN_PATTERN);
   return pieces.map((piece, index) => {
     if (!piece) return null;
