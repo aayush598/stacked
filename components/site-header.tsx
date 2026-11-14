@@ -13,7 +13,7 @@ const NAV = [
   { href: "/", label: "Home" },
   { href: "/learn", label: "Courses" },
   { href: "/notes", label: "Notes" },
-  { href: "/forms", label: "Forms Lab" },
+  { href: "/lab", label: "Lab" },
   { href: "/play/html/easy", label: "Play" },
 ];
 
@@ -70,10 +70,10 @@ export function SiteHeader() {
             Notes
           </Link>
           <Link
-            href="/forms"
+            href="/lab"
             className="rounded-md px-2 py-1.5 text-xs font-medium text-muted transition hover:text-mist md:hidden"
           >
-            Forms
+            Lab
           </Link>
           <NotesBell />
           <div className="hidden items-center gap-1.5 text-xs text-muted sm:flex">
