@@ -8,6 +8,11 @@ function createMockAxios(): unknown {
   const respond = async (url: string, data?: unknown, method = "GET") => {
     await delay(450);
     const lower = String(url).toLowerCase();
+    if (lower.includes("fail") || lower.includes("error")) {
+      throw Object.assign(new Error("Request failed with status code 500"), {
+        response: { status: 500, data: { message: "Internal server error (mock)" } },
+      });
+    }
     if (lower.includes("upload")) {
       const asObj = data && typeof data === "object" ? (data as { get?: unknown }) : null;
       return { data: { message: "Uploaded successfully (mock)", files: "received", note: asObj?.get ? "(FormData)" : "" }, status: 201, statusText: "Created", headers: {}, config: {} as Record<string, unknown> };

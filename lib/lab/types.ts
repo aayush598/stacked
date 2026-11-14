@@ -12,6 +12,7 @@ export type LabTrack = {
   id: string;
   title: string;
   description: string;
+  priority?: number;
   modules: string[];
   examples: LabExample[];
 };
