@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 export function LabPlayground({ examples, trackTitle, modules }: { examples: LabExample[]; trackTitle: string; modules: string[] }) {
   const [query, setQuery] = useState("");
   const [activeId, setActiveId] = useState(examples[0]?.id ?? "");
-  const [code, setCode] = useState("");
+  const [draft, setDraft] = useState(() => ({ id: examples[0]?.id ?? "", code: examples[0]?.code ?? "" }));
   const [full, setFull] = useState(false);
   const [sidebar, setSidebar] = useState(true);
   const [mobileView, setMobileView] = useState<"split" | "code" | "visual">("split");
@@ -25,12 +25,6 @@ export function LabPlayground({ examples, trackTitle, modules }: { examples: Lab
   const active = filtered[activeIndex] ?? filtered[0] ?? examples[0];
 
   useEffect(() => {
-    if (!active) return;
-    const id = requestAnimationFrame(() => setCode(active.code));
-    return () => cancelAnimationFrame(id);
-  }, [active]);
-
-  useEffect(() => {
     if (!full) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setFull(false); };
     window.addEventListener("keydown", onKey);
@@ -41,6 +35,9 @@ export function LabPlayground({ examples, trackTitle, modules }: { examples: Lab
     const i = activeIndex + delta;
     if (i >= 0 && i < filtered.length) setActiveId(filtered[i].id);
   }
+
+  const code = active && draft.id === active.id ? draft.code : active?.code ?? "";
+  const setCode = (next: string) => setDraft({ id: active?.id ?? "", code: next });
 
   const byModule = modules.map(m => ({ module: m, items: filtered.filter(e => e.module === m) })).filter(g => g.items.length);
   const changed = active ? code !== active.code : false;
@@ -98,6 +95,7 @@ export function LabPlayground({ examples, trackTitle, modules }: { examples: Lab
         <div className="relative"><Search className="pointer-events-none absolute left-2 top-1/2 size-3.5 -translate-y-1/2 text-faint" /><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search..." className="h-8 w-full rounded-md border border-line bg-canvas pl-7 pr-2 text-[13px]" /></div>
       </div>
       <div className="max-h-[60vh] xl:max-h-[calc(100vh-10rem)] overflow-y-auto p-2">
+        {byModule.length === 0 && <p className="px-2 py-3 text-[12px] text-faint">No examples match “{query}”.</p>}
         {byModule.map(({module, items}) => (
           <div key={module} className="mb-2">
             <p className="px-2 pb-1 font-mono text-[10px] uppercase tracking-wider text-faint">{module}</p>

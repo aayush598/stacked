@@ -61,6 +61,23 @@ textarea {
   color: #ffffff;
 }
 
+.lab-editor-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.lab-editor-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.lab-editor-scroll::selection {
+  background: rgba(56, 189, 248, 0.3);
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;

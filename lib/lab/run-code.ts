@@ -49,8 +49,18 @@ export function transpile(source: string): { ok: true; js: string } | { ok: fals
     });
     if (out.diagnostics && out.diagnostics.length) {
       const fatal = out.diagnostics.filter((d) => d.category === ts.DiagnosticCategory.Error);
-      if (fatal.length && !out.outputText) {
-        const msg = fatal.map((d) => ts.flattenDiagnosticMessageText(d.messageText, "\n")).join("\n");
+      if (fatal.length) {
+        const msg = fatal
+          .slice(0, 5)
+          .map((d) => {
+            const position =
+              d.file && typeof d.start === "number"
+                ? d.file.getLineAndCharacterOfPosition(d.start)
+                : null;
+            const where = position ? `Line ${position.line + 1}:${position.character + 1} — ` : "";
+            return where + ts.flattenDiagnosticMessageText(d.messageText, "\n");
+          })
+          .join("\n");
         return { ok: false, error: msg };
       }
     }
