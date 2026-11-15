@@ -1,5 +1,5 @@
 import { LabPlayground } from "@/components/lab/lab-playground";
-import { formsTrack } from "@/lib/lab/forms-track";
+import { getTrack } from "@/lib/lab/tracks";
 
 export const metadata = {
   title: "Forms & Validation Lab — React · TypeScript · Bootstrap — Stacked",
@@ -7,5 +7,7 @@ export const metadata = {
 };
 
 export default function FormsLabPage() {
-  return <LabPlayground examples={formsTrack.examples} trackTitle={formsTrack.title} modules={formsTrack.modules} />;
+  const track = getTrack("forms");
+  if (!track) return null;
+  return <LabPlayground examples={track.examples} trackTitle={track.title} modules={track.modules} />;
 }
